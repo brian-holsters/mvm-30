@@ -21,7 +21,10 @@ func _ready() -> void:
 	# Initialize room when it changes.
 	room_loaded.connect(init_room, CONNECT_DEFERRED)
 	# Load the starting room.
-	load_room(starting_map)
+	await load_room(starting_map)
+	var spawn_point = get_tree().get_first_node_in_group("spawn_point")
+	if spawn_point:
+		player.global_position = spawn_point.global_position
 
 
 func init_room():

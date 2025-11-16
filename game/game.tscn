@@ -1,26 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://cd8ffgsf0edrb"]
+[gd_scene load_steps=3 format=3 uid="uid://cd8ffgsf0edrb"]
 
-[ext_resource type="Texture2D" uid="uid://cwfingupfv57v" path="res://icon.svg" id="1_l1rk1"]
 [ext_resource type="Script" uid="uid://ti8ga2h4opkg" path="res://game/game.gd" id="1_vasa2"]
-[ext_resource type="PackedScene" uid="uid://dq3tyn2nfhty3" path="res://game/entities/player/player_character.tscn" id="3_h7iqs"]
-[ext_resource type="Script" uid="uid://d6b1dyqshq61" path="res://game/entities/player/mvm30_player.gd" id="4_4fuuu"]
+[ext_resource type="PackedScene" uid="uid://rx62opg8jmrd" path="res://game/entities/player/player.tscn" id="2_vasa2"]
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("_player", "camera")]
 script = ExtResource("1_vasa2")
-starting_map = "uid://cmrang1aaxgm3"
-_player = NodePath("Player")
-camera = NodePath("Player/Camera2D")
+starting_map = "uid://b3t1g0qecug7h"
+_player = NodePath("PlayerCharacter")
+camera = NodePath("PlayerCharacter/Camera2D")
 
-[node name="Icon" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(596, 308)
-texture = ExtResource("1_l1rk1")
+[node name="PlayerCharacter" parent="." instance=ExtResource("2_vasa2")]
 
-[node name="Player" parent="." instance=ExtResource("3_h7iqs")]
-z_index = 1
-position = Vector2(672, 490)
-script = ExtResource("4_4fuuu")
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="Camera2D" type="Camera2D" parent="PlayerCharacter"]
 process_callback = 0
-position_smoothing_enabled = true
