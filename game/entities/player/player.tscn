@@ -336,6 +336,7 @@ y_movement_delta = 100.0
 dynamic_data = Dictionary[String, ExtResource("7_4neg5")]({
 "speed_override": SubResource("Resource_onmye")
 })
+is_available = false
 metadata/_custom_type_script = "uid://dadlfrrf4y021"
 
 [node name="ToWallSlideR" type="Node" parent="StateMachine/Dash" index="0" node_paths=PackedStringArray("to_state")]

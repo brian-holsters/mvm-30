@@ -1,10 +1,51 @@
-[gd_scene load_steps=3 format=4 uid="uid://qolcaba6uy0h"]
+[gd_scene load_steps=7 format=4 uid="uid://qolcaba6uy0h"]
 
 [ext_resource type="PackedScene" uid="uid://by13a22vxwdu1" path="res://game/levels/base_level.tscn" id="1_32alo"]
 [ext_resource type="TileSet" uid="uid://cacipb5cl5q47" path="res://assets/prototype/20.tres" id="2_32alo"]
+[ext_resource type="Script" uid="uid://bnktai1u2rqbo" path="res://game/scripts/flag_checker.gd" id="2_ssu21"]
+[ext_resource type="Script" uid="uid://ba0bmlonp2suh" path="res://game/entities/interactable/interaction_area.gd" id="3_xxsij"]
+[ext_resource type="Texture2D" uid="uid://cwfingupfv57v" path="res://icon.svg" id="4_ssu21"]
 
-[node name="PreBoss" instance=ExtResource("1_32alo")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rgfgg"]
 
-[node name="TileMapLayer" type="TileMapLayer" parent="." index="1"]
+[node name="Dash" instance=ExtResource("1_32alo")]
+
+[node name="FlagNode" type="Node2D" parent="." index="0"]
+script = ExtResource("2_ssu21")
+database = "upgrades"
+flag = "Dash"
+metadata/_custom_type_script = "uid://bnktai1u2rqbo"
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." index="2"]
 tile_map_data = PackedByteArray("AAAPAAgAAAAAAAMAAAAPAAAAAAAAAAMAAAAPAAEAAAAAAAMAAAAPAAIAAAAAAAMAAAAPAAMAAAAAAAMAAAAPAAQAAAAAAAMAAAAOAAAAAAAAAAMAAAAAAAAAAAAAAAMAAAAAAAQAAAAAAAMAAAAAAAUAAAAAAAMAAAAAAAYAAAAAAAMAAAAAAAcAAAAAAAMAAAAAAAgAAAAAAAMAAAABAAAAAAAAAAMAAAABAAgAAAAAAAMAAAACAAAAAAAAAAMAAAACAAgAAAAAAAMAAAADAAAAAAAAAAMAAAADAAgAAAAAAAMAAAAEAAAAAAAAAAMAAAAEAAgAAAAAAAMAAAAFAAAAAAAAAAMAAAAFAAgAAAAAAAMAAAAGAAAAAAAAAAMAAAAGAAgAAAAAAAMAAAAHAAAAAAAAAAMAAAAHAAgAAAAAAAMAAAAIAAAAAAAAAAMAAAAIAAgAAAAAAAMAAAAJAAAAAAAAAAMAAAAJAAgAAAAAAAMAAAAKAAAAAAAAAAMAAAAKAAgAAAAAAAMAAAALAAAAAAAAAAMAAAALAAgAAAAAAAMAAAAMAAAAAAAAAAMAAAAMAAgAAAAAAAMAAAANAAAAAAAAAAMAAAANAAgAAAAAAAMAAAAOAAgAAAAAAAMAAAAIAAUAAAAAAAMAAAAIAAYAAAAAAAMAAAAIAAcAAAAAAAMAAAAJAAUAAAAAAAMAAAAJAAYAAAAAAAMAAAAJAAcAAAAAAAMAAAAKAAUAAAAAAAMAAAAKAAYAAAAAAAMAAAAKAAcAAAAAAAMAAAALAAUAAAAAAAMAAAALAAYAAAAAAAMAAAALAAcAAAAAAAMAAAABAAQAAAAAAAMAAAABAAUAAAAAAAMAAAABAAYAAAAAAAMAAAABAAcAAAAAAAMAAAACAAQAAAAAAAMAAAACAAUAAAAAAAMAAAACAAYAAAAAAAMAAAACAAcAAAAAAAMAAAACAAMAAAAAAAMAAAAAAAMAAAAAAAMAAAABAAMAAAAAAAMAAAA=")
 tile_set = ExtResource("2_32alo")
+
+[node name="UpgradePickup" type="Area2D" parent="." index="3"]
+position = Vector2(200, 90)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("3_xxsij")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="UpgradePickup" index="0"]
+position = Vector2(0, -10)
+scale = Vector2(0.156, 0.156)
+texture = ExtResource("4_ssu21")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UpgradePickup" index="1"]
+shape = SubResource("RectangleShape2D_rgfgg")
+
+[node name="InteractText" type="Label" parent="UpgradePickup" index="2"]
+visible = false
+offset_left = -32.0
+offset_top = -51.0
+offset_right = 29.0
+offset_bottom = -28.0
+text = "↑"
+horizontal_alignment = 1
+
+[connection signal="flag_checked" from="FlagNode" to="UpgradePickup" method="queue_free"]
+[connection signal="can_interact" from="UpgradePickup" to="UpgradePickup/InteractText" method="show"]
+[connection signal="cannot_interact" from="UpgradePickup" to="UpgradePickup/InteractText" method="hide"]
+[connection signal="interact" from="UpgradePickup" to="UpgradePickup" method="queue_free" unbinds=1]
+[connection signal="interact" from="UpgradePickup" to="FlagNode" method="set_flag" unbinds=1]
