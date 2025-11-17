@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=4 uid="uid://c5j2ox22xuscg"]
+[gd_scene load_steps=6 format=4 uid="uid://c5j2ox22xuscg"]
 
 [ext_resource type="PackedScene" uid="uid://by13a22vxwdu1" path="res://game/levels/base_level.tscn" id="1_iapuj"]
 [ext_resource type="TileSet" uid="uid://cacipb5cl5q47" path="res://assets/prototype/20.tres" id="2_iapuj"]
+[ext_resource type="Script" uid="uid://bnktai1u2rqbo" path="res://game/scripts/flag_checker.gd" id="3_t4636"]
+[ext_resource type="Script" uid="uid://ba0bmlonp2suh" path="res://game/entities/interactable/interaction_area.gd" id="3_u3jef"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t4636"]
 
 [node name="DashVertical" instance=ExtResource("1_iapuj")]
 
@@ -31,3 +35,39 @@ position = Vector2(189, 189)
 points = PackedVector2Array(0, 0, 0, 60)
 width = 2.0
 default_color = Color(1, 0, 0, 1)
+
+[node name="FlagNode" type="Node2D" parent="." index="6"]
+script = ExtResource("3_t4636")
+flag = "dash_challenge_vertical_switch"
+metadata/_custom_type_script = "uid://bnktai1u2rqbo"
+
+[node name="SwitchInteractionRoot" type="Node2D" parent="FlagNode" index="0"]
+
+[node name="InteractableArea2D" type="Area2D" parent="FlagNode/SwitchInteractionRoot" index="0"]
+position = Vector2(30, 150)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("3_u3jef")
+metadata/_custom_type_script = "uid://ba0bmlonp2suh"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FlagNode/SwitchInteractionRoot/InteractableArea2D" index="0"]
+shape = SubResource("RectangleShape2D_t4636")
+
+[node name="InteractText" type="Label" parent="FlagNode/SwitchInteractionRoot/InteractableArea2D" index="1"]
+visible = false
+offset_left = -32.0
+offset_top = -51.0
+offset_right = 29.0
+offset_bottom = -28.0
+text = "↑"
+horizontal_alignment = 1
+
+[node name="Gate" type="TileMapLayer" parent="FlagNode/SwitchInteractionRoot" index="1"]
+tile_map_data = PackedByteArray("AAAMAAEAAAAOAAMAAAAMAAIAAAAOAAMAAAAMAAMAAAAOAAMAAAAMAAQAAAAOAAMAAAA=")
+tile_set = ExtResource("2_iapuj")
+
+[connection signal="flag_checked" from="FlagNode" to="FlagNode/SwitchInteractionRoot" method="queue_free"]
+[connection signal="can_interact" from="FlagNode/SwitchInteractionRoot/InteractableArea2D" to="FlagNode/SwitchInteractionRoot/InteractableArea2D/InteractText" method="show"]
+[connection signal="cannot_interact" from="FlagNode/SwitchInteractionRoot/InteractableArea2D" to="FlagNode/SwitchInteractionRoot/InteractableArea2D/InteractText" method="hide"]
+[connection signal="interact" from="FlagNode/SwitchInteractionRoot/InteractableArea2D" to="FlagNode/SwitchInteractionRoot" method="queue_free" unbinds=1]
+[connection signal="interact" from="FlagNode/SwitchInteractionRoot/InteractableArea2D" to="FlagNode" method="set_flag" unbinds=1]

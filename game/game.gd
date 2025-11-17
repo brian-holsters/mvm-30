@@ -1,4 +1,5 @@
 extends "res://addons/MetroidvaniaSystem/Template/Scripts/MetSysGame.gd"
+class_name Game
 
 # The game starts in this map. Uses special annotation that enabled dedicated inspector plugin.
 @export_file("room_link") var starting_map: String
@@ -8,6 +9,8 @@ extends "res://addons/MetroidvaniaSystem/Template/Scripts/MetSysGame.gd"
 const SaveManager = preload("res://addons/MetroidvaniaSystem/Template/Scripts/SaveManager.gd")
 const SAVE_PATH = "user://example_save_data.sav"
 
+static var save_manager: SaveManager = SaveManager.new()
+
 func _ready() -> void:
 	# Basic MetSys initialization
 	MetSys.reset_state()
@@ -16,8 +19,11 @@ func _ready() -> void:
 	add_module("RoomTransitions.gd")  # TODO: handle transitions more elegantly
 	
 	# TODO: Save file handling
-	MetSys.set_save_data()
 	
+	MetSys.set_save_data()
+	save_manager = SaveManager.new()
+	save_manager.store_game(self)
+	save_manager.save_as_binary(SAVE_PATH)
 	# Initialize room when it changes.
 	room_loaded.connect(init_room, CONNECT_DEFERRED)
 	# Load the starting room.
