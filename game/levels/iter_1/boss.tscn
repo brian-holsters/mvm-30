@@ -28,7 +28,7 @@ text = "Kill Boss"
 [node name="GreenSwitchRoot" type="Node2D" parent="." index="4"]
 
 [node name="GreenSwitch" type="Area2D" parent="GreenSwitchRoot" index="0"]
-position = Vector2(90, 170)
+position = Vector2(90, 150)
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("4_65g1t")
