@@ -47,5 +47,5 @@ horizontal_alignment = 1
 [connection signal="flag_checked" from="FlagNode" to="UpgradePickup" method="queue_free"]
 [connection signal="can_interact" from="UpgradePickup" to="UpgradePickup/InteractText" method="show"]
 [connection signal="cannot_interact" from="UpgradePickup" to="UpgradePickup/InteractText" method="hide"]
-[connection signal="interact" from="UpgradePickup" to="UpgradePickup" method="queue_free" unbinds=1]
 [connection signal="interact" from="UpgradePickup" to="FlagNode" method="set_flag" unbinds=1]
+[connection signal="interact" from="UpgradePickup" to="UpgradePickup" method="queue_free" unbinds=1]

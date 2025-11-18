@@ -39,6 +39,8 @@ func enter(_from: StringName, data: Dictionary[String, Variant]) -> void:
 	var knockback = Vector2(default_knockback.x * looking_left_sign, default_knockback.y)
 	_knockback = data.get("knockback", knockback)
 	_stun_time = data.get("stun_time", default_stun_time)
+	var damage = data.get("damage", 0)
+	actor.take_damage(damage)
 	actor.velocity = _knockback
 	_execution_time = Time.get_datetime_string_from_system()
 	var local_execution_time = _execution_time

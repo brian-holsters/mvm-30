@@ -1,7 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://cd8ffgsf0edrb"]
+[gd_scene load_steps=7 format=3 uid="uid://cd8ffgsf0edrb"]
 
 [ext_resource type="Script" uid="uid://ti8ga2h4opkg" path="res://game/game.gd" id="1_vasa2"]
 [ext_resource type="PackedScene" uid="uid://rx62opg8jmrd" path="res://game/entities/player/player.tscn" id="2_vasa2"]
+[ext_resource type="Script" uid="uid://cg38swpl3yhck" path="res://game/hud/hud.gd" id="3_4fuuu"]
+[ext_resource type="Script" uid="uid://cjwldoqugpfjr" path="res://game/hud/hp_gauge.gd" id="3_h7iqs"]
+
+[sub_resource type="Gradient" id="Gradient_4fuuu"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.75886524)
+colors = PackedColorArray(1, 0, 0, 1, 1, 0.3, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dxrkv"]
+gradient = SubResource("Gradient_4fuuu")
+width = 8
+height = 8
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("_player", "camera")]
 script = ExtResource("1_vasa2")
@@ -14,3 +29,36 @@ position = Vector2(160, 90)
 
 [node name="Camera2D" type="Camera2D" parent="PlayerCharacter"]
 process_callback = 0
+
+[node name="Hud" type="CanvasLayer" parent="." node_paths=PackedStringArray("hp_gauge", "player")]
+unique_name_in_owner = true
+script = ExtResource("3_4fuuu")
+hp_gauge = NodePath("MarginContainer/Control/HealthGauge")
+player = NodePath("../PlayerCharacter")
+
+[node name="MarginContainer" type="MarginContainer" parent="Hud"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="Control" type="Control" parent="Hud/MarginContainer"]
+layout_mode = 2
+
+[node name="HealthGauge" type="GridContainer" parent="Hud/MarginContainer/Control"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 110.0
+offset_bottom = 40.0
+columns = 8
+script = ExtResource("3_h7iqs")
+
+[node name="Template" type="TextureRect" parent="Hud/MarginContainer/Control/HealthGauge"]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_dxrkv")

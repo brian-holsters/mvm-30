@@ -74,8 +74,9 @@ position = Vector2(5, -29)
 [node name="LedgeDetectorL" parent="." index="3"]
 position = Vector2(-5, -29)
 
-[node name="HurtBox" type="Area2D" parent="." index="4"]
+[node name="HurtBox" type="Area2D" parent="." index="4" node_paths=PackedStringArray("actor")]
 script = ExtResource("3_0rdsw")
+actor = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" index="0"]
 position = Vector2(0, -15)
@@ -95,7 +96,7 @@ default_state = NodePath("Airborne")
 script = ExtResource("5_0rdsw")
 listening_node = NodePath("../../HurtBox")
 listening_signal = "hurt"
-signal_arguments = 5
+signal_arguments = 6
 to_state = NodePath("../Hurt")
 force_change_on_not_allowed = true
 metadata/_custom_type_script = "uid://tmfwaj030o0e"
