@@ -40,6 +40,7 @@ func enter(_from: StringName, data: Dictionary[String, Variant]) -> void:
 	_knockback = data.get("knockback", knockback)
 	_stun_time = data.get("stun_time", default_stun_time)
 	var damage = data.get("damage", 0)
+	print(damage)
 	actor.take_damage(damage)
 	actor.velocity = _knockback
 	_execution_time = Time.get_datetime_string_from_system()

@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=4 uid="uid://ytt5k8fi2oyf"]
+[gd_scene load_steps=8 format=4 uid="uid://ytt5k8fi2oyf"]
 
 [ext_resource type="PackedScene" uid="uid://by13a22vxwdu1" path="res://game/levels/base_level.tscn" id="1_hl4xs"]
+[ext_resource type="Script" uid="uid://bnktai1u2rqbo" path="res://game/scripts/flag_checker.gd" id="2_7nine"]
 [ext_resource type="TileSet" uid="uid://cacipb5cl5q47" path="res://assets/prototype/20.tres" id="2_hl4xs"]
 [ext_resource type="Script" uid="uid://dwo3ygpkhoowl" path="res://game/entities/obstacles/laser.gd" id="3_68mi5"]
 [ext_resource type="Script" uid="uid://bn21x38drplvg" path="res://game/entities/hitbox/hit_box.gd" id="4_7nine"]
@@ -13,14 +14,19 @@ size = Vector2(62, 4)
 
 [node name="DashChallenge" instance=ExtResource("1_hl4xs")]
 
-[node name="Timer" type="Timer" parent="." index="0"]
+[node name="BossKilledFlagNode" type="Node2D" parent="." index="0"]
+script = ExtResource("2_7nine")
+flag = "boss_1"
+metadata/_custom_type_script = "uid://bnktai1u2rqbo"
+
+[node name="Timer" type="Timer" parent="." index="1"]
 autostart = true
 
-[node name="TileMapLayer" type="TileMapLayer" parent="." index="2"]
-tile_map_data = PackedByteArray("AAAAAAAAAAAAAAMAAAAAAAEAAAAAAAMAAAAAAAIAAAAAAAMAAAAAAAMAAAAAAAMAAAAAAAQAAAAAAAMAAAAAAAgAAAAAAAMAAAABAAAAAAAAAAMAAAABAAgAAAAAAAMAAAACAAAAAAAAAAMAAAACAAgAAAAAAAMAAAADAAAAAAAAAAMAAAADAAgAAAAAAAMAAAAEAAAAAAAAAAMAAAAEAAgAAAAAAAMAAAAFAAAAAAAAAAMAAAAFAAgAAAAAAAMAAAAGAAAAAAAAAAMAAAAGAAgAAAAAAAMAAAAHAAAAAAAAAAMAAAAHAAgAAAAAAAMAAAAIAAAAAAAAAAMAAAAIAAgAAAAAAAMAAAAJAAAAAAAAAAMAAAAJAAgAAAAAAAMAAAAKAAAAAAAAAAMAAAAKAAgAAAAAAAMAAAALAAAAAAAAAAMAAAALAAgAAAAAAAMAAAAMAAAAAAAAAAMAAAAMAAgAAAAAAAMAAAANAAAAAAAAAAMAAAANAAgAAAAAAAMAAAAOAAAAAAAAAAMAAAAOAAgAAAAAAAMAAAAPAAAAAAAAAAMAAAAPAAgAAAAAAAMAAAAQAAAAAAAAAAMAAAAQAAgAAAAAAAMAAAARAAAAAAAAAAMAAAARAAgAAAAAAAMAAAASAAAAAAAAAAMAAAASAAgAAAAAAAMAAAATAAAAAAAAAAMAAAATAAgAAAAAAAMAAAAUAAAAAAAAAAMAAAAUAAgAAAAAAAMAAAAVAAAAAAAAAAMAAAAVAAgAAAAAAAMAAAAWAAAAAAAAAAMAAAAWAAgAAAAAAAMAAAAXAAAAAAAAAAMAAAAXAAgAAAAAAAMAAAAYAAAAAAAAAAMAAAAYAAgAAAAAAAMAAAAZAAAAAAAAAAMAAAAZAAgAAAAAAAMAAAAaAAAAAAAAAAMAAAAaAAgAAAAAAAMAAAAbAAAAAAAAAAMAAAAbAAgAAAAAAAMAAAAcAAAAAAAAAAMAAAAcAAgAAAAAAAMAAAAdAAAAAAAAAAMAAAAdAAgAAAAAAAMAAAAeAAAAAAAAAAMAAAAeAAgAAAAAAAMAAAAfAAAAAAAAAAMAAAAfAAMAAAAAAAMAAAAfAAQAAAAAAAMAAAAfAAUAAAAAAAMAAAAfAAYAAAAAAAMAAAAfAAcAAAAAAAMAAAAfAAgAAAAAAAMAAAAeAAQAAAAAAAMAAAAeAAUAAAAAAAMAAAAeAAYAAAAAAAMAAAAeAAcAAAAAAAMAAAAeAAMAAAAAAAMAAAAdAAQAAAAAAAMAAAAdAAUAAAAAAAMAAAAdAAYAAAAAAAMAAAAdAAcAAAAAAAMAAAAYAAMAAAAAAAMAAAAYAAQAAAAAAAMAAAAYAAUAAAAAAAMAAAAYAAYAAAAAAAMAAAAYAAcAAAAAAAMAAAAUAAEAAAAAAAMAAAAUAAIAAAAAAAMAAAAUAAMAAAAAAAMAAAAUAAQAAAAAAAMAAAARAAcAAAAAAAMAAAARAAYAAAAAAAMAAAARAAIAAAAAAAMAAAARAAEAAAAAAAMAAAAQAAYAAAAAAAMAAAAQAAcAAAAAAAMAAAAPAAcAAAAAAAMAAAAPAAYAAAAAAAMAAAAMAAYAAAAAAAMAAAAMAAcAAAAAAAMAAAALAAcAAAAAAAMAAAALAAYAAAAAAAMAAAAPAAMAAAAAAAMAAAAOAAMAAAAAAAMAAAANAAMAAAAAAAMAAAAMAAMAAAAAAAMAAAAMAAIAAAAAAAMAAAAMAAEAAAAAAAMAAAAPAAIAAAAAAAMAAAAPAAEAAAAAAAMAAAAKAAYAAAAAAAMAAAAKAAcAAAAAAAMAAAAJAAcAAAAAAAMAAAAJAAYAAAAAAAMAAAAJAAUAAAAAAAMAAAAJAAQAAAAAAAMAAAA=")
+[node name="TileMapLayer" type="TileMapLayer" parent="." index="3"]
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAMAAAAAAAEAAAAAAAMAAAAAAAIAAAAAAAMAAAAAAAMAAAAAAAMAAAAAAAQAAAAAAAMAAAAAAAgAAAAAAAMAAAABAAAAAAAAAAMAAAABAAgAAAAAAAMAAAACAAAAAAAAAAMAAAACAAgAAAAAAAMAAAADAAAAAAAAAAMAAAADAAgAAAAAAAMAAAAEAAAAAAAAAAMAAAAEAAgAAAAAAAMAAAAFAAAAAAAAAAMAAAAFAAgAAAAAAAMAAAAGAAAAAAAAAAMAAAAGAAgAAAAAAAMAAAAHAAAAAAAAAAMAAAAHAAgAAAAAAAMAAAAIAAAAAAAAAAMAAAAIAAgAAAAAAAMAAAAJAAAAAAAAAAMAAAAJAAgAAAAAAAMAAAAKAAAAAAAAAAMAAAAKAAgAAAAAAAMAAAALAAAAAAAAAAMAAAALAAgAAAAAAAMAAAAMAAAAAAAAAAMAAAAMAAgAAAAAAAMAAAAPAAAAAAAAAAMAAAAPAAgAAAAAAAMAAAAQAAAAAAAAAAMAAAAQAAgAAAAAAAMAAAARAAAAAAAAAAMAAAARAAgAAAAAAAMAAAASAAAAAAAAAAMAAAASAAgAAAAAAAMAAAATAAAAAAAAAAMAAAATAAgAAAAAAAMAAAAUAAAAAAAAAAMAAAAUAAgAAAAAAAMAAAAVAAAAAAAAAAMAAAAVAAgAAAAAAAMAAAAWAAAAAAAAAAMAAAAWAAgAAAAAAAMAAAAXAAAAAAAAAAMAAAAXAAgAAAAAAAMAAAAYAAAAAAAAAAMAAAAYAAgAAAAAAAMAAAAZAAAAAAAAAAMAAAAZAAgAAAAAAAMAAAAaAAAAAAAAAAMAAAAaAAgAAAAAAAMAAAAbAAAAAAAAAAMAAAAbAAgAAAAAAAMAAAAcAAAAAAAAAAMAAAAcAAgAAAAAAAMAAAAdAAAAAAAAAAMAAAAdAAgAAAAAAAMAAAAeAAAAAAAAAAMAAAAeAAgAAAAAAAMAAAAfAAAAAAAAAAMAAAAfAAMAAAAAAAMAAAAfAAQAAAAAAAMAAAAfAAUAAAAAAAMAAAAfAAYAAAAAAAMAAAAfAAcAAAAAAAMAAAAfAAgAAAAAAAMAAAAeAAQAAAAAAAMAAAAeAAUAAAAAAAMAAAAeAAYAAAAAAAMAAAAeAAcAAAAAAAMAAAAeAAMAAAAAAAMAAAAdAAQAAAAAAAMAAAAdAAUAAAAAAAMAAAAdAAYAAAAAAAMAAAAdAAcAAAAAAAMAAAAYAAMAAAAAAAMAAAAYAAQAAAAAAAMAAAAYAAUAAAAAAAMAAAAYAAYAAAAAAAMAAAAYAAcAAAAAAAMAAAAUAAEAAAAAAAMAAAAUAAIAAAAAAAMAAAAUAAMAAAAAAAMAAAAUAAQAAAAAAAMAAAARAAcAAAAAAAMAAAARAAYAAAAAAAMAAAARAAIAAAAAAAMAAAARAAEAAAAAAAMAAAAQAAYAAAAAAAMAAAAQAAcAAAAAAAMAAAAPAAcAAAAAAAMAAAAPAAYAAAAAAAMAAAAMAAYAAAAAAAMAAAAMAAcAAAAAAAMAAAALAAcAAAAAAAMAAAALAAYAAAAAAAMAAAAPAAMAAAAAAAMAAAAMAAMAAAAAAAMAAAAMAAIAAAAAAAMAAAAMAAEAAAAAAAMAAAAPAAIAAAAAAAMAAAAPAAEAAAAAAAMAAAAKAAYAAAAAAAMAAAAKAAcAAAAAAAMAAAAJAAcAAAAAAAMAAAAJAAYAAAAAAAMAAAAJAAUAAAAAAAMAAAAJAAQAAAAAAAMAAAA=")
 tile_set = ExtResource("2_hl4xs")
 
-[node name="Laser" type="Line2D" parent="." index="3"]
+[node name="Laser" type="Line2D" parent="." index="4"]
 position = Vector2(409, 111)
 points = PackedVector2Array(0, -21, 0, 60)
 width = 2.0
@@ -37,7 +43,7 @@ metadata/_custom_type_script = "uid://bn21x38drplvg"
 position = Vector2(-0.5, 19.5)
 shape = SubResource("RectangleShape2D_wxihf")
 
-[node name="Laser2" type="Line2D" parent="." index="4"]
+[node name="Laser2" type="Line2D" parent="." index="5"]
 position = Vector2(359, 69)
 points = PackedVector2Array(0, -19, 0, 60)
 width = 2.0
@@ -54,7 +60,7 @@ metadata/_custom_type_script = "uid://bn21x38drplvg"
 position = Vector2(-0.5, 19.5)
 shape = SubResource("RectangleShape2D_wxihf")
 
-[node name="Laser3" type="Line2D" parent="." index="5"]
+[node name="Laser3" type="Line2D" parent="." index="6"]
 position = Vector2(341, 69)
 points = PackedVector2Array(0, -18, 0, 60)
 width = 2.0
@@ -71,7 +77,7 @@ metadata/_custom_type_script = "uid://bn21x38drplvg"
 position = Vector2(-0.5, 19.5)
 shape = SubResource("RectangleShape2D_wxihf")
 
-[node name="Laser4" type="Line2D" parent="." index="6"]
+[node name="Laser4" type="Line2D" parent="." index="7"]
 position = Vector2(199, 11)
 points = PackedVector2Array(0, 0, 0, 81)
 width = 2.0
@@ -89,7 +95,7 @@ metadata/_custom_type_script = "uid://bn21x38drplvg"
 position = Vector2(-0.5, 19.5)
 shape = SubResource("RectangleShape2D_wxihf")
 
-[node name="Laser5" type="Line2D" parent="." index="7"]
+[node name="Laser5" type="Line2D" parent="." index="8"]
 position = Vector2(181, 11)
 points = PackedVector2Array(0, 0, 0, 81)
 width = 2.0
@@ -107,60 +113,63 @@ metadata/_custom_type_script = "uid://bn21x38drplvg"
 position = Vector2(-0.5, 19.5)
 shape = SubResource("RectangleShape2D_wxihf")
 
-[node name="Laser6" type="Line2D" parent="." index="8"]
-position = Vector2(280, 130)
-points = PackedVector2Array(-31, 0, 31, 0)
-width = 2.0
-default_color = Color(1, 0, 0, 1)
-script = ExtResource("3_68mi5")
-
-[node name="Hitbox" type="Area2D" parent="Laser6" index="0"]
-position = Vector2(-31, 0)
-script = ExtResource("4_7nine")
-custom_knockback = true
-knockback = Vector2(75, -100)
-metadata/_custom_type_script = "uid://bn21x38drplvg"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Laser6/Hitbox" index="0"]
-position = Vector2(31, 0)
-shape = SubResource("RectangleShape2D_68mi5")
-
-[node name="Laser7" type="Line2D" parent="." index="9"]
+[node name="EscapeLasers" type="Node2D" parent="." index="9"]
 position = Vector2(280, 140)
+
+[node name="Laser6" type="Line2D" parent="EscapeLasers" index="0"]
+position = Vector2(0, -10)
 points = PackedVector2Array(-31, 0, 31, 0)
 width = 2.0
 default_color = Color(1, 0, 0, 1)
 script = ExtResource("3_68mi5")
 
-[node name="Hitbox" type="Area2D" parent="Laser7" index="0"]
+[node name="Hitbox" type="Area2D" parent="EscapeLasers/Laser6" index="0"]
 position = Vector2(-31, 0)
 script = ExtResource("4_7nine")
 custom_knockback = true
 knockback = Vector2(75, -100)
 metadata/_custom_type_script = "uid://bn21x38drplvg"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Laser7/Hitbox" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EscapeLasers/Laser6/Hitbox" index="0"]
 position = Vector2(31, 0)
 shape = SubResource("RectangleShape2D_68mi5")
 
-[node name="Laser8" type="Line2D" parent="." index="10"]
-position = Vector2(280, 151)
+[node name="Laser7" type="Line2D" parent="EscapeLasers" index="1"]
 points = PackedVector2Array(-31, 0, 31, 0)
 width = 2.0
 default_color = Color(1, 0, 0, 1)
 script = ExtResource("3_68mi5")
 
-[node name="Hitbox" type="Area2D" parent="Laser8" index="0"]
+[node name="Hitbox" type="Area2D" parent="EscapeLasers/Laser7" index="0"]
 position = Vector2(-31, 0)
 script = ExtResource("4_7nine")
 custom_knockback = true
 knockback = Vector2(75, -100)
 metadata/_custom_type_script = "uid://bn21x38drplvg"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Laser8/Hitbox" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EscapeLasers/Laser7/Hitbox" index="0"]
 position = Vector2(31, 0)
 shape = SubResource("RectangleShape2D_68mi5")
 
+[node name="Laser8" type="Line2D" parent="EscapeLasers" index="2"]
+position = Vector2(0, 11)
+points = PackedVector2Array(-31, 0, 31, 0)
+width = 2.0
+default_color = Color(1, 0, 0, 1)
+script = ExtResource("3_68mi5")
+
+[node name="Hitbox" type="Area2D" parent="EscapeLasers/Laser8" index="0"]
+position = Vector2(-31, 0)
+script = ExtResource("4_7nine")
+custom_knockback = true
+knockback = Vector2(75, -100)
+metadata/_custom_type_script = "uid://bn21x38drplvg"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EscapeLasers/Laser8/Hitbox" index="0"]
+position = Vector2(31, 0)
+shape = SubResource("RectangleShape2D_68mi5")
+
+[connection signal="flag_checked" from="BossKilledFlagNode" to="EscapeLasers" method="queue_free"]
 [connection signal="timeout" from="Timer" to="Laser" method="toggle"]
 [connection signal="timeout" from="Timer" to="Laser2" method="toggle"]
 [connection signal="timeout" from="Timer" to="Laser3" method="toggle"]
