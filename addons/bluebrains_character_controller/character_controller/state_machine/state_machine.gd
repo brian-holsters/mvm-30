@@ -95,6 +95,8 @@ func _ready() -> void:
 	for child in get_children():
 		if child is CharacterControllerState:
 			add_state(child)
+	if always_active:
+		is_active = true
 
 
 func _physics_process(delta: float) -> void:
