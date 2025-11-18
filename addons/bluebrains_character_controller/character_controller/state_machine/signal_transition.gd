@@ -27,6 +27,6 @@ func _get_configuration_warnings() -> PackedStringArray:
 	var warnings = Array(super()) as Array[String]
 	
 	if listening_node.get(listening_signal) == null or not listening_node.get(listening_signal) is Signal:
-		warnings += "Signal ["+ listening_signal +"] not found in ["+ listening_node.name +"]"
+		warnings.append("Signal ["+ listening_signal +"] not found in ["+ listening_node.name +"]")
 	
 	return warnings
