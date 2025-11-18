@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cyfd53fuwelk5" path="res://addons/bluebrains_character_controller/components/ledge_detector.gd" id="1_0w234"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1672w"]
-size = Vector2(6, 6)
+size = Vector2(10, 6)
 
 [node name="LedgeDetector" type="Node2D"]
 script = ExtResource("1_0w234")
@@ -24,6 +24,6 @@ hit_from_inside = true
 position = Vector2(0, -3)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Exclusion"]
-position = Vector2(3, 0)
+position = Vector2(5, 0)
 shape = SubResource("RectangleShape2D_1672w")
 debug_color = Color(0.9456665, 0.19491443, 0.3407602, 0.41960785)
