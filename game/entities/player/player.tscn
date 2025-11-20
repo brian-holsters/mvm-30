@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://vie2pd3qfb5e" path="res://addons/bluebrains_character_controller/character_controller/2d_character_controller_base.tscn" id="1_heu0c"]
 [ext_resource type="Script" uid="uid://d6b1dyqshq61" path="res://game/entities/player/mvm30_player.gd" id="2_t56eh"]
 [ext_resource type="Script" uid="uid://dr0tmd1vkfnxl" path="res://game/entities/hitbox/hurt_box.gd" id="3_0rdsw"]
-[ext_resource type="SpriteFrames" uid="uid://c3ixhnu256fxs" path="res://addons/bluebrains_character_controller/sprites/sprite_frames.tres" id="3_6pmmc"]
+[ext_resource type="SpriteFrames" uid="uid://rv54s3ebi4v3" path="res://game/entities/player/sprite_frames.tres" id="3_xt77v"]
 [ext_resource type="Script" uid="uid://cwdjqvddxjqqg" path="res://addons/bluebrains_character_controller/character_controller/state_machine/states/grounded.gd" id="4_0rdsw"]
 [ext_resource type="Script" uid="uid://ds3cn3uu7nsr4" path="res://game/entities/player/custom_transitions/to_hurt_on_signal.gd" id="5_0rdsw"]
 [ext_resource type="Script" uid="uid://ke7ebekdcqfn" path="res://addons/bluebrains_character_controller/character_controller/state_machine/input_transition.gd" id="5_xt77v"]
@@ -65,7 +65,7 @@ shape = SubResource("RectangleShape2D_heu0c")
 [node name="AnimatedSprite2D" parent="." index="1"]
 unique_name_in_owner = true
 position = Vector2(0, -16)
-sprite_frames = ExtResource("3_6pmmc")
+sprite_frames = ExtResource("3_xt77v")
 animation = &"hurt_damaged"
 
 [node name="LedgeDetectorR" parent="." index="2"]
