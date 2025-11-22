@@ -1,66 +1,9 @@
-[gd_scene load_steps=12 format=4 uid="uid://brqiblera1yr7"]
+[gd_scene load_steps=6 format=4 uid="uid://brqiblera1yr7"]
 
 [ext_resource type="PackedScene" uid="uid://by13a22vxwdu1" path="res://game/levels/base_level.tscn" id="1_0d6c2"]
-[ext_resource type="Texture2D" uid="uid://b7nit00hasq23" path="res://assets/tilesets/main_tileset.png" id="3_12u2k"]
+[ext_resource type="TileSet" uid="uid://bxjd1yx0ntj88" path="res://assets/tilesets/main_tileset.tres" id="2_tvvsj"]
 [ext_resource type="Script" uid="uid://dwo3ygpkhoowl" path="res://game/entities/obstacles/laser.gd" id="3_go7er"]
 [ext_resource type="Script" uid="uid://bn21x38drplvg" path="res://game/entities/hitbox/hit_box.gd" id="4_tvvsj"]
-
-[sub_resource type="TileMapPattern" id="TileMapPattern_8plwf"]
-tile_data = PackedInt32Array(0, 0, 0, 65536, 0, 2, 1, 131072, 0, 65537, 131072, 2)
-
-[sub_resource type="TileMapPattern" id="TileMapPattern_uafhg"]
-tile_data = PackedInt32Array(0, 0, 0, 1, 131072, 0)
-
-[sub_resource type="TileMapPattern" id="TileMapPattern_eqhan"]
-tile_data = PackedInt32Array(0, 0, 1, 1, 131072, 1)
-
-[sub_resource type="TileMapPattern" id="TileMapPattern_bu8m6"]
-tile_data = PackedInt32Array(0, 0, 2, 1, 131072, 2)
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a18wp"]
-texture = ExtResource("3_12u2k")
-texture_region_size = Vector2i(20, 20)
-0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-1:0/0 = 0
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-2:0/0 = 0
-2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-3:0/0 = 0
-3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-0:1/0 = 0
-0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-1:1/0 = 0
-1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-2:1/0 = 0
-2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-3:1/0 = 0
-3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-0:2/0 = 0
-0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-1:2/0 = 0
-1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-2:2/0 = 0
-2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-3:2/0 = 0
-3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-0:3/0 = 0
-0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-1:3/0 = 0
-1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-2:3/0 = 0
-2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-3:3/0 = 0
-3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-
-[sub_resource type="TileSet" id="TileSet_eixha"]
-tile_size = Vector2i(20, 20)
-physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_a18wp")
-pattern_0 = SubResource("TileMapPattern_8plwf")
-pattern_1 = SubResource("TileMapPattern_uafhg")
-pattern_2 = SubResource("TileMapPattern_eqhan")
-pattern_3 = SubResource("TileMapPattern_bu8m6")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_12u2k"]
 size = Vector2(140, 4)
@@ -70,34 +13,34 @@ size = Vector2(140, 4)
 [node name="LaserTimer" type="Timer" parent="." index="0"]
 autostart = true
 
-[node name="Offset" type="TileMapLayer" parent="." index="2"]
+[node name="Offset" type="TileMapLayer" parent="Background" index="0"]
 position = Vector2(10, 0)
 tile_map_data = PackedByteArray("AAAHAAcAAAADAAEAAAAHAAoAAAADAAEAAAAOAA0AAAADAAEAAAAOAAoAAAADAAEAAAAOAAcAAAADAAEAAAAOAAQAAAADAAEAAAASAA4AAAADAAEAAAAWAA4AAAADAAEAAAAaAA4AAAADAAEAAAAaAAsAAAACAAEAAAAaAAUAAAACAAEAAAAdAAgAAAAAAAEAAAAeAAgAAAABAAEAAAAfAAgAAAABAAEAAAA=")
-tile_set = SubResource("TileSet_eixha")
+tile_set = ExtResource("2_tvvsj")
 
-[node name="Main" type="TileMapLayer" parent="." index="3"]
+[node name="Main" type="TileMapLayer" parent="Background" index="1"]
 tile_map_data = PackedByteArray("AAAOAAwAAAAAAAIAAAAPAAwAAAACAAIAAAAPAAsAAAACAAAAAAAOAAsAAAAAAAAAAAAOAAgAAAAAAAAAAAAOAAkAAAAAAAIAAAAPAAgAAAACAAAAAAAPAAkAAAACAAIAAAAOAAUAAAAAAAAAAAAOAAYAAAAAAAIAAAAPAAUAAAACAAAAAAAPAAYAAAACAAIAAAAHAAUAAAAAAAAAAAAHAAYAAAAAAAIAAAAIAAUAAAACAAAAAAAIAAYAAAACAAIAAAAHAAgAAAAAAAAAAAAHAAkAAAAAAAIAAAAIAAgAAAACAAAAAAAIAAkAAAACAAIAAAAWAAgAAAAAAAAAAAAWAAkAAAAAAAIAAAAXAAgAAAACAAAAAAAXAAkAAAACAAIAAAAWAAUAAAAAAAAAAAAWAAYAAAAAAAIAAAAXAAUAAAACAAAAAAAXAAYAAAACAAIAAAASAAQAAAAAAAAAAAATAAQAAAACAAAAAAASAAUAAAAAAAEAAAATAAUAAAACAAEAAAASAAYAAAAAAAEAAAATAAYAAAACAAEAAAASAAcAAAAAAAEAAAATAAcAAAACAAEAAAASAAgAAAAAAAEAAAATAAgAAAACAAEAAAASAAkAAAAAAAEAAAATAAkAAAACAAEAAAASAAoAAAAAAAEAAAATAAoAAAACAAEAAAASAAsAAAAAAAEAAAATAAsAAAACAAEAAAAaAAYAAAAAAAAAAAAbAAYAAAACAAAAAAAaAAcAAAAAAAEAAAAbAAcAAAACAAEAAAAaAAgAAAAAAAEAAAAbAAgAAAACAAEAAAAaAAkAAAAAAAEAAAAbAAkAAAACAAEAAAAaAAoAAAAAAAIAAAAbAAoAAAACAAIAAAAbAAQAAAACAAMAAAAaAAQAAAAAAAAAAAAaAAUAAAAAAAEAAAAaAAsAAAAAAAEAAAAbAAwAAAACAAAAAAAbAA0AAAACAAIAAAAaAAwAAAABAAAAAAAZAAwAAAABAAAAAAAYAAwAAAABAAAAAAAXAAwAAAABAAAAAAAWAAwAAAABAAAAAAAVAAwAAAABAAAAAAAUAAwAAAABAAAAAAATAAwAAAABAAAAAAASAAwAAAAAAAEAAAASAA0AAAAAAAIAAAATAA0AAAABAAIAAAAUAA0AAAABAAIAAAAVAA0AAAABAAIAAAAWAA0AAAABAAIAAAAXAA0AAAABAAIAAAAYAA0AAAABAAIAAAAZAA0AAAABAAIAAAAaAA0AAAABAAIAAAAWAAMAAAAAAAIAAAAXAAMAAAACAAIAAAAWAAIAAAAAAAEAAAAXAAIAAAACAAEAAAAVAAEAAAAAAAIAAAAYAAEAAAACAAIAAAAWAAEAAAABAAIAAAAXAAEAAAABAAIAAAAcAAAAAAABAAIAAAAbAAAAAAABAAIAAAAaAAAAAAABAAIAAAAZAAAAAAABAAIAAAAYAAAAAAABAAIAAAAXAAAAAAABAAIAAAAWAAAAAAABAAIAAAAVAAAAAAABAAIAAAAUAAAAAAABAAIAAAATAAAAAAABAAIAAAASAAAAAAABAAIAAAARAAAAAAABAAIAAAAdAAAAAAABAAIAAAAdAAEAAAADAAEAAAAdAAIAAAADAAEAAAAdAAMAAAADAAEAAAAdAAQAAAADAAEAAAAdAAUAAAADAAEAAAAdAAYAAAADAAEAAAAdAAcAAAADAAIAAAAfAAcAAAABAAEAAAAeAAcAAAABAAEAAAAeAAYAAAABAAEAAAAeAAUAAAABAAEAAAAeAAQAAAABAAEAAAAeAAMAAAABAAEAAAAeAAIAAAABAAEAAAAeAAEAAAABAAEAAAAeAAAAAAABAAEAAAAfAAAAAAABAAEAAAAfAAEAAAABAAEAAAAfAAIAAAABAAEAAAAfAAMAAAABAAEAAAAfAAQAAAABAAEAAAAfAAUAAAABAAEAAAAfAAYAAAABAAEAAAAdAAkAAAADAAAAAAAeAAkAAAABAAIAAAAfAAkAAAABAAIAAAAdAAoAAAADAAEAAAAdAAsAAAADAAEAAAAdAAwAAAADAAEAAAAdAA0AAAADAAEAAAAdAA4AAAADAAIAAAAfAA0AAAAAAAAAAAAfAA4AAAAAAAEAAAAfAA8AAAAAAAEAAAAfABAAAAAAAAEAAAAfABEAAAABAAAAAAAeABEAAAABAAAAAAAdABEAAAABAAAAAAAcABEAAAABAAAAAAAbABEAAAACAAEAAAAaABEAAAAAAAEAAAAZABEAAAABAAAAAAAYABEAAAABAAAAAAAXABEAAAACAAEAAAAWABEAAAAAAAEAAAAVABEAAAABAAAAAAAUABEAAAABAAAAAAATABEAAAACAAEAAAASABEAAAAAAAEAAAARABEAAAABAAAAAAAQABEAAAABAAAAAAAPABEAAAABAAAAAAAOABEAAAABAAAAAAANABEAAAABAAAAAAAMABEAAAABAAAAAAALABEAAAABAAAAAAAKABEAAAABAAAAAAAJABEAAAABAAAAAAAIABEAAAABAAAAAAAHABEAAAABAAAAAAAGABEAAAABAAAAAAAFABEAAAABAAAAAAAEABEAAAABAAAAAAADABEAAAABAAAAAAACABEAAAABAAAAAAABABEAAAABAAAAAAAAABEAAAABAAEAAAABAA0AAAACAAAAAAAAAA0AAAABAAAAAAABAA4AAAACAAEAAAABAA8AAAACAAEAAAABABAAAAACAAEAAAAAAA4AAAABAAEAAAAAAA8AAAABAAEAAAAAABAAAAABAAEAAAAHAAsAAAAAAAAAAAAIAAsAAAACAAAAAAAHAAwAAAAAAAEAAAAIAAwAAAACAAEAAAAHAA0AAAAAAAEAAAAIAA0AAAACAAEAAAAHAA4AAAAAAAIAAAAIAA4AAAABAAMAAAAJAA4AAAABAAMAAAAKAA4AAAABAAMAAAALAA4AAAABAAMAAAAMAA4AAAABAAMAAAANAA4AAAABAAMAAAAOAA4AAAABAAMAAAAPAA4AAAACAAMAAAASAA8AAAAAAAAAAAASABAAAAAAAAEAAAATAA8AAAACAAAAAAATABAAAAACAAEAAAAWAA8AAAAAAAAAAAAWABAAAAAAAAEAAAAXAA8AAAACAAAAAAAXABAAAAACAAEAAAAaAA8AAAAAAAAAAAAaABAAAAAAAAEAAAAbAA8AAAACAAAAAAAbABAAAAACAAEAAAAOAAMAAAAAAAIAAAAPAAMAAAACAAIAAAAOAAIAAAAAAAEAAAAPAAIAAAACAAEAAAAQAAAAAAABAAIAAAAQAAEAAAACAAIAAAAPAAEAAAABAAIAAAAOAAEAAAABAAIAAAANAAEAAAABAAIAAAAMAAEAAAABAAIAAAALAAEAAAABAAIAAAAKAAEAAAABAAIAAAAJAAEAAAABAAIAAAAIAAEAAAABAAIAAAAHAAEAAAABAAIAAAAGAAEAAAABAAIAAAAFAAEAAAABAAIAAAAEAAEAAAABAAIAAAADAAEAAAABAAIAAAACAAEAAAABAAIAAAAPAAAAAAABAAEAAAAOAAAAAAABAAEAAAANAAAAAAABAAEAAAAMAAAAAAABAAEAAAALAAAAAAABAAEAAAAKAAAAAAABAAEAAAAJAAAAAAABAAEAAAAIAAAAAAABAAEAAAAHAAAAAAABAAEAAAAGAAAAAAABAAEAAAAFAAAAAAABAAEAAAAEAAAAAAABAAEAAAADAAAAAAABAAEAAAACAAAAAAABAAEAAAABAAAAAAABAAEAAAAAAAAAAAABAAEAAAAAAAEAAAABAAEAAAAAAAIAAAABAAEAAAAAAAMAAAABAAEAAAAAAAQAAAABAAEAAAAAAAUAAAABAAEAAAAAAAYAAAABAAEAAAAAAAcAAAABAAEAAAAAAAgAAAABAAEAAAABAAkAAAACAAIAAAAAAAkAAAABAAIAAAABAAgAAAACAAEAAAABAAcAAAACAAEAAAABAAYAAAACAAEAAAABAAUAAAACAAEAAAABAAQAAAACAAEAAAABAAMAAAACAAEAAAABAAIAAAACAAEAAAABAAEAAAABAAIAAAAHAAIAAAAAAAIAAAAIAAIAAAACAAIAAAA=")
-tile_set = SubResource("TileSet_eixha")
+tile_set = ExtResource("2_tvvsj")
 
-[node name="Laser" type="Line2D" parent="." index="4"]
+[node name="Laser" type="Line2D" parent="Foreground" index="0"]
 position = Vector2(391, 89)
 points = PackedVector2Array(0, 0, 140, 0)
 width = 2.0
 default_color = Color(1, 0, 0, 1)
 script = ExtResource("3_go7er")
 
-[node name="HitBox" type="Area2D" parent="Laser" index="0"]
+[node name="HitBox" type="Area2D" parent="Foreground/Laser" index="0"]
 script = ExtResource("4_tvvsj")
 custom_knockback = true
 directional_knockback = false
 knockback = Vector2(0, 450)
 metadata/_custom_type_script = "uid://bn21x38drplvg"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Laser/HitBox" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/Laser/HitBox" index="0"]
 position = Vector2(70, 0)
 shape = SubResource("RectangleShape2D_12u2k")
 
-[node name="Laser2" type="Line2D" parent="." index="5"]
+[node name="Laser2" type="Line2D" parent="Foreground" index="1"]
 visible = false
 position = Vector2(391, 150)
 points = PackedVector2Array(0, 0, 140, 0)
@@ -105,16 +48,16 @@ width = 2.0
 default_color = Color(1, 0, 0, 1)
 script = ExtResource("3_go7er")
 
-[node name="HitBox" type="Area2D" parent="Laser2" index="0"]
+[node name="HitBox" type="Area2D" parent="Foreground/Laser2" index="0"]
 script = ExtResource("4_tvvsj")
 custom_knockback = true
 directional_knockback = false
 knockback = Vector2(0, 450)
 metadata/_custom_type_script = "uid://bn21x38drplvg"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Laser2/HitBox" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/Laser2/HitBox" index="0"]
 position = Vector2(70, 0)
 shape = SubResource("RectangleShape2D_12u2k")
 
-[connection signal="timeout" from="LaserTimer" to="Laser" method="toggle"]
-[connection signal="timeout" from="LaserTimer" to="Laser2" method="toggle"]
+[connection signal="timeout" from="LaserTimer" to="Foreground/Laser" method="toggle"]
+[connection signal="timeout" from="LaserTimer" to="Foreground/Laser2" method="toggle"]

@@ -23,8 +23,10 @@ func _ready() -> void:
 	# Initialize room when it changes.
 	room_loaded.connect(init_room, CONNECT_DEFERRED)
 
-func go_to_starting_room():  # TODO: save and load current room?
-	await load_room(starting_map)
+func go_to_starting_room(room: String = ""):
+	if room == "":
+		room = starting_map
+	await load_room(room)
 	var spawn_point = get_tree().get_first_node_in_group("spawn_point")
 	if spawn_point:
 		player.global_position = spawn_point.global_position
@@ -42,8 +44,9 @@ func continue_game():
 	MetSys.reset_state()
 	save_manager = SaveManager.new()
 	load_game_data()
+	var start = save_manager.data.get("spawn_room", starting_map)
 	hud.update()
-	await go_to_starting_room()
+	await go_to_starting_room(start)
 
 func save_game_data():
 	if OS.is_debug_build():
