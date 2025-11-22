@@ -1,11 +1,19 @@
 extends AnimatedSprite2D
 
+@export var walk_frames: Array[int] = [1,5]
+@onready var state_machine: CharacterControllerStateMachine = %StateMachine
+
+func _ready() -> void:
+	state_machine.state_changed.connect(_on_state_machine_state_change)
+
+
 func _on_frame_changed() -> void:
-	#print(animation)
 	if animation == "walk":
-		if (frame == 1) or (frame == 5):
+		if frame in walk_frames:
 			%FootstepsAudio.play()
-			
-	if animation == "land":
-		if (frame == 0):
+
+
+func _on_state_machine_state_change(old, new):
+	match [old, new]:
+		["Airborne", "Grounded"]:
 			%LandingAudio.play()

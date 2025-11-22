@@ -30,7 +30,7 @@ position = Vector2(160, 90)
 [node name="Camera2D" type="Camera2D" parent="PlayerCharacter"]
 process_callback = 0
 
-[node name="AudioListener2D" type="AudioListener2D" parent="PlayerCharacter"]
+[node name="AudioListener2D" type="AudioListener2D" parent="PlayerCharacter/Camera2D"]
 position = Vector2(-160, -90)
 current = true
 

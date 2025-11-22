@@ -20,9 +20,7 @@ func enter(_from: StringName, data: Dictionary[String, Variant]) -> void:
 	var ledge_point: Vector2 = data["snap_point"]
 	allow_state_change = false
 	# Hanging frame
-	animated_sprite.stop()
-	animated_sprite.animation = animation_name
-	animated_sprite.frame = 1
+	animated_sprite.play(animation_name)
 	
 	# Player positioning and velocity
 	actor.velocity = Vector2.ZERO
