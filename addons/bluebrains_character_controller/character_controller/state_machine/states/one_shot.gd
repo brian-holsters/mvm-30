@@ -59,7 +59,7 @@ func enter(_from: StringName, data: Dictionary[String, Variant]) -> void:
 	else:
 		await animated_sprite.animation_finished
 	if execution_time == _execution_time:
-		state_machine.request_state_change(to_state.name, get_all_data(data))
+		_change_state(to_state.name, get_all_data(data))
 
 func physics_tick(_delta: float) -> void:
 	if override_x_movement:
@@ -86,3 +86,7 @@ func get_all_data(data: Dictionary[String, Variant]) -> Dictionary[String, Varia
 			value = value.call()
 		result[key] = value
 	return result
+
+
+func _change_state(to: StringName, data: Dictionary[String, Variant]):
+	state_machine.request_state_change(to, data)

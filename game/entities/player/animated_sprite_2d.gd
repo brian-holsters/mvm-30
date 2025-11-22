@@ -9,7 +9,7 @@ func _ready() -> void:
 
 
 func _on_frame_changed() -> void:
-	if state_machine.current_state == grounded_state.name:
+	if animation in ["walk", "run"]:
 		if frame in walk_frames:
 			%FootstepsAudio.play()
 
