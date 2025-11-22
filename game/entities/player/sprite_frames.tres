@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=280 format=3 uid="uid://rv54s3ebi4v3"]
+[gd_resource type="SpriteFrames" load_steps=270 format=3 uid="uid://rv54s3ebi4v3"]
 
 [ext_resource type="Texture2D" uid="uid://cp0lb7sgvnpm5" path="res://addons/bluebrains_character_controller/sprites/Jump/player jump 48x48.png" id="1_q2o6e"]
 [ext_resource type="Texture2D" uid="uid://dga236wr4leoa" path="res://addons/bluebrains_character_controller/sprites/Air Spin/player air spin 48x48.png" id="2_0pj3u"]
@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bhv1gfxh4wcww" path="res://addons/bluebrains_character_controller/sprites/Dash/dash 48x48.png" id="7_5m763"]
 [ext_resource type="Texture2D" uid="uid://coc4uobfbjjt8" path="res://addons/bluebrains_character_controller/sprites/Death/Player Death 64x64.png" id="8_3srtk"]
 [ext_resource type="Texture2D" uid="uid://dw027bs0tkhqy" path="res://addons/bluebrains_character_controller/sprites/Hurt-Damaged/Player Hurt 48x48.png" id="9_e255u"]
-[ext_resource type="Texture2D" uid="uid://blu2l62mh1ify" path="res://addons/bluebrains_character_controller/sprites/Idle/Player Idle 48x48.png" id="10_0gi0b"]
+[ext_resource type="Texture2D" uid="uid://c85pn1h16y8iy" path="res://assets/sprites/player/Sprite-0001235png.png" id="10_q2o6e"]
 [ext_resource type="Texture2D" uid="uid://p10lms5nki45" path="res://addons/bluebrains_character_controller/sprites/Katana Air Attack/player katana air attack (upper body) 80x64.png" id="11_0nkj6"]
 [ext_resource type="Texture2D" uid="uid://dulgh1l8w0eqo" path="res://addons/bluebrains_character_controller/sprites/Katana Attack-Sheathe/player katana attack-sheathe 80x64.png" id="12_o771c"]
 [ext_resource type="Texture2D" uid="uid://b2llbfocrmbnj" path="res://addons/bluebrains_character_controller/sprites/Katana Continuous Attack/player katana continuous attack 80x64.png" id="13_hcs3w"]
@@ -257,46 +257,6 @@ region = Rect2(96, 0, 48, 48)
 [sub_resource type="AtlasTexture" id="AtlasTexture_v0evm"]
 atlas = ExtResource("9_e255u")
 region = Rect2(144, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5i646"]
-atlas = ExtResource("10_0gi0b")
-region = Rect2(0, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_f7xay"]
-atlas = ExtResource("10_0gi0b")
-region = Rect2(48, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_d4ure"]
-atlas = ExtResource("10_0gi0b")
-region = Rect2(96, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sb5om"]
-atlas = ExtResource("10_0gi0b")
-region = Rect2(144, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_w66bu"]
-atlas = ExtResource("10_0gi0b")
-region = Rect2(192, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hhuqc"]
-atlas = ExtResource("10_0gi0b")
-region = Rect2(240, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cg4dl"]
-atlas = ExtResource("10_0gi0b")
-region = Rect2(288, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4c4ha"]
-atlas = ExtResource("10_0gi0b")
-region = Rect2(336, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jqx64"]
-atlas = ExtResource("10_0gi0b")
-region = Rect2(384, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bowt0"]
-atlas = ExtResource("10_0gi0b")
-region = Rect2(432, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cwp3j"]
 atlas = ExtResource("11_0nkj6")
@@ -1245,34 +1205,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5i646")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_f7xay")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_d4ure")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sb5om")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_w66bu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hhuqc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cg4dl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4c4ha")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jqx64")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bowt0")
+"texture": ExtResource("10_q2o6e")
 }],
 "loop": true,
 "name": &"idle",
