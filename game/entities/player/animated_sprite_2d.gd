@@ -1,6 +1,7 @@
 extends AnimatedSprite2D
 
 @export var walk_frames: Array[int] = [1,5]
+@export var grounded_state: CharacterControllerState
 @onready var state_machine: CharacterControllerStateMachine = %StateMachine
 
 func _ready() -> void:
@@ -8,7 +9,7 @@ func _ready() -> void:
 
 
 func _on_frame_changed() -> void:
-	if animation == "walk":
+	if state_machine.current_state == grounded_state.name:
 		if frame in walk_frames:
 			%FootstepsAudio.play()
 

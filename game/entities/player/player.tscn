@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://rx62opg8jmrd"]
+[gd_scene load_steps=26 format=3 uid="uid://rx62opg8jmrd"]
 
 [ext_resource type="PackedScene" uid="uid://vie2pd3qfb5e" path="res://addons/bluebrains_character_controller/character_controller/2d_character_controller_base.tscn" id="1_heu0c"]
 [ext_resource type="Script" uid="uid://d6b1dyqshq61" path="res://game/entities/player/mvm30_player.gd" id="2_t56eh"]
@@ -29,12 +29,6 @@ height = 28.0
 script = ExtResource("7_4neg5")
 object = NodePath("..")
 property = "get_x_velocity"
-metadata/_custom_type_script = "uid://bdlrly1hkn1qa"
-
-[sub_resource type="Resource" id="Resource_uvokq"]
-script = ExtResource("7_4neg5")
-object = NodePath("..")
-property = "get_jump_accel_modifier"
 metadata/_custom_type_script = "uid://bdlrly1hkn1qa"
 
 [sub_resource type="Resource" id="Resource_e2h5c"]
@@ -76,12 +70,13 @@ character_size = Vector2(12, 60)
 position = Vector2(0, -15)
 shape = SubResource("RectangleShape2D_heu0c")
 
-[node name="AnimatedSprite2D" parent="." index="1"]
+[node name="AnimatedSprite2D" parent="." index="1" node_paths=PackedStringArray("grounded_state")]
 unique_name_in_owner = true
 position = Vector2(0, -16)
 sprite_frames = ExtResource("3_xt77v")
-animation = &"hang"
+animation = &"run"
 script = ExtResource("4_aidgt")
+grounded_state = NodePath("../StateMachine/Grounded")
 
 [node name="LedgeDetectorR" parent="." index="2"]
 position = Vector2(5, -29)
@@ -99,8 +94,10 @@ shape = SubResource("CapsuleShape2D_0rdsw")
 debug_color = Color(0.8163603, 0.39394102, 0.27965254, 0.41960785)
 
 [node name="MovementVariables" parent="." index="7"]
-run_speed = 100.0
+walk_speed = 150.0
+run_speed = 150.0
 time_to_run = 0.05
+air_speed = 125.0
 jump_height = 65.0
 jump_time = 0.275
 
@@ -121,9 +118,9 @@ script = ExtResource("4_0rdsw")
 input_map = NodePath("../../InputMap")
 variables = NodePath("../../MovementVariables")
 animated_sprite = NodePath("../../AnimatedSprite2D")
-run_animation = "walk"
-walk_speed_animation_magic_number = 90.0
-run_speed_animation_magic_number = 90.0
+walk_animation = "run"
+walk_speed_animation_magic_number = 100.0
+run_speed_animation_magic_number = 100.0
 metadata/_custom_type_script = "uid://b3fwraueavvlt"
 
 [node name="ToAttack" type="Node" parent="StateMachine/Grounded" index="0" node_paths=PackedStringArray("to_state")]
@@ -147,9 +144,6 @@ script = ExtResource("5_xt77v")
 input = "jump"
 to_state = NodePath("../../JumpSquat")
 priority = 1
-dynamic_data = Dictionary[String, ExtResource("7_4neg5")]({
-"speed_override": SubResource("Resource_uvokq")
-})
 metadata/_custom_type_script = "uid://ke7ebekdcqfn"
 
 [node name="ToDash" type="Node" parent="StateMachine/Grounded" index="3" node_paths=PackedStringArray("to_state")]
@@ -416,7 +410,7 @@ default_knockback = Vector2(100, -300)
 default_stun_time = 0.2
 metadata/_custom_type_script = "uid://b3fwraueavvlt"
 
-[node name="Audio" type="Node" parent="." index="9"]
+[node name="Audio" type="Node2D" parent="." index="9"]
 
 [node name="FootstepsAudio" type="AudioStreamPlayer2D" parent="Audio" index="0"]
 unique_name_in_owner = true
