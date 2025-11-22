@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cvdp2yh3tlvhc"
+path="res://.godot/imported/footsteps_metal - Region #2.wav-c2b7e1feaa17d9a5f539c33f1b29800e.sample"
+
+[deps]
+
+source_file="res://assets/sfx/movement/footsteps/metal_footstep/footsteps_metal - Region #2.wav"
+dest_files=["res://.godot/imported/footsteps_metal - Region #2.wav-c2b7e1feaa17d9a5f539c33f1b29800e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
