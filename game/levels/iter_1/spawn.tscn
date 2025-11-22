@@ -1,61 +1,20 @@
-[gd_scene load_steps=7 format=4 uid="uid://b3t1g0qecug7h"]
+[gd_scene load_steps=6 format=4 uid="uid://b3t1g0qecug7h"]
 
 [ext_resource type="PackedScene" uid="uid://by13a22vxwdu1" path="res://game/levels/base_level.tscn" id="1_uejf8"]
 [ext_resource type="Script" uid="uid://cy8qqk76qvg55" path="res://game/entities/hitbox/respawn_hitbox.gd" id="3_3xgwc"]
-[ext_resource type="Texture2D" uid="uid://b7nit00hasq23" path="res://assets/tilesets/main_tileset.png" id="3_8dnbf"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tv36u"]
-texture = ExtResource("3_8dnbf")
-texture_region_size = Vector2i(20, 20)
-0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-1:0/0 = 0
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-2:0/0 = 0
-2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-3:0/0 = 0
-3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-0:1/0 = 0
-0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-1:1/0 = 0
-1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-2:1/0 = 0
-2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-3:1/0 = 0
-3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-0:2/0 = 0
-0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-1:2/0 = 0
-1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-2:2/0 = 0
-2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-3:2/0 = 0
-3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-0:3/0 = 0
-0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-1:3/0 = 0
-1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-2:3/0 = 0
-2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-3:3/0 = 0
-3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-
-[sub_resource type="TileSet" id="TileSet_vhu1q"]
-tile_size = Vector2i(20, 20)
-physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_tv36u")
+[ext_resource type="TileSet" uid="uid://bxjd1yx0ntj88" path="res://assets/tilesets/main_tileset.tres" id="3_8dnbf"]
+[ext_resource type="Script" uid="uid://dtq4ompcn2bgy" path="res://game/scripts/spawn_setter.gd" id="4_8dnbf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8dnbf"]
 size = Vector2(320, 20)
 
 [node name="SpawnLevel" instance=ExtResource("1_uejf8")]
 
-[node name="Spawn" type="Marker2D" parent="." index="0" groups=["spawn_point"]]
-position = Vector2(180, 160)
+[node name="SpawnSetter" type="Node" parent="." index="0"]
+script = ExtResource("4_8dnbf")
 
-[node name="TileMapLayer2" type="TileMapLayer" parent="." index="2"]
-tile_map_data = PackedByteArray("AAAAAAIAAAACAAIAAAAAAAEAAAACAAEAAAAAAAAAAAACAAEAAAAAAAUAAAABAAAAAAABAAUAAAABAAAAAAACAAYAAAACAAEAAAABAAYAAAABAAEAAAACAAcAAAACAAEAAAACAAgAAAACAAEAAAAAAAYAAAABAAEAAAAAAAcAAAABAAEAAAAAAAgAAAABAAEAAAABAAcAAAABAAEAAAABAAgAAAABAAEAAAAIAAgAAAAAAAAAAAAJAAgAAAABAAAAAAAKAAgAAAABAAAAAAALAAgAAAABAAAAAAAMAAgAAAACAAAAAAANAAgAAAABAAEAAAAOAAgAAAABAAEAAAAPAAgAAAABAAEAAAADAAkAAAADAAMAAAAEAAkAAAADAAMAAAAFAAkAAAADAAMAAAAGAAkAAAADAAMAAAAHAAkAAAADAAMAAAABAAAAAAABAAIAAAACAAAAAAABAAIAAAADAAAAAAABAAIAAAAEAAAAAAABAAIAAAAFAAAAAAABAAIAAAAGAAAAAAABAAIAAAAHAAAAAAABAAIAAAAIAAAAAAABAAIAAAAJAAAAAAABAAIAAAAKAAAAAAABAAIAAAALAAAAAAABAAIAAAAMAAAAAAABAAIAAAANAAAAAAABAAIAAAAOAAAAAAABAAIAAAAPAAAAAAAAAAEAAAAPAAEAAAAAAAEAAAAPAAIAAAAAAAEAAAAPAAMAAAAAAAEAAAAPAAQAAAAAAAIAAAACAAUAAAACAAAAAAAMAAcAAAAAAAAAAAANAAcAAAABAAAAAAAOAAcAAAABAAAAAAAPAAcAAAABAAAAAAA=")
-tile_set = SubResource("TileSet_vhu1q")
+[node name="Spawn" type="Marker2D" parent="." index="1" groups=["spawn_point"]]
+position = Vector2(180, 160)
 
 [node name="HitBox" type="Area2D" parent="." index="3" node_paths=PackedStringArray("respawn_point")]
 script = ExtResource("3_3xgwc")
@@ -70,3 +29,9 @@ shape = SubResource("RectangleShape2D_8dnbf")
 
 [node name="Marker2D" type="Marker2D" parent="HitBox" index="1"]
 position = Vector2(170, 160)
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="Background" index="0"]
+tile_map_data = PackedByteArray("AAAAAAIAAAACAAIAAAAAAAEAAAACAAEAAAAAAAAAAAACAAEAAAAAAAUAAAABAAAAAAABAAUAAAABAAAAAAACAAYAAAACAAEAAAABAAYAAAABAAEAAAACAAcAAAACAAEAAAACAAgAAAACAAEAAAAAAAYAAAABAAEAAAAAAAcAAAABAAEAAAAAAAgAAAABAAEAAAABAAcAAAABAAEAAAABAAgAAAABAAEAAAAIAAgAAAAAAAAAAAAJAAgAAAABAAAAAAAKAAgAAAABAAAAAAALAAgAAAABAAAAAAAMAAgAAAACAAAAAAANAAgAAAABAAEAAAAOAAgAAAABAAEAAAAPAAgAAAABAAEAAAADAAkAAAADAAMAAAAEAAkAAAADAAMAAAAFAAkAAAADAAMAAAAGAAkAAAADAAMAAAAHAAkAAAADAAMAAAABAAAAAAABAAIAAAACAAAAAAABAAIAAAADAAAAAAABAAIAAAAEAAAAAAABAAIAAAAFAAAAAAABAAIAAAAGAAAAAAABAAIAAAAHAAAAAAABAAIAAAAIAAAAAAABAAIAAAAJAAAAAAABAAIAAAAKAAAAAAABAAIAAAALAAAAAAABAAIAAAAMAAAAAAABAAIAAAANAAAAAAABAAIAAAAOAAAAAAABAAIAAAAPAAAAAAAAAAEAAAAPAAEAAAAAAAEAAAAPAAIAAAAAAAEAAAAPAAMAAAAAAAEAAAAPAAQAAAAAAAIAAAACAAUAAAACAAAAAAAMAAcAAAAAAAAAAAANAAcAAAABAAAAAAAOAAcAAAABAAAAAAAPAAcAAAABAAAAAAA=")
+tile_set = ExtResource("3_8dnbf")
+
+[connection signal="ready" from="SpawnSetter" to="SpawnSetter" method="set_spawn_to_current_room"]

@@ -1,10 +1,27 @@
-[gd_scene load_steps=11 format=4 uid="uid://cur8dfqn6pgsr"]
+[gd_scene load_steps=12 format=4 uid="uid://cur8dfqn6pgsr"]
 
 [ext_resource type="PackedScene" uid="uid://by13a22vxwdu1" path="res://game/levels/base_level.tscn" id="1_k4f1w"]
 [ext_resource type="Script" uid="uid://bnktai1u2rqbo" path="res://game/scripts/flag_checker.gd" id="2_kqsvs"]
 [ext_resource type="PackedScene" uid="uid://chvi7vfltf0yy" path="res://game/entities/enemies/boss_1/boss.tscn" id="3_65g1t"]
+[ext_resource type="TileSet" uid="uid://bxjd1yx0ntj88" path="res://assets/tilesets/main_tileset.tres" id="4_5gmf1"]
 [ext_resource type="Script" uid="uid://ba0bmlonp2suh" path="res://game/entities/interactable/interaction_area.gd" id="4_65g1t"]
 [ext_resource type="Texture2D" uid="uid://b7nit00hasq23" path="res://assets/tilesets/main_tileset.png" id="5_5gmf1"]
+
+[sub_resource type="GDScript" id="GDScript_65g1t"]
+resource_name = "builtinBossStart"
+script/source = "extends Area2D
+
+@export var boss: Node2D
+
+func _on_body_entered(body: Node2D) -> void:
+	boss.active = true
+	queue_free()
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_65g1t"]
+size = Vector2(118, 140)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5gmf1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o60qj"]
 texture = ExtResource("5_5gmf1")
@@ -47,22 +64,6 @@ tile_size = Vector2i(20, 20)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_o60qj")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5gmf1"]
-
-[sub_resource type="GDScript" id="GDScript_65g1t"]
-resource_name = "builtinBossStart"
-script/source = "extends Area2D
-
-@export var boss: Node2D
-
-func _on_body_entered(body: Node2D) -> void:
-	boss.active = true
-	queue_free()
-"
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_65g1t"]
-size = Vector2(118, 140)
-
 [node name="Boss" instance=ExtResource("1_k4f1w")]
 
 [node name="BossKillFlag" type="Node2D" parent="." index="0"]
@@ -74,43 +75,14 @@ metadata/_custom_type_script = "uid://bnktai1u2rqbo"
 z_index = -1
 position = Vector2(480, 87)
 
-[node name="TileMapLayer2" type="TileMapLayer" parent="." index="3"]
-tile_map_data = PackedByteArray("AAAkAAAAAAACAAIAAAAqAAAAAAAAAAIAAAArAAAAAAABAAIAAAAsAAAAAAABAAIAAAAtAAAAAAABAAIAAAAuAAAAAAABAAIAAAAjAAAAAAABAAIAAAAiAAAAAAABAAIAAAAhAAAAAAABAAIAAAAgAAAAAAABAAIAAAAfAAAAAAABAAIAAAAeAAAAAAABAAIAAAAdAAAAAAABAAIAAAAcAAAAAAABAAIAAAAbAAAAAAABAAIAAAAaAAAAAAABAAIAAAAZAAAAAAABAAIAAAAYAAAAAAABAAIAAAAXAAAAAAABAAIAAAAWAAAAAAABAAIAAAAVAAAAAAABAAIAAAAUAAAAAAABAAIAAAATAAAAAAABAAIAAAASAAAAAAABAAIAAAARAAAAAAABAAIAAAAQAAAAAAABAAIAAAAPAAAAAAABAAIAAAAOAAAAAAABAAIAAAANAAAAAAABAAIAAAAMAAAAAAABAAIAAAALAAAAAAABAAIAAAAKAAAAAAABAAIAAAAJAAAAAAABAAIAAAAIAAAAAAABAAIAAAAHAAAAAAABAAIAAAAGAAAAAAABAAIAAAAFAAAAAAABAAIAAAAEAAAAAAABAAIAAAADAAAAAAABAAIAAAACAAAAAAABAAIAAAABAAAAAAABAAIAAAABAAgAAAABAAAAAAACAAgAAAABAAAAAAADAAgAAAABAAAAAAAEAAgAAAABAAAAAAAFAAgAAAABAAAAAAAGAAgAAAABAAAAAAAHAAgAAAABAAAAAAAIAAgAAAABAAAAAAAJAAgAAAABAAAAAAAKAAgAAAABAAAAAAALAAgAAAABAAAAAAAMAAgAAAACAAAAAAAPAAgAAAAAAAAAAAAQAAgAAAABAAAAAAARAAgAAAABAAAAAAASAAgAAAABAAAAAAATAAgAAAABAAAAAAAUAAgAAAABAAAAAAAVAAgAAAABAAAAAAAWAAgAAAABAAAAAAAXAAgAAAABAAAAAAAYAAgAAAABAAAAAAAZAAgAAAABAAAAAAAaAAgAAAABAAAAAAAbAAgAAAABAAAAAAAcAAgAAAABAAAAAAAdAAgAAAABAAAAAAAeAAgAAAABAAAAAAAfAAgAAAABAAAAAAAgAAgAAAABAAAAAAAhAAgAAAABAAAAAAAiAAgAAAABAAAAAAAjAAgAAAABAAAAAAAkAAgAAAABAAAAAAAlAAgAAAABAAAAAAAmAAgAAAABAAAAAAAnAAgAAAABAAAAAAAoAAgAAAABAAAAAAApAAgAAAABAAAAAAAqAAgAAAABAAAAAAArAAgAAAABAAAAAAAsAAgAAAABAAAAAAAtAAgAAAABAAAAAAAuAAgAAAABAAAAAAAvAAAAAAAAAAEAAAAvAAEAAAAAAAEAAAAvAAIAAAAAAAEAAAAvAAMAAAAAAAEAAAAvAAQAAAAAAAEAAAAvAAUAAAAAAAEAAAAvAAYAAAAAAAEAAAAvAAcAAAAAAAEAAAAvAAgAAAAAAAEAAAAAAAAAAAACAAEAAAAAAAEAAAACAAEAAAAAAAIAAAACAAEAAAAAAAMAAAACAAEAAAAAAAQAAAACAAEAAAAAAAUAAAACAAEAAAAAAAYAAAACAAEAAAAAAAcAAAACAAEAAAAAAAgAAAACAAEAAAA=")
-tile_set = SubResource("TileSet_gjhy6")
-
-[node name="Label" type="Label" parent="." index="4"]
+[node name="Label" type="Label" parent="." index="3"]
 offset_left = 96.0
 offset_top = 137.0
 offset_right = 160.0
 offset_bottom = 160.0
 text = "Kill Boss"
 
-[node name="GreenSwitchRoot" type="Node2D" parent="." index="5"]
-
-[node name="GreenSwitch" type="Area2D" parent="GreenSwitchRoot" index="0"]
-position = Vector2(90, 150)
-collision_layer = 0
-collision_mask = 2
-script = ExtResource("4_65g1t")
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GreenSwitchRoot/GreenSwitch" index="0"]
-shape = SubResource("RectangleShape2D_5gmf1")
-
-[node name="InteractText" type="Label" parent="GreenSwitchRoot/GreenSwitch" index="1"]
-visible = false
-offset_left = -32.0
-offset_top = -51.0
-offset_right = 29.0
-offset_bottom = -28.0
-text = "↑"
-horizontal_alignment = 1
-
-[node name="Gate" type="TileMapLayer" parent="GreenSwitchRoot" index="1"]
-tile_map_data = PackedByteArray("AAANAAgAAAAAAAMAAAAOAAgAAAACAAMAAAA=")
-tile_set = SubResource("TileSet_gjhy6")
-
-[node name="BossStart" type="Area2D" parent="." index="6" node_paths=PackedStringArray("boss")]
+[node name="BossStart" type="Area2D" parent="." index="4" node_paths=PackedStringArray("boss")]
 position = Vector2(430, 150)
 collision_layer = 0
 collision_mask = 2
@@ -122,12 +94,41 @@ position = Vector2(49, -60)
 shape = SubResource("RectangleShape2D_65g1t")
 debug_color = Color(0.7, 0.7, 0.7, 0.41960785)
 
+[node name="TileMapLayer2" type="TileMapLayer" parent="Background" index="0"]
+tile_map_data = PackedByteArray("AAAkAAAAAAACAAIAAAAqAAAAAAAAAAIAAAArAAAAAAABAAIAAAAsAAAAAAABAAIAAAAtAAAAAAABAAIAAAAuAAAAAAABAAIAAAAjAAAAAAABAAIAAAAiAAAAAAABAAIAAAAhAAAAAAABAAIAAAAgAAAAAAABAAIAAAAfAAAAAAABAAIAAAAeAAAAAAABAAIAAAAdAAAAAAABAAIAAAAcAAAAAAABAAIAAAAbAAAAAAABAAIAAAAaAAAAAAABAAIAAAAZAAAAAAABAAIAAAAYAAAAAAABAAIAAAAXAAAAAAABAAIAAAAWAAAAAAABAAIAAAAVAAAAAAABAAIAAAAUAAAAAAABAAIAAAATAAAAAAABAAIAAAASAAAAAAABAAIAAAARAAAAAAABAAIAAAAQAAAAAAABAAIAAAAPAAAAAAABAAIAAAAOAAAAAAABAAIAAAANAAAAAAABAAIAAAAMAAAAAAABAAIAAAALAAAAAAABAAIAAAAKAAAAAAABAAIAAAAJAAAAAAABAAIAAAAIAAAAAAABAAIAAAAHAAAAAAABAAIAAAAGAAAAAAABAAIAAAAFAAAAAAABAAIAAAAEAAAAAAABAAIAAAADAAAAAAABAAIAAAACAAAAAAABAAIAAAABAAAAAAABAAIAAAABAAgAAAABAAAAAAACAAgAAAABAAAAAAADAAgAAAABAAAAAAAEAAgAAAABAAAAAAAFAAgAAAABAAAAAAAGAAgAAAABAAAAAAAHAAgAAAABAAAAAAAIAAgAAAABAAAAAAAJAAgAAAABAAAAAAAKAAgAAAABAAAAAAALAAgAAAABAAAAAAAMAAgAAAACAAAAAAAPAAgAAAAAAAAAAAAQAAgAAAABAAAAAAARAAgAAAABAAAAAAASAAgAAAABAAAAAAATAAgAAAABAAAAAAAUAAgAAAABAAAAAAAVAAgAAAABAAAAAAAWAAgAAAABAAAAAAAXAAgAAAABAAAAAAAYAAgAAAABAAAAAAAZAAgAAAABAAAAAAAaAAgAAAABAAAAAAAbAAgAAAABAAAAAAAcAAgAAAABAAAAAAAdAAgAAAABAAAAAAAeAAgAAAABAAAAAAAfAAgAAAABAAAAAAAgAAgAAAABAAAAAAAhAAgAAAABAAAAAAAiAAgAAAABAAAAAAAjAAgAAAABAAAAAAAkAAgAAAABAAAAAAAlAAgAAAABAAAAAAAmAAgAAAABAAAAAAAnAAgAAAABAAAAAAAoAAgAAAABAAAAAAApAAgAAAABAAAAAAAqAAgAAAABAAAAAAArAAgAAAABAAAAAAAsAAgAAAABAAAAAAAtAAgAAAABAAAAAAAuAAgAAAABAAAAAAAvAAAAAAAAAAEAAAAvAAEAAAAAAAEAAAAvAAIAAAAAAAEAAAAvAAMAAAAAAAEAAAAvAAQAAAAAAAEAAAAvAAUAAAAAAAEAAAAvAAYAAAAAAAEAAAAvAAcAAAAAAAEAAAAvAAgAAAAAAAEAAAAAAAAAAAACAAEAAAAAAAEAAAACAAEAAAAAAAIAAAACAAEAAAAAAAMAAAACAAEAAAAAAAQAAAACAAEAAAAAAAUAAAACAAEAAAAAAAYAAAACAAEAAAAAAAcAAAACAAEAAAAAAAgAAAACAAEAAAAEAAcAAAAAAAQAAAA=")
+tile_set = ExtResource("4_5gmf1")
+
+[node name="SwitchRoot" type="Node2D" parent="Background" index="1"]
+
+[node name="GreenSwitch" type="Area2D" parent="Background/SwitchRoot" index="0"]
+position = Vector2(90, 150)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("4_65g1t")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/SwitchRoot/GreenSwitch" index="0"]
+shape = SubResource("RectangleShape2D_5gmf1")
+
+[node name="InteractText" type="Label" parent="Background/SwitchRoot/GreenSwitch" index="1"]
+visible = false
+offset_left = -32.0
+offset_top = -51.0
+offset_right = 29.0
+offset_bottom = -28.0
+text = "↑"
+horizontal_alignment = 1
+
+[node name="Gate" type="TileMapLayer" parent="Background/SwitchRoot" index="1"]
+tile_map_data = PackedByteArray("AAANAAgAAAAAAAMAAAAOAAgAAAACAAMAAAA=")
+tile_set = SubResource("TileSet_gjhy6")
+
 [connection signal="flag_checked" from="BossKillFlag" to="Boss" method="queue_free"]
-[connection signal="flag_checked" from="BossKillFlag" to="GreenSwitchRoot" method="queue_free"]
+[connection signal="flag_checked" from="BossKillFlag" to="Background/SwitchRoot" method="queue_free"]
 [connection signal="flag_checked" from="BossKillFlag" to="BossStart" method="queue_free"]
-[connection signal="can_interact" from="GreenSwitchRoot/GreenSwitch" to="GreenSwitchRoot/GreenSwitch/InteractText" method="show"]
-[connection signal="cannot_interact" from="GreenSwitchRoot/GreenSwitch" to="GreenSwitchRoot/GreenSwitch/InteractText" method="hide"]
-[connection signal="interact" from="GreenSwitchRoot/GreenSwitch" to="BossKillFlag" method="set_flag" unbinds=1]
-[connection signal="interact" from="GreenSwitchRoot/GreenSwitch" to="Boss" method="queue_free" unbinds=1]
-[connection signal="interact" from="GreenSwitchRoot/GreenSwitch" to="GreenSwitchRoot" method="queue_free" unbinds=1]
 [connection signal="body_entered" from="BossStart" to="BossStart" method="_on_body_entered"]
+[connection signal="can_interact" from="Background/SwitchRoot/GreenSwitch" to="Background/SwitchRoot/GreenSwitch/InteractText" method="show"]
+[connection signal="cannot_interact" from="Background/SwitchRoot/GreenSwitch" to="Background/SwitchRoot/GreenSwitch/InteractText" method="hide"]
+[connection signal="interact" from="Background/SwitchRoot/GreenSwitch" to="BossKillFlag" method="set_flag" unbinds=1]
+[connection signal="interact" from="Background/SwitchRoot/GreenSwitch" to="Boss" method="queue_free" unbinds=1]
+[connection signal="interact" from="Background/SwitchRoot/GreenSwitch" to="Background/SwitchRoot" method="queue_free" unbinds=1]
