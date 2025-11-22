@@ -30,6 +30,10 @@ position = Vector2(160, 90)
 [node name="Camera2D" type="Camera2D" parent="PlayerCharacter"]
 process_callback = 0
 
+[node name="AudioListener2D" type="AudioListener2D" parent="PlayerCharacter/Camera2D"]
+position = Vector2(-160, -90)
+current = true
+
 [node name="Hud" type="CanvasLayer" parent="." node_paths=PackedStringArray("hp_gauge", "player")]
 unique_name_in_owner = true
 script = ExtResource("3_4fuuu")
@@ -62,6 +66,3 @@ script = ExtResource("3_h7iqs")
 [node name="Template" type="TextureRect" parent="Hud/MarginContainer/Control/HealthGauge"]
 layout_mode = 2
 texture = SubResource("GradientTexture2D_dxrkv")
-
-[node name="AudioListener2D" type="AudioListener2D" parent="Hud"]
-current = true
