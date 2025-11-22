@@ -51,3 +51,7 @@ func _serialize_data():
 		"max_hp": max_hp,
 		#"hp": hp
 	}
+
+
+func _on_animated_sprite_2d_frame_changed() -> void:
+	pass # Replace with function body.

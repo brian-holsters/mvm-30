@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://rx62opg8jmrd"]
+[gd_scene load_steps=42 format=3 uid="uid://rx62opg8jmrd"]
 
 [ext_resource type="PackedScene" uid="uid://vie2pd3qfb5e" path="res://addons/bluebrains_character_controller/character_controller/2d_character_controller_base.tscn" id="1_heu0c"]
 [ext_resource type="Script" uid="uid://d6b1dyqshq61" path="res://game/entities/player/mvm30_player.gd" id="2_t56eh"]
@@ -6,17 +6,32 @@
 [ext_resource type="SpriteFrames" uid="uid://rv54s3ebi4v3" path="res://game/entities/player/sprite_frames.tres" id="3_xt77v"]
 [ext_resource type="Script" uid="uid://cwdjqvddxjqqg" path="res://addons/bluebrains_character_controller/character_controller/state_machine/states/grounded.gd" id="4_0rdsw"]
 [ext_resource type="Script" uid="uid://b7xfyteq2eq6c" path="res://game/entities/player/animated_sprite_2d.gd" id="4_aidgt"]
+[ext_resource type="AudioStream" uid="uid://d3ttuah2xiquu" path="res://assets/sfx/player/footsteps/metal_footstep/footsteps_metal - Region #1.wav" id="4_so4hh"]
 [ext_resource type="Script" uid="uid://ds3cn3uu7nsr4" path="res://game/entities/player/custom_transitions/to_hurt_on_signal.gd" id="5_0rdsw"]
+[ext_resource type="AudioStream" uid="uid://cvdp2yh3tlvhc" path="res://assets/sfx/player/footsteps/metal_footstep/footsteps_metal - Region #2.wav" id="5_aidgt"]
 [ext_resource type="Script" uid="uid://ke7ebekdcqfn" path="res://addons/bluebrains_character_controller/character_controller/state_machine/input_transition.gd" id="5_xt77v"]
 [ext_resource type="Script" uid="uid://cyspnbaj7tun" path="res://addons/bluebrains_character_controller/character_controller/state_machine/magic_transition.gd" id="6_conr4"]
+[ext_resource type="AudioStream" uid="uid://daasu3hjwqhxg" path="res://assets/sfx/player/footsteps/metal_footstep/footsteps_metal - Region #11.wav" id="6_i5qpf"]
+[ext_resource type="AudioStream" uid="uid://brcd2q63y8kbw" path="res://assets/sfx/player/footsteps/metal_footstep/footsteps_metal - Region #12.wav" id="7_2jquf"]
 [ext_resource type="Script" uid="uid://bdlrly1hkn1qa" path="res://addons/bluebrains_character_controller/character_controller/state_machine/dynamic_data_row.gd" id="7_4neg5"]
 [ext_resource type="Script" uid="uid://dadlfrrf4y021" path="res://addons/bluebrains_character_controller/character_controller/state_machine/states/one_shot.gd" id="8_8pcyd"]
+[ext_resource type="AudioStream" uid="uid://na0h2ugbujf7" path="res://assets/sfx/player/footsteps/metal_footstep/footsteps_metal - Region #13.wav" id="8_j8m7m"]
 [ext_resource type="Script" uid="uid://cs6bis811k88n" path="res://addons/bluebrains_character_controller/character_controller/state_machine/states/jump_air.gd" id="9_fq5t3"]
+[ext_resource type="AudioStream" uid="uid://lth331fa4xbc" path="res://assets/sfx/player/footsteps/metal_footstep/footsteps_metal - Region #14.wav" id="9_ijn2u"]
 [ext_resource type="Script" uid="uid://bnbe7mxk8wsky" path="res://addons/bluebrains_character_controller/character_controller/state_machine/states/airborne.gd" id="10_e8mlx"]
+[ext_resource type="AudioStream" uid="uid://br8dtjsyis7iy" path="res://assets/sfx/player/footsteps/metal_footstep/footsteps_metal - Region #15.wav" id="10_or46b"]
 [ext_resource type="Script" uid="uid://dukw84gcuvd3d" path="res://addons/bluebrains_character_controller/character_controller/state_machine/states/hang.gd" id="11_cq8ym"]
+[ext_resource type="AudioStream" uid="uid://1pkb5ymajq33" path="res://assets/sfx/player/footsteps/metal_footstep/footsteps_metal - Region #16.wav" id="11_hy8ba"]
 [ext_resource type="Script" uid="uid://byfliumen4dwv" path="res://addons/bluebrains_character_controller/character_controller/state_machine/states/wall_slide.gd" id="12_1s5sw"]
+[ext_resource type="AudioStream" uid="uid://d201xbo300tp" path="res://assets/sfx/player/footsteps/metal_footstep/footsteps_metal - Region #3.wav" id="12_yragl"]
+[ext_resource type="AudioStream" uid="uid://p8n7yb3g4lp5" path="res://assets/sfx/player/footsteps/metal_footstep/footsteps_metal - Region #4.wav" id="13_bcb3w"]
 [ext_resource type="Script" uid="uid://bv4kxaunywtda" path="res://game/entities/player/states/hurt_state.gd" id="13_t56eh"]
-[ext_resource type="AudioStream" uid="uid://c5pxnqxb2qupf" path="res://assets/sfx/movement/landing/metal_landing/landing.wav" id="17_conr4"]
+[ext_resource type="AudioStream" uid="uid://c1glerlh685sc" path="res://assets/sfx/player/footsteps/metal_footstep/footsteps_metal - Region #5.wav" id="14_uea50"]
+[ext_resource type="AudioStream" uid="uid://2h21625tiuad" path="res://assets/sfx/player/footsteps/metal_footstep/footsteps_metal - Region #6.wav" id="15_0a2fl"]
+[ext_resource type="AudioStream" uid="uid://c7nelbioe42jj" path="res://assets/sfx/player/footsteps/metal_footstep/footsteps_metal - Region #7.wav" id="16_mp3y6"]
+[ext_resource type="AudioStream" uid="uid://b6a6dbyu1afnh" path="res://assets/sfx/player/footsteps/metal_footstep/footsteps_metal - Region #8.wav" id="17_wx3fv"]
+[ext_resource type="AudioStream" uid="uid://yo1bcaaq5kbq" path="res://assets/sfx/player/footsteps/metal_footstep/footsteps_metal - Region #9.wav" id="18_g1vkd"]
+[ext_resource type="AudioStream" uid="uid://6lo82t80xjlx" path="res://assets/sfx/player/footsteps/metal_footstep/footsteps_metal - Region #10.wav" id="19_xfb3v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_heu0c"]
 size = Vector2(12, 30)
@@ -58,8 +73,23 @@ metadata/_custom_type_script = "uid://bdlrly1hkn1qa"
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_so4hh"]
 random_pitch = 1.05
 random_volume_offset_db = 0.3
-streams_count = 1
-stream_0/stream = ExtResource("17_conr4")
+streams_count = 16
+stream_0/stream = ExtResource("4_so4hh")
+stream_1/stream = ExtResource("5_aidgt")
+stream_2/stream = ExtResource("12_yragl")
+stream_3/stream = ExtResource("13_bcb3w")
+stream_4/stream = ExtResource("14_uea50")
+stream_5/stream = ExtResource("15_0a2fl")
+stream_6/stream = ExtResource("16_mp3y6")
+stream_7/stream = ExtResource("17_wx3fv")
+stream_8/stream = ExtResource("18_g1vkd")
+stream_9/stream = ExtResource("19_xfb3v")
+stream_10/stream = ExtResource("6_i5qpf")
+stream_11/stream = ExtResource("7_2jquf")
+stream_12/stream = ExtResource("8_j8m7m")
+stream_13/stream = ExtResource("9_ijn2u")
+stream_14/stream = ExtResource("10_or46b")
+stream_15/stream = ExtResource("11_hy8ba")
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_aidgt"]
 clip_count = 1
@@ -80,7 +110,8 @@ shape = SubResource("RectangleShape2D_heu0c")
 unique_name_in_owner = true
 position = Vector2(0, -16)
 sprite_frames = ExtResource("3_xt77v")
-animation = &"land"
+animation = &"walk"
+frame = 2
 script = ExtResource("4_aidgt")
 
 [node name="LedgeDetectorR" parent="." index="2"]
@@ -421,14 +452,7 @@ metadata/_custom_type_script = "uid://b3fwraueavvlt"
 [node name="FootstepsAudio" type="AudioStreamPlayer2D" parent="Audio" index="0"]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamInteractive_aidgt")
-max_polyphony = 2
-bus = &"Environment_Impact"
-
-[node name="LandingAudio" type="AudioStreamPlayer2D" parent="Audio" index="1"]
-unique_name_in_owner = true
-stream = SubResource("AudioStreamInteractive_aidgt")
-max_polyphony = 2
-bus = &"Environment_Impact"
+bus = &"SFX"
 
 [connection signal="frame_changed" from="AnimatedSprite2D" to="AnimatedSprite2D" method="_on_frame_changed"]
 [connection signal="state_changed" from="StateMachine" to="BehaviourVariables" method="_on_state_machine_state_changed"]
