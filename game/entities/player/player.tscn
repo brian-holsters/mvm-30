@@ -461,7 +461,6 @@ metadata/_custom_type_script = "uid://b3fwraueavvlt"
 [node name="FootstepsAudio" type="AudioStreamPlayer2D" parent="Audio" index="0"]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamInteractive_aidgt")
-volume_db = -1.525
 max_polyphony = 2
 bus = &"Environment_Impact"
 

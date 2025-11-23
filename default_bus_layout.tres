@@ -1,9 +1,30 @@
-[gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://by6t2ady0hwn7"]
+[gd_resource type="AudioBusLayout" load_steps=7 format=3 uid="uid://by6t2ady0hwn7"]
+
+[sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_n8wo2"]
+resource_name = "Compressor"
+
+[sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_5t1r3"]
+resource_name = "Compressor"
+threshold = -3.5
+ratio = 3.0
+gain = 0.4
+
+[sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_cenje"]
+resource_name = "Compressor"
+threshold = -6.1
+ratio = 1.5
+gain = 0.7
 
 [sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_j3pel"]
 resource_name = "Compressor"
 threshold = -1.1
 gain = 0.4
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_j3pel"]
+resource_name = "Reverb"
+damping = 0.64
+dry = 0.89
+wet = 0.11
 
 [sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_g28q7"]
 resource_name = "Compressor"
@@ -12,17 +33,23 @@ ratio = 6.2
 gain = 0.4
 
 [resource]
+bus/0/effect/0/effect = SubResource("AudioEffectCompressor_n8wo2")
+bus/0/effect/0/enabled = true
+bus/0/effect/1/effect = SubResource("AudioEffectCompressor_5t1r3")
+bus/0/effect/1/enabled = true
+bus/0/effect/2/effect = SubResource("AudioEffectCompressor_cenje")
+bus/0/effect/2/enabled = true
 bus/1/name = &"Ambiance"
 bus/1/solo = false
 bus/1/mute = false
 bus/1/bypass_fx = false
-bus/1/volume_db = 0.0
+bus/1/volume_db = -17.021105
 bus/1/send = &"Master"
 bus/2/name = &"Music"
 bus/2/solo = false
 bus/2/mute = false
 bus/2/bypass_fx = false
-bus/2/volume_db = 0.0
+bus/2/volume_db = -4.7681155
 bus/2/send = &"Master"
 bus/3/name = &"SFX"
 bus/3/solo = false
@@ -32,11 +59,13 @@ bus/3/volume_db = 0.46499825
 bus/3/send = &"Master"
 bus/3/effect/0/effect = SubResource("AudioEffectCompressor_j3pel")
 bus/3/effect/0/enabled = true
+bus/3/effect/1/effect = SubResource("AudioEffectReverb_j3pel")
+bus/3/effect/1/enabled = true
 bus/4/name = &"Environment_Impact"
 bus/4/solo = false
 bus/4/mute = false
 bus/4/bypass_fx = false
-bus/4/volume_db = -2.7080164
+bus/4/volume_db = -16.400402
 bus/4/send = &"SFX"
 bus/4/effect/0/effect = SubResource("AudioEffectCompressor_g28q7")
 bus/4/effect/0/enabled = true
