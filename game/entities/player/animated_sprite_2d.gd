@@ -18,3 +18,9 @@ func _on_state_machine_state_change(old, new):
 	match [old, new]:
 		["Airborne", "Grounded"]:
 			%LandingAudio.play()
+		[_, "Dash"]:
+			%DashAudio.play()
+		[_, "Hang"]:
+			%LedgeGrabAudio.play()
+		[_, "Hurt"]:
+			%HurtAudio.play()

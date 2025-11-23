@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://rx62opg8jmrd"]
+[gd_scene load_steps=49 format=3 uid="uid://rx62opg8jmrd"]
 
 [ext_resource type="PackedScene" uid="uid://vie2pd3qfb5e" path="res://addons/bluebrains_character_controller/character_controller/2d_character_controller_base.tscn" id="1_heu0c"]
 [ext_resource type="Script" uid="uid://d6b1dyqshq61" path="res://game/entities/player/mvm30_player.gd" id="2_t56eh"]
@@ -34,6 +34,8 @@
 [ext_resource type="AudioStream" uid="uid://b6a6dbyu1afnh" path="res://assets/sfx/movement/footsteps/metal_footstep/footsteps_metal - Region #8.wav" id="17_wx3fv"]
 [ext_resource type="AudioStream" uid="uid://yo1bcaaq5kbq" path="res://assets/sfx/movement/footsteps/metal_footstep/footsteps_metal - Region #9.wav" id="18_g1vkd"]
 [ext_resource type="AudioStream" uid="uid://6lo82t80xjlx" path="res://assets/sfx/movement/footsteps/metal_footstep/footsteps_metal - Region #10.wav" id="19_xfb3v"]
+[ext_resource type="AudioStream" uid="uid://queaxnfaj7fj" path="res://assets/sfx/movement/dash/Dash.wav" id="35_j8m7m"]
+[ext_resource type="AudioStream" uid="uid://d2jbuv1e7hg03" path="res://assets/sfx/HUD/Hurt.wav" id="36_ijn2u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_heu0c"]
 size = Vector2(12, 30)
@@ -67,8 +69,8 @@ property = "run_speed"
 metadata/_custom_type_script = "uid://bdlrly1hkn1qa"
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_i5qpf"]
-random_pitch = 1.05
-random_volume_offset_db = 0.3
+random_pitch = 1.1
+random_volume_offset_db = 0.5
 streams_count = 16
 stream_0/stream = ExtResource("4_so4hh")
 stream_1/stream = ExtResource("5_aidgt")
@@ -105,6 +107,17 @@ clip_0/name = &"metal"
 clip_0/stream = SubResource("AudioStreamRandomizer_2jquf")
 clip_0/auto_advance = 0
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ijn2u"]
+random_pitch = 1.1
+random_volume_offset_db = 1.0
+streams_count = 1
+stream_0/stream = ExtResource("35_j8m7m")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_or46b"]
+random_pitch = 1.02
+streams_count = 1
+stream_0/stream = ExtResource("36_ijn2u")
+
 [node name="PlayerCharacter" instance=ExtResource("1_heu0c")]
 collision_layer = 2
 script = ExtResource("2_t56eh")
@@ -118,7 +131,7 @@ shape = SubResource("RectangleShape2D_heu0c")
 unique_name_in_owner = true
 position = Vector2(0, -16)
 sprite_frames = ExtResource("3_xt77v")
-animation = &"walk"
+animation = &"dash"
 script = ExtResource("4_aidgt")
 grounded_state = NodePath("../StateMachine/Grounded")
 
@@ -464,11 +477,28 @@ stream = SubResource("AudioStreamInteractive_aidgt")
 max_polyphony = 2
 bus = &"Environment_Impact"
 
-[node name="LandingAudio" type="AudioStreamPlayer2D" parent="Audio" index="1"]
+[node name="LedgeGrabAudio" type="AudioStreamPlayer2D" parent="Audio" index="1"]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamInteractive_aidgt")
+volume_db = -6.0
+max_polyphony = 2
+bus = &"Environment_Impact"
+
+[node name="LandingAudio" type="AudioStreamPlayer2D" parent="Audio" index="2"]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamInteractive_j8m7m")
 max_polyphony = 2
 bus = &"Environment_Impact"
+
+[node name="DashAudio" type="AudioStreamPlayer2D" parent="Audio" index="3"]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_ijn2u")
+bus = &"SFX"
+
+[node name="HurtAudio" type="AudioStreamPlayer2D" parent="Audio" index="4"]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_or46b")
+bus = &"SFX"
 
 [connection signal="frame_changed" from="AnimatedSprite2D" to="AnimatedSprite2D" method="_on_frame_changed"]
 [connection signal="state_changed" from="StateMachine" to="BehaviourVariables" method="_on_state_machine_state_changed"]
