@@ -1,9 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://cd8ffgsf0edrb"]
+[gd_scene load_steps=20 format=3 uid="uid://cd8ffgsf0edrb"]
 
 [ext_resource type="Script" uid="uid://ti8ga2h4opkg" path="res://game/game.gd" id="1_vasa2"]
 [ext_resource type="PackedScene" uid="uid://rx62opg8jmrd" path="res://game/entities/player/player.tscn" id="2_vasa2"]
 [ext_resource type="Script" uid="uid://cg38swpl3yhck" path="res://game/hud/hud.gd" id="3_4fuuu"]
 [ext_resource type="Script" uid="uid://cjwldoqugpfjr" path="res://game/hud/hp_gauge.gd" id="3_h7iqs"]
+[ext_resource type="Script" uid="uid://gysredmke715" path="res://game/entities/camera/camera_2d.gd" id="3_vsp63"]
 [ext_resource type="AudioStream" uid="uid://bdan3tetcebqw" path="res://assets/sfx/ambiance/generator_hum_1.mp3" id="5_u5opy"]
 [ext_resource type="AudioStream" uid="uid://f65fpvva36i" path="res://assets/sfx/ambiance/generator_hum_2.mp3" id="6_y36n6"]
 [ext_resource type="AudioStream" uid="uid://darks2xt61rae" path="res://assets/sfx/ambiance/generator_hum_3.mp3" id="7_l8g03"]
@@ -65,8 +66,11 @@ process_mode = 3
 [node name="PlayerCharacter" parent="Gameplay" instance=ExtResource("2_vasa2")]
 position = Vector2(160, 90)
 
-[node name="Camera2D" type="Camera2D" parent="Gameplay/PlayerCharacter"]
+[node name="Camera2D" type="Camera2D" parent="Gameplay/PlayerCharacter" node_paths=PackedStringArray("default_target")]
 process_callback = 0
+position_smoothing_speed = 8.0
+script = ExtResource("3_vsp63")
+default_target = NodePath("..")
 
 [node name="AudioListener2D" type="AudioListener2D" parent="Gameplay/PlayerCharacter/Camera2D"]
 position = Vector2(-160, -90)

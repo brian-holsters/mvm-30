@@ -1,16 +1,20 @@
-[gd_scene load_steps=8 format=4 uid="uid://ytt5k8fi2oyf"]
+[gd_scene load_steps=10 format=4 uid="uid://ytt5k8fi2oyf"]
 
 [ext_resource type="PackedScene" uid="uid://by13a22vxwdu1" path="res://game/levels/base_level.tscn" id="1_hl4xs"]
 [ext_resource type="Script" uid="uid://bnktai1u2rqbo" path="res://game/scripts/flag_checker.gd" id="2_7nine"]
 [ext_resource type="TileSet" uid="uid://bxjd1yx0ntj88" path="res://assets/tilesets/main_tileset.tres" id="3_7nine"]
 [ext_resource type="Script" uid="uid://dwo3ygpkhoowl" path="res://game/entities/obstacles/laser.gd" id="3_68mi5"]
 [ext_resource type="Script" uid="uid://bn21x38drplvg" path="res://game/entities/hitbox/hit_box.gd" id="4_7nine"]
+[ext_resource type="Script" uid="uid://cy8qqk76qvg55" path="res://game/entities/hitbox/respawn_hitbox.gd" id="6_wxihf"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wxihf"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hquww"]
 size = Vector2(5, 81)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wxihf"]
+size = Vector2(20, 81)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_68mi5"]
-size = Vector2(62, 4)
+size = Vector2(62, 26)
 
 [node name="DashChallenge" instance=ExtResource("1_hl4xs")]
 
@@ -41,7 +45,7 @@ metadata/_custom_type_script = "uid://bn21x38drplvg"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/Laser/Hitbox" index="0"]
 position = Vector2(-0.5, 19.5)
-shape = SubResource("RectangleShape2D_wxihf")
+shape = SubResource("RectangleShape2D_hquww")
 
 [node name="Laser2" type="Line2D" parent="Foreground" index="1"]
 position = Vector2(359, 69)
@@ -50,16 +54,6 @@ width = 2.0
 default_color = Color(1, 0, 0, 1)
 script = ExtResource("3_68mi5")
 
-[node name="Hitbox" type="Area2D" parent="Foreground/Laser2" index="0"]
-script = ExtResource("4_7nine")
-custom_knockback = true
-knockback = Vector2(75, 0)
-metadata/_custom_type_script = "uid://bn21x38drplvg"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/Laser2/Hitbox" index="0"]
-position = Vector2(-0.5, 19.5)
-shape = SubResource("RectangleShape2D_wxihf")
-
 [node name="Laser3" type="Line2D" parent="Foreground" index="2"]
 position = Vector2(341, 69)
 points = PackedVector2Array(0, -18, 0, 60)
@@ -67,14 +61,15 @@ width = 2.0
 default_color = Color(1, 0, 0, 1)
 script = ExtResource("3_68mi5")
 
-[node name="Hitbox" type="Area2D" parent="Foreground/Laser3" index="0"]
+[node name="Hitbox" type="Area2D" parent="Foreground/Laser3" index="0" node_paths=PackedStringArray("origin")]
 script = ExtResource("4_7nine")
 custom_knockback = true
 knockback = Vector2(75, 0)
+origin = NodePath("CollisionShape2D")
 metadata/_custom_type_script = "uid://bn21x38drplvg"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/Laser3/Hitbox" index="0"]
-position = Vector2(-0.5, 19.5)
+position = Vector2(9, 19.5)
 shape = SubResource("RectangleShape2D_wxihf")
 
 [node name="Laser4" type="Line2D" parent="Foreground" index="3"]
@@ -84,17 +79,6 @@ width = 2.0
 default_color = Color(1, 0, 0, 1)
 script = ExtResource("3_68mi5")
 
-[node name="Hitbox" type="Area2D" parent="Foreground/Laser4" index="0"]
-position = Vector2(-1, 21)
-script = ExtResource("4_7nine")
-custom_knockback = true
-knockback = Vector2(75, 0)
-metadata/_custom_type_script = "uid://bn21x38drplvg"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/Laser4/Hitbox" index="0"]
-position = Vector2(-0.5, 19.5)
-shape = SubResource("RectangleShape2D_wxihf")
-
 [node name="Laser5" type="Line2D" parent="Foreground" index="4"]
 position = Vector2(181, 11)
 points = PackedVector2Array(0, 0, 0, 81)
@@ -103,7 +87,7 @@ default_color = Color(1, 0, 0, 1)
 script = ExtResource("3_68mi5")
 
 [node name="Hitbox" type="Area2D" parent="Foreground/Laser5" index="0"]
-position = Vector2(1, 21)
+position = Vector2(9, 21)
 script = ExtResource("4_7nine")
 custom_knockback = true
 knockback = Vector2(75, 0)
@@ -123,16 +107,20 @@ width = 2.0
 default_color = Color(1, 0, 0, 1)
 script = ExtResource("3_68mi5")
 
-[node name="Hitbox" type="Area2D" parent="Foreground/EscapePath/Laser6" index="0"]
+[node name="Hitbox" type="Area2D" parent="Foreground/EscapePath/Laser6" index="0" node_paths=PackedStringArray("respawn_point")]
 position = Vector2(-31, 0)
-script = ExtResource("4_7nine")
+script = ExtResource("6_wxihf")
+respawn_point = NodePath("Marker2D")
 custom_knockback = true
 knockback = Vector2(75, -100)
 metadata/_custom_type_script = "uid://bn21x38drplvg"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/EscapePath/Laser6/Hitbox" index="0"]
-position = Vector2(31, 0)
+position = Vector2(31, 11)
 shape = SubResource("RectangleShape2D_68mi5")
+
+[node name="Marker2D" type="Marker2D" parent="Foreground/EscapePath/Laser6/Hitbox" index="1"]
+position = Vector2(64, -10)
 
 [node name="Laser7" type="Line2D" parent="Foreground/EscapePath" index="1"]
 points = PackedVector2Array(-31, 0, 31, 0)
@@ -140,34 +128,12 @@ width = 2.0
 default_color = Color(1, 0, 0, 1)
 script = ExtResource("3_68mi5")
 
-[node name="Hitbox" type="Area2D" parent="Foreground/EscapePath/Laser7" index="0"]
-position = Vector2(-31, 0)
-script = ExtResource("4_7nine")
-custom_knockback = true
-knockback = Vector2(75, -100)
-metadata/_custom_type_script = "uid://bn21x38drplvg"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/EscapePath/Laser7/Hitbox" index="0"]
-position = Vector2(31, 0)
-shape = SubResource("RectangleShape2D_68mi5")
-
 [node name="Laser8" type="Line2D" parent="Foreground/EscapePath" index="2"]
 position = Vector2(0, 11)
 points = PackedVector2Array(-31, 0, 31, 0)
 width = 2.0
 default_color = Color(1, 0, 0, 1)
 script = ExtResource("3_68mi5")
-
-[node name="Hitbox" type="Area2D" parent="Foreground/EscapePath/Laser8" index="0"]
-position = Vector2(-31, 0)
-script = ExtResource("4_7nine")
-custom_knockback = true
-knockback = Vector2(75, -100)
-metadata/_custom_type_script = "uid://bn21x38drplvg"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/EscapePath/Laser8/Hitbox" index="0"]
-position = Vector2(31, 0)
-shape = SubResource("RectangleShape2D_68mi5")
 
 [node name="Main" type="TileMapLayer" parent="Foreground/EscapePath" index="3"]
 tile_map_data = PackedByteArray("AADn//n/AAAAAAAAAADn//r/AAAAAAEAAADn//v/AAAAAAIAAAD///z/AAAAAAIAAAAAAPz/AAACAAIAAAD///v/AAAAAAEAAAAAAPv/AAACAAEAAAAAAPr/AAACAAEAAAAAAPn/AAACAAEAAAD///r/AAAAAAEAAAD///n/AAAAAAEAAAA=")
