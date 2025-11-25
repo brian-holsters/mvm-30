@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 class_name FlagNode
 
 signal flag_checked
@@ -13,6 +13,9 @@ func _ready() -> void:
 		flag_checked.emit()
 	else:
 		flag_unchecked.emit()
+
+func get_flag_value():
+	return Game.save_manager.get_value(database, {}).get(flag, false)
 
 func set_flag():
 	var flags = Game.save_manager.get_value(database, {})

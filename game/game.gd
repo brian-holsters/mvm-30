@@ -22,6 +22,7 @@ func _ready() -> void:
 	add_module("RoomTransitions.gd")  # TODO: handle transitions more elegantly
 	# Initialize room when it changes.
 	room_loaded.connect(init_room, CONNECT_DEFERRED)
+	#Dialogic.start("")
 
 func go_to_starting_room(room: String = ""):
 	if room == "":
