@@ -59,4 +59,5 @@ tile_map_data = PackedByteArray("AAAPAAYAAAADAAIAAAAPAAUAAAADAAAAAAA=")
 tile_set = ExtResource("3_8dnbf")
 
 [connection signal="flag_checked" from="TextPlayedFlag" to="Background/Gate" method="queue_free"]
+[connection signal="flag_unchecked" from="TextPlayedFlag" to="." method="play_intro"]
 [connection signal="ready" from="SpawnSetter" to="SpawnSetter" method="set_spawn_to_current_room"]
