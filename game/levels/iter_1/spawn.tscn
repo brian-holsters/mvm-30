@@ -19,24 +19,23 @@ script = ExtResource("2_vhu1q")
 flag = "intro_text"
 metadata/_custom_type_script = "uid://bnktai1u2rqbo"
 
-[node name="IntroTextPlayer" type="Node" parent="TextPlayedFlag" index="0"]
+[node name="IntroTextPlayer" type="Node" parent="." index="1"]
 unique_name_in_owner = true
 script = ExtResource("5_tv36u")
 timeline = "intro_text"
-mode = "input"
 
-[node name="OpenDoorTextPlayer" type="Node" parent="TextPlayedFlag" index="1"]
+[node name="OpenDoorTextPlayer" type="Node" parent="." index="2"]
 unique_name_in_owner = true
 script = ExtResource("5_tv36u")
 timeline = "intro_text_jumped"
 
-[node name="SpawnSetter" type="Node" parent="." index="1"]
+[node name="SpawnSetter" type="Node" parent="." index="3"]
 script = ExtResource("4_8dnbf")
 
-[node name="Spawn" type="Marker2D" parent="." index="2" groups=["spawn_point"]]
+[node name="Spawn" type="Marker2D" parent="." index="4" groups=["spawn_point"]]
 position = Vector2(180, 160)
 
-[node name="HitBox" type="Area2D" parent="." index="4" node_paths=PackedStringArray("respawn_point")]
+[node name="HitBox" type="Area2D" parent="." index="6" node_paths=PackedStringArray("respawn_point")]
 script = ExtResource("3_3xgwc")
 respawn_point = NodePath("Marker2D")
 custom_knockback = true

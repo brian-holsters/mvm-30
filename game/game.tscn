@@ -56,6 +56,7 @@ script = ExtResource("1_vasa2")
 starting_map = "uid://b3t1g0qecug7h"
 _player = NodePath("Gameplay/PlayerCharacter")
 camera = NodePath("Gameplay/PlayerCharacter/Camera2D")
+main_menu_scene = "uid://4vfjlvvmv5lq"
 
 [node name="Gameplay" type="Node2D" parent="."]
 unique_name_in_owner = true

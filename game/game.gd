@@ -9,12 +9,14 @@ class_name Game
 @export_file("room_link") var starting_map: String
 @export var _player: MvmPlayer
 @export var camera: Camera2D
+@export_file("*.tscn") var main_menu_scene: String
 
 const SaveManager = preload("res://addons/MetroidvaniaSystem/Template/Scripts/SaveManager.gd")
 const SAVE_PATH = "user://save_data.sav"
 const DEBUG_SAVE_PATH = "res://save_data.txt"
 
 static var save_manager: SaveManager = SaveManager.new()
+static var singleton: Game
 
 enum GAME_STATES {
 	GAME, DIALOGUE, PAUSE
@@ -22,7 +24,7 @@ enum GAME_STATES {
 
 var previous_game_state: GAME_STATES = GAME_STATES.GAME
 
-var game_state: GAME_STATES = GAME_STATES.GAME:
+var game_state: GAME_STATES:
 	set(val):
 		game_state = val
 		match val:
@@ -40,9 +42,11 @@ var game_state: GAME_STATES = GAME_STATES.GAME:
 				gameplay.process_mode = Node.PROCESS_MODE_DISABLED
 
 func _ready() -> void:
+	singleton = self
 	########################
 	## GAME_STATE
 	########################
+	game_state = GAME_STATES.GAME
 	EventHub.game_paused.connect(_pause_game)
 	EventHub.game_unpaused.connect(_unpause_game)
 	
@@ -70,6 +74,7 @@ func _ready() -> void:
 	########################
 	EventHub.game_paused.connect(Dialogic.set.bind("paused", true))
 	EventHub.game_unpaused.connect(Dialogic.set.bind("paused", false))
+
 
 func go_to_starting_room(room: String = ""):
 	if room == "":
@@ -148,3 +153,21 @@ func _pause_game():
 
 func _unpause_game():
 	game_state = previous_game_state
+
+func exit_game():
+	EventHub.game_unpaused.emit()
+	if Dialogic.current_timeline != null:
+		Dialogic.end_timeline(true)
+	game_state = GAME_STATES.GAME
+	########################
+	## DIALOGIC
+	########################
+	EventHub.interactive_dialogue_started.disconnect(_on_dialogue_started)
+	EventHub.interactive_dialogue_ended.disconnect(_on_dialogue_ended)
+	
+	########################
+	## DIALOGIC + GAME_STATE
+	########################
+	EventHub.game_paused.disconnect(Dialogic.set.bind("paused", true))
+	EventHub.game_unpaused.disconnect(Dialogic.set.bind("paused", false))
+	get_tree().change_scene_to_file.call_deferred(main_menu_scene)
