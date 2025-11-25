@@ -14,8 +14,9 @@ var hp := 5:
 			died.emit()
 		hp_changed.emit()
 
-func on_enter():
-	$Camera2D.reset_smoothing()
+func on_room_loaded():
+	print("player:")
+	print(global_position)
 	save_data()
 
 func save_data():
