@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://b6jal0hkamwfx"]
+
+[ext_resource type="FontFile" uid="uid://50ctxiiscptv" path="res://assets/fonts/Weiholmir_full_sheet.png" id="1_3midj"]
+
+[resource]
+default_font = ExtResource("1_3midj")
+default_font_size = 7

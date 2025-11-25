@@ -1,22 +1,39 @@
-[gd_scene load_steps=6 format=4 uid="uid://b3t1g0qecug7h"]
+[gd_scene load_steps=9 format=4 uid="uid://b3t1g0qecug7h"]
 
 [ext_resource type="PackedScene" uid="uid://by13a22vxwdu1" path="res://game/levels/base_level.tscn" id="1_uejf8"]
+[ext_resource type="Script" uid="uid://dvvo1k7hykqny" path="res://game/levels/iter_1/spawn.gd" id="2_5jgag"]
+[ext_resource type="Script" uid="uid://bnktai1u2rqbo" path="res://game/scripts/flag_checker.gd" id="2_vhu1q"]
 [ext_resource type="Script" uid="uid://cy8qqk76qvg55" path="res://game/entities/hitbox/respawn_hitbox.gd" id="3_3xgwc"]
 [ext_resource type="TileSet" uid="uid://bxjd1yx0ntj88" path="res://assets/tilesets/main_tileset.tres" id="3_8dnbf"]
 [ext_resource type="Script" uid="uid://dtq4ompcn2bgy" path="res://game/scripts/spawn_setter.gd" id="4_8dnbf"]
+[ext_resource type="Script" uid="uid://d15w7co7lxbq1" path="res://game/scripts/text_player.gd" id="5_tv36u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8dnbf"]
 size = Vector2(320, 20)
 
 [node name="SpawnLevel" instance=ExtResource("1_uejf8")]
+script = ExtResource("2_5jgag")
 
-[node name="SpawnSetter" type="Node" parent="." index="0"]
+[node name="TextPlayedFlag" type="Node2D" parent="." index="0"]
+script = ExtResource("2_vhu1q")
+flag = "intro_text"
+metadata/_custom_type_script = "uid://bnktai1u2rqbo"
+
+[node name="IntroTextPlayer" type="Node" parent="." index="1"]
+script = ExtResource("5_tv36u")
+timeline = "intro_text"
+
+[node name="OpenDoorTextPlayer" type="Node" parent="." index="2"]
+script = ExtResource("5_tv36u")
+timeline = "intro_text_jumped"
+
+[node name="SpawnSetter" type="Node" parent="." index="3"]
 script = ExtResource("4_8dnbf")
 
-[node name="Spawn" type="Marker2D" parent="." index="1" groups=["spawn_point"]]
+[node name="Spawn" type="Marker2D" parent="." index="4" groups=["spawn_point"]]
 position = Vector2(180, 160)
 
-[node name="HitBox" type="Area2D" parent="." index="3" node_paths=PackedStringArray("respawn_point")]
+[node name="HitBox" type="Area2D" parent="." index="6" node_paths=PackedStringArray("respawn_point")]
 script = ExtResource("3_3xgwc")
 respawn_point = NodePath("Marker2D")
 custom_knockback = true
@@ -34,4 +51,10 @@ position = Vector2(170, 160)
 tile_map_data = PackedByteArray("AAAAAAIAAAACAAIAAAAAAAEAAAACAAEAAAAAAAAAAAACAAEAAAAAAAUAAAABAAAAAAABAAUAAAABAAAAAAACAAYAAAACAAEAAAABAAYAAAABAAEAAAACAAcAAAACAAEAAAACAAgAAAACAAEAAAAAAAYAAAABAAEAAAAAAAcAAAABAAEAAAAAAAgAAAABAAEAAAABAAcAAAABAAEAAAABAAgAAAABAAEAAAAIAAgAAAAAAAAAAAAJAAgAAAABAAAAAAAKAAgAAAABAAAAAAALAAgAAAABAAAAAAAMAAgAAAACAAAAAAANAAgAAAABAAEAAAAOAAgAAAABAAEAAAAPAAgAAAABAAEAAAADAAkAAAADAAMAAAAEAAkAAAADAAMAAAAFAAkAAAADAAMAAAAGAAkAAAADAAMAAAAHAAkAAAADAAMAAAABAAAAAAABAAIAAAACAAAAAAABAAIAAAADAAAAAAABAAIAAAAEAAAAAAABAAIAAAAFAAAAAAABAAIAAAAGAAAAAAABAAIAAAAHAAAAAAABAAIAAAAIAAAAAAABAAIAAAAJAAAAAAABAAIAAAAKAAAAAAABAAIAAAALAAAAAAABAAIAAAAMAAAAAAABAAIAAAANAAAAAAABAAIAAAAOAAAAAAABAAIAAAAPAAAAAAAAAAEAAAAPAAEAAAAAAAEAAAAPAAIAAAAAAAEAAAAPAAMAAAAAAAEAAAAPAAQAAAAAAAIAAAACAAUAAAACAAAAAAAMAAcAAAAAAAAAAAANAAcAAAABAAAAAAAOAAcAAAABAAAAAAAPAAcAAAABAAAAAAA=")
 tile_set = ExtResource("3_8dnbf")
 
+[node name="Gate" type="TileMapLayer" parent="Background" index="1"]
+unique_name_in_owner = true
+tile_map_data = PackedByteArray("AAAPAAYAAAADAAIAAAAPAAUAAAADAAAAAAA=")
+tile_set = ExtResource("3_8dnbf")
+
+[connection signal="flag_checked" from="TextPlayedFlag" to="Background/Gate" method="queue_free"]
 [connection signal="ready" from="SpawnSetter" to="SpawnSetter" method="set_spawn_to_current_room"]

@@ -1,0 +1,25 @@
+[remap]
+
+importer="font_data_image"
+type="FontFile"
+uid="uid://50ctxiiscptv"
+path="res://.godot/imported/Weiholmir_full_sheet.png-e8f20c6f470de22ca74b843cbcff83e2.fontdata"
+
+[deps]
+
+source_file="res://assets/fonts/Weiholmir_full_sheet.png"
+dest_files=["res://.godot/imported/Weiholmir_full_sheet.png-e8f20c6f470de22ca74b843cbcff83e2.fontdata"]
+
+[params]
+
+character_ranges=PackedStringArray("\'A\'-\'Z\'", "0-3", "\'a\'-\'z\'", "0-3", "\'0\'-\'9\'", "\'!\'", "\'?\'", "\'.\'", "\'%\'", "\';\'", "\':\'", "\'$\'", "\'#\'", "\'\'\'", "\'\"\'", "\'/\'", "\'\\\'", "\'(\'", "\')\'", "\'&\'", "\'*\'", "\'+\'", "\',\'", "\'-\'", "\'<\'", "\'>\'", "\'=\'", "\'@\'", "\'[\'", "\']\'", "\'^\'", "\'_\'", "0", "\'{\'", "\'}\'", "0", "\'€\'", "0", "\'~\'", "0", "0", "\' \'")
+kerning_pairs=PackedStringArray()
+columns=10
+rows=11
+image_margin=Rect2i(0, 0, 0, 0)
+character_margin=Rect2i(0, 0, 0, 0)
+ascent=0
+descent=0
+fallbacks=[]
+compress=true
+scaling_mode=2
