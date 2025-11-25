@@ -20,10 +20,12 @@ flag = "intro_text"
 metadata/_custom_type_script = "uid://bnktai1u2rqbo"
 
 [node name="IntroTextPlayer" type="Node" parent="." index="1"]
+unique_name_in_owner = true
 script = ExtResource("5_tv36u")
 timeline = "intro_text"
 
 [node name="OpenDoorTextPlayer" type="Node" parent="." index="2"]
+unique_name_in_owner = true
 script = ExtResource("5_tv36u")
 timeline = "intro_text_jumped"
 
