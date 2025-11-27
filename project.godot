@@ -90,6 +90,10 @@ window/size/window_height_override=720
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
 
+[dotnet]
+
+project/assembly_name="mvm-30"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/MetroidvaniaSystem/EditorExtension/plugin.cfg", "res://addons/MetroidvaniaSystem/plugin.cfg", "res://addons/bluebrains_character_controller/plugin.cfg", "res://addons/dialogic/plugin.cfg")
