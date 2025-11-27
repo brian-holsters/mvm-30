@@ -3,6 +3,10 @@ class_name FlagNode
 
 signal flag_checked
 signal flag_unchecked
+
+signal flag_just_checked
+signal flag_just_unchecked
+
 @export var database: String = "flags"
 @export var flag: String
 
@@ -22,9 +26,11 @@ func set_flag():
 	flags[flag] = true
 	Game.save_manager.set_value(database, flags)
 	EventHub.flag_changed.emit(database, flag)
+	flag_just_checked.emit()
 
 func unset_flag():
 	var flags = Game.save_manager.get_value(database, {})
 	flags[flag] = false
 	Game.save_manager.set_value(database, flags)
 	EventHub.flag_changed.emit(database, flag)
+	flag_just_unchecked.emit()
