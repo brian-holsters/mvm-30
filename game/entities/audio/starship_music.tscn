@@ -1,6 +1,5 @@
-[gd_scene load_steps=27 format=3 uid="uid://bjb4a35tmdltw"]
+[gd_scene load_steps=23 format=3 uid="uid://bjb4a35tmdltw"]
 
-[ext_resource type="Script" uid="uid://dr2i045xpi8ex" path="res://game/entities/audio/starship_music.gd" id="1_ca2qe"]
 [ext_resource type="AudioStream" uid="uid://bmboj20dj24mc" path="res://assets/music/starship/voice_backgrounds/part1/var1.mp3" id="1_jpplr"]
 [ext_resource type="AudioStream" uid="uid://b4deu1ogkeejn" path="res://assets/music/starship/voice_backgrounds/part1/var2.mp3" id="2_r5awb"]
 [ext_resource type="AudioStream" uid="uid://cb51x40nu36gy" path="res://assets/music/starship/voice_backgrounds/part1/var1B.mp3" id="3_dpsqj"]
@@ -12,104 +11,83 @@
 [ext_resource type="AudioStream" uid="uid://bxt3ljix1wqlo" path="res://assets/music/starship/synths/part1/var2.mp3" id="9_av2i0"]
 [ext_resource type="AudioStream" uid="uid://bjcs57o4fs4r3" path="res://assets/music/starship/synths/part1/var3.mp3" id="10_0x0gv"]
 [ext_resource type="AudioStream" uid="uid://caiclbvfxhvjp" path="res://assets/music/starship/synths/part1/var4.mp3" id="11_nysw2"]
-[ext_resource type="AudioStream" uid="uid://c4csx025078dg" path="res://assets/music/starship/synths/part1/silence.mp3" id="12_av2i0"]
 [ext_resource type="AudioStream" uid="uid://brxg578phl1t7" path="res://assets/music/starship/synths/part2/var1.mp3" id="12_dyplk"]
 [ext_resource type="AudioStream" uid="uid://b7sov870ct2vr" path="res://assets/music/starship/synths/part2/silence.mp3" id="14_0x0gv"]
 [ext_resource type="AudioStream" uid="uid://bweevdvtyh7sx" path="res://assets/music/starship/synths/part1/end.mp3" id="14_8qltt"]
-[ext_resource type="Script" uid="uid://bnktai1u2rqbo" path="res://game/scripts/flag_checker.gd" id="17_cqfuk"]
+[ext_resource type="Script" uid="uid://dr2i045xpi8ex" path="res://game/entities/audio/interactive_music.gd" id="17_ca2qe"]
 
-[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_0x0gv"]
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_dyplk"]
 shuffle = true
-stream_count = 2
+loop = false
+fade_time = 0.5
+stream_count = 4
 stream_0 = ExtResource("1_jpplr")
-stream_1 = ExtResource("2_r5awb")
-
-[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_nysw2"]
-stream_count = 2
-stream_0 = ExtResource("3_dpsqj")
-stream_1 = ExtResource("4_2ul14")
-
-[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_dyplk"]
-clip_count = 2
-clip_0/name = &"gentle"
-clip_0/stream = SubResource("AudioStreamPlaylist_0x0gv")
-clip_0/auto_advance = 0
-clip_1/name = &"harsh"
-clip_1/stream = SubResource("AudioStreamPlaylist_nysw2")
-clip_1/auto_advance = 0
+stream_1 = ExtResource("3_dpsqj")
+stream_2 = ExtResource("2_r5awb")
+stream_3 = ExtResource("4_2ul14")
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_ca2qe"]
 shuffle = true
+loop = false
+fade_time = 0.5
+stream_count = 5
+stream_0 = ExtResource("8_vccug")
+stream_1 = ExtResource("9_av2i0")
+stream_2 = ExtResource("10_0x0gv")
+stream_3 = ExtResource("11_nysw2")
+stream_4 = ExtResource("14_8qltt")
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_8qltt"]
+stream_count = 2
+stream_0/stream = SubResource("AudioStreamPlaylist_dyplk")
+stream_0/volume = 0.0
+stream_1/stream = SubResource("AudioStreamPlaylist_ca2qe")
+stream_1/volume = 0.0
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_cqfuk"]
+shuffle = true
+loop = false
 stream_count = 3
 stream_0 = ExtResource("5_svm7f")
 stream_1 = ExtResource("6_vccug")
 stream_2 = ExtResource("7_av2i0")
 
-[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_8qltt"]
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_wpfed"]
+shuffle = true
+loop = false
+stream_count = 2
+stream_0 = ExtResource("12_dyplk")
+stream_1 = ExtResource("14_0x0gv")
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_8nnkk"]
+stream_count = 2
+stream_0/stream = SubResource("AudioStreamPlaylist_cqfuk")
+stream_0/volume = 0.0
+stream_1/stream = SubResource("AudioStreamPlaylist_wpfed")
+stream_1/volume = 0.0
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_ca2qe"]
 clip_count = 2
-clip_0/name = &"part1"
-clip_0/stream = SubResource("AudioStreamInteractive_dyplk")
+clip_0/name = &"part 1"
+clip_0/stream = SubResource("AudioStreamSynchronized_8qltt")
 clip_0/auto_advance = 0
 clip_1/name = &"part2"
-clip_1/stream = SubResource("AudioStreamPlaylist_ca2qe")
+clip_1/stream = SubResource("AudioStreamSynchronized_8nnkk")
 clip_1/auto_advance = 0
 _transitions = {
 Vector2i(-1, -1): {
-"fade_beats": 0.0,
+"fade_beats": 4.0,
 "fade_mode": 4,
-"from_time": 3,
-"to_time": 1
+"from_time": 1,
+"to_time": 0
 }
 }
-
-[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_dyplk"]
-shuffle = true
-stream_count = 6
-stream_0 = ExtResource("8_vccug")
-stream_1 = ExtResource("9_av2i0")
-stream_2 = ExtResource("10_0x0gv")
-stream_3 = ExtResource("11_nysw2")
-stream_4 = ExtResource("12_av2i0")
-stream_5 = ExtResource("12_av2i0")
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_nysw2"]
-streams_count = 2
-stream_0/stream = ExtResource("12_dyplk")
-stream_1/stream = ExtResource("14_0x0gv")
-
-[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_8qltt"]
-stream_count = 1
-stream_0 = SubResource("AudioStreamRandomizer_nysw2")
-
-[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_cqfuk"]
-clip_count = 3
-clip_0/name = &"part1"
-clip_0/stream = SubResource("AudioStreamPlaylist_dyplk")
-clip_0/auto_advance = 0
-clip_1/name = &"part1_end"
-clip_1/stream = ExtResource("14_8qltt")
-clip_1/auto_advance = 1
-clip_1/next_clip = 2
-clip_2/name = &"part2"
-clip_2/stream = SubResource("AudioStreamPlaylist_8qltt")
-clip_2/auto_advance = 0
 
 [node name="StarshipMusic" type="Node"]
-script = ExtResource("1_ca2qe")
 
-[node name="voice_bg" type="AudioStreamPlayer" parent="."]
-stream = SubResource("AudioStreamInteractive_8qltt")
+[node name="InteractiveMusic" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamInteractive_ca2qe")
 autoplay = true
 bus = &"Music"
-
-[node name="synth" type="AudioStreamPlayer" parent="."]
-stream = SubResource("AudioStreamInteractive_cqfuk")
-autoplay = true
-bus = &"Music"
-
-[node name="IntroCompleteFlag" type="Node2D" parent="."]
-script = ExtResource("17_cqfuk")
-flag = "intro_complete"
-metadata/_custom_type_script = "uid://bnktai1u2rqbo"
-
-[connection signal="flag_checked" from="IntroCompleteFlag" to="." method="_on_flag_set"]
+script = ExtResource("17_ca2qe")
+metadata/_custom_type_script = "uid://dr2i045xpi8ex"
