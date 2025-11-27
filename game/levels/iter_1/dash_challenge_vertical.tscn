@@ -3,10 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://by13a22vxwdu1" path="res://game/levels/base_level.tscn" id="1_iapuj"]
 [ext_resource type="TileSet" uid="uid://bxjd1yx0ntj88" path="res://assets/tilesets/main_tileset.tres" id="2_uq2ho"]
 [ext_resource type="Script" uid="uid://bn21x38drplvg" path="res://game/entities/hitbox/hit_box.gd" id="3_fiap7"]
-[ext_resource type="Script" uid="uid://dwo3ygpkhoowl" path="res://game/entities/obstacles/laser.gd" id="3_knvvg"]
 [ext_resource type="Script" uid="uid://bnktai1u2rqbo" path="res://game/scripts/flag_checker.gd" id="3_t4636"]
 [ext_resource type="Script" uid="uid://ba0bmlonp2suh" path="res://game/entities/interactable/interaction_area.gd" id="3_u3jef"]
 [ext_resource type="Texture2D" uid="uid://b7nit00hasq23" path="res://assets/tilesets/main_tileset.png" id="3_uq2ho"]
+[ext_resource type="PackedScene" uid="uid://b8kxe75yox7h4" path="res://game/entities/obstacles/laser/laser.tscn" id="6_luc8m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t4636"]
 
@@ -52,10 +52,10 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_luc8m")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_knvvg"]
-size = Vector2(5, 339)
+size = Vector2(320, 4)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fiap7"]
-size = Vector2(5, 60)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uq2ho"]
+size = Vector2(40, 4)
 
 [node name="DashVertical" instance=ExtResource("1_iapuj")]
 
@@ -101,61 +101,58 @@ tile_set = ExtResource("2_uq2ho")
 tile_map_data = PackedByteArray("AAAIABQAAAAAAAAAAAAJABQAAAACAAAAAAAJABAAAAACAAAAAAAIABAAAAAAAAAAAAAFAA4AAAADAAAAAAAFABQAAAADAAIAAAAAABIAAAACAAIAAAAAAA4AAAACAAIAAAAFAA8AAAADAAEAAAAFABAAAAADAAIAAAAFABIAAAADAAAAAAAFABMAAAADAAEAAAAJABEAAAACAAEAAAAIABEAAAAAAAEAAAAIABIAAAAAAAIAAAAJABIAAAACAAIAAAAIABUAAAAAAAEAAAAIABYAAAAAAAEAAAAIABcAAAAAAAEAAAAIABgAAAAAAAEAAAAIABkAAAAAAAEAAAAJABUAAAACAAEAAAAJABYAAAACAAEAAAAJABcAAAACAAEAAAAJABgAAAACAAEAAAAJABkAAAACAAEAAAAPABoAAAABAAAAAAAOABoAAAABAAAAAAANABoAAAABAAAAAAAMABoAAAABAAAAAAALABoAAAABAAAAAAAKABoAAAABAAAAAAAJABoAAAAEAAEAAAAIABoAAAAFAAEAAAAHABoAAAABAAAAAAAGABoAAAABAAAAAAAFABoAAAABAAAAAAAEABoAAAABAAAAAAADABoAAAABAAAAAAACABoAAAABAAAAAAABABoAAAABAAAAAAAAABoAAAAEAAEAAAAAABkAAAACAAEAAAAAABgAAAACAAEAAAAAABcAAAACAAEAAAAAABYAAAACAAEAAAAAABUAAAACAAEAAAAAABQAAAACAAAAAAAAABAAAAACAAAAAAAAABEAAAACAAEAAAAAAA0AAAACAAEAAAAAAAwAAAACAAEAAAAAAAsAAAACAAEAAAAAAAoAAAACAAEAAAALAAkAAAACAAIAAAALAAgAAAACAAAAAAAKAAgAAAABAAAAAAAJAAgAAAABAAAAAAAIAAgAAAABAAAAAAAHAAgAAAABAAAAAAAGAAgAAAABAAAAAAAFAAgAAAABAAAAAAAEAAgAAAABAAAAAAADAAgAAAABAAAAAAACAAgAAAABAAAAAAABAAgAAAABAAAAAAAAAAgAAAAEAAEAAAAKAAkAAAABAAIAAAAJAAkAAAABAAIAAAAIAAkAAAABAAIAAAAHAAkAAAABAAIAAAAGAAkAAAABAAIAAAAFAAkAAAABAAIAAAAEAAkAAAABAAIAAAADAAkAAAABAAIAAAACAAkAAAABAAIAAAABAAkAAAABAAIAAAAAAAkAAAAEAAAAAAACAAcAAAADAAEAAAACAAYAAAADAAEAAAACAAUAAAADAAEAAAACAAQAAAADAAEAAAACAAMAAAADAAAAAAAAAAcAAAACAAEAAAAAAAMAAAACAAIAAAAAAAIAAAACAAEAAAAAAAEAAAACAAEAAAAAAAAAAAAEAAAAAAABAAAAAAABAAIAAAACAAAAAAABAAIAAAADAAAAAAABAAIAAAAEAAAAAAABAAIAAAAFAAAAAAABAAIAAAAGAAAAAAABAAIAAAAHAAAAAAABAAIAAAAIAAAAAAABAAIAAAAJAAAAAAABAAIAAAAKAAAAAAABAAIAAAALAAAAAAABAAIAAAAMAAAAAAABAAIAAAANAAAAAAABAAIAAAAOAAAAAAABAAIAAAAPAAAAAAAFAAAAAAAPAAEAAAAAAAEAAAAPAAIAAAAAAAIAAAAJAAUAAAAAAAMAAAAKAAUAAAABAAMAAAALAAUAAAABAAMAAAAMAAUAAAABAAMAAAANAAUAAAACAAMAAAAOAAYAAAAFAAAAAAAPAAcAAAAFAAAAAAAPAAgAAAAAAAEAAAAPAAkAAAAAAAEAAAAPAAoAAAAAAAEAAAAPAAsAAAAAAAEAAAAFAAwAAAAAAAMAAAAGAAwAAAABAAMAAAAHAAwAAAABAAMAAAAIAAwAAAABAAMAAAAJAAwAAAAAAAAAAAAKAAwAAAABAAAAAAALAAwAAAABAAAAAAAMAAwAAAABAAAAAAANAAwAAAABAAAAAAAOAAwAAAABAAAAAAAPAAwAAAAFAAEAAAAOAAcAAAAAAAIAAAANAAYAAAAAAAIAAAAOAAUAAAABAAAAAAAPAAUAAAABAAAAAAAPAAYAAAABAAEAAAAPAA4AAAAAAAEAAAAPABAAAAAAAAIAAAAPAA8AAAAAAAEAAAAPABIAAAAAAAAAAAAPABMAAAAAAAEAAAAPABQAAAAAAAIAAAAPABYAAAAAAAMAAAAFABYAAAADAAAAAAAFABcAAAADAAIAAAAHAA0AAAABAAIAAAAIAA0AAAABAAIAAAAJAA0AAAABAAIAAAAKAA0AAAABAAIAAAALAA0AAAABAAIAAAAMAA0AAAABAAIAAAANAA0AAAABAAIAAAAOAA0AAAABAAIAAAAPAA0AAAAFAAAAAAABAAcAAAAAAAQAAAAAAAUAAAACAAAAAAAAAAYAAAACAAEAAAA=")
 tile_set = ExtResource("2_uq2ho")
 
-[node name="Laser5" type="Line2D" parent="Foreground" index="0"]
-position = Vector2(50, 190)
-points = PackedVector2Array(0, 0, 0, 339)
-width = 2.0
-default_color = Color(1, 0, 0, 1)
-script = ExtResource("3_knvvg")
+[node name="Laser" parent="Foreground" index="0" node_paths=PackedStringArray("hitbox") instance=ExtResource("6_luc8m")]
+position = Vector2(60, 360)
+rotation = -1.5707964
+hitbox = NodePath("Hitbox")
+length = 320
 
-[node name="Hitbox" type="Area2D" parent="Foreground/Laser5" index="0"]
+[node name="Hitbox" type="Area2D" parent="Foreground/Laser" index="3"]
 script = ExtResource("3_fiap7")
 custom_knockback = true
 knockback = Vector2(75, 0)
 metadata/_custom_type_script = "uid://bn21x38drplvg"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/Laser5/Hitbox" index="0"]
-position = Vector2(-0.5, 169.5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/Laser/Hitbox" index="0"]
 shape = SubResource("RectangleShape2D_knvvg")
 
-[node name="Laser6" type="Line2D" parent="Foreground" index="1"]
-visible = false
-position = Vector2(130, 190)
-points = PackedVector2Array(0, 0, 0, 60)
-width = 2.0
-default_color = Color(1, 0, 0, 1)
-script = ExtResource("3_knvvg")
+[node name="Laser2" parent="Foreground" index="1" node_paths=PackedStringArray("hitbox") instance=ExtResource("6_luc8m")]
+position = Vector2(130, 220)
+rotation = -1.5707964
+hitbox = NodePath("Hitbox")
+length = 40
+active = false
+metadata/_edit_group_ = true
 
-[node name="Hitbox" type="Area2D" parent="Foreground/Laser6" index="0"]
+[node name="Hitbox" type="Area2D" parent="Foreground/Laser2" index="3"]
+monitoring = false
 script = ExtResource("3_fiap7")
 custom_knockback = true
 knockback = Vector2(75, 0)
 metadata/_custom_type_script = "uid://bn21x38drplvg"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/Laser6/Hitbox" index="0"]
-position = Vector2(-0.5, 30)
-shape = SubResource("RectangleShape2D_fiap7")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/Laser2/Hitbox" index="0"]
+shape = SubResource("RectangleShape2D_uq2ho")
 
-[node name="Laser7" type="Line2D" parent="Foreground" index="2"]
-position = Vector2(189, 189)
-points = PackedVector2Array(0, 0, 0, 60)
-width = 2.0
-default_color = Color(1, 0, 0, 1)
-script = ExtResource("3_knvvg")
+[node name="Laser3" parent="Foreground" index="2" node_paths=PackedStringArray("hitbox") instance=ExtResource("6_luc8m")]
+position = Vector2(200, 220)
+rotation = -1.5707964
+hitbox = NodePath("Hitbox")
+length = 40
+metadata/_edit_group_ = true
 
-[node name="Hitbox" type="Area2D" parent="Foreground/Laser7" index="0"]
+[node name="Hitbox" type="Area2D" parent="Foreground/Laser3" index="3"]
 script = ExtResource("3_fiap7")
 custom_knockback = true
 knockback = Vector2(75, 0)
 metadata/_custom_type_script = "uid://bn21x38drplvg"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/Laser7/Hitbox" index="0"]
-position = Vector2(-0.5, 30)
-shape = SubResource("RectangleShape2D_fiap7")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/Laser3/Hitbox" index="0"]
+shape = SubResource("RectangleShape2D_uq2ho")
 
-[connection signal="timeout" from="LaserTimer" to="Foreground/Laser5" method="toggle"]
-[connection signal="timeout" from="LaserTimer" to="Foreground/Laser6" method="toggle"]
-[connection signal="timeout" from="LaserTimer" to="Foreground/Laser7" method="toggle"]
+[connection signal="timeout" from="LaserTimer" to="Foreground/Laser" method="toggle"]
+[connection signal="timeout" from="LaserTimer" to="Foreground/Laser3" method="toggle"]
+[connection signal="timeout" from="LaserTimer" to="Foreground/Laser2" method="toggle"]
 [connection signal="flag_checked" from="FlagNode" to="FlagNode/SwitchInteractionRoot" method="queue_free"]
 [connection signal="can_interact" from="FlagNode/SwitchInteractionRoot/InteractableArea2D" to="FlagNode/SwitchInteractionRoot/InteractableArea2D/InteractText" method="show"]
 [connection signal="cannot_interact" from="FlagNode/SwitchInteractionRoot/InteractableArea2D" to="FlagNode/SwitchInteractionRoot/InteractableArea2D/InteractText" method="hide"]
