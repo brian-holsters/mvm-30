@@ -118,7 +118,7 @@ random_pitch = 1.02
 streams_count = 1
 stream_0/stream = ExtResource("36_ijn2u")
 
-[node name="PlayerCharacter" instance=ExtResource("1_heu0c")]
+[node name="PlayerCharacter" groups=["player"] instance=ExtResource("1_heu0c")]
 collision_layer = 2
 script = ExtResource("2_t56eh")
 character_size = Vector2(12, 60)

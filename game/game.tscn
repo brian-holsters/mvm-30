@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://cd8ffgsf0edrb"]
+[gd_scene load_steps=20 format=3 uid="uid://cd8ffgsf0edrb"]
 
 [ext_resource type="Script" uid="uid://ti8ga2h4opkg" path="res://game/game.gd" id="1_vasa2"]
 [ext_resource type="PackedScene" uid="uid://rx62opg8jmrd" path="res://game/entities/player/player.tscn" id="2_vasa2"]
 [ext_resource type="Script" uid="uid://cg38swpl3yhck" path="res://game/hud/hud.gd" id="3_4fuuu"]
 [ext_resource type="Script" uid="uid://cjwldoqugpfjr" path="res://game/hud/hp_gauge.gd" id="3_h7iqs"]
+[ext_resource type="Script" uid="uid://gysredmke715" path="res://game/entities/camera/camera_2d.gd" id="3_vsp63"]
 [ext_resource type="AudioStream" uid="uid://bdan3tetcebqw" path="res://assets/sfx/ambiance/generator_hum_1.mp3" id="5_u5opy"]
 [ext_resource type="AudioStream" uid="uid://f65fpvva36i" path="res://assets/sfx/ambiance/generator_hum_2.mp3" id="6_y36n6"]
 [ext_resource type="AudioStream" uid="uid://darks2xt61rae" path="res://assets/sfx/ambiance/generator_hum_3.mp3" id="7_l8g03"]
@@ -11,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://c6t8iko2mmywa" path="res://assets/sfx/ambiance/SFX_2.mp3" id="9_3vho3"]
 [ext_resource type="AudioStream" uid="uid://p4h8gjhdko88" path="res://assets/sfx/ambiance/SFX_3.mp3" id="10_qf6n1"]
 [ext_resource type="AudioStream" uid="uid://dfef6yd2eot8l" path="res://assets/music/OST.mp3" id="11_3vho3"]
+[ext_resource type="PackedScene" uid="uid://c2g005lykkcsd" path="res://game/menus/pause_menu.tscn" id="12_qf6n1"]
 
 [sub_resource type="Gradient" id="Gradient_4fuuu"]
 interpolation_mode = 1
@@ -50,28 +52,37 @@ stream_count = 1
 stream_0 = ExtResource("11_3vho3")
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("_player", "camera")]
+process_mode = 3
 script = ExtResource("1_vasa2")
 starting_map = "uid://b3t1g0qecug7h"
-_player = NodePath("PlayerCharacter")
-camera = NodePath("PlayerCharacter/Camera2D")
+_player = NodePath("Gameplay/PlayerCharacter")
+camera = NodePath("Gameplay/PlayerCharacter/Camera2D")
+main_menu_scene = "uid://4vfjlvvmv5lq"
 
-[node name="PlayerCharacter" parent="." instance=ExtResource("2_vasa2")]
+[node name="Gameplay" type="Node2D" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+
+[node name="PlayerCharacter" parent="Gameplay" instance=ExtResource("2_vasa2")]
 position = Vector2(160, 90)
 
-[node name="Camera2D" type="Camera2D" parent="PlayerCharacter"]
+[node name="Camera2D" type="Camera2D" parent="Gameplay/PlayerCharacter" node_paths=PackedStringArray("default_target")]
 process_callback = 0
+position_smoothing_speed = 8.0
+script = ExtResource("3_vsp63")
+default_target = NodePath("..")
 
-[node name="AudioListener2D" type="AudioListener2D" parent="PlayerCharacter/Camera2D"]
+[node name="AudioListener2D" type="AudioListener2D" parent="Gameplay/PlayerCharacter/Camera2D"]
 position = Vector2(-160, -90)
 current = true
 
-[node name="Hud" type="CanvasLayer" parent="." node_paths=PackedStringArray("hp_gauge", "player")]
+[node name="Hud" type="CanvasLayer" parent="Gameplay" node_paths=PackedStringArray("hp_gauge", "player")]
 unique_name_in_owner = true
 script = ExtResource("3_4fuuu")
 hp_gauge = NodePath("MarginContainer/Control/HealthGauge")
 player = NodePath("../PlayerCharacter")
 
-[node name="MarginContainer" type="MarginContainer" parent="Hud"]
+[node name="MarginContainer" type="MarginContainer" parent="Gameplay/Hud"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -82,35 +93,41 @@ theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 2
 theme_override_constants/margin_bottom = 2
 
-[node name="Control" type="Control" parent="Hud/MarginContainer"]
+[node name="Control" type="Control" parent="Gameplay/Hud/MarginContainer"]
 layout_mode = 2
 
-[node name="HealthGauge" type="GridContainer" parent="Hud/MarginContainer/Control"]
+[node name="HealthGauge" type="GridContainer" parent="Gameplay/Hud/MarginContainer/Control"]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
-offset_right = 110.0
-offset_bottom = 40.0
-columns = 8
+offset_right = 24.0
+offset_bottom = 169.0
+columns = 2
 script = ExtResource("3_h7iqs")
 
-[node name="Template" type="TextureRect" parent="Hud/MarginContainer/Control/HealthGauge"]
+[node name="Template" type="TextureRect" parent="Gameplay/Hud/MarginContainer/Control/HealthGauge"]
 layout_mode = 2
 texture = SubResource("GradientTexture2D_dxrkv")
 
-[node name="Audio" type="Node" parent="."]
+[node name="Audio" type="Node" parent="Gameplay"]
 
-[node name="Ambiance 1" type="AudioStreamPlayer" parent="Audio"]
+[node name="Ambiance 1" type="AudioStreamPlayer" parent="Gameplay/Audio"]
 stream = SubResource("AudioStreamPlaylist_u5opy")
 autoplay = true
 bus = &"Ambiance"
 
-[node name="Ambiance 2" type="AudioStreamPlayer" parent="Audio"]
+[node name="Ambiance 2" type="AudioStreamPlayer" parent="Gameplay/Audio"]
 stream = SubResource("AudioStreamPlaylist_3vho3")
 autoplay = true
 bus = &"Ambiance"
 
-[node name="Music" type="AudioStreamPlayer" parent="Audio"]
+[node name="Music" type="AudioStreamPlayer" parent="Gameplay/Audio"]
 stream = SubResource("AudioStreamPlaylist_j8tme")
 autoplay = true
 bus = &"Music"
+
+[node name="PauseLayer" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+layer = 2
+
+[node name="PauseMenu" parent="PauseLayer" instance=ExtResource("12_qf6n1")]

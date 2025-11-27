@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://4vfjlvvmv5lq"]
+[gd_scene load_steps=3 format=3 uid="uid://4vfjlvvmv5lq"]
 
 [ext_resource type="Script" uid="uid://bjuvwhlpadk88" path="res://game/menus/main_menu.gd" id="1_db0cf"]
+[ext_resource type="Theme" uid="uid://b6jal0hkamwfx" path="res://game/menus/theme.tres" id="1_tfb2k"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_tfb2k")
 script = ExtResource("1_db0cf")
 game_scene = "res://game/game.tscn"
 

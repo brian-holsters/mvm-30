@@ -14,7 +14,8 @@ func _ready() -> void:
 	var bound_on_signal = _on_signal
 	for i in range(10-signal_arguments):
 		bound_on_signal = bound_on_signal.bind("")
-	listening_node.get(listening_signal).connect(bound_on_signal)
+	if not Engine.is_editor_hint():
+		listening_node.get(listening_signal).connect(bound_on_signal)
 
 
 func _on_signal(_a, _b, _c, _d, _e, _f, _g, _h, _i, _j):  # 10 arguments so we can unbind until matching signal

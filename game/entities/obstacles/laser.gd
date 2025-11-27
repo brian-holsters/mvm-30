@@ -1,6 +1,6 @@
 extends Line2D
 
-var hitboxes: Array[HitBox]
+var hitboxes: Array[HitBox] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
