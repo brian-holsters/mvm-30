@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8kxe75yox7h4"]
+
+[ext_resource type="Script" uid="uid://744wqir7dy6y" path="res://game/entities/obstacles/laser/laser.gd" id="1_ppuj5"]
+
+[sub_resource type="Gradient" id="Gradient_ppuj5"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.25, 0.75)
+colors = PackedColorArray(1, 0.73, 0.73, 1, 1, 0, 0, 1, 1, 0.7294118, 0.7294118, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qv4wg"]
+gradient = SubResource("Gradient_ppuj5")
+width = 2
+height = 4
+fill_to = Vector2(0, 1)
+
+[node name="Laser" type="Node2D"]
+script = ExtResource("1_ppuj5")
+length = 58
+
+[node name="LaserSprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+scale = Vector2(29, 1)
+texture = SubResource("GradientTexture2D_qv4wg")
+
+[node name="VisualLSprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-29, 0)
+
+[node name="Polygon2D" type="Polygon2D" parent="VisualLSprite"]
+position = Vector2(-4, 0)
+polygon = PackedVector2Array(0, -3, 5, -1, 5, 1, 0, 3, -2, 3, -2, -3)
+
+[node name="VisualRSprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(29, 0)
+scale = Vector2(-1, 1)
+
+[node name="Polygon2D2" type="Polygon2D" parent="VisualRSprite"]
+position = Vector2(-4, 0)
+polygon = PackedVector2Array(0, -3, 5, -1, 5, 1, 0, 3, -2, 3, -2, -3)
