@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwmodubd2n2p8"]
+
+[ext_resource type="AudioStream" uid="uid://bmboj20dj24mc" path="res://assets/music/starship/voice_backgrounds/part1/var1.mp3" id="1_u0oa4"]
+[ext_resource type="AudioStream" uid="uid://b4deu1ogkeejn" path="res://assets/music/starship/voice_backgrounds/part1/var2.mp3" id="2_ueyjv"]
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_4xilo"]
+shuffle = true
+stream_count = 2
+stream_0 = ExtResource("1_u0oa4")
+stream_1 = ExtResource("2_ueyjv")
+
+[node name="MenuMusic" type="Node"]
+
+[node name="voice_bg_part1" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamPlaylist_4xilo")
+autoplay = true
+bus = &"Music"

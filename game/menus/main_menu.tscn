@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://4vfjlvvmv5lq"]
+[gd_scene load_steps=4 format=3 uid="uid://4vfjlvvmv5lq"]
 
 [ext_resource type="Script" uid="uid://bjuvwhlpadk88" path="res://game/menus/main_menu.gd" id="1_db0cf"]
 [ext_resource type="Theme" uid="uid://b6jal0hkamwfx" path="res://game/menus/theme.tres" id="1_tfb2k"]
+[ext_resource type="PackedScene" uid="uid://cwmodubd2n2p8" path="res://game/entities/audio/menu_music.tscn" id="3_htn6l"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -31,6 +32,8 @@ text = "Continue"
 layout_mode = 2
 size_flags_horizontal = 4
 text = "New Game"
+
+[node name="MenuMusic" parent="." instance=ExtResource("3_htn6l")]
 
 [connection signal="pressed" from="VBoxContainer/ContinueGameButton" to="." method="_on_continue_game_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
