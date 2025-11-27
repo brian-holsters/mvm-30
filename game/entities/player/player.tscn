@@ -487,13 +487,14 @@ bus = &"Environment_Impact"
 [node name="LandingAudio" type="AudioStreamPlayer2D" parent="Audio" index="2"]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamInteractive_j8m7m")
+volume_db = 2.019
 max_polyphony = 2
 bus = &"Environment_Impact"
 
 [node name="DashAudio" type="AudioStreamPlayer2D" parent="Audio" index="3"]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_ijn2u")
-bus = &"SFX"
+bus = &"mve&atk"
 
 [node name="HurtAudio" type="AudioStreamPlayer2D" parent="Audio" index="4"]
 unique_name_in_owner = true
