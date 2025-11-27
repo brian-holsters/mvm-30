@@ -1,19 +1,16 @@
-[gd_scene load_steps=10 format=4 uid="uid://cxcj5xb7drkcl"]
+[gd_scene load_steps=9 format=4 uid="uid://cxcj5xb7drkcl"]
 
 [ext_resource type="PackedScene" uid="uid://by13a22vxwdu1" path="res://game/levels/base_level.tscn" id="1_icbyg"]
 [ext_resource type="Script" uid="uid://bnktai1u2rqbo" path="res://game/scripts/flag_checker.gd" id="2_08chx"]
 [ext_resource type="TileSet" uid="uid://bxjd1yx0ntj88" path="res://assets/tilesets/main_tileset.tres" id="3_gyr2o"]
-[ext_resource type="Script" uid="uid://dwo3ygpkhoowl" path="res://game/entities/obstacles/laser.gd" id="4_gyr2o"]
 [ext_resource type="Script" uid="uid://ba0bmlonp2suh" path="res://game/entities/interactable/interaction_area.gd" id="4_h46sa"]
+[ext_resource type="PackedScene" uid="uid://b8kxe75yox7h4" path="res://game/entities/obstacles/laser/laser.tscn" id="5_bv2po"]
 [ext_resource type="Script" uid="uid://bn21x38drplvg" path="res://game/entities/hitbox/hit_box.gd" id="5_ki56x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gyr2o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bv2po"]
-size = Vector2(5, 60)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ki56x"]
-size = Vector2(60, 4)
+size = Vector2(40, 4)
 
 [node name="AscensionLeft" instance=ExtResource("1_icbyg")]
 
@@ -51,98 +48,90 @@ horizontal_alignment = 1
 tile_map_data = PackedByteArray("AAAOABoAAAAFAAEAAAANABoAAAABAAAAAAAMABoAAAABAAAAAAALABoAAAABAAAAAAAKABoAAAABAAAAAAAJABoAAAABAAAAAAAIABoAAAABAAAAAAAHABoAAAABAAAAAAAGABoAAAABAAAAAAAFABoAAAABAAAAAAAEABoAAAABAAAAAAADABoAAAABAAAAAAACABoAAAABAAAAAAABABoAAAABAAAAAAAAABoAAAAEAAEAAAAOABkAAAAAAAEAAAAOABgAAAAAAAEAAAAOABcAAAAAAAEAAAAOABYAAAAAAAAAAAAPABYAAAABAAAAAAAPABcAAAABAAEAAAAPABgAAAABAAEAAAAPABkAAAABAAEAAAAPABoAAAABAAEAAAALABcAAAACAAIAAAADABcAAAAAAAIAAAADABYAAAAAAAAAAAAJABIAAAAAAAEAAAAMABIAAAABAAIAAAANABIAAAABAAIAAAAOABIAAAABAAIAAAAPABIAAAABAAIAAAAPABEAAAAFAAEAAAAPABAAAAAAAAEAAAAPAA8AAAAAAAEAAAAPAA4AAAAAAAEAAAAPAA0AAAAAAAEAAAAPAAwAAAAAAAEAAAAPAAsAAAAAAAEAAAAPAAoAAAAAAAEAAAAPAAkAAAAFAAAAAAAPAAgAAAAFAAEAAAAPAAcAAAAAAAEAAAAPAAYAAAAAAAEAAAAPAAUAAAAAAAEAAAAPAAQAAAACAAMAAAAOAAQAAAABAAMAAAANAAQAAAABAAMAAAAMAAQAAAABAAMAAAALAAQAAAABAAMAAAAKAAQAAAABAAMAAAAJAAQAAAABAAMAAAAIAAQAAAABAAMAAAAHAAQAAAABAAMAAAAGAAQAAAABAAMAAAAFAAQAAAABAAMAAAAEAAQAAAABAAMAAAADAAQAAAAAAAMAAAAJAAgAAAAAAAAAAAAKAAgAAAABAAAAAAALAAgAAAABAAAAAAAMAAgAAAABAAAAAAANAAgAAAABAAAAAAAOAAgAAAABAAAAAAAFAAoAAAAAAAMAAAAGAAoAAAACAAMAAAAFAA4AAAAAAAMAAAAGAA4AAAACAAMAAAAEABYAAAABAAAAAAAFABYAAAABAAAAAAAGABYAAAABAAAAAAAHABYAAAABAAAAAAAIABYAAAABAAAAAAAEABcAAAABAAIAAAAFABcAAAABAAIAAAAGABcAAAABAAIAAAAHABcAAAABAAIAAAAIABcAAAABAAIAAAAAABkAAAACAAEAAAAAABgAAAACAAEAAAAAABcAAAACAAEAAAAAABYAAAACAAEAAAAAABUAAAACAAEAAAAAABQAAAACAAEAAAAAABMAAAAEAAAAAAAAABIAAAAEAAEAAAAAABEAAAACAAEAAAAAABAAAAACAAEAAAAAAA8AAAACAAEAAAAAAA4AAAACAAEAAAAAAA0AAAACAAEAAAAAAAwAAAACAAEAAAAAAAsAAAACAAEAAAAAAAoAAAACAAEAAAAAAAkAAAACAAEAAAAAAAgAAAACAAEAAAAAAAcAAAACAAEAAAAAAAYAAAACAAEAAAAAAAUAAAACAAEAAAAAAAQAAAACAAEAAAAAAAMAAAACAAEAAAAAAAIAAAACAAEAAAAAAAEAAAACAAEAAAAAAAAAAAACAAEAAAABAAAAAAABAAIAAAACAAAAAAABAAIAAAADAAAAAAABAAIAAAAEAAAAAAABAAIAAAAFAAAAAAABAAIAAAAGAAAAAAABAAIAAAAHAAAAAAABAAIAAAAIAAAAAAABAAIAAAAJAAAAAAABAAIAAAAKAAAAAAABAAIAAAALAAAAAAABAAIAAAAMAAAAAAABAAIAAAANAAAAAAABAAIAAAAOAAAAAAABAAIAAAAPAAAAAAABAAIAAAABAAgAAAABAAMAAAACAAgAAAACAAMAAAAGABMAAAACAAIAAAAGABIAAAACAAAAAAAFABIAAAABAAAAAAAEABIAAAABAAAAAAADABIAAAABAAAAAAACABIAAAABAAAAAAABABIAAAABAAAAAAAFABMAAAABAAIAAAAEABMAAAABAAIAAAADABMAAAABAAIAAAACABMAAAABAAIAAAABABMAAAABAAIAAAAJABMAAAAAAAEAAAAJABQAAAAAAAEAAAAJABUAAAAAAAEAAAAJABYAAAAFAAEAAAAJABcAAAABAAIAAAAKABcAAAABAAIAAAALABYAAAACAAEAAAALABUAAAACAAEAAAALABQAAAACAAEAAAALABMAAAACAAEAAAAKABYAAAABAAEAAAAKABUAAAABAAEAAAAKABQAAAABAAEAAAAKABMAAAABAAEAAAAKABIAAAABAAEAAAALABIAAAAEAAAAAAAMAAUAAAAAAAAAAAAMAAYAAAAAAAEAAAAMAAcAAAAAAAIAAAANAAUAAAABAAAAAAANAAYAAAABAAEAAAANAAcAAAABAAIAAAAOAAUAAAACAAAAAAAOAAYAAAACAAEAAAAOAAcAAAACAAIAAAALAAcAAAAAAAQAAAAOABEAAAABAAAAAAANABEAAAABAAAAAAAMABEAAAABAAAAAAALABEAAAABAAAAAAAKABEAAAABAAAAAAAJABEAAAAAAAAAAAAKAAkAAAABAAIAAAALAAkAAAABAAIAAAAMAAkAAAABAAIAAAANAAkAAAABAAIAAAAOAAkAAAABAAIAAAAJAAkAAAAAAAIAAAA=")
 tile_set = ExtResource("3_gyr2o")
 
-[node name="LaserA1" type="Line2D" parent="Foreground" index="0"]
-position = Vector2(229, 471)
-points = PackedVector2Array(0, 0, 0, 60)
-width = 2.0
-default_color = Color(1, 0, 0, 1)
-script = ExtResource("4_gyr2o")
+[node name="LaserA1" parent="Foreground" index="0" node_paths=PackedStringArray("hitbox") instance=ExtResource("5_bv2po")]
+position = Vector2(229, 500)
+rotation = -1.5707964
+hitbox = NodePath("Hitbox")
+length = 40
 
-[node name="Hitbox" type="Area2D" parent="Foreground/LaserA1" index="0"]
+[node name="Hitbox" type="Area2D" parent="Foreground/LaserA1" index="3"]
 script = ExtResource("5_ki56x")
 custom_knockback = true
 knockback = Vector2(75, 0)
 metadata/_custom_type_script = "uid://bn21x38drplvg"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/LaserA1/Hitbox" index="0"]
-position = Vector2(-0.5, 30)
 shape = SubResource("RectangleShape2D_bv2po")
 
-[node name="LaserB1" type="Line2D" parent="Foreground" index="1"]
-visible = false
-position = Vector2(169, 471)
-points = PackedVector2Array(0, 0, 0, 60)
-width = 2.0
-default_color = Color(1, 0, 0, 1)
-script = ExtResource("4_gyr2o")
+[node name="LaserA4" parent="Foreground" index="1" node_paths=PackedStringArray("hitbox") instance=ExtResource("5_bv2po")]
+position = Vector2(89, 500)
+rotation = -1.5707964
+hitbox = NodePath("Hitbox")
+length = 40
 
-[node name="Hitbox" type="Area2D" parent="Foreground/LaserB1" index="0"]
+[node name="Hitbox" type="Area2D" parent="Foreground/LaserA4" index="3"]
+script = ExtResource("5_ki56x")
+custom_knockback = true
+knockback = Vector2(75, 0)
+metadata/_custom_type_script = "uid://bn21x38drplvg"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/LaserA4/Hitbox" index="0"]
+shape = SubResource("RectangleShape2D_bv2po")
+
+[node name="LaserA5" parent="Foreground" index="2" node_paths=PackedStringArray("hitbox") instance=ExtResource("5_bv2po")]
+position = Vector2(109, 420)
+rotation = -1.5707964
+hitbox = NodePath("Hitbox")
+length = 40
+
+[node name="Hitbox" type="Area2D" parent="Foreground/LaserA5" index="3"]
+script = ExtResource("5_ki56x")
+custom_knockback = true
+knockback = Vector2(75, 0)
+metadata/_custom_type_script = "uid://bn21x38drplvg"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/LaserA5/Hitbox" index="0"]
+shape = SubResource("RectangleShape2D_bv2po")
+
+[node name="LaserB1" parent="Foreground" index="3" node_paths=PackedStringArray("hitbox") instance=ExtResource("5_bv2po")]
+position = Vector2(169, 500)
+rotation = -1.5707964
+hitbox = NodePath("Hitbox")
+length = 40
+active = false
+
+[node name="Hitbox" type="Area2D" parent="Foreground/LaserB1" index="3"]
+monitoring = false
 script = ExtResource("5_ki56x")
 custom_knockback = true
 knockback = Vector2(75, 0)
 metadata/_custom_type_script = "uid://bn21x38drplvg"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/LaserB1/Hitbox" index="0"]
-position = Vector2(-0.5, 30)
 shape = SubResource("RectangleShape2D_bv2po")
 
-[node name="LaserA2" type="Line2D" parent="Foreground" index="2"]
-position = Vector2(89, 470)
-points = PackedVector2Array(0, 0, 0, 60)
-width = 2.0
-default_color = Color(1, 0, 0, 1)
-script = ExtResource("4_gyr2o")
+[node name="LaserB2" parent="Foreground" index="4" node_paths=PackedStringArray("hitbox") instance=ExtResource("5_bv2po")]
+position = Vector2(40, 450)
+rotation = 3.1415925
+hitbox = NodePath("Hitbox")
+length = 40
+active = false
 
-[node name="Hitbox" type="Area2D" parent="Foreground/LaserA2" index="0"]
-script = ExtResource("5_ki56x")
-custom_knockback = true
-knockback = Vector2(75, 0)
-metadata/_custom_type_script = "uid://bn21x38drplvg"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/LaserA2/Hitbox" index="0"]
-position = Vector2(-0.5, 30)
-shape = SubResource("RectangleShape2D_bv2po")
-
-[node name="LaserB2" type="Line2D" parent="Foreground" index="3"]
-visible = false
-position = Vector2(69, 450)
-points = PackedVector2Array(0, 0, -60, 0)
-width = 2.0
-default_color = Color(1, 0, 0, 1)
-script = ExtResource("4_gyr2o")
-
-[node name="Hitbox" type="Area2D" parent="Foreground/LaserB2" index="0"]
+[node name="Hitbox" type="Area2D" parent="Foreground/LaserB2" index="3"]
+monitoring = false
 script = ExtResource("5_ki56x")
 custom_knockback = true
 knockback = Vector2(75, 0)
 metadata/_custom_type_script = "uid://bn21x38drplvg"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/LaserB2/Hitbox" index="0"]
-position = Vector2(-30, 0)
-shape = SubResource("RectangleShape2D_ki56x")
-
-[node name="LaserA3" type="Line2D" parent="Foreground" index="4"]
-position = Vector2(109, 390)
-points = PackedVector2Array(0, 0, 0, 60)
-width = 2.0
-default_color = Color(1, 0, 0, 1)
-script = ExtResource("4_gyr2o")
-
-[node name="Hitbox" type="Area2D" parent="Foreground/LaserA3" index="0"]
-script = ExtResource("5_ki56x")
-custom_knockback = true
-knockback = Vector2(75, 0)
-metadata/_custom_type_script = "uid://bn21x38drplvg"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/LaserA3/Hitbox" index="0"]
-position = Vector2(-0.5, 30)
 shape = SubResource("RectangleShape2D_bv2po")
 
 [connection signal="timeout" from="LaserTimer" to="Foreground/LaserA1" method="toggle"]
+[connection signal="timeout" from="LaserTimer" to="Foreground/LaserA4" method="toggle"]
+[connection signal="timeout" from="LaserTimer" to="Foreground/LaserA5" method="toggle"]
 [connection signal="timeout" from="LaserTimer" to="Foreground/LaserB1" method="toggle"]
-[connection signal="timeout" from="LaserTimer" to="Foreground/LaserA2" method="toggle"]
 [connection signal="timeout" from="LaserTimer" to="Foreground/LaserB2" method="toggle"]
-[connection signal="timeout" from="LaserTimer" to="Foreground/LaserA3" method="toggle"]
 [connection signal="flag_checked" from="Flags/LeftRoomFlag" to="GreenSwitch" method="queue_free"]
 [connection signal="can_interact" from="GreenSwitch" to="GreenSwitch/InteractText" method="show"]
 [connection signal="cannot_interact" from="GreenSwitch" to="GreenSwitch/InteractText" method="hide"]
