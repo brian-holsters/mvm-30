@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3 uid="uid://dik57o15hkrog"]
+
+[ext_resource type="Script" uid="uid://du57x1eyxc04a" path="res://game/entities/obstacles/gate/gate.gd" id="1_8qdex"]
+[ext_resource type="Texture2D" uid="uid://b7nit00hasq23" path="res://assets/tilesets/main_tileset.png" id="2_8kmhi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2exdf"]
+atlas = ExtResource("2_8kmhi")
+region = Rect2(60, 0, 20, 20)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5ry6y"]
+load_path = "res://.godot/imported/main_tileset.png-07dec21acf06c71c41fe2906237624cf.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mn7t3"]
+atlas = SubResource("CompressedTexture2D_5ry6y")
+region = Rect2(60, 20, 20, 20)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_41c58"]
+load_path = "res://.godot/imported/main_tileset.png-07dec21acf06c71c41fe2906237624cf.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m74lm"]
+atlas = SubResource("CompressedTexture2D_41c58")
+region = Rect2(60, 40, 20, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8qdex"]
+size = Vector2(20, 40)
+
+[node name="Gate" type="Node2D"]
+script = ExtResource("1_8qdex")
+
+[node name="Visuals" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="TopSprite" type="Sprite2D" parent="Visuals"]
+unique_name_in_owner = true
+position = Vector2(0, -10)
+texture = SubResource("AtlasTexture_2exdf")
+
+[node name="MiddleSprite" type="Sprite2D" parent="Visuals"]
+unique_name_in_owner = true
+visible = false
+texture = SubResource("AtlasTexture_mn7t3")
+
+[node name="BottomSprite" type="Sprite2D" parent="Visuals"]
+unique_name_in_owner = true
+position = Vector2(0, 10)
+texture = SubResource("AtlasTexture_m74lm")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_8qdex")
+
+[node name="OpenSFX" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
