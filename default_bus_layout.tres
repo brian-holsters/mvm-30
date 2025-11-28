@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=8 format=3 uid="uid://by6t2ady0hwn7"]
+[gd_resource type="AudioBusLayout" load_steps=9 format=3 uid="uid://by6t2ady0hwn7"]
 
 [sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_n8wo2"]
 resource_name = "Compressor"
@@ -14,6 +14,11 @@ resource_name = "Compressor"
 threshold = -6.1
 ratio = 1.5
 gain = 0.7
+
+[sub_resource type="AudioEffectEQ" id="AudioEffectEQ_j3pel"]
+resource_name = "EQ"
+band_db/32_hz = -17.0
+band_db/10000_hz = -11.6
 
 [sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_j3pel"]
 resource_name = "Compressor"
@@ -63,10 +68,12 @@ bus/3/mute = false
 bus/3/bypass_fx = false
 bus/3/volume_db = -2.312501
 bus/3/send = &"Master"
-bus/3/effect/0/effect = SubResource("AudioEffectCompressor_j3pel")
+bus/3/effect/0/effect = SubResource("AudioEffectEQ_j3pel")
 bus/3/effect/0/enabled = true
-bus/3/effect/1/effect = SubResource("AudioEffectReverb_j3pel")
+bus/3/effect/1/effect = SubResource("AudioEffectCompressor_j3pel")
 bus/3/effect/1/enabled = true
+bus/3/effect/2/effect = SubResource("AudioEffectReverb_j3pel")
+bus/3/effect/2/enabled = true
 bus/4/name = &"Environment_Impact"
 bus/4/solo = false
 bus/4/mute = false
@@ -79,7 +86,7 @@ bus/5/name = &"mve&atk"
 bus/5/solo = false
 bus/5/mute = false
 bus/5/bypass_fx = false
-bus/5/volume_db = -0.9237509
+bus/5/volume_db = 0.0
 bus/5/send = &"SFX"
 bus/5/effect/0/effect = SubResource("AudioEffectCompressor_dqt2m")
 bus/5/effect/0/enabled = true

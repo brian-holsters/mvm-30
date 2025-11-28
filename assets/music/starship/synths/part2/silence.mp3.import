@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/silence.mp3-aca85e983f9b336dd7b30ad96d109b22.
 [params]
 
 loop=false
-loop_offset=0
-bpm=0
+loop_offset=0.0
+bpm=80.0
 beat_count=0
 bar_beats=4
