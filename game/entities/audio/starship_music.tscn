@@ -18,7 +18,6 @@
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_dyplk"]
 shuffle = true
-loop = false
 fade_time = 0.5
 stream_count = 4
 stream_0 = ExtResource("1_jpplr")
@@ -28,7 +27,6 @@ stream_3 = ExtResource("4_2ul14")
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_ca2qe"]
 shuffle = true
-loop = false
 fade_time = 0.5
 stream_count = 5
 stream_0 = ExtResource("8_vccug")
@@ -46,7 +44,6 @@ stream_1/volume = 0.0
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_cqfuk"]
 shuffle = true
-loop = false
 stream_count = 3
 stream_0 = ExtResource("5_svm7f")
 stream_1 = ExtResource("6_vccug")
@@ -54,7 +51,6 @@ stream_2 = ExtResource("7_av2i0")
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_wpfed"]
 shuffle = true
-loop = false
 stream_count = 2
 stream_0 = ExtResource("12_dyplk")
 stream_1 = ExtResource("14_0x0gv")
@@ -76,7 +72,7 @@ clip_1/stream = SubResource("AudioStreamSynchronized_8nnkk")
 clip_1/auto_advance = 0
 _transitions = {
 Vector2i(-1, -1): {
-"fade_beats": 4.0,
+"fade_beats": 0.0,
 "fade_mode": 4,
 "from_time": 1,
 "to_time": 0
@@ -90,4 +86,5 @@ stream = SubResource("AudioStreamInteractive_ca2qe")
 autoplay = true
 bus = &"Music"
 script = ExtResource("17_ca2qe")
+progression_var = 1.0
 metadata/_custom_type_script = "uid://dr2i045xpi8ex"

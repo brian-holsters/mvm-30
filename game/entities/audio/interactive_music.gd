@@ -16,6 +16,8 @@ func _ready():
 	clip_count = stream.get_clip_count()	
 
 func _process(_delta):
+	progression_var = AudioController.progression
+	#print("var :"+str(progression_var))
 	check_prog()
 	if stream:
 		choose_music_clip()
@@ -55,7 +57,7 @@ func check_prog():
 			lerping = true
 	else:
 		prog = lerp(prog, progression_var, 0.05)
-		#print("lerping :"+str(prog))
+		print("lerping :"+str(prog))
 		if abs(prog-progression_var)<0.02:
 			lerping = false
 			prog = progression_var
