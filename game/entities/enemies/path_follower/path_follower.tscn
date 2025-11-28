@@ -1,0 +1,85 @@
+[gd_scene load_steps=13 format=3 uid="uid://cdsayh2vpmg7l"]
+
+[ext_resource type="Script" uid="uid://dtfmdokhvemwe" path="res://game/entities/enemies/path_follower/path_follower.gd" id="1_2ie3k"]
+[ext_resource type="Texture2D" uid="uid://d4i2uvgp7ow46" path="res://assets/prototype/enemy.png" id="2_2kkur"]
+[ext_resource type="Script" uid="uid://dr0tmd1vkfnxl" path="res://game/entities/hitbox/hurt_box.gd" id="3_phbes"]
+[ext_resource type="Script" uid="uid://bn21x38drplvg" path="res://game/entities/hitbox/hit_box.gd" id="4_o5td1"]
+[ext_resource type="Script" uid="uid://cs5r6qssrl7f7" path="res://game/entities/components/health_component.gd" id="5_14kn2"]
+[ext_resource type="Script" uid="uid://b8ub53csc0twm" path="res://addons/bluebrains_character_controller/components/state_machine_variables.gd" id="6_lroow"]
+[ext_resource type="Script" uid="uid://b4u3gi8hgjlet" path="res://addons/bluebrains_character_controller/character_controller/state_machine/state_machine.gd" id="6_vu1t7"]
+[ext_resource type="Script" uid="uid://bk6m2i08d7ku0" path="res://game/entities/enemies/path_follower/state_transitions/to_hurt.gd" id="8_lroow"]
+[ext_resource type="Script" uid="uid://dxql0l4ub62a0" path="res://game/entities/enemies/path_follower/states/follow_path.gd" id="8_xio2v"]
+[ext_resource type="Script" uid="uid://dmhi5n7bg5r6q" path="res://game/entities/enemies/path_follower/states/hurt.gd" id="10_lroow"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dig1h"]
+radius = 17.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dgnno"]
+radius = 13.0
+
+[node name="PathEnemy" type="PathFollow2D"]
+rotates = false
+cubic_interp = false
+loop = false
+script = ExtResource("1_2ie3k")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_2kkur")
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 4
+script = ExtResource("3_phbes")
+metadata/_custom_type_script = "uid://dr0tmd1vkfnxl"
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CircleShape2D_dig1h")
+debug_color = Color(0.41371813, 0.49389368, 0.9158972, 0.41960785)
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 8
+script = ExtResource("4_o5td1")
+custom_knockback = true
+knockback = Vector2(100, 100)
+metadata/_custom_type_script = "uid://bn21x38drplvg"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_dgnno")
+debug_color = Color(0.99748427, 0, 0.1748687, 0.41960785)
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("5_14kn2")
+max_hp = 1
+hp = 1
+
+[node name="BehaviourVariables" type="Node" parent="."]
+script = ExtResource("6_lroow")
+metadata/_custom_type_script = "uid://b8ub53csc0twm"
+
+[node name="CharacterControllerStateMachine" type="Node" parent="." node_paths=PackedStringArray("default_state", "behaviour_variables")]
+script = ExtResource("6_vu1t7")
+default_state = NodePath("FollowPath")
+behaviour_variables = NodePath("../BehaviourVariables")
+is_root = true
+metadata/_custom_type_script = "uid://b4u3gi8hgjlet"
+
+[node name="FollowPath" type="Node" parent="CharacterControllerStateMachine"]
+script = ExtResource("8_xio2v")
+metadata/_custom_type_script = "uid://b3fwraueavvlt"
+
+[node name="ToHurt" type="Node" parent="CharacterControllerStateMachine/FollowPath" node_paths=PackedStringArray("listening_node", "to_state")]
+script = ExtResource("8_lroow")
+listening_node = NodePath("../../../HurtBox")
+listening_signal = "hurt"
+signal_arguments = 6
+to_state = NodePath("../../Hurt")
+metadata/_custom_type_script = "uid://cqqo2uoxhldfv"
+
+[node name="Hurt" type="Node" parent="CharacterControllerStateMachine" node_paths=PackedStringArray("health_component", "return_to_state")]
+script = ExtResource("10_lroow")
+health_component = NodePath("../../Health")
+return_to_state = NodePath("../FollowPath")
+metadata/_custom_type_script = "uid://b3fwraueavvlt"
+
+[connection signal="hp_reached_0" from="Health" to="." method="queue_free"]

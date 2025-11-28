@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4sfinn3rsf2j"]
+
+[ext_resource type="Script" uid="uid://cxsw4yc0tcldc" path="res://game/entities/enemies/turret/bullet.gd" id="1_7ub6m"]
+
+[sub_resource type="Gradient" id="Gradient_7ub6m"]
+offsets = PackedFloat32Array(0, 0.2949002, 0.63414633, 0.8736142)
+colors = PackedColorArray(1, 0, 0, 1, 1, 0, 0, 1, 1, 0.98333335, 0, 1, 1, 0.98333335, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_d7mgs"]
+gradient = SubResource("Gradient_7ub6m")
+width = 12
+height = 12
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7ub6m"]
+radius = 4.0
+
+[node name="Bullet" type="Area2D"]
+collision_layer = 16
+collision_mask = 8
+script = ExtResource("1_7ub6m")
+metadata/_custom_type_script = "uid://bn21x38drplvg"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_d7mgs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_7ub6m")

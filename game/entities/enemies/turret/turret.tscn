@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://bpcaot1ottamu"]
+
+[ext_resource type="Script" uid="uid://lkukq5gsmml7" path="res://game/entities/enemies/turret/turret.gd" id="1_6n1f5"]
+[ext_resource type="Texture2D" uid="uid://rr1vk1js225y" path="res://assets/prototype/turret4.png" id="1_seykp"]
+[ext_resource type="PackedScene" uid="uid://c4sfinn3rsf2j" path="res://game/entities/enemies/turret/bullet.tscn" id="2_6a24u"]
+
+[sub_resource type="Gradient" id="Gradient_6a24u"]
+offsets = PackedFloat32Array(0.3991131, 1)
+colors = PackedColorArray(1, 0.9843137, 0, 1, 1, 0.98333335, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_us2un"]
+gradient = SubResource("Gradient_6a24u")
+width = 20
+height = 20
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6n1f5"]
+radius = 180.0
+
+[node name="Turret" type="Node2D"]
+script = ExtResource("1_6n1f5")
+bullet_scene = ExtResource("2_6a24u")
+bullet_speed = 120.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.25
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_seykp")
+
+[node name="ChargeVisual" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture = SubResource("GradientTexture2D_us2un")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+unique_name_in_owner = true
+collision_mask = 3
+
+[node name="PlayerDetector" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+shape = SubResource("CircleShape2D_6n1f5")
