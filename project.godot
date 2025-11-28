@@ -20,11 +20,13 @@ config/icon="res://icon.svg"
 MetSys="*res://addons/MetroidvaniaSystem/Nodes/Singleton.tscn"
 EventHub="*res://game/globals/event_hub.gd"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
+AudioController="*res://game/globals/audio_controller.gd"
 
 [dialogic]
 
 directories/dtl_directory={
 "example_timeline": "res://game/dialogic/timelines/example_timeline.dtl",
+"first_entry_hub_column_text": "res://game/dialogic/timelines/first_entry_hub_column_text.dtl",
 "intro_text": "res://game/dialogic/timelines/intro_text.dtl",
 "intro_text_jumped": "res://game/dialogic/timelines/intro_text_jumped.dtl"
 }
@@ -80,6 +82,7 @@ text/autoadvance_ignored_characters={
 "?": null
 }
 directories/dch_directory={}
+glossary/default_case_sensitive=true
 
 [display]
 
