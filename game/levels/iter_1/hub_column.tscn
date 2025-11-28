@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=8 format=4 uid="uid://ct37tgas6l1o3"]
 
 [ext_resource type="PackedScene" uid="uid://by13a22vxwdu1" path="res://game/levels/base_level.tscn" id="1_v5p4l"]
@@ -7,13 +8,37 @@
 [ext_resource type="Script" uid="uid://bnktai1u2rqbo" path="res://game/scripts/flag_checker.gd" id="5_kunp1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_83xx6"]
+=======
+[gd_scene load_steps=11 format=4 uid="uid://ct37tgas6l1o3"]
+
+[ext_resource type="PackedScene" uid="uid://by13a22vxwdu1" path="res://game/levels/base_level.tscn" id="1_v5p4l"]
+[ext_resource type="Script" uid="uid://d15w7co7lxbq1" path="res://game/scripts/text_player.gd" id="3_jxfb3"]
+[ext_resource type="PackedScene" uid="uid://cqqw42miprcfm" path="res://game/entities/interactable/terminal.tscn" id="3_kunp1"]
+[ext_resource type="TileSet" uid="uid://bxjd1yx0ntj88" path="res://assets/tilesets/main_tileset.tres" id="4_6s8m2"]
+[ext_resource type="Script" path="res://game/scripts/camera_area.gd" id="5_6s8m2"]
+[ext_resource type="PackedScene" uid="uid://dik57o15hkrog" path="res://game/entities/obstacles/gate/gate.tscn" id="5_jxfb3"]
+[ext_resource type="Script" uid="uid://bnktai1u2rqbo" path="res://game/scripts/flag_checker.gd" id="5_kunp1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dsv0y"]
+size = Vector2(285, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kunp1"]
+size = Vector2(171, 60)
+>>>>>>> Stashed changes
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kunp1"]
 size = Vector2(171, 80)
 
 [node name="HubColumn" instance=ExtResource("1_v5p4l")]
 
-[node name="Flags" type="Node2D" parent="." index="0"]
+[node name="HubColumnFirstEntryTrigger" type="Area2D" parent="." index="0"]
+position = Vector2(30, 210)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HubColumnFirstEntryTrigger" index="0"]
+position = Vector2(131.5, 20)
+shape = SubResource("RectangleShape2D_dsv0y")
+
+[node name="Flags" type="Node2D" parent="." index="1"]
 
 [node name="LeftRoomFlag" type="Node2D" parent="Flags" index="0"]
 script = ExtResource("5_kunp1")
@@ -29,6 +54,7 @@ metadata/_custom_type_script = "uid://bnktai1u2rqbo"
 script = ExtResource("5_kunp1")
 flag = "hub_green_switch"
 
+<<<<<<< Updated upstream
 [node name="TileMapLayer" type="TileMapLayer" parent="Background" index="0"]
 tile_map_data = PackedByteArray("AAAFACMAAAABAAEAAAAKACMAAAABAAAAAAALACMAAAABAAAAAAAMACMAAAABAAAAAAANACMAAAABAAAAAAAOACMAAAAFAAEAAAAPACMAAAABAAEAAAAOACIAAAAAAAEAAAAOACEAAAAAAAEAAAAOACAAAAAAAAEAAAAOAB8AAAAAAAEAAAAOAB4AAAAAAAAAAAAPAB4AAAABAAAAAAAPAB8AAAABAAEAAAAPACAAAAABAAEAAAAPACEAAAABAAEAAAAPACIAAAABAAEAAAAFACIAAAABAAAAAAADAB4AAAACAAMAAAACAB4AAAABAAMAAAABAB4AAAABAAMAAAABAB0AAAACAAMAAAAAAB8AAAACAAIAAAAAAB4AAAACAAEAAAAAAB0AAAACAAEAAAAAABwAAAACAAEAAAAAABsAAAACAAEAAAAAABoAAAACAAEAAAAAABkAAAACAAEAAAAAABgAAAACAAEAAAAAABcAAAACAAEAAAAAABYAAAACAAEAAAAAABUAAAACAAEAAAAAABQAAAACAAEAAAAAABMAAAACAAEAAAAAABIAAAACAAEAAAAAABEAAAACAAEAAAAAABAAAAACAAEAAAAAAA8AAAACAAEAAAAAAA4AAAACAAEAAAAAAA0AAAACAAAAAAAIAA0AAAACAAMAAAAHAA0AAAABAAMAAAAGAA0AAAABAAMAAAAFAA0AAAABAAMAAAAEAA0AAAABAAMAAAADAA0AAAABAAMAAAACAA0AAAABAAMAAAABAA0AAAABAAMAAAALAA0AAAAAAAMAAAAMAA0AAAABAAMAAAANAA0AAAABAAMAAAAOAA0AAAABAAMAAAAOABAAAAABAAMAAAANABAAAAABAAMAAAAMABAAAAABAAMAAAALABAAAAABAAMAAAAKABAAAAABAAMAAAAJABAAAAABAAMAAAAIABAAAAAAAAMAAAAPAA0AAAAAAAAAAAAPAA4AAAAAAAEAAAAPAA8AAAAAAAEAAAAPABAAAAAAAAEAAAAPABEAAAAAAAEAAAAPABIAAAAAAAEAAAAPABMAAAAAAAEAAAAPABQAAAAAAAEAAAAPABUAAAAAAAEAAAAPABYAAAAAAAEAAAAPABcAAAAAAAIAAAAIABcAAAAAAAMAAAAOABcAAAABAAMAAAANABcAAAABAAMAAAAMABcAAAABAAMAAAALABcAAAABAAMAAAAKABcAAAABAAMAAAAJABcAAAABAAMAAAAFABQAAAACAAMAAAAEABQAAAABAAMAAAADABQAAAABAAMAAAACABQAAAABAAMAAAABABQAAAABAAMAAAAEABoAAAAAAAMAAAAFABoAAAABAAMAAAAGABoAAAABAAMAAAAGABsAAAAAAAIAAAAHABoAAAABAAMAAAAIABoAAAABAAMAAAAJABoAAAACAAMAAAAKABoAAAABAAAAAAALABoAAAABAAAAAAAMABoAAAABAAAAAAANABoAAAABAAAAAAAOABoAAAABAAAAAAAPABoAAAABAAAAAAAHABsAAAABAAIAAAAIABsAAAABAAIAAAAJABsAAAABAAIAAAAKABsAAAABAAIAAAALABsAAAABAAIAAAAMABsAAAABAAIAAAANABsAAAABAAIAAAAOABsAAAABAAIAAAAPABsAAAABAAIAAAAMAAkAAAACAAMAAAALAAkAAAABAAMAAAAKAAkAAAABAAMAAAAJAAkAAAABAAMAAAAIAAkAAAABAAMAAAAHAAkAAAABAAMAAAAGAAkAAAABAAMAAAAFAAkAAAABAAMAAAAEAAkAAAABAAMAAAADAAkAAAABAAMAAAACAAkAAAABAAMAAAABAAkAAAABAAMAAAAAAAgAAAACAAEAAAAAAAcAAAACAAEAAAAAAAYAAAACAAEAAAAAAAUAAAACAAEAAAAAAAQAAAAEAAAAAAABAAQAAAACAAIAAAABAAMAAAAEAAAAAAACAAMAAAACAAIAAAACAAIAAAAEAAAAAAADAAIAAAABAAIAAAAEAAIAAAACAAIAAAAEAAEAAAAEAAAAAAAFAAEAAAABAAIAAAAGAAEAAAABAAIAAAAHAAEAAAABAAIAAAAIAAEAAAABAAIAAAAJAAEAAAABAAIAAAAKAAEAAAABAAIAAAALAAEAAAAFAAAAAAALAAIAAAAAAAIAAAAMAAIAAAABAAIAAAANAAIAAAAFAAAAAAANAAMAAAAAAAIAAAAOAAMAAAAFAAAAAAAOAAQAAAAAAAIAAAAPAAQAAAAFAAAAAAAPAAUAAAAAAAEAAAAPAAYAAAAAAAEAAAAPAAcAAAAAAAEAAAAPAAgAAAAAAAEAAAAPAAkAAAAAAAIAAAAGAAYAAAAAAAMAAAAHAAYAAAABAAMAAAAIAAYAAAABAAMAAAAJAAYAAAABAAMAAAAKAAYAAAABAAMAAAALAAYAAAABAAMAAAAMAAYAAAABAAMAAAANAAYAAAABAAMAAAAOAAYAAAABAAMAAAAAAAMAAAABAAEAAAAAAAIAAAABAAEAAAAAAAEAAAABAAEAAAAAAAAAAAABAAEAAAABAAAAAAABAAEAAAACAAAAAAABAAEAAAADAAAAAAABAAEAAAAEAAAAAAABAAEAAAAFAAAAAAABAAEAAAAGAAAAAAABAAEAAAAHAAAAAAABAAEAAAAIAAAAAAABAAEAAAAJAAAAAAABAAEAAAAKAAAAAAABAAEAAAALAAAAAAABAAEAAAAMAAAAAAABAAEAAAANAAAAAAABAAEAAAAOAAAAAAABAAEAAAAPAAAAAAABAAEAAAAPAAEAAAABAAEAAAAPAAIAAAABAAEAAAAPAAMAAAABAAEAAAABAAEAAAABAAEAAAABAAIAAAABAAEAAAACAAEAAAABAAEAAAADAAEAAAABAAEAAAANAAEAAAABAAEAAAAMAAEAAAABAAEAAAAOAAEAAAABAAEAAAAOAAIAAAABAAEAAAABAAYAAAAAAAAAAAABAAcAAAAAAAEAAAABAAgAAAAAAAIAAAACAAYAAAABAAAAAAACAAcAAAABAAEAAAACAAgAAAABAAIAAAADAAYAAAACAAAAAAADAAcAAAACAAEAAAADAAgAAAACAAIAAAAAACIAAAABAAAAAAABACIAAAABAAAAAAACACIAAAABAAAAAAADACIAAAABAAAAAAAEACIAAAABAAAAAAAAACMAAAABAAEAAAABACMAAAABAAEAAAACACMAAAABAAEAAAADACMAAAABAAEAAAAEACMAAAABAAEAAAAGACIAAAAFAAEAAAAGACMAAAABAAEAAAAHACEAAAACAAAAAAAHACIAAAACAAEAAAAHACMAAAAEAAEAAAAIACMAAAABAAAAAAAGACEAAAAAAAAAAAAJACMAAAABAAAAAAAEAAgAAAAAAAQAAAAAAAoAAAACAAIAAAAAAAkAAAACAAEAAAA=")
 tile_set = ExtResource("4_6s8m2")
@@ -37,6 +63,17 @@ tile_set = ExtResource("4_6s8m2")
 visible = false
 
 [node name="GreenSwitch" type="Area2D" parent="Background/GreenSwitchRoot" index="0"]
+=======
+[node name="FlagNode" type="Node" parent="Flags" index="3"]
+script = ExtResource("5_kunp1")
+flag = "hub_first_entry"
+metadata/_custom_type_script = "uid://bnktai1u2rqbo"
+
+[node name="TextPlayerNode" type="Node" parent="Flags/FlagNode" index="0"]
+script = ExtResource("3_jxfb3")
+
+[node name="Terminal" parent="Background" index="0" instance=ExtResource("3_kunp1")]
+>>>>>>> Stashed changes
 position = Vector2(90, 170)
 collision_layer = 0
 collision_mask = 2
@@ -82,7 +119,11 @@ tile_set = ExtResource("4_6s8m2")
 tile_map_data = PackedByteArray("AAALAAQAAAADAAAAAAALAAUAAAADAAIAAAA=")
 tile_set = ExtResource("4_6s8m2")
 
+<<<<<<< Updated upstream
 [node name="CameraArea" type="Area2D" parent="." index="4" node_paths=PackedStringArray("target")]
+=======
+[node name="CameraAreaTerminal" type="Area2D" parent="." index="5" node_paths=PackedStringArray("target")]
+>>>>>>> Stashed changes
 position = Vector2(159, 230)
 collision_layer = 0
 collision_mask = 2
@@ -96,12 +137,43 @@ shape = SubResource("RectangleShape2D_kunp1")
 [node name="Marker2D" type="Marker2D" parent="CameraArea" index="1"]
 position = Vector2(0, -40)
 
+<<<<<<< Updated upstream
+=======
+[node name="CameraAreaTopRoom" type="Area2D" parent="." index="6" node_paths=PackedStringArray("target")]
+position = Vector2(130, 150)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("5_6s8m2")
+target = NodePath("Marker2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraAreaTopRoom" index="0"]
+position = Vector2(30, -54)
+shape = SubResource("RectangleShape2D_jxfb3")
+
+[node name="Marker2D" type="Marker2D" parent="CameraAreaTopRoom" index="1"]
+position = Vector2(30, -42)
+
+[connection signal="body_entered" from="HubColumnFirstEntryTrigger" to="Flags/FlagNode" method="set_flag" unbinds=1]
+>>>>>>> Stashed changes
 [connection signal="flag_checked" from="Flags/LeftRoomFlag" to="Background/TopGates/GateLeftClosed" method="queue_free"]
 [connection signal="flag_unchecked" from="Flags/LeftRoomFlag" to="Background/TopGates/GateLeftOpen" method="queue_free"]
 [connection signal="flag_checked" from="Flags/RightRoomFlag" to="Background/TopGates/GateRightClosed" method="queue_free"]
 [connection signal="flag_unchecked" from="Flags/RightRoomFlag" to="Background/TopGates/GateRightOpen" method="queue_free"]
+<<<<<<< Updated upstream
 [connection signal="flag_checked" from="Flags/GreenSwitchFlag" to="Background/GreenSwitchRoot" method="queue_free"]
 [connection signal="can_interact" from="Background/GreenSwitchRoot/GreenSwitch" to="Background/GreenSwitchRoot/GreenSwitch/InteractText" method="show"]
 [connection signal="cannot_interact" from="Background/GreenSwitchRoot/GreenSwitch" to="Background/GreenSwitchRoot/GreenSwitch/InteractText" method="hide"]
 [connection signal="interact" from="Background/GreenSwitchRoot/GreenSwitch" to="Flags/GreenSwitchFlag" method="set_flag" unbinds=1]
 [connection signal="interact" from="Background/GreenSwitchRoot/GreenSwitch" to="Background/GreenSwitchRoot" method="queue_free" unbinds=1]
+=======
+[connection signal="flag_checked" from="Flags/GreenSwitchFlag" to="Background/GateToDash" method="queue_free"]
+[connection signal="flag_checked" from="Flags/GreenSwitchFlag" to="Background/PowerLine/PowerLineBottom2" method="hide"]
+[connection signal="flag_checked" from="Flags/GreenSwitchFlag" to="Background/PowerLine" method="set" binds= ["modulate", Color(0.1882353, 0.9490196, 0.1882353, 1)]]
+[connection signal="flag_just_checked" from="Flags/GreenSwitchFlag" to="Background/GateToDash" method="open_up"]
+[connection signal="flag_just_checked" from="Flags/GreenSwitchFlag" to="Background/PowerLine/PowerLineBottom2" method="hide"]
+[connection signal="flag_just_checked" from="Flags/GreenSwitchFlag" to="Background/PowerLine" method="set" binds= ["modulate", Color(0.1882353, 0.9490196, 0.1882353, 1)]]
+[connection signal="flag_checked" from="Flags/FlagNode" to="HubColumnFirstEntryTrigger" method="queue_free"]
+[connection signal="flag_just_checked" from="Flags/FlagNode" to="HubColumnFirstEntryTrigger" method="queue_free"]
+[connection signal="flag_just_checked" from="Flags/FlagNode" to="Flags/FlagNode/TextPlayerNode" method="play_timeline"]
+[connection signal="interact" from="Background/Terminal" to="Flags/GreenSwitchFlag" method="set_flag" unbinds=1]
+>>>>>>> Stashed changes
