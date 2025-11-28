@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://ct37tgas6l1o3"]
+[gd_scene load_steps=11 format=4 uid="uid://ct37tgas6l1o3"]
 
 [ext_resource type="PackedScene" uid="uid://by13a22vxwdu1" path="res://game/levels/base_level.tscn" id="1_v5p4l"]
+[ext_resource type="Script" uid="uid://d15w7co7lxbq1" path="res://game/scripts/text_player.gd" id="3_jxfb3"]
 [ext_resource type="PackedScene" uid="uid://cqqw42miprcfm" path="res://game/entities/interactable/terminal.tscn" id="3_kunp1"]
 [ext_resource type="TileSet" uid="uid://bxjd1yx0ntj88" path="res://assets/tilesets/main_tileset.tres" id="4_6s8m2"]
-[ext_resource type="Script" uid="uid://bwquh18wbm83e" path="res://game/scripts/camera_area.gd" id="5_6s8m2"]
+[ext_resource type="Script" path="res://game/scripts/camera_area.gd" id="5_6s8m2"]
 [ext_resource type="PackedScene" uid="uid://dik57o15hkrog" path="res://game/entities/obstacles/gate/gate.tscn" id="5_jxfb3"]
 [ext_resource type="Script" uid="uid://bnktai1u2rqbo" path="res://game/scripts/flag_checker.gd" id="5_kunp1"]
 
@@ -12,6 +13,9 @@ size = Vector2(171, 60)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jxfb3"]
 size = Vector2(280, 114)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dsv0y"]
+size = Vector2(284, 60)
 
 [node name="HubColumn" instance=ExtResource("1_v5p4l")]
 
@@ -30,6 +34,16 @@ metadata/_custom_type_script = "uid://bnktai1u2rqbo"
 [node name="GreenSwitchFlag" type="Node2D" parent="Flags" index="2"]
 script = ExtResource("5_kunp1")
 flag = "hub_green_switch"
+
+[node name="FirstEntryFlag" type="Node" parent="Flags" index="3"]
+script = ExtResource("5_kunp1")
+flag = "hub_column_first_entry"
+metadata/_custom_type_script = "uid://bnktai1u2rqbo"
+
+[node name="FirstEntryText" type="Node" parent="Flags/FirstEntryFlag" index="0"]
+script = ExtResource("3_jxfb3")
+timeline = "first_entry_hub_column_text"
+metadata/_custom_type_script = "uid://d15w7co7lxbq1"
 
 [node name="Terminal" parent="Background" index="0" instance=ExtResource("3_kunp1")]
 position = Vector2(90, 170)
@@ -122,6 +136,15 @@ shape = SubResource("RectangleShape2D_jxfb3")
 [node name="Marker2D" type="Marker2D" parent="CameraAreaTopRoom" index="1"]
 position = Vector2(30, -42)
 
+[node name="Area2D" type="Area2D" parent="." index="6"]
+position = Vector2(57, 214)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(106.01277, 15.697586)
+shape = SubResource("RectangleShape2D_dsv0y")
+
 [connection signal="flag_checked" from="Flags/LeftRoomFlag" to="Background/TopGates/GateLeftClosed" method="queue_free"]
 [connection signal="flag_unchecked" from="Flags/LeftRoomFlag" to="Background/TopGates/GateLeftOpen" method="queue_free"]
 [connection signal="flag_checked" from="Flags/RightRoomFlag" to="Background/TopGates/GateRightClosed" method="queue_free"]
@@ -132,4 +155,8 @@ position = Vector2(30, -42)
 [connection signal="flag_just_checked" from="Flags/GreenSwitchFlag" to="Background/GateToDash" method="open_up"]
 [connection signal="flag_just_checked" from="Flags/GreenSwitchFlag" to="Background/PowerLine/PowerLineBottom2" method="hide"]
 [connection signal="flag_just_checked" from="Flags/GreenSwitchFlag" to="Background/PowerLine" method="set" binds= ["modulate", Color(0.1882353, 0.9490196, 0.1882353, 1)]]
+[connection signal="flag_checked" from="Flags/FirstEntryFlag" to="Area2D" method="queue_free"]
+[connection signal="flag_just_checked" from="Flags/FirstEntryFlag" to="Area2D" method="queue_free"]
+[connection signal="flag_just_checked" from="Flags/FirstEntryFlag" to="Flags/FirstEntryFlag/FirstEntryText" method="play_timeline"]
 [connection signal="interact" from="Background/Terminal" to="Flags/GreenSwitchFlag" method="set_flag" unbinds=1]
+[connection signal="body_entered" from="Area2D" to="Flags/FirstEntryFlag" method="set_flag" unbinds=1]
