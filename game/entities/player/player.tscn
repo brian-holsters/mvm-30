@@ -534,6 +534,7 @@ debug_color = Color(0.8163603, 0.39394102, 0.27965254, 0.41960785)
 [node name="HitBoxes" type="Node2D" parent="." index="10"]
 
 [node name="DashHitbox" type="Area2D" parent="HitBoxes" index="0"]
+monitoring = false
 script = ExtResource("38_yragl")
 owner_type = "player"
 metadata/_custom_type_script = "uid://bn21x38drplvg"
