@@ -8,9 +8,7 @@ signal cannot_interact
 
 var _can_interact := false:
 	set(val):
-		var should_signal := false
-		if val != _can_interact:
-			should_signal = true
+		var should_signal := val != _can_interact
 		_can_interact = val
 		if not should_signal:
 			return
@@ -43,6 +41,6 @@ func _on_body_entered(body: Node):
 
 func _on_body_exited(_body: Node):
 	print("body exited")
-	if not get_overlapping_bodies().any(_is_player):
+	if not monitoring or not get_overlapping_bodies().any(_is_player):
 		_can_interact = false
 		cannot_interact.emit()
