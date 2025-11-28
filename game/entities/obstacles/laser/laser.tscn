@@ -43,4 +43,8 @@ polygon = PackedVector2Array(0, -3, 5, -1, 5, 1, 0, 3, -2, 3, -2, -3)
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("2_qv4wg")
-bus = &"SFX"
+volume_db = -8.2
+max_distance = 579.0
+attenuation = 8.0
+panning_strength = 1.84
+bus = &"mve&atk"
