@@ -44,6 +44,8 @@ hitbox = NodePath("Hitbox")
 length = 40
 
 [node name="Hitbox" type="Area2D" parent="Foreground/LaserA1" index="3"]
+collision_layer = 16
+collision_mask = 8
 script = ExtResource("5_ki56x")
 custom_knockback = true
 knockback = Vector2(75, 0)
@@ -59,6 +61,8 @@ hitbox = NodePath("Hitbox")
 length = 40
 
 [node name="Hitbox" type="Area2D" parent="Foreground/LaserA4" index="3"]
+collision_layer = 16
+collision_mask = 8
 script = ExtResource("5_ki56x")
 custom_knockback = true
 knockback = Vector2(75, 0)
@@ -74,6 +78,8 @@ hitbox = NodePath("Hitbox")
 length = 40
 
 [node name="Hitbox" type="Area2D" parent="Foreground/LaserA5" index="3"]
+collision_layer = 16
+collision_mask = 8
 script = ExtResource("5_ki56x")
 custom_knockback = true
 knockback = Vector2(75, 0)
@@ -90,6 +96,8 @@ length = 40
 active = false
 
 [node name="Hitbox" type="Area2D" parent="Foreground/LaserB1" index="3"]
+collision_layer = 16
+collision_mask = 8
 monitoring = false
 script = ExtResource("5_ki56x")
 custom_knockback = true
@@ -107,6 +115,8 @@ length = 40
 active = false
 
 [node name="Hitbox" type="Area2D" parent="Foreground/LaserB2" index="3"]
+collision_layer = 16
+collision_mask = 8
 monitoring = false
 script = ExtResource("5_ki56x")
 custom_knockback = true

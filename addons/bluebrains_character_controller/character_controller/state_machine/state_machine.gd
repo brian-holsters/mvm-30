@@ -70,9 +70,13 @@ func force_change_state(to: StringName, data: Dictionary[String, Variant]) -> vo
 	state_changed.emit(from, to)
 	states[from].exit(to, data)
 	states[from].is_active = false
+	states[from].exited.emit()
+	states[from].exited_to.emit(to)
 	
 	states[to].enter(from, data)
 	states[to].is_active = true
+	states[to].entered.emit()
+	states[to].entered_from.emit(from)
 
 
 func add_state(state_node: CharacterControllerState) -> void:
