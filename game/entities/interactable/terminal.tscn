@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://cqqw42miprcfm"]
+
+[ext_resource type="Script" uid="uid://dqiu56u5jtjvc" path="res://game/entities/interactable/terminal.gd" id="1_or5d8"]
+[ext_resource type="TileSet" uid="uid://bxjd1yx0ntj88" path="res://assets/tilesets/main_tileset.tres" id="2_51dsb"]
+[ext_resource type="AudioStream" uid="uid://dw1ndmees7wwr" path="res://assets/sfx/environment/terminal.wav" id="3_k5hx8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gyr2o"]
+
+[node name="Terminal" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_or5d8")
+metadata/_edit_group_ = true
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+position = Vector2(-10, 10)
+tile_map_data = PackedByteArray(0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 4, 0, 0, 0)
+tile_set = ExtResource("2_51dsb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_gyr2o")
+
+[node name="InteractText" type="Label" parent="."]
+visible = false
+offset_left = -32.0
+offset_top = -51.0
+offset_right = 29.0
+offset_bottom = -28.0
+text = "↑"
+horizontal_alignment = 1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_k5hx8")
