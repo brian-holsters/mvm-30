@@ -1,10 +1,23 @@
-[gd_scene load_steps=7 format=4 uid="uid://kmms3fxpv6i7"]
+[gd_scene load_steps=10 format=4 uid="uid://kmms3fxpv6i7"]
 
 [ext_resource type="PackedScene" uid="uid://by13a22vxwdu1" path="res://game/levels/base_level.tscn" id="1_brbgu"]
 [ext_resource type="Script" uid="uid://bnktai1u2rqbo" path="res://game/scripts/flag_checker.gd" id="2_oqlln"]
 [ext_resource type="TileSet" uid="uid://bxjd1yx0ntj88" path="res://assets/tilesets/main_tileset.tres" id="3_oqlln"]
 [ext_resource type="PackedScene" uid="uid://cqqw42miprcfm" path="res://game/entities/interactable/terminal.tscn" id="4_440r0"]
+[ext_resource type="PackedScene" uid="uid://cdsayh2vpmg7l" path="res://game/entities/enemies/path_follower/path_follower.tscn" id="5_2ew8m"]
 [ext_resource type="Script" uid="uid://bwquh18wbm83e" path="res://game/scripts/camera_area.gd" id="5_440r0"]
+
+[sub_resource type="Curve2D" id="Curve2D_440r0"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0)
+}
+point_count = 1
+
+[sub_resource type="Curve2D" id="Curve2D_2ew8m"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 74, 0)
+}
+point_count = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_piq5o"]
 size = Vector2(247, 80)
@@ -31,6 +44,15 @@ tile_set = ExtResource("3_oqlln")
 
 [node name="Terminal" parent="Background" index="2" instance=ExtResource("4_440r0")]
 position = Vector2(230, 70)
+
+[node name="Path2D" type="Path2D" parent="Background" index="3"]
+curve = SubResource("Curve2D_440r0")
+
+[node name="Path2D2" type="Path2D" parent="Background" index="4"]
+position = Vector2(33, 249)
+curve = SubResource("Curve2D_2ew8m")
+
+[node name="PathEnemy" parent="Background/Path2D2" index="0" instance=ExtResource("5_2ew8m")]
 
 [node name="CameraArea" type="Area2D" parent="." index="4" node_paths=PackedStringArray("target")]
 position = Vector2(159, 131)

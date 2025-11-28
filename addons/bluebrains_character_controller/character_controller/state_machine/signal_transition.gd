@@ -1,5 +1,6 @@
 @tool
 extends StateTransition
+class_name SignalStateTransition
 
 signal bla
 

@@ -1,5 +1,5 @@
 @tool
-extends "res://addons/bluebrains_character_controller/character_controller/state_machine/signal_transition.gd"
+extends SignalStateTransition
 
 func _on_signal(use_custom_knockback: bool, knockback_is_directional: bool, knockback: Vector2, damage: int, stun_time: float, origin: Node, _g, _h, _i, _j):
 	if not _should_run():

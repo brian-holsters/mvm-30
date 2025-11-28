@@ -389,6 +389,8 @@ width = 2.0
 default_color = Color(0.31, 0.055800002, 0.055800002, 1)
 
 [node name="HitBox" type="Area2D" parent="Root/HandL"]
+collision_layer = 16
+collision_mask = 8
 script = ExtResource("4_p831d")
 custom_knockback = true
 knockback = Vector2(300, -100)
@@ -411,6 +413,8 @@ width = 2.0
 default_color = Color(0.31, 0.055800002, 0.055800002, 1)
 
 [node name="HitBox" type="Area2D" parent="Root/HandR"]
+collision_layer = 16
+collision_mask = 8
 script = ExtResource("4_p831d")
 custom_knockback = true
 knockback = Vector2(300, -100)
