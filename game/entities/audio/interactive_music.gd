@@ -24,7 +24,7 @@ func _process(_delta):
 			synth_volume = 2*(prog-0.5)
 		else:
 			synth_volume = 2*prog
-		print("synth volume : "+str(synth_volume))
+		#print("synth volume : "+str(synth_volume))
 		var x = 0
 		while x < clip_count:
 			stream.get_clip_stream(x).set_sync_stream_volume(1,-20+20*synth_volume)
