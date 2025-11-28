@@ -52,6 +52,8 @@ length = 60
 metadata/_edit_group_ = true
 
 [node name="Hitbox" type="Area2D" parent="Foreground/Laser6" index="3"]
+collision_layer = 16
+collision_mask = 8
 script = ExtResource("4_7nine")
 custom_knockback = true
 knockback = Vector2(75, 0)
@@ -78,6 +80,8 @@ length = 60
 [node name="Hitbox" type="Area2D" parent="Foreground/DoubleLaser1" index="2" node_paths=PackedStringArray("origin")]
 position = Vector2(0, 2)
 rotation = -1.5707964
+collision_layer = 16
+collision_mask = 8
 script = ExtResource("4_7nine")
 custom_knockback = true
 knockback = Vector2(75, 0)
@@ -104,6 +108,8 @@ length = 60
 [node name="Hitbox" type="Area2D" parent="Foreground/DoubleLaser2" index="2" node_paths=PackedStringArray("origin")]
 position = Vector2(0, 2)
 rotation = -1.5707964
+collision_layer = 16
+collision_mask = 8
 script = ExtResource("4_7nine")
 custom_knockback = true
 knockback = Vector2(75, 0)
@@ -136,6 +142,8 @@ position = Vector2(0, 11)
 length = 40
 
 [node name="Hitbox" type="Area2D" parent="Foreground/TripleLaser" index="3" node_paths=PackedStringArray("respawn_point")]
+collision_layer = 16
+collision_mask = 8
 script = ExtResource("6_wxihf")
 respawn_point = NodePath("Marker2D")
 custom_knockback = true

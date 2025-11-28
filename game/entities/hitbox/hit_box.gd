@@ -1,8 +1,30 @@
 extends Area2D
 class_name HitBox
 
-signal hit(use_custom_knockback: bool, knockback_is_directional: bool, knockback: Vector2, damage: int, stun_time: float, target: HurtBox)
+const PLAYER_OWNER = "player"
+const ENEMY_OWNER = "enemy"
 
+const collision_layers = {
+	PLAYER_OWNER: 4,
+	ENEMY_OWNER: 16
+}
+
+const collision_masks = {
+	PLAYER_OWNER: 32,
+	ENEMY_OWNER: 8
+}
+
+
+
+signal hit(use_custom_knockback: bool, knockback_is_directional: bool, knockback: Vector2, damage: int, stun_time: float, target: HurtBox)
+@export_enum(PLAYER_OWNER, ENEMY_OWNER) var owner_type := ENEMY_OWNER:
+	set(val):
+		owner_type = val
+		collision_layer = collision_layers[val]
+		collision_mask = collision_masks[val]
+
+
+@export_group("Custom Knockback")
 @export var custom_knockback := false
 @export var directional_knockback := true
 @export var knockback: Vector2 = Vector2.ZERO

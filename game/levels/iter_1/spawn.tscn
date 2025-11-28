@@ -39,9 +39,11 @@ timeline = "intro_text_jumped"
 script = ExtResource("4_8dnbf")
 
 [node name="Spawn" type="Marker2D" parent="." index="5" groups=["spawn_point"]]
-position = Vector2(180, 158)
+position = Vector2(180, 145)
 
 [node name="HitBox" type="Area2D" parent="." index="7" node_paths=PackedStringArray("respawn_point")]
+collision_layer = 16
+collision_mask = 8
 script = ExtResource("3_3xgwc")
 respawn_point = NodePath("Marker2D")
 custom_knockback = true
@@ -53,7 +55,7 @@ position = Vector2(160, 179)
 shape = SubResource("RectangleShape2D_8dnbf")
 
 [node name="Marker2D" type="Marker2D" parent="HitBox" index="1"]
-position = Vector2(170, 160)
+position = Vector2(170, 145)
 
 [node name="BackGroundR" type="TileMapLayer" parent="Background" index="0"]
 modulate = Color(0.49803922, 0.49803922, 0.49803922, 1)
