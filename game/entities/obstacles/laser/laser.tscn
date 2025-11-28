@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b8kxe75yox7h4"]
+[gd_scene load_steps=5 format=3 uid="uid://b8kxe75yox7h4"]
 
 [ext_resource type="Script" uid="uid://744wqir7dy6y" path="res://game/entities/obstacles/laser/laser.gd" id="1_ppuj5"]
+[ext_resource type="AudioStream" uid="uid://bp7o2ojbhbrna" path="res://assets/sfx/environment/laser/laser_loop.wav" id="2_qv4wg"]
 
 [sub_resource type="Gradient" id="Gradient_ppuj5"]
 interpolation_mode = 1
@@ -38,3 +39,8 @@ scale = Vector2(-1, 1)
 [node name="Polygon2D2" type="Polygon2D" parent="VisualRSprite"]
 position = Vector2(-4, 0)
 polygon = PackedVector2Array(0, -3, 5, -1, 5, 1, 0, 3, -2, 3, -2, -3)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("2_qv4wg")
+bus = &"SFX"

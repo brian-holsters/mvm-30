@@ -6,6 +6,7 @@ var _required_exports: Array[String] = ["hitbox"]
 @onready var visual_l_sprite: Sprite2D = %VisualLSprite
 @onready var visual_r_sprite: Sprite2D = %VisualRSprite
 @onready var laser_sprite: Sprite2D = %LaserSprite
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = %AudioStreamPlayer2D
 
 @export var hitbox: HitBox:
 	set(val):
@@ -49,13 +50,17 @@ func activate():
 		# TODO: add code to be exexuted before activation here
 		await get_tree().create_timer(prep_time).timeout
 	active = true
+	if not Engine.is_editor_hint():
+		audio_stream_player_2d.play()
 	laser_sprite.show()
 	if hitbox:
 		hitbox.monitoring = true
 
 
 func deactivate():
+	audio_stream_player_2d.stop()
 	laser_sprite.hide()
+	# TODO: play turning off stuff here
 	if hitbox:
 		hitbox.monitoring = false
 	active = false
@@ -64,6 +69,12 @@ func deactivate():
 func _ready() -> void:
 	visual_l_sprite.visible = show_left
 	visual_r_sprite.visible = show_right
+	
+	# Initialization stuff
+	if active:
+		activate()
+	else:
+		deactivate()
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings : Array[String] = []
