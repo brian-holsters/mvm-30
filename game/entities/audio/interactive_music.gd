@@ -29,7 +29,7 @@ func _process(_delta):
 		#print("synth volume : "+str(synth_volume))
 		var x = 0
 		while x < clip_count:
-			stream.get_clip_stream(x).set_sync_stream_volume(1,-20+20*synth_volume)
+			#stream.get_clip_stream(x).set_sync_stream_volume(1,-20+20*synth_volume)
 			x+=1
 
 func choose_music_clip():
@@ -57,7 +57,7 @@ func check_prog():
 			lerping = true
 	else:
 		prog = lerp(prog, progression_var, 0.05)
-		print("lerping :"+str(prog))
+		#print("lerping :"+str(prog))
 		if abs(prog-progression_var)<0.02:
 			lerping = false
 			prog = progression_var
