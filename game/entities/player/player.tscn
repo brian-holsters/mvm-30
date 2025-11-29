@@ -96,7 +96,6 @@ clip_0/auto_advance = 0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2jquf"]
 random_pitch = 1.05
-random_volume_offset_db = 0.3
 streams_count = 1
 stream_0/stream = ExtResource("17_conr4")
 
@@ -507,7 +506,6 @@ bus = &"Environment_Impact"
 [node name="LandingAudio" type="AudioStreamPlayer2D" parent="Audio" index="2"]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamInteractive_j8m7m")
-volume_db = 2.019
 max_polyphony = 2
 bus = &"Environment_Impact"
 
