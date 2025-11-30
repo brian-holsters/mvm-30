@@ -22,6 +22,7 @@ func _ready():
 
 func _process(_delta):
 	progression_var = AudioController.progression
+	danger_var = AudioController.danger_level
 	#print("prog :"+str(progression_var))
 	prog = check_var(prog, progression_var)
 	danger = check_var(danger, danger_var)
@@ -36,17 +37,17 @@ func choose_music_clip(music):
 	clip_count = music.get_clip_count()
 	if clip_count == 0:
 		return
-	print("clip_count: "+str(clip_count))
+	#print("clip_count: "+str(clip_count))
 	last_index = clip_index
 	
 	clip_index = round(prog*(clip_count-1))
 	
-	print("clip index : "+str(clip_index))
+	#print("clip index : "+str(clip_index))
 
 	if last_index != clip_index:
 		switch_clip(music, clip_index)
 
-func switch_clip(music, index):
+func switch_clip(_music, index):
 	
 	get_stream_playback().switch_to_clip(index)
 		
@@ -72,8 +73,6 @@ func adapt_explore_music():
 		x+=1
 
 func adapt_combat_music():
-	#var explore_volume := -(40*pow(danger,3.0))
-	#var combat_volume := 40*pow(danger,0.3)-40
 	var explore_volume = convert_percent_to_db_volume(danger,0.0,-40.0)
 	var combat_volume = convert_percent_to_db_volume(danger,-40.0,0.0)
 	#print("danger: "+str(danger))
@@ -94,7 +93,7 @@ func set_explore_volume(volume):
 	
 func set_combat_volume(volume):
 	set_track_volume(get_current_part_stream(),combat_index,volume)
-	#print("setting combat volume")
+	#print("setting combat volume: "+str(volume))
 	
 func set_track_volume(part,index,volume):
 	part.set_sync_stream_volume(index,volume)

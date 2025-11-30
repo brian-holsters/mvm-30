@@ -493,13 +493,14 @@ metadata/_custom_type_script = "uid://b3fwraueavvlt"
 [node name="FootstepsAudio" type="AudioStreamPlayer2D" parent="Audio" index="0"]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamInteractive_aidgt")
+volume_db = -2.876
 max_polyphony = 2
 bus = &"Environment_Impact"
 
 [node name="LedgeGrabAudio" type="AudioStreamPlayer2D" parent="Audio" index="1"]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamInteractive_aidgt")
-volume_db = -6.0
+volume_db = -8.0
 max_polyphony = 2
 bus = &"Environment_Impact"
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cdsayh2vpmg7l"]
+[gd_scene load_steps=15 format=3 uid="uid://cdsayh2vpmg7l"]
 
 [ext_resource type="Script" uid="uid://dtfmdokhvemwe" path="res://game/entities/enemies/path_follower/path_follower.gd" id="1_2ie3k"]
 [ext_resource type="Texture2D" uid="uid://d4i2uvgp7ow46" path="res://assets/prototype/enemy.png" id="2_2kkur"]
@@ -10,12 +10,16 @@
 [ext_resource type="Script" uid="uid://bk6m2i08d7ku0" path="res://game/entities/enemies/path_follower/state_transitions/to_hurt.gd" id="8_lroow"]
 [ext_resource type="Script" uid="uid://dxql0l4ub62a0" path="res://game/entities/enemies/path_follower/states/follow_path.gd" id="8_xio2v"]
 [ext_resource type="Script" uid="uid://dmhi5n7bg5r6q" path="res://game/entities/enemies/path_follower/states/hurt.gd" id="10_lroow"]
+[ext_resource type="Script" uid="uid://brm846ilo66tj" path="res://game/scripts/danger_zone.gd" id="11_la5rj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dig1h"]
 radius = 17.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dgnno"]
 radius = 13.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_la5rj"]
+radius = 300.0
 
 [node name="PathEnemy" type="PathFollow2D"]
 rotates = false
@@ -81,5 +85,15 @@ script = ExtResource("10_lroow")
 health_component = NodePath("../../Health")
 return_to_state = NodePath("../FollowPath")
 metadata/_custom_type_script = "uid://b3fwraueavvlt"
+
+[node name="DangerZone2DAudioController" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("11_la5rj")
+metadata/_custom_type_script = "uid://brm846ilo66tj"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DangerZone2DAudioController"]
+shape = SubResource("CircleShape2D_la5rj")
+debug_color = Color(0.25641322, 0.6349437, 1.347661e-06, 0.41960785)
 
 [connection signal="hp_reached_0" from="Health" to="." method="queue_free"]

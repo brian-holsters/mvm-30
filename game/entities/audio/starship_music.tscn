@@ -104,7 +104,7 @@ stream_count = 2
 stream_0/stream = SubResource("AudioStreamSynchronized_8qltt")
 stream_0/volume = 0.0
 stream_1/stream = SubResource("AudioStreamSynchronized_m3sxl")
-stream_1/volume = 0.0
+stream_1/volume = -60.0
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_cqfuk"]
 shuffle = true
@@ -152,7 +152,7 @@ stream_count = 2
 stream_0/stream = SubResource("AudioStreamSynchronized_8nnkk")
 stream_0/volume = 0.0
 stream_1/stream = SubResource("AudioStreamSynchronized_m3sxl")
-stream_1/volume = 0.0
+stream_1/volume = -60.0
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_6wr4m"]
 clip_count = 2
