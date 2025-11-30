@@ -517,7 +517,7 @@ bus = &"mve&atk"
 [node name="HurtAudio" type="AudioStreamPlayer2D" parent="Audio" index="4"]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_or46b")
-bus = &"SFX"
+bus = &"non-diegetic"
 
 [node name="HurtBox" type="Area2D" parent="." index="9" node_paths=PackedStringArray("actor")]
 collision_layer = 8
