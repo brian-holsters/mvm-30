@@ -1,66 +1,124 @@
-[gd_scene load_steps=23 format=3 uid="uid://bjb4a35tmdltw"]
+[gd_scene load_steps=51 format=3 uid="uid://bjb4a35tmdltw"]
 
 [ext_resource type="AudioStream" uid="uid://bmboj20dj24mc" path="res://assets/music/starship/voice_backgrounds/part1/var1.mp3" id="1_jpplr"]
 [ext_resource type="AudioStream" uid="uid://b4deu1ogkeejn" path="res://assets/music/starship/voice_backgrounds/part1/var2.mp3" id="2_r5awb"]
 [ext_resource type="AudioStream" uid="uid://cb51x40nu36gy" path="res://assets/music/starship/voice_backgrounds/part1/var1B.mp3" id="3_dpsqj"]
 [ext_resource type="AudioStream" uid="uid://dputlg0hrbm81" path="res://assets/music/starship/voice_backgrounds/part1/var2B.mp3" id="4_2ul14"]
 [ext_resource type="AudioStream" uid="uid://chxcqrjrpw3am" path="res://assets/music/starship/voice_backgrounds/part2/var1.mp3" id="5_svm7f"]
+[ext_resource type="AudioStream" uid="uid://b682ulb2j1iw2" path="res://assets/music/starship/voice_backgrounds/part1/var1-2.mp3" id="5_wpfed"]
+[ext_resource type="AudioStream" uid="uid://b6ovsx5fpfken" path="res://assets/music/starship/voice_backgrounds/part1/var1B-2.mp3" id="6_8nnkk"]
 [ext_resource type="AudioStream" uid="uid://xdbkouv2l23p" path="res://assets/music/starship/voice_backgrounds/part2/var2.mp3" id="6_vccug"]
 [ext_resource type="AudioStream" uid="uid://cscblstg8d8pd" path="res://assets/music/starship/voice_backgrounds/part2/var3.mp3" id="7_av2i0"]
+[ext_resource type="AudioStream" uid="uid://d0g1vgc11ehsf" path="res://assets/music/starship/voice_backgrounds/part1/var2-2.mp3" id="7_vi3yn"]
+[ext_resource type="AudioStream" uid="uid://byteo66jyv4fc" path="res://assets/music/starship/voice_backgrounds/part1/var2B-2.mp3" id="8_o0f60"]
 [ext_resource type="AudioStream" uid="uid://cgfnm0wtnt2ph" path="res://assets/music/starship/synths/part1/var1.mp3" id="8_vccug"]
 [ext_resource type="AudioStream" uid="uid://bxt3ljix1wqlo" path="res://assets/music/starship/synths/part1/var2.mp3" id="9_av2i0"]
+[ext_resource type="AudioStream" uid="uid://r8dw8ybdk30d" path="res://assets/music/starship/Strings/Strings1.mp3" id="9_nls83"]
 [ext_resource type="AudioStream" uid="uid://bjcs57o4fs4r3" path="res://assets/music/starship/synths/part1/var3.mp3" id="10_0x0gv"]
+[ext_resource type="AudioStream" uid="uid://c274xlkekkd13" path="res://assets/music/starship/Strings/Strings2.mp3" id="10_166eg"]
 [ext_resource type="AudioStream" uid="uid://caiclbvfxhvjp" path="res://assets/music/starship/synths/part1/var4.mp3" id="11_nysw2"]
 [ext_resource type="AudioStream" uid="uid://brxg578phl1t7" path="res://assets/music/starship/synths/part2/var1.mp3" id="12_dyplk"]
-[ext_resource type="AudioStream" uid="uid://b7sov870ct2vr" path="res://assets/music/starship/synths/part2/silence.mp3" id="14_0x0gv"]
 [ext_resource type="AudioStream" uid="uid://bweevdvtyh7sx" path="res://assets/music/starship/synths/part1/end.mp3" id="14_8qltt"]
+[ext_resource type="AudioStream" uid="uid://c4csx025078dg" path="res://assets/music/starship/silence.mp3" id="14_a6pd2"]
+[ext_resource type="AudioStream" uid="uid://cgr32ryppp3c1" path="res://assets/music/starship/voice_backgrounds/part2/var1-2.mp3" id="16_mkwdl"]
 [ext_resource type="Script" uid="uid://dr2i045xpi8ex" path="res://game/entities/audio/interactive_music.gd" id="17_ca2qe"]
+[ext_resource type="AudioStream" uid="uid://4lqo0utjrue3" path="res://assets/music/starship/voice_backgrounds/part2/var3-3.mp3" id="17_k56y7"]
+[ext_resource type="AudioStream" uid="uid://ckeh5aoiwl4q2" path="res://assets/music/starship/voice_backgrounds/part2/var3-4.mp3" id="18_nls83"]
+[ext_resource type="AudioStream" uid="uid://dvocmkgrhm4ml" path="res://assets/music/starship/voice_backgrounds/part2/var1-3.mp3" id="19_166eg"]
+[ext_resource type="AudioStream" uid="uid://dsogmg3nu24y8" path="res://assets/music/starship/voice_backgrounds/part2/var1-4.mp3" id="20_23q3p"]
+[ext_resource type="AudioStream" uid="uid://f8ewn60g1edc" path="res://assets/music/starship/voice_backgrounds/part2/var2-2.mp3" id="22_wi13r"]
+[ext_resource type="AudioStream" uid="uid://dg7pcocj7mdt7" path="res://assets/music/starship/voice_backgrounds/part2/var2-3.mp3" id="23_eqylt"]
+[ext_resource type="AudioStream" uid="uid://bgxs3fhn5nl0a" path="res://assets/music/starship/voice_backgrounds/part2/var2-4.mp3" id="24_j43mk"]
+[ext_resource type="AudioStream" uid="uid://c1geil6xqq5p4" path="res://assets/music/starship/voice_backgrounds/part2/var3-2.mp3" id="26_o6lj2"]
+[ext_resource type="AudioStream" uid="uid://duktan3wiqw4t" path="res://assets/music/starship/synths/part2/var1-2.mp3" id="28_6wr4m"]
+[ext_resource type="AudioStream" uid="uid://dy88wlovifybw" path="res://assets/music/starship/synths/part2/var1-3.mp3" id="29_1v4xc"]
+[ext_resource type="AudioStream" uid="uid://chvsiy2wy3voc" path="res://assets/music/starship/synths/part2/var1-4.mp3" id="30_h0gao"]
+[ext_resource type="AudioStream" uid="uid://cwlfjfbxmu32c" path="res://assets/music/starship_fight/Drums/var1.mp3" id="33_j43mk"]
+[ext_resource type="AudioStream" uid="uid://btqxfqe434kn" path="res://assets/music/starship_fight/Drums/var2.mp3" id="34_o6lj2"]
+[ext_resource type="AudioStream" uid="uid://50txonjdx8ve" path="res://assets/music/starship_fight/Drums/var3.mp3" id="35_6wr4m"]
+[ext_resource type="AudioStream" uid="uid://b22be6buumu5s" path="res://assets/music/starship_fight/Drums/var4.mp3" id="36_1v4xc"]
+[ext_resource type="AudioStream" uid="uid://cn4ls4j4gfm6v" path="res://assets/music/starship_fight/Bass/bass.mp3" id="37_h0gao"]
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_dyplk"]
 shuffle = true
 fade_time = 0.5
-stream_count = 4
+stream_count = 8
 stream_0 = ExtResource("1_jpplr")
 stream_1 = ExtResource("3_dpsqj")
 stream_2 = ExtResource("2_r5awb")
 stream_3 = ExtResource("4_2ul14")
+stream_4 = ExtResource("5_wpfed")
+stream_5 = ExtResource("6_8nnkk")
+stream_6 = ExtResource("7_vi3yn")
+stream_7 = ExtResource("8_o0f60")
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_23q3p"]
+shuffle = true
+stream_count = 3
+stream_0 = ExtResource("9_nls83")
+stream_1 = ExtResource("10_166eg")
+stream_2 = ExtResource("14_a6pd2")
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_ca2qe"]
 shuffle = true
 fade_time = 0.5
-stream_count = 5
+stream_count = 6
 stream_0 = ExtResource("8_vccug")
 stream_1 = ExtResource("9_av2i0")
 stream_2 = ExtResource("10_0x0gv")
 stream_3 = ExtResource("11_nysw2")
 stream_4 = ExtResource("14_8qltt")
+stream_5 = ExtResource("14_a6pd2")
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_8qltt"]
-stream_count = 2
+stream_count = 3
 stream_0/stream = SubResource("AudioStreamPlaylist_dyplk")
 stream_0/volume = 0.0
-stream_1/stream = SubResource("AudioStreamPlaylist_ca2qe")
+stream_1/stream = SubResource("AudioStreamPlaylist_23q3p")
 stream_1/volume = 0.0
+stream_2/stream = SubResource("AudioStreamPlaylist_ca2qe")
+stream_2/volume = 0.0
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_cqfuk"]
 shuffle = true
-stream_count = 3
+stream_count = 12
 stream_0 = ExtResource("5_svm7f")
-stream_1 = ExtResource("6_vccug")
-stream_2 = ExtResource("7_av2i0")
+stream_1 = ExtResource("16_mkwdl")
+stream_2 = ExtResource("19_166eg")
+stream_3 = ExtResource("20_23q3p")
+stream_4 = ExtResource("6_vccug")
+stream_5 = ExtResource("22_wi13r")
+stream_6 = ExtResource("23_eqylt")
+stream_7 = ExtResource("24_j43mk")
+stream_8 = ExtResource("7_av2i0")
+stream_9 = ExtResource("26_o6lj2")
+stream_10 = ExtResource("17_k56y7")
+stream_11 = ExtResource("18_nls83")
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_wi13r"]
+shuffle = true
+stream_count = 3
+stream_0 = ExtResource("9_nls83")
+stream_1 = ExtResource("10_166eg")
+stream_2 = ExtResource("14_a6pd2")
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_wpfed"]
 shuffle = true
-stream_count = 2
+stream_count = 5
 stream_0 = ExtResource("12_dyplk")
-stream_1 = ExtResource("14_0x0gv")
+stream_1 = ExtResource("28_6wr4m")
+stream_2 = ExtResource("29_1v4xc")
+stream_3 = ExtResource("30_h0gao")
+stream_4 = ExtResource("14_a6pd2")
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_8nnkk"]
-stream_count = 2
+stream_count = 3
 stream_0/stream = SubResource("AudioStreamPlaylist_cqfuk")
 stream_0/volume = 0.0
-stream_1/stream = SubResource("AudioStreamPlaylist_wpfed")
+stream_1/stream = SubResource("AudioStreamPlaylist_wi13r")
 stream_1/volume = 0.0
+stream_2/stream = SubResource("AudioStreamPlaylist_wpfed")
+stream_2/volume = 0.0
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_ca2qe"]
 clip_count = 2
@@ -72,19 +130,41 @@ clip_1/stream = SubResource("AudioStreamSynchronized_8nnkk")
 clip_1/auto_advance = 0
 _transitions = {
 Vector2i(-1, -1): {
-"fade_beats": 4.0,
+"fade_beats": 8.0,
 "fade_mode": 4,
 "from_time": 1,
 "to_time": 0
 }
 }
 
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_xpmew"]
+shuffle = true
+stream_count = 4
+stream_0 = ExtResource("33_j43mk")
+stream_1 = ExtResource("34_o6lj2")
+stream_2 = ExtResource("35_6wr4m")
+stream_3 = ExtResource("36_1v4xc")
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_m3sxl"]
+stream_count = 2
+stream_0/stream = SubResource("AudioStreamPlaylist_xpmew")
+stream_0/volume = 0.0
+stream_1/stream = ExtResource("37_h0gao")
+stream_1/volume = 0.0
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_y7ncd"]
+stream_count = 2
+stream_0/stream = SubResource("AudioStreamInteractive_ca2qe")
+stream_0/volume = 0.0
+stream_1/stream = SubResource("AudioStreamSynchronized_m3sxl")
+stream_1/volume = 0.0
+
 [node name="StarshipMusic" type="Node"]
 
 [node name="InteractiveMusic" type="AudioStreamPlayer" parent="."]
-stream = SubResource("AudioStreamInteractive_ca2qe")
+stream = SubResource("AudioStreamSynchronized_y7ncd")
 autoplay = true
 bus = &"Music"
 script = ExtResource("17_ca2qe")
-progression_var = 1.0
+danger_var = 1.0
 metadata/_custom_type_script = "uid://dr2i045xpi8ex"
