@@ -25,13 +25,13 @@ func _process(_delta) -> void:
 		
 func _on_body_entered(body: Node2D):
 	if body is MvmPlayer:
-		print("entered range")
+		#print("entered range")
 		in_range = true
 		player = body
 
 func _on_body_exited(body: Node2D):
 	if body is MvmPlayer:
-		print("left range")
+		#print("left range")
 		in_range = false
 
 func  _exit_tree():
