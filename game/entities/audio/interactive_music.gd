@@ -8,6 +8,7 @@ const combat_index := 1
 # progression_var value (0.0 to 1.0)
 @export var progression_var: float = 0.0
 @export var danger_var: float = 0.0
+@export var boss_fight: bool = false
 var prog: float = 0.0
 var danger: float = 0.0
 
@@ -74,10 +75,18 @@ func adapt_explore_music():
 		x+=1
 
 func adapt_combat_music():
-	var explore_volume := -(danger*10)
-	var combat_volume := 40*danger-40
+	var explore_volume := -(40*pow(danger,3.0))
+	var combat_volume := 40*pow(danger,0.3)-40
+	#print("explore_volume: "+str(explore_volume))
+	#print("combat_volume: "+str(combat_volume))
 	set_explore_volume(explore_volume)
 	set_combat_volume(combat_volume)
+	
+	#bass only for the boss
+	if boss_fight:
+		set_bass_volume(0.0)
+	else:
+		set_bass_volume(-40.0)
 	
 func set_explore_volume(volume):
 	set_track_volume(exploration_index,volume)
@@ -90,3 +99,7 @@ func set_combat_volume(volume):
 func set_track_volume(index,volume):
 	stream.set_sync_stream_volume(index,volume)
 	#print("volume : "+str(stream.get_sync_stream_volume(index)))
+
+func set_bass_volume(volume):
+	combat_music.set_sync_stream_volume(1,volume)
+	print("bass volume : "+str(combat_music.get_sync_stream_volume(1)))
