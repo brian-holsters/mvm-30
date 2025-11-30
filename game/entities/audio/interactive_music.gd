@@ -22,8 +22,6 @@ var init_prog: float = 0.0
 func _ready():
 	exploration_music = stream.get_sync_stream(exploration_index)
 	combat_music = stream.get_sync_stream(combat_index)
-	
-	clip_count = exploration_music.get_clip_count()	
 
 func _process(_delta):
 	progression_var = AudioController.progression
@@ -51,7 +49,8 @@ func choose_music_clip(music):
 		switch_clip(music, clip_index)
 
 func switch_clip(music, index):
-	music.get_stream_playback().switch_to_clip(index)
+	
+	music.get_playback().switch_to_clip(index)
 		
 func check_var(private: float,public: float) -> float:
 	#print("checking private var :"+str(private)+" and public var: "+str(public))
@@ -62,7 +61,6 @@ func check_var(private: float,public: float) -> float:
 	return private
 
 func adapt_explore_music():
-	choose_music_clip(exploration_music)
 	var synth_volume := 0.0
 	if prog >= 0.5:
 		synth_volume = 2*(prog-0.5)
@@ -71,14 +69,17 @@ func adapt_explore_music():
 	#print("synth volume : "+str(synth_volume))
 	var x = 0
 	while x < clip_count:
-		exploration_music.get_clip_stream(x).set_sync_stream_volume(2,-20+20*synth_volume)
+		exploration_music.get_clip_stream(x).set_sync_stream_volume(2,convert_percent_to_db_volume(synth_volume,-20,0))
 		x+=1
 
 func adapt_combat_music():
-	var explore_volume := -(40*pow(danger,3.0))
-	var combat_volume := 40*pow(danger,0.3)-40
-	#print("explore_volume: "+str(explore_volume))
-	#print("combat_volume: "+str(combat_volume))
+	#var explore_volume := -(40*pow(danger,3.0))
+	#var combat_volume := 40*pow(danger,0.3)-40
+	var explore_volume = convert_percent_to_db_volume(danger,0.0,-40.0)
+	var combat_volume = convert_percent_to_db_volume(danger,-40.0,0.0)
+	#print("danger: "+str(danger))
+	print("explore_volume: "+str(explore_volume))
+	print("combat_volume: "+str(combat_volume))
 	set_explore_volume(explore_volume)
 	set_combat_volume(combat_volume)
 	
@@ -102,4 +103,23 @@ func set_track_volume(index,volume):
 
 func set_bass_volume(volume):
 	combat_music.set_sync_stream_volume(1,volume)
-	print("bass volume : "+str(combat_music.get_sync_stream_volume(1)))
+	#print("bass volume : "+str(combat_music.get_sync_stream_volume(1)))
+
+func convert_percent_to_db_volume(input: float, min_db: float, max_db: float, smooth_level: float = 3):
+		#print("convert_percent_to_db_volume from :"+str(input)+" with min_db : "+str(min_db)+" and max_db : "+str(max_db))
+		var spread := max_db-min_db
+		var smooth_var := 0.0
+		var volume := 0.0
+		var level := 0.0
+		if spread < 0:
+			#print("lowering volume with input")
+			smooth_var= smooth_level
+			level = pow(input,smooth_var)
+			volume = min_db-(abs(spread)*level)
+		else:
+			#print("raising volume with input")
+			smooth_var = 1.0/smooth_level
+			level = pow(input,smooth_var)
+			volume = (abs(spread)*level)+min_db
+		#print("volume :"+str(volume))
+		return volume

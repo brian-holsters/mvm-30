@@ -79,6 +79,33 @@ stream_1/volume = 0.0
 stream_2/stream = SubResource("AudioStreamPlaylist_ca2qe")
 stream_2/volume = 0.0
 
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_xpmew"]
+shuffle = true
+stream_count = 4
+stream_0 = ExtResource("33_j43mk")
+stream_1 = ExtResource("34_o6lj2")
+stream_2 = ExtResource("35_6wr4m")
+stream_3 = ExtResource("36_1v4xc")
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_j43mk"]
+shuffle = true
+stream_count = 1
+stream_0 = ExtResource("37_h0gao")
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_m3sxl"]
+stream_count = 2
+stream_0/stream = SubResource("AudioStreamPlaylist_xpmew")
+stream_0/volume = 0.0
+stream_1/stream = SubResource("AudioStreamPlaylist_j43mk")
+stream_1/volume = 0.0
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_j43mk"]
+stream_count = 2
+stream_0/stream = SubResource("AudioStreamSynchronized_8qltt")
+stream_0/volume = 0.0
+stream_1/stream = SubResource("AudioStreamSynchronized_m3sxl")
+stream_1/volume = 0.0
+
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_cqfuk"]
 shuffle = true
 stream_count = 12
@@ -120,55 +147,27 @@ stream_1/volume = 0.0
 stream_2/stream = SubResource("AudioStreamPlaylist_wpfed")
 stream_2/volume = 0.0
 
-[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_ca2qe"]
-clip_count = 2
-clip_0/name = &"part 1"
-clip_0/stream = SubResource("AudioStreamSynchronized_8qltt")
-clip_0/auto_advance = 0
-clip_1/name = &"part2"
-clip_1/stream = SubResource("AudioStreamSynchronized_8nnkk")
-clip_1/auto_advance = 0
-_transitions = {
-Vector2i(-1, -1): {
-"fade_beats": 8.0,
-"fade_mode": 4,
-"from_time": 1,
-"to_time": 0
-}
-}
-
-[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_xpmew"]
-shuffle = true
-stream_count = 4
-stream_0 = ExtResource("33_j43mk")
-stream_1 = ExtResource("34_o6lj2")
-stream_2 = ExtResource("35_6wr4m")
-stream_3 = ExtResource("36_1v4xc")
-
-[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_j43mk"]
-shuffle = true
-stream_count = 1
-stream_0 = ExtResource("37_h0gao")
-
-[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_m3sxl"]
-stream_count = 2
-stream_0/stream = SubResource("AudioStreamPlaylist_xpmew")
-stream_0/volume = 0.0
-stream_1/stream = SubResource("AudioStreamPlaylist_j43mk")
-stream_1/volume = 0.0
-
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_y7ncd"]
 stream_count = 2
-stream_0/stream = SubResource("AudioStreamInteractive_ca2qe")
+stream_0/stream = SubResource("AudioStreamSynchronized_8nnkk")
 stream_0/volume = 0.0
 stream_1/stream = SubResource("AudioStreamSynchronized_m3sxl")
 stream_1/volume = 0.0
 
 [node name="StarshipMusic" type="Node"]
 
-[node name="InteractiveMusic" type="AudioStreamPlayer" parent="."]
-stream = SubResource("AudioStreamSynchronized_y7ncd")
+[node name="InteractiveMusic_P1" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamSynchronized_j43mk")
 autoplay = true
 bus = &"Music"
 script = ExtResource("17_ca2qe")
+danger_var = 0.9
+boss_fight = true
+metadata/_custom_type_script = "uid://dr2i045xpi8ex"
+
+[node name="InteractiveMusic_P2" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamSynchronized_y7ncd")
+bus = &"Music"
+script = ExtResource("17_ca2qe")
+danger_var = 0.5
 metadata/_custom_type_script = "uid://dr2i045xpi8ex"
