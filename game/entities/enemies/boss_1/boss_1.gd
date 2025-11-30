@@ -1,10 +1,13 @@
 extends Node2D
 
+@onready var projectile_spawner: Marker2D = %ProjectileSpawner
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var player_position: Marker2D = %PlayerPosition
 @onready var floor_ray_cast: RayCast2D = %FloorRayCast
 @onready var floor_position: Marker2D = %FloorPosition
 @onready var health_component: HealthComponent = %HealthComponent
+@onready var laser: Node2D = %Laser
+@onready var laser_timer: Timer = $LaserTimer
 
 const buffer_size := 15
 
@@ -58,7 +61,8 @@ func _physics_process(_delta: float) -> void:
 	if following and can_move:
 		if animation_player.current_animation in floor_animations and floor_ray_cast.is_colliding():
 			target.y = floor_ray_cast.get_collision_point().y - floor_position.position.y
-		global_position = global_position.move_toward(target, movement_speed)
+		var mov = movement_speed / 2 if laser.active else movement_speed
+		global_position = global_position.move_toward(target, mov)
 		if global_position.distance_to(target) <= 3.0:
 			target_reached.emit()
 
@@ -124,7 +128,8 @@ func _on_health_component_hp_changed(health_component: HealthComponent) -> void:
 	var health = health_component.hp
 	if health <= phase_change_health:
 		phase = 2
-	
+		laser_timer.start()
+
 	if health == 0:
 		kill()
 
@@ -132,19 +137,25 @@ func _on_hurt(use_custom_knockback: bool, knockback_is_directional: bool, knockb
 	health_component.hp -= damage
 
 func impact():
-	print("impact!")
-	print(phase)
+	Game.singleton.camera.shake(0.2)
 	if phase >= 2:
-		var projectile_count = 6.0
-		var bullet_speed = 100.0
-		var angle_step = 360.0 / projectile_count
-		for i in range(projectile_count):
-			var bullet_instance = projectile_scene.instantiate() as Bullet
-			
-			bullet_instance.velocity = Vector2.RIGHT.rotated(deg_to_rad(angle_step*i)) * bullet_speed
-			bullet_instance.phase_through_walls = true
-			bullet_instance.owner_type = HitBox.ENEMY_OWNER
-			
-			Game.singleton.add_child(bullet_instance)
-			
-			bullet_instance.global_position = floor_position.global_position
+		spawn_radial_projectiles(2)
+
+func spawn_radial_projectiles(projectile_count: float):
+	var bullet_speed = 100.0
+	var angle_step = 360.0 / projectile_count
+	for i in range(projectile_count):
+		var bullet_instance = projectile_scene.instantiate() as Bullet
+		
+		bullet_instance.velocity = Vector2.RIGHT.rotated(deg_to_rad(angle_step*i)) * bullet_speed
+		bullet_instance.phase_through_walls = true
+		bullet_instance.owner_type = HitBox.ENEMY_OWNER
+		
+		Game.singleton.gameplay.add_child(bullet_instance)
+		
+		bullet_instance.global_position = projectile_spawner.global_position
+
+
+func _on_laser_timer_timeout() -> void:
+	if phase >= 2:
+		laser.toggle()

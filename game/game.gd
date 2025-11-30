@@ -8,7 +8,7 @@ class_name Game
 # The game starts in this map. Uses special annotation that enabled dedicated inspector plugin.
 @export_file("room_link") var starting_map: String
 @export var _player: MvmPlayer
-@export var camera: Camera2D
+@export var camera: MVMCamera2D
 @export_file("*.tscn") var main_menu_scene: String
 
 const SaveManager = preload("res://addons/MetroidvaniaSystem/Template/Scripts/SaveManager.gd")

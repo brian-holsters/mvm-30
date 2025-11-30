@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://chvi7vfltf0yy"]
+[gd_scene load_steps=17 format=3 uid="uid://chvi7vfltf0yy"]
 
 [ext_resource type="Script" uid="uid://1cr1rhgw3lxn" path="res://game/entities/enemies/boss_1/boss_1.gd" id="1_7drbr"]
 [ext_resource type="Script" uid="uid://divnu77umyg1s" path="res://game/scripts/outline_polygon.gd" id="2_l04rt"]
@@ -7,6 +7,10 @@
 [ext_resource type="Script" uid="uid://bn21x38drplvg" path="res://game/entities/hitbox/hit_box.gd" id="4_p831d"]
 [ext_resource type="Texture2D" uid="uid://jarr1uklj0qr" path="res://assets/prototype/ssss.png" id="5_lbyba"]
 [ext_resource type="Script" uid="uid://dr0tmd1vkfnxl" path="res://game/entities/hitbox/hurt_box.gd" id="7_p831d"]
+[ext_resource type="PackedScene" uid="uid://b8kxe75yox7h4" path="res://game/entities/obstacles/laser/laser.tscn" id="8_pcmgj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lcosx"]
+size = Vector2(78, 4)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gjhy6"]
 size = Vector2(23, 15)
@@ -91,46 +95,34 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Root/Head:rotation")
+tracks/6/path = NodePath(".:following")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
+"update": 1,
+"values": [true]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath(".:following")
+tracks/7/path = NodePath("Root/HandL/HurtBox:monitorable")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Root/HandL/HurtBox:monitorable")
+tracks/8/path = NodePath("Root/HandR/HurtBox:monitorable")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("Root/HandR/HurtBox:monitorable")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -159,10 +151,10 @@ tracks/1/path = NodePath("Root/Head:position")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.7, 0.76666665, 1.6333334),
+"times": PackedFloat32Array(0, 0.3, 0.70000005, 0.7666667, 1.6333334),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, 33), Vector2(0, 33), Vector2(0, 33), Vector2(0, 0)]
+"values": [Vector2(0, 0), Vector2(0, -13), Vector2(0, -13), Vector2(0, -13), Vector2(0, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -174,7 +166,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.3, 0.7, 0.76666665, 0.8666667, 0.9333334, 1, 1.6333334),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-70, 42), Vector2(-107, 52), Vector2(-107, 52), Vector2(-107, 52), Vector2(-6, 52), Vector2(-6, 52), Vector2(-6, 52), Vector2(-70, 42)]
+"values": [Vector2(-70, 42), Vector2(-107, 70), Vector2(-107, 70), Vector2(-107, 70), Vector2(-6, 70), Vector2(-6, 70), Vector2(-6, 70), Vector2(-70, 42)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -186,7 +178,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.3, 0.7, 0.76666665, 0.8666667, 0.9333334, 1, 1.6333334),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(70, 42), Vector2(107, 52), Vector2(107, 52), Vector2(107, 52), Vector2(6, 52), Vector2(6, 52), Vector2(6, 52), Vector2(70, 42)]
+"values": [Vector2(70, 42), Vector2(107, 70), Vector2(107, 70), Vector2(107, 70), Vector2(6, 70), Vector2(6, 70), Vector2(6, 70), Vector2(70, 42)]
 }
 tracks/4/type = "method"
 tracks/4/imported = false
@@ -238,22 +230,10 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Root/Head:rotation")
+tracks/7/path = NodePath(".:following")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.36666667, 0.43333337, 0.5, 0.6, 0.6666667, 0.7666667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.0, -0.3643304, 0.3647738, -0.3643304, 0.3647738, -0.3643304, 0.0]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath(".:following")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
 "times": PackedFloat32Array(),
 "transitions": PackedFloat32Array(),
 "update": 1,
@@ -297,7 +277,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.33333337, 0.8233333, 0.9333334, 1, 1.0666667, 1.3, 1.3666667, 1.9000001),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-70, 42), Vector2(-70, -19), Vector2(-70, -19), Vector2(-70, 38), Vector2(-70, 38), Vector2(-70, 38), Vector2(-70, 42), Vector2(-70, 42), Vector2(-70, 42)]
+"values": [Vector2(-70, 42), Vector2(-70, -19), Vector2(-70, -19), Vector2(-70, 64), Vector2(-70, 64), Vector2(-70, 64), Vector2(-70, 42), Vector2(-70, 42), Vector2(-70, 42)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -415,10 +395,10 @@ tracks/3/path = NodePath("Root/HandR:position")
 tracks/3/interp = 2
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.33333337, 0.8333333, 0.93333334, 1, 1.000303, 1.0666667, 1.6833334, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.33333337, 0.8333333, 0.9833334, 1.0666667, 1.1666666, 1.6833334, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(70, 42), Vector2(70, -19), Vector2(70, -19), Vector2(70, 38), Vector2(70, 38), Vector2(70, 38), Vector2(70, 38), Vector2(70, 38), Vector2(70, 42)]
+"values": [Vector2(70, 42), Vector2(70, -19), Vector2(70, -19), Vector2(70, 64), Vector2(70, 64), Vector2(70, 64), Vector2(70, 38), Vector2(70, 42)]
 }
 tracks/4/type = "method"
 tracks/4/imported = false
@@ -478,6 +458,8 @@ script = ExtResource("1_7drbr")
 floor_animations = Array[String](["vertical_l", "vertical_r"])
 projectile_scene = ExtResource("2_p831d")
 
+[node name="LaserTimer" type="Timer" parent="."]
+
 [node name="HealthComponent" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2_pcmgj")
@@ -493,6 +475,24 @@ self_modulate = Color(0.32156864, 0.32156864, 0.32156864, 1)
 [node name="BodySprite2D" type="Sprite2D" parent="Root/Head"]
 position = Vector2(-1, 4)
 texture = ExtResource("5_lbyba")
+
+[node name="Laser" parent="Root/Head" node_paths=PackedStringArray("hitbox") instance=ExtResource("8_pcmgj")]
+unique_name_in_owner = true
+position = Vector2(0, 86)
+rotation = 1.5707964
+hitbox = NodePath("HitBox")
+length = 78
+show_right = false
+active = false
+
+[node name="HitBox" type="Area2D" parent="Root/Head/Laser"]
+visible = false
+monitoring = false
+script = ExtResource("4_p831d")
+metadata/_custom_type_script = "uid://bn21x38drplvg"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Root/Head/Laser/HitBox"]
+shape = SubResource("RectangleShape2D_lcosx")
 
 [node name="HandL" type="Polygon2D" parent="Root"]
 position = Vector2(-70, 42)
@@ -582,15 +582,20 @@ target_position = Vector2(0, 300)
 
 [node name="FloorPosition" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0, 60)
+position = Vector2(0, 86)
 
 [node name="PlayerPosition" type="Marker2D" parent="FloorPosition"]
 unique_name_in_owner = true
 position = Vector2(0, -15)
 
+[node name="ProjectileSpawner" type="Marker2D" parent="FloorPosition"]
+unique_name_in_owner = true
+position = Vector2(0, -6)
+
 [node name="Helper" type="Marker2D" parent="."]
 position = Vector2(-69, 39)
 
+[connection signal="timeout" from="LaserTimer" to="." method="_on_laser_timer_timeout"]
 [connection signal="hp_changed" from="HealthComponent" to="." method="_on_health_component_hp_changed" flags=18]
 [connection signal="hurt" from="Root/HandL/HurtBox" to="." method="_on_hurt"]
 [connection signal="hurt" from="Root/HandR/HurtBox" to="." method="_on_hurt"]

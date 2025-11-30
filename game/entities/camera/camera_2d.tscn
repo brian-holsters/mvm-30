@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://darh0gll5xrb3"]
+
+[ext_resource type="Script" uid="uid://gysredmke715" path="res://game/entities/camera/camera_2d.gd" id="1_8rucf"]
+
+[node name="Camera2D" type="Camera2D"]
+process_callback = 0
+position_smoothing_speed = 8.0
+script = ExtResource("1_8rucf")
+
+[node name="CamShakeTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="CamShakeTimer" to="." method="_on_cam_shake_timer_timeout"]

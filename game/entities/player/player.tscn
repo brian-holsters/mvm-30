@@ -485,7 +485,7 @@ grounded_state = NodePath("../Grounded")
 airborne_state = NodePath("../Airborne")
 animated_sprite_2d = NodePath("../../AnimatedSprite2D")
 animation = "hurt_damaged"
-default_knockback = Vector2(100, -300)
+default_knockback = Vector2(150, -300)
 default_stun_time = 0.2
 metadata/_custom_type_script = "uid://b3fwraueavvlt"
 

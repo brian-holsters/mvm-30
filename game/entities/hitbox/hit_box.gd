@@ -33,6 +33,8 @@ signal hit(use_custom_knockback: bool, knockback_is_directional: bool, knockback
 @export var origin: Node  ## Used for directional knockback
 
 func _ready() -> void:
+	collision_layer = collision_layers[owner_type]
+	collision_mask = collision_masks[owner_type]
 	area_entered.connect(_on_area_entered)
 
 func _on_area_entered(area: Area2D):
