@@ -36,4 +36,5 @@ func _on_body_exited(body: Node2D):
 
 func  _exit_tree():
 	AudioController.set_enemy_distance(AudioController.MAX_ENEMY_DISTANCE)
+	AudioController.danger_level=0.0
 	AudioController.boss_battle = false
