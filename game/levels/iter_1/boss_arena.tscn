@@ -1,11 +1,11 @@
 [gd_scene load_steps=12 format=4 uid="uid://cur8dfqn6pgsr"]
 
-[ext_resource type="PackedScene" uid="uid://by13a22vxwdu1" path="res://game/levels/base_level.tscn" id="1_k4f1w"]
-[ext_resource type="Script" uid="uid://bnktai1u2rqbo" path="res://game/scripts/flag_checker.gd" id="2_kqsvs"]
-[ext_resource type="PackedScene" uid="uid://chvi7vfltf0yy" path="res://game/entities/enemies/boss_1/boss.tscn" id="3_65g1t"]
-[ext_resource type="TileSet" uid="uid://bxjd1yx0ntj88" path="res://assets/tilesets/main_tileset.tres" id="4_5gmf1"]
-[ext_resource type="Script" uid="uid://ba0bmlonp2suh" path="res://game/entities/interactable/interaction_area.gd" id="4_65g1t"]
-[ext_resource type="Texture2D" uid="uid://b7nit00hasq23" path="res://assets/tilesets/main_tileset.png" id="5_5gmf1"]
+[ext_resource type="PackedScene" uid="uid://by13a22vxwdu1" path="res://game/levels/base_level.tscn" id="1_wjqi1"]
+[ext_resource type="Script" uid="uid://bnktai1u2rqbo" path="res://game/scripts/flag_checker.gd" id="2_4xwdj"]
+[ext_resource type="PackedScene" uid="uid://chvi7vfltf0yy" path="res://game/entities/enemies/boss_1/boss.tscn" id="3_kwf2v"]
+[ext_resource type="TileSet" uid="uid://bxjd1yx0ntj88" path="res://assets/tilesets/main_tileset.tres" id="4_v2dtf"]
+[ext_resource type="Script" uid="uid://ba0bmlonp2suh" path="res://game/entities/interactable/interaction_area.gd" id="5_1mx5y"]
+[ext_resource type="Texture2D" uid="uid://b7nit00hasq23" path="res://assets/tilesets/main_tileset.png" id="6_slnt3"]
 
 [sub_resource type="GDScript" id="GDScript_65g1t"]
 resource_name = "builtinBossStart"
@@ -14,6 +14,7 @@ script/source = "extends Area2D
 @export var boss: Node2D
 
 func _on_body_entered(body: Node2D) -> void:
+	print(\"boss activated\")
 	boss.active = true
 	queue_free()
 "
@@ -24,7 +25,7 @@ size = Vector2(118, 140)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5gmf1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o60qj"]
-texture = ExtResource("5_5gmf1")
+texture = ExtResource("6_slnt3")
 texture_region_size = Vector2i(20, 20)
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
@@ -64,14 +65,14 @@ tile_size = Vector2i(20, 20)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_o60qj")
 
-[node name="Boss" instance=ExtResource("1_k4f1w")]
+[node name="Boss" instance=ExtResource("1_wjqi1")]
 
 [node name="BossKillFlag" type="Node2D" parent="." index="0"]
-script = ExtResource("2_kqsvs")
+script = ExtResource("2_4xwdj")
 flag = "boss_1"
 metadata/_custom_type_script = "uid://bnktai1u2rqbo"
 
-[node name="Boss" parent="." index="2" instance=ExtResource("3_65g1t")]
+[node name="Boss" parent="." index="2" instance=ExtResource("3_kwf2v")]
 z_index = -1
 position = Vector2(480, 87)
 
@@ -96,7 +97,7 @@ debug_color = Color(0.7, 0.7, 0.7, 0.41960785)
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="Background" index="0"]
 tile_map_data = PackedByteArray("AAAkAAAAAAACAAIAAAAqAAAAAAAAAAIAAAArAAAAAAABAAIAAAAsAAAAAAABAAIAAAAtAAAAAAABAAIAAAAuAAAAAAABAAIAAAAjAAAAAAABAAIAAAAiAAAAAAABAAIAAAAhAAAAAAABAAIAAAAgAAAAAAABAAIAAAAfAAAAAAABAAIAAAAeAAAAAAABAAIAAAAdAAAAAAABAAIAAAAcAAAAAAABAAIAAAAbAAAAAAABAAIAAAAaAAAAAAABAAIAAAAZAAAAAAABAAIAAAAYAAAAAAABAAIAAAAXAAAAAAABAAIAAAAWAAAAAAABAAIAAAAVAAAAAAABAAIAAAAUAAAAAAABAAIAAAATAAAAAAABAAIAAAASAAAAAAABAAIAAAARAAAAAAABAAIAAAAQAAAAAAABAAIAAAAPAAAAAAABAAIAAAAOAAAAAAABAAIAAAANAAAAAAABAAIAAAAMAAAAAAABAAIAAAALAAAAAAABAAIAAAAKAAAAAAABAAIAAAAJAAAAAAABAAIAAAAIAAAAAAABAAIAAAAHAAAAAAABAAIAAAAGAAAAAAABAAIAAAAFAAAAAAABAAIAAAAEAAAAAAABAAIAAAADAAAAAAABAAIAAAACAAAAAAABAAIAAAABAAAAAAABAAIAAAABAAgAAAABAAAAAAACAAgAAAABAAAAAAADAAgAAAABAAAAAAAEAAgAAAABAAAAAAAFAAgAAAABAAAAAAAGAAgAAAABAAAAAAAHAAgAAAABAAAAAAAIAAgAAAABAAAAAAAJAAgAAAABAAAAAAAKAAgAAAABAAAAAAALAAgAAAABAAAAAAAMAAgAAAACAAAAAAAPAAgAAAAAAAAAAAAQAAgAAAABAAAAAAARAAgAAAABAAAAAAASAAgAAAABAAAAAAATAAgAAAABAAAAAAAUAAgAAAABAAAAAAAVAAgAAAABAAAAAAAWAAgAAAABAAAAAAAXAAgAAAABAAAAAAAYAAgAAAABAAAAAAAZAAgAAAABAAAAAAAaAAgAAAABAAAAAAAbAAgAAAABAAAAAAAcAAgAAAABAAAAAAAdAAgAAAABAAAAAAAeAAgAAAABAAAAAAAfAAgAAAABAAAAAAAgAAgAAAABAAAAAAAhAAgAAAABAAAAAAAiAAgAAAABAAAAAAAjAAgAAAABAAAAAAAkAAgAAAABAAAAAAAlAAgAAAABAAAAAAAmAAgAAAABAAAAAAAnAAgAAAABAAAAAAAoAAgAAAABAAAAAAApAAgAAAABAAAAAAAqAAgAAAABAAAAAAArAAgAAAABAAAAAAAsAAgAAAABAAAAAAAtAAgAAAABAAAAAAAuAAgAAAABAAAAAAAvAAAAAAAFAAAAAAAvAAEAAAAAAAEAAAAvAAIAAAAAAAEAAAAvAAMAAAAAAAEAAAAvAAQAAAAAAAEAAAAvAAUAAAAAAAEAAAAvAAYAAAAAAAEAAAAvAAcAAAAAAAEAAAAvAAgAAAAFAAEAAAAAAAAAAAAEAAAAAAAAAAEAAAACAAEAAAAAAAIAAAACAAEAAAAAAAMAAAACAAEAAAAAAAQAAAACAAEAAAAAAAUAAAACAAEAAAAAAAYAAAACAAEAAAAAAAcAAAACAAEAAAAAAAgAAAAEAAEAAAAEAAcAAAAAAAQAAAAkAP//AAACAAEAAAAqAP//AAAAAAEAAAA=")
-tile_set = ExtResource("4_5gmf1")
+tile_set = ExtResource("4_v2dtf")
 
 [node name="SwitchRoot" type="Node2D" parent="Background" index="1"]
 
@@ -104,7 +105,7 @@ tile_set = ExtResource("4_5gmf1")
 position = Vector2(90, 150)
 collision_layer = 0
 collision_mask = 2
-script = ExtResource("4_65g1t")
+script = ExtResource("5_1mx5y")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/SwitchRoot/GreenSwitch" index="0"]

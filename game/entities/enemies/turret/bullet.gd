@@ -1,4 +1,5 @@
 extends HitBox
+class_name Bullet
 
 const MAX_LIFETIME := 15.0
 var lifetime := 0.0
@@ -9,6 +10,13 @@ var lifetime := 0.0
 
 var contacts: int = 0
 
+static func create_bullet(
+	owner_type: String,
+	velocity: Vector2, 
+	penetration_power: int = 0, 
+	phase_through_walls: bool = false
+):
+	pass
 
 func _ready() -> void:
 	super()
