@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://d15w7co7lxbq1" path="res://game/scripts/text_player.gd" id="3_jxfb3"]
 [ext_resource type="PackedScene" uid="uid://cqqw42miprcfm" path="res://game/entities/interactable/terminal.tscn" id="3_kunp1"]
 [ext_resource type="TileSet" uid="uid://bxjd1yx0ntj88" path="res://assets/tilesets/main_tileset.tres" id="4_6s8m2"]
-[ext_resource type="Script" path="res://game/scripts/camera_area.gd" id="5_6s8m2"]
+[ext_resource type="Script" uid="uid://bwquh18wbm83e" path="res://game/scripts/camera_area.gd" id="5_6s8m2"]
 [ext_resource type="PackedScene" uid="uid://dik57o15hkrog" path="res://game/entities/obstacles/gate/gate.tscn" id="5_jxfb3"]
 [ext_resource type="Script" uid="uid://bnktai1u2rqbo" path="res://game/scripts/flag_checker.gd" id="5_kunp1"]
 
@@ -156,7 +156,7 @@ shape = SubResource("RectangleShape2D_dsv0y")
 [connection signal="flag_just_checked" from="Flags/GreenSwitchFlag" to="Background/PowerLine/PowerLineBottom2" method="hide"]
 [connection signal="flag_just_checked" from="Flags/GreenSwitchFlag" to="Background/PowerLine" method="set" binds= ["modulate", Color(0.1882353, 0.9490196, 0.1882353, 1)]]
 [connection signal="flag_checked" from="Flags/FirstEntryFlag" to="Area2D" method="queue_free"]
-[connection signal="flag_just_checked" from="Flags/FirstEntryFlag" to="Area2D" method="queue_free"]
 [connection signal="flag_just_checked" from="Flags/FirstEntryFlag" to="Flags/FirstEntryFlag/FirstEntryText" method="play_timeline"]
+[connection signal="flag_just_checked" from="Flags/FirstEntryFlag" to="Area2D" method="queue_free"]
 [connection signal="interact" from="Background/Terminal" to="Flags/GreenSwitchFlag" method="set_flag" unbinds=1]
 [connection signal="body_entered" from="Area2D" to="Flags/FirstEntryFlag" method="set_flag" unbinds=1]

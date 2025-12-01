@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://chvi7vfltf0yy"]
+[gd_scene load_steps=14 format=3 uid="uid://chvi7vfltf0yy"]
 
 [ext_resource type="Script" uid="uid://1cr1rhgw3lxn" path="res://game/entities/enemies/boss_1/boss_1.gd" id="1_7drbr"]
 [ext_resource type="Script" uid="uid://divnu77umyg1s" path="res://game/scripts/outline_polygon.gd" id="2_l04rt"]
 [ext_resource type="Texture2D" uid="uid://cwfingupfv57v" path="res://icon.svg" id="3_lbyba"]
 [ext_resource type="Script" uid="uid://c2p8rnasg84rb" path="res://game/scripts/node_2d_stabilizer.gd" id="4_l04rt"]
 [ext_resource type="Script" uid="uid://bn21x38drplvg" path="res://game/entities/hitbox/hit_box.gd" id="4_p831d"]
+[ext_resource type="Script" uid="uid://brm846ilo66tj" path="res://game/scripts/danger_zone.gd" id="6_lbyba"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gjhy6"]
 size = Vector2(23, 15)
@@ -353,6 +354,9 @@ _data = {
 &"vertical_r": SubResource("Animation_lbyba")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_p831d"]
+radius = 300.0
+
 [node name="Boss" type="Node2D"]
 script = ExtResource("1_7drbr")
 
@@ -436,3 +440,14 @@ position = Vector2(0, 53)
 
 [node name="Helper" type="Marker2D" parent="."]
 position = Vector2(-69, 39)
+
+[node name="DangerZone2DAudioController" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("6_lbyba")
+boss_zone = true
+metadata/_custom_type_script = "uid://brm846ilo66tj"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DangerZone2DAudioController"]
+shape = SubResource("CircleShape2D_p831d")
+debug_color = Color(0.25641322, 0.6349437, 1.347661e-06, 0.41960785)
