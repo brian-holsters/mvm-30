@@ -1,7 +1,25 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://b6jal0hkamwfx"]
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://b6jal0hkamwfx"]
 
 [ext_resource type="FontFile" uid="uid://50ctxiiscptv" path="res://assets/fonts/Weiholmir_full_sheet.png" id="1_3midj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3midj"]
+bg_color = Color(0.3854925, 0.3854925, 0.38549235, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_763mb"]
+bg_color = Color(0.91994864, 0.43006995, 0.35536453, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.8, 0.8, 0.8, 0)
 
 [resource]
 default_font = ExtResource("1_3midj")
 default_font_size = 7
+ProgressBar/styles/background = SubResource("StyleBoxFlat_3midj")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_763mb")

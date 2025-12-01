@@ -33,6 +33,8 @@ func _should_run() -> bool:
 		return false
 	if not parent.is_active:
 		return false
+	if state_machine.current_state == to_state.name:
+		return false
 	var allow_change: bool = parent.allow_state_change or force_change_on_not_allowed
 	if not allow_change:
 		return false

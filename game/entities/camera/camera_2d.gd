@@ -1,37 +1,31 @@
 extends Camera2D
 class_name MVMCamera2D
 
+@onready var cam_shake_timer: Timer = $CamShakeTimer
+
 @export var default_target: Node2D
 @export var camera_min_speed: float = 5.0
 @export var max_distance: float = 10.0
 @export var max_time_to_destination: float = 1.0
 
 var target: Node2D
-const UP := "up"
-const DOWN := "down"
-const LEFT := "left"
-const RIGHT := "right"
-
 var tween: Tween
-
-const H_OFFSET = 80.0
-const V_OFFSET = 80.0
-
-const LOOK_UP = Vector2(0.0,-V_OFFSET)
-const LOOK_DOWN = Vector2(0.0, V_OFFSET)
-const LOOK_LEFT = Vector2(-H_OFFSET, 0.0)
-const LOOK_RIGHT = Vector2(H_OFFSET, 0.0)
-
-const TWEEN_TIME = 1.0
-
 var moving_to_target := false
+
+var _t: float = 0.0
+
+var shaking_intensity := 0.0
 
 func _ready() -> void:
 	reset_target()
 	EventHub.request_camera_follow.connect(set_target)
 	EventHub.reset_look.connect(reset_target)
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	_t += (delta * 75)
+	var shake_factor = sin(_t) * shaking_intensity
+	offset = Vector2(randf_range(min(0, shake_factor), max(0, shake_factor)), randf_range(min(0, shake_factor), max(0, shake_factor)))
+	
 	if not moving_to_target:
 		return
 	
@@ -63,3 +57,13 @@ func set_target(node: Node2D):
 
 func move_instantly():
 	global_position = target.global_position
+
+func shake(time: float, intensity: float = 2.0):
+	shaking_intensity = intensity
+	cam_shake_timer.stop()
+	cam_shake_timer.wait_time = time
+	cam_shake_timer.start()
+
+
+func _on_cam_shake_timer_timeout() -> void:
+	shaking_intensity = 0.0

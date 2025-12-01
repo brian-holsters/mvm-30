@@ -1,4 +1,5 @@
 extends HitBox
+class_name Bullet
 
 const MAX_LIFETIME := 15.0
 var lifetime := 0.0
@@ -9,12 +10,20 @@ var lifetime := 0.0
 
 var contacts: int = 0
 
+static func create_bullet(
+	owner_type: String,
+	velocity: Vector2, 
+	penetration_power: int = 0, 
+	phase_through_walls: bool = false
+):
+	pass
 
 func _ready() -> void:
 	super()
 	collision_mask += 1  # Add world collision to mask for wall detection
 	body_entered.connect(_on_body_entered)
 	hit.connect(_on_hit.unbind(6))
+	Game.singleton.room_loaded.connect(queue_free)
 
 
 func _physics_process(delta: float) -> void:
