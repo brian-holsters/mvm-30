@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://chvi7vfltf0yy"]
+[gd_scene load_steps=19 format=3 uid="uid://chvi7vfltf0yy"]
 
 [ext_resource type="Script" uid="uid://1cr1rhgw3lxn" path="res://game/entities/enemies/boss_1/boss_1.gd" id="1_7drbr"]
 [ext_resource type="Script" uid="uid://divnu77umyg1s" path="res://game/scripts/outline_polygon.gd" id="2_l04rt"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://jarr1uklj0qr" path="res://assets/prototype/ssss.png" id="5_lbyba"]
 [ext_resource type="Script" uid="uid://dr0tmd1vkfnxl" path="res://game/entities/hitbox/hurt_box.gd" id="7_p831d"]
 [ext_resource type="PackedScene" uid="uid://b8kxe75yox7h4" path="res://game/entities/obstacles/laser/laser.tscn" id="8_pcmgj"]
+[ext_resource type="Theme" uid="uid://b6jal0hkamwfx" path="res://game/menus/theme.tres" id="9_lcosx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lcosx"]
 size = Vector2(78, 4)
@@ -127,6 +128,18 @@ tracks/8/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Root:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_p831d"]
@@ -347,6 +360,30 @@ tracks/7/keys = {
 "update": 1,
 "values": []
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Root/HandL:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Root/HandR:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_lbyba"]
 resource_name = "vertical_r"
@@ -445,17 +482,150 @@ tracks/6/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_lcosx"]
+resource_name = "laser_sweep"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Root:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.20000002, 0.4, 0.73333335, 2, 2.4999998),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(-80, 0), Vector2(-123, 0), Vector2(123, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Root/Head:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.20000002, 0.4, 0.53333336, 2.2, 2.3333333, 2.4999998),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, -11), Vector2(0, -11), Vector2(0, -11), Vector2(0, -11), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Root/HandL:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.20000002, 0.4, 0.53333336, 2.2, 2.3333333, 2.4999998),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-70, 42), Vector2(-70, 42), Vector2(-17.000008, 35.000004), Vector2(-17.000008, 35.000004), Vector2(-17.000008, 35.000004), Vector2(-17.000008, 35.000004), Vector2(-70, 42)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Root/HandR:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.20000002, 0.4, 0.53333336, 2.2, 2.3333333, 2.4999998),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(70, 42), Vector2(70, 42), Vector2(17.000008, 34.000004), Vector2(17.000008, 34.000004), Vector2(17.000008, 34.000004), Vector2(17.000008, 34.000004), Vector2(70, 42)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.2],
+"method": &"move_to_center"
+}]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Root/HandL:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.20000002, 0.4, 0.53333336, 2.2, 2.3333333, 2.4999998),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, -0.7853982, -0.7853982, -0.7853982, -0.7853982, 0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Root/HandR:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.20000002, 0.4, 0.53333336, 2.2, 2.3333333, 2.4999998),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.7853982, 0.7853982, 0.7853982, 0.7853982, 0.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath(".:following")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 2.3333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Root/Head/Laser")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.4, 2.3333333),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"activate"
+}, {
+"args": [],
+"method": &"deactivate"
+}]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Root:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.40000004, 0.8333334, 1.9000001, 2.4999998),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.3035243, -0.3036873, 0.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_l04rt"]
 _data = {
 &"RESET": SubResource("Animation_l04rt"),
 &"clap": SubResource("Animation_p831d"),
+&"laser_sweep": SubResource("Animation_lcosx"),
 &"vertical_l": SubResource("Animation_7drbr"),
 &"vertical_r": SubResource("Animation_lbyba")
 }
 
 [node name="Boss" type="Node2D"]
 script = ExtResource("1_7drbr")
-floor_animations = Array[String](["vertical_l", "vertical_r"])
+floor_animations = Array[String](["vertical_l", "vertical_r", "laser_sweep"])
+combat_animations = Array[String](["vertical_l", "vertical_r", "clap", "laser_sweep"])
 projectile_scene = ExtResource("2_p831d")
 
 [node name="LaserTimer" type="Timer" parent="."]
@@ -489,6 +659,9 @@ active = false
 visible = false
 monitoring = false
 script = ExtResource("4_p831d")
+custom_knockback = true
+knockback = Vector2(200, -150)
+stun_time = 0.3
 metadata/_custom_type_script = "uid://bn21x38drplvg"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Root/Head/Laser/HitBox"]
@@ -594,6 +767,26 @@ position = Vector2(0, -6)
 
 [node name="Helper" type="Marker2D" parent="."]
 position = Vector2(-69, 39)
+
+[node name="BossHUD" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" type="ProgressBar" parent="BossHUD"]
+unique_name_in_owner = true
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -123.0
+offset_top = -18.0
+offset_right = 123.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme = ExtResource("9_lcosx")
+value = 50.0
+show_percentage = false
 
 [connection signal="timeout" from="LaserTimer" to="." method="_on_laser_timer_timeout"]
 [connection signal="hp_changed" from="HealthComponent" to="." method="_on_health_component_hp_changed" flags=18]

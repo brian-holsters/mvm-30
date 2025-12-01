@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=9 format=3 uid="uid://by6t2ady0hwn7"]
+[gd_resource type="AudioBusLayout" load_steps=10 format=3 uid="uid://by6t2ady0hwn7"]
 
 [sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_n8wo2"]
 resource_name = "Compressor"
@@ -43,6 +43,12 @@ threshold = -2.2
 ratio = 5.1
 gain = 0.5
 
+[sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_7kkex"]
+resource_name = "Compressor"
+threshold = -0.8
+ratio = 1.7
+gain = 0.4
+
 [resource]
 bus/0/effect/0/effect = SubResource("AudioEffectCompressor_n8wo2")
 bus/0/effect/0/enabled = true
@@ -78,7 +84,7 @@ bus/4/name = &"Environment_Impact"
 bus/4/solo = false
 bus/4/mute = false
 bus/4/bypass_fx = false
-bus/4/volume_db = -14.062227
+bus/4/volume_db = -8.798218
 bus/4/send = &"SFX"
 bus/4/effect/0/effect = SubResource("AudioEffectCompressor_g28q7")
 bus/4/effect/0/enabled = true
@@ -90,3 +96,11 @@ bus/5/volume_db = 0.0
 bus/5/send = &"SFX"
 bus/5/effect/0/effect = SubResource("AudioEffectCompressor_dqt2m")
 bus/5/effect/0/enabled = true
+bus/6/name = &"non-diegetic"
+bus/6/solo = false
+bus/6/mute = false
+bus/6/bypass_fx = false
+bus/6/volume_db = 0.0
+bus/6/send = &"Master"
+bus/6/effect/0/effect = SubResource("AudioEffectCompressor_7kkex")
+bus/6/effect/0/enabled = true

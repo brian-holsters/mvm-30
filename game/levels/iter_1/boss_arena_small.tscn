@@ -1,0 +1,69 @@
+[gd_scene load_steps=10 format=4 uid="uid://cs21nqs11p0co"]
+
+[ext_resource type="PackedScene" uid="uid://by13a22vxwdu1" path="res://game/levels/base_level.tscn" id="1_g454m"]
+[ext_resource type="Script" uid="uid://b0ttgiq2kui22" path="res://game/levels/iter_1/boss_arena.gd" id="2_o8fiw"]
+[ext_resource type="Script" uid="uid://brm846ilo66tj" path="res://game/scripts/danger_zone.gd" id="3_43adp"]
+[ext_resource type="Script" uid="uid://bnktai1u2rqbo" path="res://game/scripts/flag_checker.gd" id="4_scstp"]
+[ext_resource type="PackedScene" uid="uid://chvi7vfltf0yy" path="res://game/entities/enemies/boss_1/boss.tscn" id="5_5rd1o"]
+[ext_resource type="TileSet" uid="uid://bxjd1yx0ntj88" path="res://assets/tilesets/main_tileset.tres" id="6_cnkwj"]
+[ext_resource type="PackedScene" uid="uid://dik57o15hkrog" path="res://game/entities/obstacles/gate/gate.tscn" id="7_pnui6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4xwdj"]
+radius = 85.030876
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pnui6"]
+size = Vector2(322, 140)
+
+[node name="Boss" instance=ExtResource("1_g454m")]
+script = ExtResource("2_o8fiw")
+
+[node name="DangerZone2D" type="Area2D" parent="." index="0"]
+position = Vector2(481, 90.5)
+collision_layer = 0
+collision_mask = 2
+monitoring = false
+script = ExtResource("3_43adp")
+boss_zone = true
+metadata/_custom_type_script = "uid://brm846ilo66tj"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DangerZone2D" index="0"]
+shape = SubResource("CircleShape2D_4xwdj")
+debug_color = Color(0, 0.79, 0.35550004, 0.3764706)
+
+[node name="BossKillFlag" type="Node2D" parent="." index="1"]
+script = ExtResource("4_scstp")
+flag = "boss_1"
+metadata/_custom_type_script = "uid://bnktai1u2rqbo"
+
+[node name="Boss" parent="." index="3" node_paths=PackedStringArray("room_center") instance=ExtResource("5_5rd1o")]
+z_index = -1
+position = Vector2(160, 86)
+room_center = NodePath("../Center")
+
+[node name="BossStart" type="Area2D" parent="." index="4"]
+position = Vector2(98, 274)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossStart" index="0"]
+position = Vector2(49, -60)
+shape = SubResource("RectangleShape2D_pnui6")
+debug_color = Color(0.7, 0.7, 0.7, 0.41960785)
+
+[node name="ExitGate" parent="Background" index="0" instance=ExtResource("7_pnui6")]
+unique_name_in_owner = true
+position = Vector2(10, 140)
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="Background" index="1"]
+tile_map_data = PackedByteArray("AAAPAAAAAAAFAAAAAAAOAAAAAAABAAIAAAANAAAAAAABAAIAAAAMAAAAAAABAAIAAAALAAAAAAABAAIAAAAKAAAAAAAAAAIAAAAEAAAAAAACAAIAAAADAAAAAAABAAIAAAACAAAAAAABAAIAAAABAAAAAAABAAIAAAABAAgAAAABAAAAAAACAAgAAAABAAAAAAADAAgAAAABAAAAAAAEAAgAAAABAAAAAAAFAAgAAAABAAAAAAAGAAgAAAABAAAAAAAHAAgAAAABAAAAAAAIAAgAAAABAAAAAAAJAAgAAAABAAAAAAAKAAgAAAABAAAAAAALAAgAAAABAAAAAAAMAAgAAAABAAAAAAAPAAgAAAAFAAEAAAAAAAAAAAAEAAAAAAAAAAEAAAACAAEAAAAAAAIAAAACAAEAAAAAAAMAAAACAAEAAAAAAAQAAAACAAEAAAAAAAUAAAACAAIAAAAAAAgAAAABAAAAAAAPAAEAAAAAAAEAAAAPAAIAAAAAAAEAAAAPAAMAAAAAAAEAAAAPAAQAAAAAAAEAAAAPAAUAAAAAAAEAAAAPAAYAAAAAAAEAAAAPAAcAAAAAAAEAAAANAAgAAAABAAAAAAAOAAgAAAABAAAAAAAQAAAAAAABAAEAAAAQAAEAAAABAAEAAAAQAAIAAAABAAEAAAAQAAMAAAABAAEAAAAQAAQAAAABAAEAAAAQAAUAAAABAAEAAAAQAAYAAAABAAEAAAAQAAcAAAABAAEAAAAQAAgAAAABAAEAAAAQAAkAAAABAAEAAAAAAAkAAAABAAEAAAABAAkAAAABAAEAAAACAAkAAAABAAEAAAADAAkAAAABAAEAAAAEAAkAAAABAAEAAAAFAAkAAAABAAEAAAAGAAkAAAABAAEAAAAHAAkAAAABAAEAAAAIAAkAAAABAAEAAAAJAAkAAAABAAEAAAAKAAkAAAABAAEAAAALAAkAAAABAAEAAAAMAAkAAAABAAEAAAANAAkAAAABAAEAAAAOAAkAAAABAAEAAAAPAAkAAAABAAEAAAAKAP//AAAAAAEAAAAEAP//AAACAAEAAAALAP//AAABAAEAAAAMAP//AAABAAEAAAANAP//AAABAAEAAAAOAP//AAABAAEAAAAPAP//AAABAAEAAAAQAP//AAABAAEAAAAAAP//AAABAAEAAAABAP//AAABAAEAAAACAP//AAABAAEAAAADAP//AAABAAEAAAD/////AAABAAEAAAD//wAAAAABAAEAAAD//wEAAAABAAEAAAD//wIAAAABAAEAAAD//wMAAAABAAEAAAD//wQAAAABAAEAAAD//wkAAAABAAEAAAD//wUAAAABAAIAAAD//wgAAAABAAAAAAA=")
+tile_set = ExtResource("6_cnkwj")
+
+[node name="Center" type="Marker2D" parent="." index="7"]
+position = Vector2(160, 92)
+
+[node name="Left" type="Marker2D" parent="Center" index="0"]
+position = Vector2(-123, 0)
+
+[connection signal="flag_checked" from="BossKillFlag" to="." method="_on_boss_kill_flag_flag_checked"]
+[connection signal="killed" from="Boss" to="." method="_on_boss_killed"]
+[connection signal="body_entered" from="BossStart" to="." method="_on_boss_start_body_entered" flags=6]

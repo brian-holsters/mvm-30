@@ -2,63 +2,138 @@
 extends AudioStreamPlayer
 class_name InteractiveMusic
 
+const exploration_index := 0
+const combat_index := 1
+
 # progression_var value (0.0 to 1.0)
 @export var progression_var: float = 0.0
+@export var danger_var: float = 0.0
+@export var boss_fight: bool = false
 var prog: float = 0.0
+var danger: float = 0.0
 
 var clip_count = 0
 var clip_index = 0
 var last_index = 0
-var lerping: bool = false
 var init_prog: float = 0.0
 
 func _ready():
-	clip_count = stream.get_clip_count()	
+	pass
 
 func _process(_delta):
 	progression_var = AudioController.progression
-	#print("var :"+str(progression_var))
-	check_prog()
+	danger_var = AudioController.danger_level
+	#print("prog :"+str(progression_var))
+	prog = check_var(prog, progression_var)
+	danger = check_var(danger, danger_var)
 	if stream:
-		choose_music_clip()
-		var synth_volume = 0
-		if prog >= 0.5:
-			synth_volume = 2*(prog-0.5)
-		else:
-			synth_volume = 2*prog
-		#print("synth volume : "+str(synth_volume))
-		var x = 0
-		while x < clip_count:
-			stream.get_clip_stream(x).set_sync_stream_volume(1,-20+20*synth_volume)
-			x+=1
+		adapt_explore_music()
+		adapt_combat_music()
 
-func choose_music_clip():
+func choose_music_clip(music):
 	if not playing:
 		return
 	
+	clip_count = music.get_clip_count()
 	if clip_count == 0:
 		return
-	
+	#print("clip_count: "+str(clip_count))
 	last_index = clip_index
 	
 	clip_index = round(prog*(clip_count-1))
-		
+	
 	#print("clip index : "+str(clip_index))
 
 	if last_index != clip_index:
-		switch_clip(clip_index)
+		switch_clip(music, clip_index)
 
-func switch_clip(index):
+func switch_clip(_music, index):
+	
 	get_stream_playback().switch_to_clip(index)
 		
-func check_prog():
-	if lerping == false:
-		if prog != progression_var:
-			lerping = true
+func check_var(private: float,public: float) -> float:
+	#print("checking private var :"+str(private)+" and public var: "+str(public))
+	if abs(private-public)<0.02:
+		private = public
+	private = lerpf(private, public, 0.07)
+	#print("returning :"+str(private))
+	return private
+
+func adapt_explore_music():
+	choose_music_clip(stream)
+	var synth_volume := 0.0
+	if prog >= 0.5:
+		synth_volume = 2.0*(prog-0.5)
 	else:
-		prog = lerp(prog, progression_var, 0.05)
-		print("lerping :"+str(prog))
-		if abs(prog-progression_var)<0.02:
-			lerping = false
-			prog = progression_var
+		synth_volume = 2.0*prog
+	#print("synth volume : "+str(synth_volume))
+	var x = 0
+	while x < clip_count:
+		get_current_exploration_stream().set_sync_stream_volume(2,convert_percent_to_db_volume(synth_volume,-20,0))
+		x+=1
+
+func adapt_combat_music():
+	var explore_volume = convert_percent_to_db_volume(danger,0.0,-40.0)
+	var combat_volume = convert_percent_to_db_volume(danger,-40.0,0.0)
+	#print("danger: "+str(danger))
+	#print("explore_volume: "+str(explore_volume))
+	#print("combat_volume: "+str(combat_volume))
+	set_explore_volume(explore_volume)
+	set_combat_volume(combat_volume)
 	
+	#bass only for the boss
+	if boss_fight:
+		set_bass_volume(0.0)
+	else:
+		set_bass_volume(-40.0)
+	
+func set_explore_volume(volume):
+	set_track_volume(get_current_part_stream(),exploration_index,volume)
+	#print("setting explore volume")
+	
+func set_combat_volume(volume):
+	set_track_volume(get_current_part_stream(),combat_index,volume)
+	#print("setting combat volume: "+str(volume))
+	
+func set_track_volume(part,index,volume):
+	part.set_sync_stream_volume(index,volume)
+	#print("volume : "+str(stream.get_sync_stream_volume(index)))
+
+func set_bass_volume(volume):
+	get_current_combat_stream().set_sync_stream_volume(1,volume)
+	#print("bass volume : "+str(get_current_exploration_stream().get_sync_stream_volume(1)))
+
+func convert_percent_to_db_volume(input: float, min_db: float, max_db: float, smooth_level: float = 3):
+		#print("convert_percent_to_db_volume from :"+str(input)+" with min_db : "+str(min_db)+" and max_db : "+str(max_db))
+		var spread := max_db-min_db
+		var smooth_var := 0.0
+		var volume := 0.0
+		var level := 0.0
+		if spread < 0:
+			#print("lowering volume with input")
+			smooth_var= smooth_level
+			level = pow(input,smooth_var)
+			volume = min_db-(abs(spread)*level)
+		else:
+			#print("raising volume with input")
+			smooth_var = 1.0/smooth_level
+			level = pow(input,smooth_var)
+			volume = (abs(spread)*level)+min_db
+		#print("volume :"+str(volume))
+		return volume
+
+func get_current_exploration_stream():
+	var exploration_stream = stream.get_clip_stream(get_stream_playback().get_current_clip_index()
+).get_sync_stream(exploration_index)
+	return exploration_stream
+
+func get_current_combat_stream():
+	#print(get_stream_playback().get_current_clip_index())
+	var combat_stream = stream.get_clip_stream(get_stream_playback().get_current_clip_index()
+).get_sync_stream(combat_index)
+	return combat_stream
+
+func get_current_part_stream():
+	var current_stream = stream.get_clip_stream(get_stream_playback().get_current_clip_index()
+)
+	return current_stream

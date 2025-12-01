@@ -23,6 +23,7 @@ func _ready() -> void:
 	collision_mask += 1  # Add world collision to mask for wall detection
 	body_entered.connect(_on_body_entered)
 	hit.connect(_on_hit.unbind(6))
+	Game.singleton.room_loaded.connect(queue_free)
 
 
 func _physics_process(delta: float) -> void:

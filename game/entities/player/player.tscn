@@ -96,7 +96,6 @@ clip_0/auto_advance = 0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2jquf"]
 random_pitch = 1.05
-random_volume_offset_db = 0.3
 streams_count = 1
 stream_0/stream = ExtResource("17_conr4")
 
@@ -494,20 +493,20 @@ metadata/_custom_type_script = "uid://b3fwraueavvlt"
 [node name="FootstepsAudio" type="AudioStreamPlayer2D" parent="Audio" index="0"]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamInteractive_aidgt")
+volume_db = -2.876
 max_polyphony = 2
 bus = &"Environment_Impact"
 
 [node name="LedgeGrabAudio" type="AudioStreamPlayer2D" parent="Audio" index="1"]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamInteractive_aidgt")
-volume_db = -6.0
+volume_db = -8.0
 max_polyphony = 2
 bus = &"Environment_Impact"
 
 [node name="LandingAudio" type="AudioStreamPlayer2D" parent="Audio" index="2"]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamInteractive_j8m7m")
-volume_db = 2.019
 max_polyphony = 2
 bus = &"Environment_Impact"
 
@@ -519,7 +518,7 @@ bus = &"mve&atk"
 [node name="HurtAudio" type="AudioStreamPlayer2D" parent="Audio" index="4"]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_or46b")
-bus = &"SFX"
+bus = &"non-diegetic"
 
 [node name="HurtBox" type="Area2D" parent="." index="9" node_paths=PackedStringArray("actor")]
 collision_layer = 8
