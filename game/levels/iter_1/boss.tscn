@@ -13,8 +13,12 @@ script/source = "extends Area2D
 
 @export var boss: Node2D
 
+func _ready() -> void:
+	AudioController.disable_music()
+
 func _on_body_entered(body: Node2D) -> void:
 	boss.active = true
+	AudioController.start_boss_music()
 	queue_free()
 "
 
