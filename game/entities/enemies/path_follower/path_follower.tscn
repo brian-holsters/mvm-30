@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cdsayh2vpmg7l"]
+[gd_scene load_steps=17 format=3 uid="uid://cdsayh2vpmg7l"]
 
 [ext_resource type="Script" uid="uid://dtfmdokhvemwe" path="res://game/entities/enemies/path_follower/path_follower.gd" id="1_2ie3k"]
 [ext_resource type="Texture2D" uid="uid://d4i2uvgp7ow46" path="res://assets/prototype/enemy.png" id="2_2kkur"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://dxql0l4ub62a0" path="res://game/entities/enemies/path_follower/states/follow_path.gd" id="8_xio2v"]
 [ext_resource type="Script" uid="uid://dmhi5n7bg5r6q" path="res://game/entities/enemies/path_follower/states/hurt.gd" id="10_lroow"]
 [ext_resource type="Script" uid="uid://brm846ilo66tj" path="res://game/scripts/danger_zone.gd" id="11_la5rj"]
+[ext_resource type="AudioStream" uid="uid://cnxv04glfn3f6" path="res://assets/sfx/enemies/floating.wav" id="12_f6ig5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dig1h"]
 radius = 17.0
@@ -20,6 +21,11 @@ radius = 13.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_la5rj"]
 radius = 300.0
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_jni1d"]
+fade_time = 0.03
+stream_count = 1
+stream_0 = ExtResource("12_f6ig5")
 
 [node name="PathEnemy" type="PathFollow2D"]
 rotates = false
@@ -95,5 +101,14 @@ metadata/_custom_type_script = "uid://brm846ilo66tj"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DangerZone2DAudioController"]
 shape = SubResource("CircleShape2D_la5rj")
 debug_color = Color(0.25641322, 0.6349437, 1.347661e-06, 0.41960785)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamPlaylist_jni1d")
+volume_db = -10.0
+autoplay = true
+max_distance = 580.0
+attenuation = 5.0
+max_polyphony = 3
+bus = &"enemies"
 
 [connection signal="hp_reached_0" from="Health" to="." method="queue_free"]
