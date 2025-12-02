@@ -51,11 +51,9 @@
 [17,5,0]
 0,0,1,-1|||uid://dgxy6df28rha1
 [14,4,0]
--1,0,0,0|ab0000,,,,||uid://cur8dfqn6pgsr
-[15,4,0]
--1,0,-1,0|ab0000,,,,||uid://cur8dfqn6pgsr
+-1,0,0,0|21105a,,,,||uid://cmnrhi7xq6pre
 [16,4,0]
-0,0,-1,0|ab0000,,,,||uid://cur8dfqn6pgsr
+0,0,1,0|ab0000,,,,||uid://cs21nqs11p0co
 [16,5,0]
 0,0,0,0|||uid://qolcaba6uy0h
 [14,5,0]
@@ -74,3 +72,5 @@
 0,-1,-1,0|||uid://brqiblera1yr7
 [14,6,0]
 0,0,0,1|||uid://6b53chjq04w1
+[15,4,0]
+0,0,-1,0|||uid://cmnrhi7xq6pre

@@ -19,10 +19,14 @@ var _required_exports: Array[String] = ["hitbox"]
 @export var show_left: bool = true:
 	set(val):
 		show_left = val
+		if not is_node_ready():
+			await ready
 		visual_l_sprite.visible = show_left
 @export var show_right: bool = true:
 	set(val):
 		show_right = val
+		if not is_node_ready():
+			await ready
 		visual_r_sprite.visible = show_right
 
 ## Only set this up in laser scene, this needs to be aligned with sfx and vfx
@@ -49,12 +53,12 @@ func activate():
 	if prep_time > 0.0:
 		# TODO: add code to be exexuted before activation here
 		await get_tree().create_timer(prep_time).timeout
-	active = true
 	if not Engine.is_editor_hint():
 		audio_stream_player_2d.play()
 	laser_sprite.show()
 	if hitbox:
 		hitbox.monitoring = true
+		hitbox.show()
 
 
 func deactivate():
@@ -63,7 +67,8 @@ func deactivate():
 	# TODO: play turning off stuff here
 	if hitbox:
 		hitbox.monitoring = false
-	active = false
+		hitbox.hide() # For Debug
+
 
 
 func _ready() -> void:

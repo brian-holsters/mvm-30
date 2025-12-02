@@ -55,7 +55,7 @@ func spawn_projectile():
 	projectile.owner_type = HitBox.ENEMY_OWNER
 	projectile.velocity = ray_cast_2d.target_position.normalized() * bullet_speed
 	projectile.phase_through_walls = bullet_phase_through_walls
-	Game.singleton.add_child(projectile)
+	Game.singleton.gameplay.add_child(projectile)
 	projectile.global_position = global_position
 
 

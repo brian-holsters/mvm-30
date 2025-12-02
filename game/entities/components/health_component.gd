@@ -1,4 +1,5 @@
 extends Node
+class_name HealthComponent
 
 signal hp_reached_0
 signal hp_changed

@@ -1,0 +1,150 @@
+[gd_scene load_steps=14 format=4 uid="uid://dmodwsarvs0y5"]
+
+[ext_resource type="PackedScene" uid="uid://by13a22vxwdu1" path="res://game/levels/base_level.tscn" id="1_wjqi1"]
+[ext_resource type="Script" uid="uid://bnktai1u2rqbo" path="res://game/scripts/flag_checker.gd" id="2_4xwdj"]
+[ext_resource type="Script" uid="uid://brm846ilo66tj" path="res://game/scripts/danger_zone.gd" id="2_kwf2v"]
+[ext_resource type="Script" uid="uid://b0ttgiq2kui22" path="res://game/levels/iter_1/boss_arena.gd" id="2_v2dtf"]
+[ext_resource type="PackedScene" uid="uid://chvi7vfltf0yy" path="res://game/entities/enemies/boss_1/boss.tscn" id="3_kwf2v"]
+[ext_resource type="TileSet" uid="uid://bxjd1yx0ntj88" path="res://assets/tilesets/main_tileset.tres" id="4_v2dtf"]
+[ext_resource type="Script" uid="uid://ba0bmlonp2suh" path="res://game/entities/interactable/interaction_area.gd" id="5_1mx5y"]
+[ext_resource type="Texture2D" uid="uid://b7nit00hasq23" path="res://assets/tilesets/main_tileset.png" id="6_slnt3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4xwdj"]
+radius = 85.030876
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_65g1t"]
+size = Vector2(118, 140)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5gmf1"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o60qj"]
+texture = ExtResource("6_slnt3")
+texture_region_size = Vector2i(20, 20)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+3:1/0 = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+0:3/0 = 0
+0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+1:3/0 = 0
+1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+2:3/0 = 0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+3:3/0 = 0
+3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+
+[sub_resource type="TileSet" id="TileSet_gjhy6"]
+tile_size = Vector2i(20, 20)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_o60qj")
+
+[node name="Boss" instance=ExtResource("1_wjqi1")]
+script = ExtResource("2_v2dtf")
+
+[node name="DangerZone2D" type="Area2D" parent="." index="0"]
+position = Vector2(481, 90.5)
+collision_layer = 0
+collision_mask = 2
+monitoring = false
+script = ExtResource("2_kwf2v")
+boss_zone = true
+metadata/_custom_type_script = "uid://brm846ilo66tj"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DangerZone2D" index="0"]
+shape = SubResource("CircleShape2D_4xwdj")
+debug_color = Color(0, 0.79, 0.35550004, 0.3764706)
+
+[node name="BossKillFlag" type="Node2D" parent="." index="1"]
+script = ExtResource("2_4xwdj")
+flag = "boss_1"
+metadata/_custom_type_script = "uid://bnktai1u2rqbo"
+
+[node name="Boss" parent="." index="3" node_paths=PackedStringArray("left_most_position", "right_most_position") instance=ExtResource("3_kwf2v")]
+z_index = -1
+position = Vector2(792, 87)
+left_most_position = NodePath("../LeftLimit")
+right_most_position = NodePath("../RightLimit")
+
+[node name="Label" type="Label" parent="." index="4"]
+offset_left = 96.0
+offset_top = 137.0
+offset_right = 160.0
+offset_bottom = 160.0
+text = "Kill Boss"
+
+[node name="BossStart" type="Area2D" parent="." index="5"]
+position = Vector2(741, 274)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossStart" index="0"]
+position = Vector2(49, -60)
+shape = SubResource("RectangleShape2D_65g1t")
+debug_color = Color(0.7, 0.7, 0.7, 0.41960785)
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="Background" index="0"]
+tile_map_data = PackedByteArray("AAAkAAAAAAACAAIAAAAqAAAAAAAAAAIAAAArAAAAAAABAAIAAAAsAAAAAAABAAIAAAAtAAAAAAABAAIAAAAuAAAAAAABAAIAAAAjAAAAAAABAAIAAAAiAAAAAAABAAIAAAAhAAAAAAABAAIAAAAgAAAAAAABAAIAAAAfAAAAAAABAAIAAAAeAAAAAAABAAIAAAAdAAAAAAABAAIAAAAcAAAAAAABAAIAAAAbAAAAAAABAAIAAAAaAAAAAAABAAIAAAAZAAAAAAABAAIAAAAYAAAAAAABAAIAAAAXAAAAAAABAAIAAAAWAAAAAAABAAIAAAAVAAAAAAABAAIAAAAUAAAAAAABAAIAAAATAAAAAAABAAIAAAASAAAAAAABAAIAAAARAAAAAAABAAIAAAAQAAAAAAABAAIAAAAPAAAAAAABAAIAAAAOAAAAAAABAAIAAAANAAAAAAABAAIAAAAMAAAAAAABAAIAAAALAAAAAAABAAIAAAAKAAAAAAABAAIAAAAJAAAAAAABAAIAAAAIAAAAAAABAAIAAAAHAAAAAAABAAIAAAAGAAAAAAABAAIAAAAFAAAAAAABAAIAAAAEAAAAAAABAAIAAAADAAAAAAABAAIAAAACAAAAAAABAAIAAAABAAAAAAABAAIAAAABAAgAAAABAAAAAAACAAgAAAABAAAAAAADAAgAAAABAAAAAAAEAAgAAAABAAAAAAAFAAgAAAABAAAAAAAGAAgAAAABAAAAAAAHAAgAAAABAAAAAAAIAAgAAAABAAAAAAAJAAgAAAABAAAAAAAKAAgAAAABAAAAAAALAAgAAAABAAAAAAAMAAgAAAACAAAAAAAPAAgAAAAAAAAAAAAQAAgAAAABAAAAAAARAAgAAAABAAAAAAASAAgAAAABAAAAAAATAAgAAAABAAAAAAAUAAgAAAABAAAAAAAVAAgAAAABAAAAAAAWAAgAAAABAAAAAAAXAAgAAAABAAAAAAAYAAgAAAABAAAAAAAZAAgAAAABAAAAAAAaAAgAAAABAAAAAAAbAAgAAAABAAAAAAAcAAgAAAABAAAAAAAdAAgAAAABAAAAAAAeAAgAAAABAAAAAAAfAAgAAAABAAAAAAAgAAgAAAABAAAAAAAhAAgAAAABAAAAAAAiAAgAAAABAAAAAAAjAAgAAAABAAAAAAAkAAgAAAABAAAAAAAlAAgAAAABAAAAAAAmAAgAAAABAAAAAAAnAAgAAAABAAAAAAAoAAgAAAABAAAAAAApAAgAAAABAAAAAAAqAAgAAAABAAAAAAArAAgAAAABAAAAAAAsAAgAAAABAAAAAAAtAAgAAAABAAAAAAAuAAgAAAABAAAAAAAvAAAAAAAFAAAAAAAvAAEAAAAAAAEAAAAvAAIAAAAAAAEAAAAvAAMAAAAAAAEAAAAvAAQAAAAAAAEAAAAvAAUAAAAAAAEAAAAvAAYAAAAAAAEAAAAvAAcAAAAAAAEAAAAvAAgAAAAFAAEAAAAAAAAAAAAEAAAAAAAAAAEAAAACAAEAAAAAAAIAAAACAAEAAAAAAAMAAAACAAEAAAAAAAQAAAACAAEAAAAAAAUAAAACAAEAAAAAAAYAAAACAAEAAAAAAAcAAAACAAEAAAAAAAgAAAAEAAEAAAAEAAcAAAAAAAQAAAAkAP//AAACAAEAAAAqAP//AAAAAAEAAAAgAAEAAAACAAEAAAAgAAIAAAACAAEAAAAgAAMAAAACAAEAAAAgAAQAAAACAAEAAAAgAAUAAAACAAEAAAAgAAYAAAACAAEAAAAgAAcAAAACAAEAAAA=")
+tile_set = ExtResource("4_v2dtf")
+
+[node name="SwitchRoot" type="Node2D" parent="Background" index="1"]
+
+[node name="GreenSwitch" type="Area2D" parent="Background/SwitchRoot" index="0"]
+position = Vector2(90, 150)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("5_1mx5y")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/SwitchRoot/GreenSwitch" index="0"]
+shape = SubResource("RectangleShape2D_5gmf1")
+
+[node name="InteractText" type="Label" parent="Background/SwitchRoot/GreenSwitch" index="1"]
+visible = false
+offset_left = -32.0
+offset_top = -51.0
+offset_right = 29.0
+offset_bottom = -28.0
+text = "↑"
+horizontal_alignment = 1
+
+[node name="Gate" type="TileMapLayer" parent="Background/SwitchRoot" index="1"]
+tile_map_data = PackedByteArray("AAANAAgAAAAAAAMAAAAOAAgAAAACAAMAAAA=")
+tile_set = SubResource("TileSet_gjhy6")
+
+[node name="LeftLimit" type="Marker2D" parent="." index="8"]
+position = Vector2(109, 92)
+
+[node name="RightLimit" type="Marker2D" parent="." index="9"]
+position = Vector2(865, 95)
+
+[connection signal="flag_checked" from="BossKillFlag" to="." method="_on_boss_kill_flag_flag_checked"]
+[connection signal="flag_checked" from="BossKillFlag" to="Boss" method="queue_free"]
+[connection signal="flag_checked" from="BossKillFlag" to="BossStart" method="queue_free"]
+[connection signal="flag_checked" from="BossKillFlag" to="Background/SwitchRoot" method="queue_free"]
+[connection signal="killed" from="Boss" to="." method="_on_boss_killed"]
+[connection signal="body_entered" from="BossStart" to="." method="_on_boss_start_body_entered" flags=6]
+[connection signal="can_interact" from="Background/SwitchRoot/GreenSwitch" to="Background/SwitchRoot/GreenSwitch/InteractText" method="show"]
+[connection signal="cannot_interact" from="Background/SwitchRoot/GreenSwitch" to="Background/SwitchRoot/GreenSwitch/InteractText" method="hide"]
+[connection signal="interact" from="Background/SwitchRoot/GreenSwitch" to="BossKillFlag" method="set_flag" unbinds=1]
+[connection signal="interact" from="Background/SwitchRoot/GreenSwitch" to="Boss" method="queue_free" unbinds=1]
+[connection signal="interact" from="Background/SwitchRoot/GreenSwitch" to="Background/SwitchRoot" method="queue_free" unbinds=1]
