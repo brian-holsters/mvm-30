@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=10 format=3 uid="uid://by6t2ady0hwn7"]
+[gd_resource type="AudioBusLayout" load_steps=11 format=3 uid="uid://by6t2ady0hwn7"]
 
 [sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_n8wo2"]
 resource_name = "Compressor"
@@ -48,6 +48,12 @@ resource_name = "Compressor"
 threshold = -0.8
 ratio = 1.7
 gain = 0.4
+
+[sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_k2ilm"]
+resource_name = "Compressor"
+threshold = -1.1
+ratio = 1.9
+gain = 0.5
 
 [resource]
 bus/0/effect/0/effect = SubResource("AudioEffectCompressor_n8wo2")
@@ -101,6 +107,14 @@ bus/6/solo = false
 bus/6/mute = false
 bus/6/bypass_fx = false
 bus/6/volume_db = 0.0
-bus/6/send = &"Master"
+bus/6/send = &"SFX"
 bus/6/effect/0/effect = SubResource("AudioEffectCompressor_7kkex")
 bus/6/effect/0/enabled = true
+bus/7/name = &"enemies"
+bus/7/solo = false
+bus/7/mute = false
+bus/7/bypass_fx = false
+bus/7/volume_db = 0.0
+bus/7/send = &"SFX"
+bus/7/effect/0/effect = SubResource("AudioEffectCompressor_k2ilm")
+bus/7/effect/0/enabled = true

@@ -21,14 +21,20 @@ func _ready():
 	pass
 
 func _process(_delta):
+	boss_fight = AudioController.boss_battle
 	progression_var = AudioController.progression
 	danger_var = AudioController.danger_level
 	#print("prog :"+str(progression_var))
 	prog = check_var(prog, progression_var)
 	danger = check_var(danger, danger_var)
 	if stream:
-		adapt_explore_music()
-		adapt_combat_music()
+		if AudioController.check_music_enabled():
+			adapt_explore_music()
+			adapt_combat_music()
+		else:
+			seek(0.0)
+			set_explore_volume(-60)
+			set_combat_volume(-60)
 
 func choose_music_clip(music):
 	if not playing:
@@ -69,12 +75,12 @@ func adapt_explore_music():
 	#print("synth volume : "+str(synth_volume))
 	var x = 0
 	while x < clip_count:
-		get_current_exploration_stream().set_sync_stream_volume(2,convert_percent_to_db_volume(synth_volume,-20,0))
+		get_current_exploration_stream().set_sync_stream_volume(2,scale_percent_to_db_volume(synth_volume,-20,0))
 		x+=1
 
 func adapt_combat_music():
-	var explore_volume = convert_percent_to_db_volume(danger,0.0,-40.0)
-	var combat_volume = convert_percent_to_db_volume(danger,-40.0,0.0)
+	var explore_volume = (scale_percent_to_db_volume(danger,0.0,-40.0))
+	var combat_volume = (scale_percent_to_db_volume(danger,-40.0,0.0))
 	#print("danger: "+str(danger))
 	#print("explore_volume: "+str(explore_volume))
 	#print("combat_volume: "+str(combat_volume))
@@ -103,8 +109,8 @@ func set_bass_volume(volume):
 	get_current_combat_stream().set_sync_stream_volume(1,volume)
 	#print("bass volume : "+str(get_current_exploration_stream().get_sync_stream_volume(1)))
 
-func convert_percent_to_db_volume(input: float, min_db: float, max_db: float, smooth_level: float = 3):
-		#print("convert_percent_to_db_volume from :"+str(input)+" with min_db : "+str(min_db)+" and max_db : "+str(max_db))
+func scale_percent_to_db_volume(input: float, min_db: float, max_db: float, smooth_level: float = 3):
+		#print("scale_percent_to_db_volume from :"+str(input)+" with min_db : "+str(min_db)+" and max_db : "+str(max_db))
 		var spread := max_db-min_db
 		var smooth_var := 0.0
 		var volume := 0.0
