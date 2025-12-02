@@ -7,6 +7,7 @@ const MAX_ENEMY_DISTANCE = 350.0
 var progression: float = 0.0
 var intro_complete: bool = false
 var boss_battle: bool = false
+var music_enabled: bool = true
 var intro_chkr: FlagNode
 var state: String = "start"
 var enemy_distance: float = MAX_ENEMY_DISTANCE
@@ -24,6 +25,10 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	#print("music state: "+str(state))
+	if boss_battle:
+		set_state("boss")
+	if not music_enabled:
+		set_state("silence")
 	match state:
 		"start":
 			intro_complete = intro_chkr.get_flag_value()
@@ -31,18 +36,20 @@ func _process(_delta: float) -> void:
 				set_state("explore")
 		"explore":
 			progression = 1.0
-			if boss_battle:
-				set_state("boss")
 		"boss":
 			danger_level = 1.0
 			if not boss_battle:
+				set_state("explore")
+		"silence":
+			if music_enabled:
 				set_state("explore")
 		"_":
 			state = "start"		
 
 func set_state(new_state):
-	state = new_state
-	print("music state: "+str(state))
+	if state != new_state:
+		state = new_state
+	#print("music state: "+str(state))
 
 func set_enemy_distance(distance):
 	if distance < MAX_ENEMY_DISTANCE:
@@ -51,3 +58,23 @@ func set_enemy_distance(distance):
 		var dist_fact = clamp((distance-MIN_ENEMY_DISTANCE)/(MAX_ENEMY_DISTANCE-MIN_ENEMY_DISTANCE),0.0,1.0)
 		danger_level = 1.0-dist_fact
 		#print("danger_level: "+str(danger_level))
+
+func enable_music():
+	music_enabled = true
+	
+func disable_music():
+	music_enabled = false
+	
+func check_music_enabled():
+	return (not state == "silence")
+	
+func start_boss_battle():
+	music_enabled = true
+	boss_battle = true
+
+func end_boss_battle():	
+	music_enabled = true
+	boss_battle = true
+
+func reset_music():
+	set_state("start")
