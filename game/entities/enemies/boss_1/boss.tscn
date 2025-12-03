@@ -628,8 +628,6 @@ floor_animations = Array[String](["vertical_l", "vertical_r", "laser_sweep"])
 combat_animations = Array[String](["vertical_l", "vertical_r", "clap", "laser_sweep"])
 projectile_scene = ExtResource("2_p831d")
 
-[node name="LaserTimer" type="Timer" parent="."]
-
 [node name="HealthComponent" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2_pcmgj")
@@ -788,6 +786,5 @@ theme = ExtResource("9_lcosx")
 value = 50.0
 show_percentage = false
 
-[connection signal="timeout" from="LaserTimer" to="." method="_on_laser_timer_timeout"]
 [connection signal="hurt" from="Root/HandL/HurtBox" to="." method="_on_hurt"]
 [connection signal="hurt" from="Root/HandR/HurtBox" to="." method="_on_hurt"]

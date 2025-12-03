@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://b5xv1vwuxh2bc"]
+
+[ext_resource type="PackedScene" uid="uid://cqqw42miprcfm" path="res://game/entities/interactable/terminal.tscn" id="1_yvrvw"]
+[ext_resource type="Theme" uid="uid://b6jal0hkamwfx" path="res://game/menus/theme.tres" id="2_pviv4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pviv4"]
+size = Vector2(220, 20)
+
+[sub_resource type="Gradient" id="Gradient_pviv4"]
+offsets = PackedFloat32Array(0.3991131, 1)
+colors = PackedColorArray(0, 0, 0, 0.5686275, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dvmlx"]
+gradient = SubResource("Gradient_pviv4")
+width = 128
+height = 24
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[node name="Terminal" instance=ExtResource("1_yvrvw")]
+
+[node name="TileMapLayer" parent="." index="0"]
+visible = false
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_pviv4")
+
+[node name="InteractText" parent="." index="2"]
+theme = ExtResource("2_pviv4")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = -1
+text = "Challenge"
+
+[node name="Sprite2D" type="Sprite2D" parent="InteractText" index="0"]
+show_behind_parent = true
+position = Vector2(32, 4)
+texture = SubResource("GradientTexture2D_dvmlx")
+
+[node name="AudioStreamPlayer2D" parent="." index="3"]
+stream = null

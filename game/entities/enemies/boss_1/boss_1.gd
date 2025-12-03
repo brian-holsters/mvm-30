@@ -8,7 +8,6 @@ extends Node2D
 @onready var floor_position: Marker2D = %FloorPosition
 @onready var health_component: HealthComponent = %HealthComponent
 @onready var laser: Node2D = %Laser
-@onready var laser_timer: Timer = $LaserTimer
 
 const buffer_size := 15
 
@@ -136,7 +135,6 @@ func _on_health_component_hp_changed(health_component: HealthComponent) -> void:
 	health_bar.value = health_component.hp
 	if health_component.hp <= phase_change_health:
 		phase = 2
-		laser_timer.start()
 
 	if health_component.hp == 0:
 		kill()
@@ -161,6 +159,8 @@ func spawn_radial_projectiles(projectile_count: float):
 		bullet_instance.global_position = projectile_spawner.global_position
 
 func start_fight():
+	await play_intro()
+	print("intro done")
 	next_move()
 	init_progress_bar()
 
@@ -174,17 +174,18 @@ func init_progress_bar():
 	health_bar.max_value = health_component.max_hp
 	health_bar.value = health_component.hp
 
-func _on_laser_timer_timeout() -> void:
-	return
-	if phase >= 2:
-		laser.toggle()
-
 
 func _on_animation_ended(animation: StringName) -> void:
-	match animation:
-		_:
-			next_move()
+	next_move()
 
 
 func move_to_center(t: float):
 	create_tween().tween_property(self, "global_position", room_center.global_position, t)
+
+
+func play_intro():
+	var tween = create_tween()
+	tween.set_parallel()
+	tween.tween_property(self, "modulate", Color.WHITE, 1.0)
+	tween.tween_property(self, "scale", Vector2.ONE, 1.0)
+	await tween.finished

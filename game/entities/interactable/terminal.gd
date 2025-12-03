@@ -1,4 +1,5 @@
 extends InteractableArea2D
+class_name Terminal
 
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = %AudioStreamPlayer2D
 @onready var interact_text: Label = $InteractText
