@@ -154,7 +154,7 @@ metadata/_custom_type_script = "uid://bn21x38drplvg"
 shape = SubResource("RectangleShape2D_68mi5")
 
 [node name="Marker2D" type="Marker2D" parent="Foreground/TripleLaser/Hitbox" index="1"]
-position = Vector2(32, -20)
+position = Vector2(32, -31)
 
 [connection signal="flag_checked" from="BossKilledFlagNode" to="Foreground/EscapePath" method="queue_free"]
 [connection signal="flag_checked" from="BossKilledFlagNode" to="Foreground/TripleLaser/ActiveLaser" method="deactivate"]
