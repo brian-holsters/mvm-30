@@ -6,9 +6,8 @@ const exploration_index := 0
 const combat_index := 1
 
 # progression_var value (0.0 to 1.0)
-@export var progression_var: float = 0.0
-@export var danger_var: float = 0.0
 @export var boss_fight: bool = false
+var state : AudioController.MusicState
 var prog: float = 0.0
 var danger: float = 0.0
 
@@ -21,12 +20,10 @@ func _ready():
 	pass
 
 func _process(_delta):
-	boss_fight = AudioController.boss_battle
-	progression_var = AudioController.progression
-	danger_var = AudioController.danger_level
-	#print("prog :"+str(progression_var))
-	prog = check_var(prog, progression_var)
-	danger = check_var(danger, danger_var)
+	state = AudioController.get_state()
+	boss_fight = (state == AudioController.MusicState.BOSS)
+	prog = AudioController.get_progression()
+	danger = AudioController.get_danger()
 	if stream:
 		if AudioController.check_music_enabled():
 			adapt_explore_music()
@@ -56,14 +53,6 @@ func choose_music_clip(music):
 func switch_clip(_music, index):
 	
 	get_stream_playback().switch_to_clip(index)
-		
-func check_var(private: float,public: float) -> float:
-	#print("checking private var :"+str(private)+" and public var: "+str(public))
-	if abs(private-public)<0.02:
-		private = public
-	private = lerpf(private, public, 0.07)
-	#print("returning :"+str(private))
-	return private
 
 func adapt_explore_music():
 	choose_music_clip(stream)

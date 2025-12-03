@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://rx62opg8jmrd" path="res://game/entities/player/player.tscn" id="2_vasa2"]
 [ext_resource type="Script" uid="uid://cg38swpl3yhck" path="res://game/hud/hud.gd" id="3_4fuuu"]
 [ext_resource type="Script" uid="uid://cjwldoqugpfjr" path="res://game/hud/hp_gauge.gd" id="3_h7iqs"]
-[ext_resource type="PackedScene" uid="uid://darh0gll5xrb3" path="res://game/entities/camera/camera_2d.tscn" id="3_y36n6"]
+[ext_resource type="PackedScene" path="res://game/entities/camera/camera_2d.tscn" id="3_y36n6"]
 [ext_resource type="PackedScene" uid="uid://bjb4a35tmdltw" path="res://game/entities/audio/starship_music.tscn" id="8_l8g03"]
 [ext_resource type="PackedScene" uid="uid://cj1yda4kh6hpr" path="res://game/entities/audio/ship_ambiance.tscn" id="8_y36n6"]
 [ext_resource type="PackedScene" uid="uid://c2g005lykkcsd" path="res://game/menus/pause_menu.tscn" id="12_qf6n1"]

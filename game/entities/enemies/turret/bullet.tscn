@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://c4sfinn3rsf2j"]
+[gd_scene load_steps=5 format=3 uid="uid://c4sfinn3rsf2j"]
 
 [ext_resource type="Script" uid="uid://cxsw4yc0tcldc" path="res://game/entities/enemies/turret/bullet.gd" id="1_7ub6m"]
-[ext_resource type="Script" uid="uid://brm846ilo66tj" path="res://game/scripts/danger_zone.gd" id="2_d7mgs"]
 
 [sub_resource type="Gradient" id="Gradient_7ub6m"]
 offsets = PackedFloat32Array(0, 0.2949002, 0.63414633, 0.8736142)
@@ -18,9 +17,6 @@ fill_to = Vector2(0.5, 0)
 [sub_resource type="CircleShape2D" id="CircleShape2D_7ub6m"]
 radius = 4.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_hihbt"]
-radius = 300.0
-
 [node name="Bullet" type="Area2D"]
 collision_layer = 16
 collision_mask = 8
@@ -32,13 +28,3 @@ texture = SubResource("GradientTexture2D_d7mgs")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_7ub6m")
-
-[node name="DangerZone2DController" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
-script = ExtResource("2_d7mgs")
-metadata/_custom_type_script = "uid://brm846ilo66tj"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DangerZone2DController"]
-shape = SubResource("CircleShape2D_hihbt")
-debug_color = Color(0.25641322, 0.6349437, 1.347661e-06, 0.41960785)

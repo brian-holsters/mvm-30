@@ -160,6 +160,7 @@ dialogic_default_action={
 2d_physics/layer_4="player_hurtbox"
 2d_physics/layer_5="enemy_hitbox"
 2d_physics/layer_6="enemy_hurtboxs"
+2d_physics/layer_8="danger_detection"
 
 [rendering]
 

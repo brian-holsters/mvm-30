@@ -20,10 +20,10 @@ fill_to = Vector2(0.5, 0)
 [sub_resource type="CircleShape2D" id="CircleShape2D_6n1f5"]
 radius = 180.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_rfjow"]
-radius = 300.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_us2un"]
+radius = 100.0
 
-[node name="Turret" type="Node2D"]
+[node name="Turret" type="Node2D" groups=["enemies"]]
 script = ExtResource("1_6n1f5")
 bullet_scene = ExtResource("2_6a24u")
 bullet_speed = 120.0
@@ -50,12 +50,13 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
 shape = SubResource("CircleShape2D_6n1f5")
 
-[node name="DangerZone2DAudioController" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
+[node name="DangerZone2D" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 0
+monitoring = false
 script = ExtResource("4_us2un")
 metadata/_custom_type_script = "uid://brm846ilo66tj"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DangerZone2DAudioController"]
-shape = SubResource("CircleShape2D_rfjow")
-debug_color = Color(0.25641322, 0.6349437, 1.347661e-06, 0.41960785)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DangerZone2D"]
+shape = SubResource("CircleShape2D_us2un")
+debug_color = Color(0.6457, 0.3424866, 0.98099977, 0.41960785)

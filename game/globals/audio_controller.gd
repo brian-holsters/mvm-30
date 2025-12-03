@@ -3,16 +3,39 @@ extends Node
 const MIN_ENEMY_DISTANCE = -50.0
 const MAX_ENEMY_DISTANCE = 350.0
 
-#progression between 0.0 and 1.0
+enum MusicState {
+	START,
+	EXPLORE,
+	BOSS,
+	SILENCE,
+}
+
+#publicly accessible
+@export var progression_var: float = 0.0
+@export var danger_var: float = 0.0
+
+#progression and danger between 0.0 and 1.0 - calculated from the public
+#variables after smoothing out
 var progression: float = 0.0
-var intro_complete: bool = false
-var boss_battle: bool = false
-var music_enabled: bool = true
-var intro_chkr: FlagNode
-var state: String = "start"
-var enemy_distance: float = MAX_ENEMY_DISTANCE
 var danger_level: float = 0.0
 
+var intro_complete: bool = false
+var intro_chkr: FlagNode
+var state: MusicState = MusicState.START
+var enemy_distance: float = MAX_ENEMY_DISTANCE
+
+#--------------------------------------------------------
+#internal object
+
+#to smooth out variable changes
+func change_var(private: float,public: float, factor := 0.05) -> float:
+	#print("checking private var :"+str(private)+" and public var: "+str(public))
+	if abs(private-public)<0.02:
+		private = public
+	private = lerpf(private, public, factor)
+	#print("returning :"+str(private))
+	return private
+	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	intro_chkr = FlagNode.new()
@@ -24,32 +47,60 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	
+	#checking progression and danger level, smoothing out transitions
+	progression = change_var(progression, progression_var, 0.07)
+	danger_level = change_var(danger_level, danger_var, 0.07)
+	
 	#print("music state: "+str(state))
-	if boss_battle:
-		set_state("boss")
-	if not music_enabled:
-		set_state("silence")
 	match state:
-		"start":
+		MusicState.START:
 			intro_complete = intro_chkr.get_flag_value()
 			if intro_complete:
-				set_state("explore")
-		"explore":
-			progression = 1.0
-		"boss":
-			danger_level = 1.0
-			if not boss_battle:
-				set_state("explore")
-		"silence":
-			if music_enabled:
-				set_state("explore")
+				set_state(MusicState.EXPLORE)
+		MusicState.EXPLORE:
+			pass
+		MusicState.BOSS:
+			pass
+		MusicState.SILENCE:
+			pass
 		"_":
-			state = "start"		
+			state = MusicState.START		
 
-func set_state(new_state):
-	if state != new_state:
-		state = new_state
-	#print("music state: "+str(state))
+func set_state(new_state: MusicState):
+	if new_state == state:
+		return
+	_exit_state(state)
+	state = new_state
+	_enter_state(state)
+
+func get_state() -> MusicState:
+	return state
+	
+func _enter_state(s):
+	match s:
+		MusicState.START:
+			pass
+		MusicState.EXPLORE:
+			pass
+		MusicState.BOSS:
+			danger_level = 1.0
+		MusicState.SILENCE:
+			pass
+
+func _exit_state(s):
+	match s:
+		MusicState.START:
+			pass
+		MusicState.EXPLORE:
+			pass
+		MusicState.BOSS:
+			danger_level = 0.0
+		MusicState.SILENCE:
+			pass
+
+#----------------------------------------------------------------
+#public interface
 
 func set_enemy_distance(distance):
 	if distance < MAX_ENEMY_DISTANCE:
@@ -60,26 +111,35 @@ func set_enemy_distance(distance):
 		#print("danger_level: "+str(danger_level))
 
 func enable_music():
-	music_enabled = true
+	set_state(MusicState.START)
 	
 func disable_music():
-	music_enabled = false
+	set_state(MusicState.SILENCE)
 	
 func check_music_enabled():
-	return (not state == "silence")
+	return (not state == MusicState.SILENCE)
 	
 func start_boss_battle():
-	music_enabled = true
-	boss_battle = true
+	set_state(MusicState.BOSS)
 
 func end_boss_battle():
-	music_enabled = true
-	boss_battle = false
+	set_state(MusicState.START)
 
 func reset_music():
 	danger_level = 0.0
 	progression = 0.0
 	intro_complete = false
-	boss_battle = false
-	music_enabled = true
-	set_state("start")
+	enemy_distance = MAX_ENEMY_DISTANCE
+	set_state(MusicState.START)
+	
+func set_progression(value: float):
+	progression_var = value
+	
+func get_progression() -> float :
+	return progression
+	
+func set_danger(value: float):
+	danger_var = value
+	
+func get_danger() -> float :
+	return danger_level
