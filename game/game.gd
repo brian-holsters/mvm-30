@@ -55,6 +55,11 @@ func _ready() -> void:
 	singleton = self
 	
 	########################
+	## AUDIO_CONTROLLER
+	########################
+	AudioController.reset_music()
+	
+	########################
 	## GAME_STATE
 	########################
 	EventHub.game_paused.connect(_pause_game)
