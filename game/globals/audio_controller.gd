@@ -74,7 +74,8 @@ func start_boss_battle():
 
 func end_boss_battle():	
 	music_enabled = true
-	boss_battle = true
+	boss_battle = false
+	set_state("_")
 
 func reset_music():
 	set_state("start")
