@@ -44,6 +44,7 @@ func _ready() -> void:
 	deactivate_hand("L")
 	deactivate_hand("R")
 	reset_probability_list()
+	health_component.hp_changed.connect(_on_health_component_hp_changed.bind(health_component))
 	animation_player.animation_finished.connect(_on_animation_ended)
 
 

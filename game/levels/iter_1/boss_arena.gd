@@ -6,7 +6,6 @@ extends Node2D
 @onready var exit_gate: Gate = %ExitGate
 
 func _ready() -> void:
-	tree_exiting.connect(_on_tree_exiting)
 	if not boss_kill_flag.get_flag_value():
 		AudioController.disable_music()
 
@@ -23,12 +22,6 @@ func _on_boss_killed() -> void:
 	boss_kill_flag.set_flag()
 	exit_gate.open_up()
 #endregion
-
-
-func _on_tree_exiting() -> void:
-	AudioController.danger_level = 0.0
-	AudioController.end_boss_battle()
-	AudioController.enable_music()
 
 
 # When entering the room after killing the boss

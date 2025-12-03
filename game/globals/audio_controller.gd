@@ -72,10 +72,14 @@ func start_boss_battle():
 	music_enabled = true
 	boss_battle = true
 
-func end_boss_battle():	
+func end_boss_battle():
 	music_enabled = true
 	boss_battle = false
-	set_state("_")
 
 func reset_music():
+	danger_level = 0.0
+	progression = 0.0
+	intro_complete = false
+	boss_battle = false
+	music_enabled = true
 	set_state("start")
