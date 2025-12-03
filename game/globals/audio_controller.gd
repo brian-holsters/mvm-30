@@ -52,7 +52,7 @@ func _process(_delta: float) -> void:
 	progression = change_var(progression, progression_var, 0.07)
 	danger_level = change_var(danger_level, danger_var, 0.07)
 	
-	#print("music state: "+str(state))
+	print("music state: "+str(state))
 	match state:
 		MusicState.START:
 			intro_complete = intro_chkr.get_flag_value()
