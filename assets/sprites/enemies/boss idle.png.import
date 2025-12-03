@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://wcbkrkdbjovc"
-path="res://.godot/imported/jump frames-Sheet.png-e24cc82d5c9ad410e30a43337e7597a4.ctex"
+uid="uid://bamsjgf86a4kn"
+path="res://.godot/imported/boss idle.png-39dd5948f3783735126b74ef40d562b2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/bluebrains_character_controller/sprites/Air Spin/jump frames-Sheet.png"
-dest_files=["res://.godot/imported/jump frames-Sheet.png-e24cc82d5c9ad410e30a43337e7597a4.ctex"]
+source_file="res://assets/sprites/enemies/boss idle.png"
+dest_files=["res://.godot/imported/boss idle.png-39dd5948f3783735126b74ef40d562b2.ctex"]
 
 [params]
 

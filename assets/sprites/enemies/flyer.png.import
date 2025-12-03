@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crjypm48rohr"
-path="res://.godot/imported/hang.png-2c1c0ee3c4067919764ec4c69a726d38.ctex"
+uid="uid://3vpg2c8q2qrj"
+path="res://.godot/imported/flyer.png-67e76134f06c9845d72afc3d1d1b3e0b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/bluebrains_character_controller/sprites/Idle/hang.png"
-dest_files=["res://.godot/imported/hang.png-2c1c0ee3c4067919764ec4c69a726d38.ctex"]
+source_file="res://assets/sprites/enemies/flyer.png"
+dest_files=["res://.godot/imported/flyer.png-67e76134f06c9845d72afc3d1d1b3e0b.ctex"]
 
 [params]
 
