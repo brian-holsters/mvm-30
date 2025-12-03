@@ -142,6 +142,7 @@ func _on_health_component_hp_changed(health_component: HealthComponent) -> void:
 
 func impact():
 	Game.singleton.camera.shake(0.2)
+	%ImpactAudio.play()
 	if phase >= 2:
 		spawn_radial_projectiles(2)
 
