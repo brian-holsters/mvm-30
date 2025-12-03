@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://rx62opg8jmrd"]
+[gd_scene load_steps=55 format=3 uid="uid://rx62opg8jmrd"]
 
 [ext_resource type="PackedScene" uid="uid://vie2pd3qfb5e" path="res://addons/bluebrains_character_controller/character_controller/2d_character_controller_base.tscn" id="1_heu0c"]
 [ext_resource type="Script" uid="uid://d6b1dyqshq61" path="res://game/entities/player/mvm30_player.gd" id="2_t56eh"]
@@ -39,6 +39,7 @@
 [ext_resource type="AudioStream" uid="uid://d2jbuv1e7hg03" path="res://assets/sfx/HUD/Hurt.wav" id="36_ijn2u"]
 [ext_resource type="Texture2D" uid="uid://cjfif0e0a8lg0" path="res://assets/sprites/vfx/48x48_FX_0.png" id="38_hy8ba"]
 [ext_resource type="Script" uid="uid://bn21x38drplvg" path="res://game/entities/hitbox/hit_box.gd" id="38_yragl"]
+[ext_resource type="Script" uid="uid://8ioi62617lvw" path="res://game/scripts/danger_detector.gd" id="40_bcb3w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_heu0c"]
 size = Vector2(12, 30)
@@ -122,6 +123,9 @@ height = 28.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hy8ba"]
 radius = 17.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bcb3w"]
+radius = 300.0
 
 [node name="PlayerCharacter" groups=["player"] instance=ExtResource("1_heu0c")]
 collision_layer = 2
@@ -547,6 +551,17 @@ debug_color = Color(0, 0.7, 0.08166675, 0.16862746)
 [node name="DashEffect" type="Sprite2D" parent="VFX" index="0"]
 visible = false
 texture = ExtResource("38_hy8ba")
+
+[node name="DangerDetector2D" type="Area2D" parent="." index="12"]
+collision_layer = 0
+collision_mask = 128
+monitorable = false
+script = ExtResource("40_bcb3w")
+metadata/_custom_type_script = "uid://8ioi62617lvw"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DangerDetector2D" index="0"]
+shape = SubResource("CircleShape2D_bcb3w")
+debug_color = Color(0.65646917, 0.3787693, 0.8926461, 0.41960785)
 
 [connection signal="frame_changed" from="AnimatedSprite2D" to="AnimatedSprite2D" method="_on_frame_changed"]
 [connection signal="state_changed" from="StateMachine" to="BehaviourVariables" method="_on_state_machine_state_changed"]

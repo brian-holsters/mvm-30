@@ -741,7 +741,7 @@ debug_color = Color(0.68036836, 0.49489152, 0.27020267, 0.41960785)
 
 [node name="Node2D" type="Node2D" parent="Root"]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." groups=["enemies"]]
 unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_l04rt")
