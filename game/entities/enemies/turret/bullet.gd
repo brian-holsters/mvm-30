@@ -19,7 +19,6 @@ static func create_bullet(
 	pass
 
 func _ready() -> void:
-	%LaunchAudio.play()
 	super()
 	collision_mask += 1  # Add world collision to mask for wall detection
 	body_entered.connect(_on_body_entered)
@@ -28,7 +27,6 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	play_live_sound()
 	lifetime += delta
 	if lifetime > MAX_LIFETIME:
 		queue_free()
@@ -52,17 +50,4 @@ func _on_body_entered(body: Node):
 
 func kill():
 	# TODO: Explosion?
-	play_death_sound()
 	queue_free()
-
-func play_live_sound():
-	if not (%LoopAudio.playing):
-		%LoopAudio.play()
-	
-func play_death_sound():
-	var sfx = %ExplodeAudio.duplicate()
-	sfx.global_position = global_position
-	get_tree().current_scene.add_child(sfx)
-	sfx.play()
-	# automatically free the sound once done
-	sfx.connect("finished", sfx.queue_free)

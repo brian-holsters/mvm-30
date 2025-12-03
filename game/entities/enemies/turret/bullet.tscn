@@ -1,9 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://c4sfinn3rsf2j"]
+[gd_scene load_steps=5 format=3 uid="uid://c4sfinn3rsf2j"]
 
 [ext_resource type="Script" uid="uid://cxsw4yc0tcldc" path="res://game/entities/enemies/turret/bullet.gd" id="1_7ub6m"]
-[ext_resource type="AudioStream" uid="uid://dthx3i57y18l5" path="res://assets/sfx/environment/energy_balls/energy_ball_loop.mp3" id="2_1ka73"]
-[ext_resource type="AudioStream" uid="uid://qyex1yw7bwwl" path="res://assets/sfx/environment/energy_balls/energy_ball_launch.wav" id="3_s8qs5"]
-[ext_resource type="AudioStream" uid="uid://jkulginxmg6j" path="res://assets/sfx/environment/energy_balls/energy_ball_explosion.wav" id="4_5ig7k"]
 
 [sub_resource type="Gradient" id="Gradient_7ub6m"]
 offsets = PackedFloat32Array(0, 0.2949002, 0.63414633, 0.8736142)
@@ -20,22 +17,6 @@ fill_to = Vector2(0.5, 0)
 [sub_resource type="CircleShape2D" id="CircleShape2D_7ub6m"]
 radius = 4.0
 
-[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_ikioa"]
-stream_count = 1
-stream_0 = ExtResource("2_1ka73")
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tnqkl"]
-random_pitch = 1.05
-random_volume_offset_db = 0.4
-streams_count = 1
-stream_0/stream = ExtResource("3_s8qs5")
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tfklk"]
-random_pitch = 1.05
-random_volume_offset_db = 0.4
-streams_count = 1
-stream_0/stream = ExtResource("4_5ig7k")
-
 [node name="Bullet" type="Area2D"]
 collision_layer = 16
 collision_mask = 8
@@ -47,26 +28,3 @@ texture = SubResource("GradientTexture2D_d7mgs")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_7ub6m")
-
-[node name="Audio" type="Node2D" parent="."]
-
-[node name="LoopAudio" type="AudioStreamPlayer2D" parent="Audio"]
-unique_name_in_owner = true
-stream = SubResource("AudioStreamPlaylist_ikioa")
-volume_db = -3.0
-max_distance = 200.0
-attenuation = 8.0
-max_polyphony = 10
-bus = &"enemies"
-
-[node name="LaunchAudio" type="AudioStreamPlayer2D" parent="Audio"]
-unique_name_in_owner = true
-stream = SubResource("AudioStreamRandomizer_tnqkl")
-max_distance = 1000.0
-attenuation = 3.0
-bus = &"enemies"
-
-[node name="ExplodeAudio" type="AudioStreamPlayer2D" parent="Audio"]
-unique_name_in_owner = true
-stream = SubResource("AudioStreamRandomizer_tfklk")
-bus = &"Environment_Impact"
