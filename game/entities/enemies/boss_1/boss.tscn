@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://chvi7vfltf0yy"]
+[gd_scene load_steps=21 format=3 uid="uid://chvi7vfltf0yy"]
 
 [ext_resource type="Script" uid="uid://1cr1rhgw3lxn" path="res://game/entities/enemies/boss_1/boss_1.gd" id="1_7drbr"]
 [ext_resource type="Script" uid="uid://divnu77umyg1s" path="res://game/scripts/outline_polygon.gd" id="2_l04rt"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://dr0tmd1vkfnxl" path="res://game/entities/hitbox/hurt_box.gd" id="7_p831d"]
 [ext_resource type="PackedScene" uid="uid://b8kxe75yox7h4" path="res://game/entities/obstacles/laser/laser.tscn" id="8_pcmgj"]
 [ext_resource type="Theme" uid="uid://b6jal0hkamwfx" path="res://game/menus/theme.tres" id="9_lcosx"]
+[ext_resource type="AudioStream" uid="uid://b2rkn2dwikndg" path="res://assets/sfx/enemies/heavy_hit.wav" id="10_is65n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lcosx"]
 size = Vector2(78, 4)
@@ -622,6 +623,12 @@ _data = {
 &"vertical_r": SubResource("Animation_lbyba")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_n4sji"]
+random_pitch = 1.1
+random_volume_offset_db = 0.4
+streams_count = 1
+stream_0/stream = ExtResource("10_is65n")
+
 [node name="Boss" type="Node2D"]
 script = ExtResource("1_7drbr")
 floor_animations = Array[String](["vertical_l", "vertical_r", "laser_sweep"])
@@ -785,6 +792,13 @@ mouse_filter = 2
 theme = ExtResource("9_lcosx")
 value = 50.0
 show_percentage = false
+
+[node name="Audio" type="Node2D" parent="."]
+
+[node name="ImpactAudio" type="AudioStreamPlayer2D" parent="Audio"]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_n4sji")
+bus = &"SFX"
 
 [connection signal="hurt" from="Root/HandL/HurtBox" to="." method="_on_hurt"]
 [connection signal="hurt" from="Root/HandR/HurtBox" to="." method="_on_hurt"]

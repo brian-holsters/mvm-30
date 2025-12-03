@@ -84,7 +84,7 @@ func _enter_state(s):
 		MusicState.EXPLORE:
 			pass
 		MusicState.BOSS:
-			danger_level = 1.0
+			danger_var = 1.0
 		MusicState.SILENCE:
 			pass
 
@@ -95,7 +95,7 @@ func _exit_state(s):
 		MusicState.EXPLORE:
 			pass
 		MusicState.BOSS:
-			danger_level = 0.0
+			danger_var = 0.0
 		MusicState.SILENCE:
 			pass
 
@@ -107,7 +107,7 @@ func set_enemy_distance(distance):
 		enemy_distance = min(distance, enemy_distance)
 		#print("closest enemy distance: "+str(distance))
 		var dist_fact = clamp((distance-MIN_ENEMY_DISTANCE)/(MAX_ENEMY_DISTANCE-MIN_ENEMY_DISTANCE),0.0,1.0)
-		danger_level = 1.0-dist_fact
+		danger_var = 1.0-dist_fact
 		#print("danger_level: "+str(danger_level))
 
 func enable_music():

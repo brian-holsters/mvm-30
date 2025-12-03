@@ -10,14 +10,9 @@ func _on_ready():
 	detector_shape.shape.radius = AudioController.MAX_ENEMY_DISTANCE
 	
 func  _physics_process(_delta: float) -> void:
-	boss = false
 	var distance = get_closest_distance()
 	#print("distance: "+str(distance))
 	AudioController.set_enemy_distance(distance)
-	if boss:
-		AudioController.start_boss_battle()
-	else:
-		AudioController.end_boss_battle()
 
 func get_closest_distance() -> float:
 	var closest := INF
@@ -30,5 +25,4 @@ func get_closest_distance() -> float:
 			if d < closest:
 				closest = d
 			#print(closest)
-			boss = body.boss or boss
 	return closest

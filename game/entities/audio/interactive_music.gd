@@ -24,6 +24,9 @@ func _process(_delta):
 	boss_fight = (state == AudioController.MusicState.BOSS)
 	prog = AudioController.get_progression()
 	danger = AudioController.get_danger()
+	#print("boss_fight: "+str(boss_fight))
+	#print("progression: "+str(prog))
+	#print("danger: "+str(danger))
 	if stream:
 		if AudioController.check_music_enabled():
 			adapt_explore_music()
