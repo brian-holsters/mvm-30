@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5gvibko2pl60"
-path="res://.godot/imported/idle.png-e903db7b9b2b9527cf1658dd21b43cd7.ctex"
+uid="uid://c2us3phktde3u"
+path="res://.godot/imported/flyer death.png-ae94165c1cbf2501df210591adfaa93f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/bluebrains_character_controller/sprites/Idle/idle.png"
-dest_files=["res://.godot/imported/idle.png-e903db7b9b2b9527cf1658dd21b43cd7.ctex"]
+source_file="res://assets/sprites/enemies/flyer death.png"
+dest_files=["res://.godot/imported/flyer death.png-ae94165c1cbf2501df210591adfaa93f.ctex"]
 
 [params]
 

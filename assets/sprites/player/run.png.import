@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddmshkrmsix88"
-path="res://.godot/imported/run frames-Sheet.png-aa10708901aabfdbe9951e3f14833990.ctex"
+uid="uid://dda36m2hl6x1p"
+path="res://.godot/imported/run.png-41fe581b40f1902d53f94194ab462570.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/bluebrains_character_controller/sprites/Run/run frames-Sheet.png"
-dest_files=["res://.godot/imported/run frames-Sheet.png-aa10708901aabfdbe9951e3f14833990.ctex"]
+source_file="res://assets/sprites/player/run.png"
+dest_files=["res://.godot/imported/run.png-41fe581b40f1902d53f94194ab462570.ctex"]
 
 [params]
 

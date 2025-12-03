@@ -139,7 +139,7 @@ shape = SubResource("RectangleShape2D_heu0c")
 unique_name_in_owner = true
 position = Vector2(0, -1)
 sprite_frames = ExtResource("3_xt77v")
-animation = &"air_up"
+animation = &"air_down"
 script = ExtResource("4_aidgt")
 grounded_state = NodePath("../StateMachine/Grounded")
 

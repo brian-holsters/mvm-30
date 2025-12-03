@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxbedbjwpnwjt"
-path="res://.godot/imported/anticipation.png-ac2ce9f5677a3d3f0df53f41ae425d00.ctex"
+uid="uid://ceerd2gr30vgy"
+path="res://.godot/imported/idle.png-2cb965df3e6a5f0b5f636e7c2da3ca19.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/bluebrains_character_controller/sprites/Idle/anticipation.png"
-dest_files=["res://.godot/imported/anticipation.png-ac2ce9f5677a3d3f0df53f41ae425d00.ctex"]
+source_file="res://assets/sprites/player/idle.png"
+dest_files=["res://.godot/imported/idle.png-2cb965df3e6a5f0b5f636e7c2da3ca19.ctex"]
 
 [params]
 

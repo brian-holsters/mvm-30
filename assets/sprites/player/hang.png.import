@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://3ax7icspulkl"
-path="res://.godot/imported/dash.png-e716f63bb8d87830ee26aea4b63aa7b7.ctex"
+uid="uid://b7uchj8to1cni"
+path="res://.godot/imported/hang.png-082e348c8888e2e6be380fd40a95316b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/bluebrains_character_controller/sprites/Idle/dash.png"
-dest_files=["res://.godot/imported/dash.png-e716f63bb8d87830ee26aea4b63aa7b7.ctex"]
+source_file="res://assets/sprites/player/hang.png"
+dest_files=["res://.godot/imported/hang.png-082e348c8888e2e6be380fd40a95316b.ctex"]
 
 [params]
 
