@@ -1,9 +1,21 @@
-[gd_scene load_steps=3 format=4 uid="uid://boi8smfjdhdqk"]
+[gd_scene load_steps=6 format=4 uid="uid://boi8smfjdhdqk"]
 
 [ext_resource type="PackedScene" uid="uid://by13a22vxwdu1" path="res://game/levels/base_level.tscn" id="1_mh2u3"]
+[ext_resource type="Script" uid="uid://bnktai1u2rqbo" path="res://game/scripts/flag_checker.gd" id="2_1bmnb"]
 [ext_resource type="TileSet" uid="uid://bxjd1yx0ntj88" path="res://assets/tilesets/main_tileset.tres" id="2_mh2u3"]
+[ext_resource type="Script" uid="uid://d15w7co7lxbq1" path="res://game/scripts/text_player.gd" id="3_6w6k2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_78cb0"]
+size = Vector2(88.99361, 85.84879)
 
 [node name="PreBoss" instance=ExtResource("1_mh2u3")]
+
+[node name="Flags" type="Node2D" parent="." index="0"]
+
+[node name="FirstLoreFlag" type="Node" parent="Flags" index="0"]
+script = ExtResource("2_1bmnb")
+flag = "first_lore_played"
+metadata/_custom_type_script = "uid://bnktai1u2rqbo"
 
 [node name="BackGroundR" type="TileMapLayer" parent="Background" index="0"]
 modulate = Color(0.49803922, 0.49803922, 0.49803922, 1)
@@ -22,3 +34,22 @@ collision_enabled = false
 [node name="TileMapLayer2" type="TileMapLayer" parent="Background" index="2"]
 tile_map_data = PackedByteArray("AAAAAAAAAAABAAIAAAABAAAAAAABAAIAAAACAAAAAAABAAIAAAADAAAAAAABAAIAAAAEAAAAAAABAAIAAAAFAAAAAAABAAIAAAAGAAAAAAABAAIAAAAHAAAAAAABAAIAAAAIAAAAAAABAAIAAAAJAAAAAAABAAIAAAAKAAAAAAABAAIAAAALAAAAAAABAAIAAAAMAAAAAAABAAIAAAANAAAAAAABAAIAAAAOAAAAAAABAAIAAAAPAAAAAAABAAIAAAAQAAAAAAABAAIAAAARAAAAAAABAAIAAAASAAAAAAABAAIAAAATAAAAAAABAAIAAAAUAAAAAAABAAIAAAAVAAAAAAABAAIAAAAWAAAAAAADAAEAAAAXAAAAAAABAAIAAAAYAAAAAAABAAIAAAAZAAAAAAABAAIAAAAaAAAAAAABAAIAAAAbAAAAAAABAAIAAAAcAAAAAAABAAIAAAAdAAAAAAABAAIAAAAeAAAAAAABAAIAAAAfAAAAAAAAAAEAAAAfAAEAAAAAAAEAAAAfAAIAAAAAAAEAAAAfAAMAAAAAAAEAAAAfAAQAAAAAAAIAAAAAAAgAAAABAAEAAAABAAgAAAABAAEAAAACAAgAAAABAAEAAAADAAgAAAAEAAEAAAAEAAgAAAABAAAAAAAFAAgAAAABAAAAAAAGAAgAAAABAAAAAAAHAAgAAAADAAEAAAAIAAgAAAABAAAAAAAJAAgAAAABAAAAAAAKAAgAAAABAAAAAAALAAgAAAABAAAAAAAMAAgAAAADAAEAAAANAAgAAAABAAAAAAAOAAgAAAABAAAAAAAPAAgAAAABAAAAAAAQAAgAAAABAAAAAAARAAgAAAADAAEAAAASAAgAAAABAAAAAAATAAgAAAABAAAAAAAUAAgAAAABAAAAAAAVAAgAAAABAAAAAAAWAAgAAAABAAAAAAAXAAgAAAABAAAAAAAYAAgAAAABAAAAAAAZAAgAAAABAAAAAAAaAAgAAAABAAAAAAAbAAgAAAABAAAAAAAcAAgAAAABAAAAAAAdAAgAAAABAAAAAAAeAAgAAAABAAAAAAAfAAgAAAABAAAAAAAAAAUAAAABAAEAAAAAAAYAAAABAAEAAAAAAAcAAAABAAEAAAAAAAQAAAABAAAAAAABAAQAAAABAAAAAAACAAQAAAABAAAAAAADAAQAAAACAAAAAAABAAUAAAABAAEAAAABAAYAAAABAAEAAAABAAcAAAABAAEAAAACAAUAAAABAAEAAAACAAYAAAABAAEAAAACAAcAAAABAAEAAAADAAUAAAACAAEAAAADAAYAAAACAAEAAAADAAcAAAACAAEAAAAHAAQAAAADAAAAAAAHAAUAAAADAAEAAAAMAAUAAAADAAAAAAAMAAYAAAADAAEAAAARAAQAAAADAAAAAAARAAUAAAADAAEAAAAWAAMAAAADAAEAAAAWAAQAAAADAAIAAAARAAYAAAADAAEAAAARAAcAAAADAAEAAAAMAAcAAAADAAEAAAAHAAYAAAADAAEAAAAHAAcAAAADAAEAAAAWAAEAAAADAAEAAAAWAAIAAAADAAEAAAA=")
 tile_set = ExtResource("2_mh2u3")
+
+[node name="FirstLoreTextPlayer" type="Node" parent="." index="4"]
+unique_name_in_owner = true
+script = ExtResource("3_6w6k2")
+timeline = "first_lore_text"
+
+[node name="FirstLoreTrigger" type="Area2D" parent="." index="5"]
+position = Vector2(419, 163)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FirstLoreTrigger" index="0"]
+position = Vector2(-16, -37)
+shape = SubResource("RectangleShape2D_78cb0")
+
+[connection signal="flag_checked" from="Flags/FirstLoreFlag" to="FirstLoreTrigger" method="queue_free"]
+[connection signal="flag_just_checked" from="Flags/FirstLoreFlag" to="FirstLoreTextPlayer" method="play_timeline"]
+[connection signal="flag_just_checked" from="Flags/FirstLoreFlag" to="FirstLoreTrigger" method="queue_free"]
+[connection signal="body_entered" from="FirstLoreTrigger" to="Flags/FirstLoreFlag" method="set_flag" unbinds=1]

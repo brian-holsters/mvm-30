@@ -96,6 +96,7 @@ length = 40
 active = false
 
 [node name="Hitbox" type="Area2D" parent="Foreground/LaserB1" index="3"]
+visible = false
 collision_layer = 16
 collision_mask = 8
 monitoring = false
@@ -115,6 +116,7 @@ length = 40
 active = false
 
 [node name="Hitbox" type="Area2D" parent="Foreground/LaserB2" index="3"]
+visible = false
 collision_layer = 16
 collision_mask = 8
 monitoring = false
