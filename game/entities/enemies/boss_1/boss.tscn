@@ -1,24 +1,97 @@
-[gd_scene load_steps=21 format=3 uid="uid://chvi7vfltf0yy"]
+[gd_scene load_steps=32 format=3 uid="uid://chvi7vfltf0yy"]
 
 [ext_resource type="Script" uid="uid://1cr1rhgw3lxn" path="res://game/entities/enemies/boss_1/boss_1.gd" id="1_7drbr"]
-[ext_resource type="Script" uid="uid://divnu77umyg1s" path="res://game/scripts/outline_polygon.gd" id="2_l04rt"]
 [ext_resource type="PackedScene" uid="uid://c4sfinn3rsf2j" path="res://game/entities/enemies/turret/bullet.tscn" id="2_p831d"]
 [ext_resource type="Script" uid="uid://cs5r6qssrl7f7" path="res://game/entities/components/health_component.gd" id="2_pcmgj"]
+[ext_resource type="Texture2D" uid="uid://dbxiwkq6rn34v" path="res://assets/sprites/enemies/boss main.png" id="4_is65n"]
 [ext_resource type="Script" uid="uid://bn21x38drplvg" path="res://game/entities/hitbox/hit_box.gd" id="4_p831d"]
-[ext_resource type="Texture2D" uid="uid://jarr1uklj0qr" path="res://assets/prototype/ssss.png" id="5_lbyba"]
+[ext_resource type="Texture2D" uid="uid://bamsjgf86a4kn" path="res://assets/sprites/enemies/boss idle.png" id="5_n4sji"]
 [ext_resource type="Script" uid="uid://dr0tmd1vkfnxl" path="res://game/entities/hitbox/hurt_box.gd" id="7_p831d"]
 [ext_resource type="PackedScene" uid="uid://b8kxe75yox7h4" path="res://game/entities/obstacles/laser/laser.tscn" id="8_pcmgj"]
 [ext_resource type="Theme" uid="uid://b6jal0hkamwfx" path="res://game/menus/theme.tres" id="9_lcosx"]
+[ext_resource type="Texture2D" uid="uid://dnmv2qfmtlx4v" path="res://assets/sprites/enemies/boss fist.png" id="9_n4sji"]
 [ext_resource type="AudioStream" uid="uid://b2rkn2dwikndg" path="res://assets/sfx/enemies/heavy_hit.wav" id="10_is65n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_om7ie"]
+atlas = ExtResource("5_n4sji")
+region = Rect2(0, 0, 52, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8jt1b"]
+atlas = ExtResource("5_n4sji")
+region = Rect2(52, 0, 52, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ler8y"]
+atlas = ExtResource("5_n4sji")
+region = Rect2(104, 0, 52, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t7vqm"]
+atlas = ExtResource("5_n4sji")
+region = Rect2(156, 0, 52, 41)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tjk44"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_om7ie")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8jt1b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ler8y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t7vqm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lcosx"]
 size = Vector2(78, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tjk44"]
+atlas = ExtResource("9_n4sji")
+region = Rect2(0, 0, 80, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l7uh4"]
+atlas = ExtResource("9_n4sji")
+region = Rect2(80, 0, 80, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6gi7o"]
+atlas = ExtResource("9_n4sji")
+region = Rect2(160, 0, 80, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b0xcr"]
+atlas = ExtResource("9_n4sji")
+region = Rect2(240, 0, 80, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_knirn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tjk44")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l7uh4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6gi7o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b0xcr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gjhy6"]
 size = Vector2(23, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pcmgj"]
-size = Vector2(36, 29)
+size = Vector2(36, 68)
 
 [sub_resource type="Animation" id="Animation_l04rt"]
 length = 0.001
@@ -201,14 +274,17 @@ tracks/4/path = NodePath(".")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.73333335, 0.76666665, 0.96666664, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0.73333335, 0.76666665, 0.8666667, 0.96666664, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "values": [{
 "args": [],
 "method": &"activate_r_hand"
 }, {
 "args": [],
 "method": &"activate_l_hand"
+}, {
+"args": [],
+"method": &"impact"
 }, {
 "args": [],
 "method": &"deactivate_l_hand"
@@ -649,7 +725,12 @@ self_modulate = Color(0.32156864, 0.32156864, 0.32156864, 1)
 
 [node name="BodySprite2D" type="Sprite2D" parent="Root/Head"]
 position = Vector2(-1, 4)
-texture = ExtResource("5_lbyba")
+texture = ExtResource("4_is65n")
+
+[node name="BossFace" type="AnimatedSprite2D" parent="Root/Head"]
+position = Vector2(-1, -24)
+sprite_frames = SubResource("SpriteFrames_tjk44")
+frame_progress = 0.20205683
 
 [node name="Laser" parent="Root/Head" node_paths=PackedStringArray("hitbox") instance=ExtResource("8_pcmgj")]
 unique_name_in_owner = true
@@ -672,17 +753,16 @@ metadata/_custom_type_script = "uid://bn21x38drplvg"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Root/Head/Laser/HitBox"]
 shape = SubResource("RectangleShape2D_lcosx")
 
-[node name="HandL" type="Polygon2D" parent="Root"]
+[node name="HandL" type="Node2D" parent="Root"]
+unique_name_in_owner = true
 position = Vector2(-70, 42)
-color = Color(0.47007585, 0.47007585, 0.47007585, 1)
-polygon = PackedVector2Array(-14, -12, 0, -18, 15, -12, 15, 6, -14, 6)
-script = ExtResource("2_l04rt")
 
-[node name="Outline2D" type="Line2D" parent="Root/HandL"]
-points = PackedVector2Array(-14, -12, 0, -18, 15, -12, 15, 6, -14, 6)
-closed = true
-width = 2.0
-default_color = Color(0.31, 0.055800002, 0.055800002, 1)
+[node name="Sprite2D" type="AnimatedSprite2D" parent="Root/HandL"]
+position = Vector2(0, -26)
+rotation = -1.5707964
+sprite_frames = SubResource("SpriteFrames_knirn")
+autoplay = "default"
+frame_progress = 0.99995744
 
 [node name="HitBox" type="Area2D" parent="Root/HandL"]
 collision_layer = 16
@@ -705,21 +785,21 @@ actor = NodePath("../../..")
 metadata/_custom_type_script = "uid://dr0tmd1vkfnxl"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Root/HandL/HurtBox"]
-position = Vector2(0, -6.5)
+position = Vector2(0, -27)
 shape = SubResource("RectangleShape2D_pcmgj")
 debug_color = Color(0.68036836, 0.49489152, 0.27020267, 0.41960785)
 
-[node name="HandR" type="Polygon2D" parent="Root"]
+[node name="HandR" type="Node2D" parent="Root"]
+unique_name_in_owner = true
 position = Vector2(70, 42)
-color = Color(0.47007585, 0.47007585, 0.47007585, 1)
-polygon = PackedVector2Array(-14, -12, 0, -18, 15, -12, 15, 6, -14, 6)
-script = ExtResource("2_l04rt")
 
-[node name="Outline2D" type="Line2D" parent="Root/HandR"]
-points = PackedVector2Array(-14, -12, 0, -18, 15, -12, 15, 6, -14, 6)
-closed = true
-width = 2.0
-default_color = Color(0.31, 0.055800002, 0.055800002, 1)
+[node name="Sprite2D2" type="AnimatedSprite2D" parent="Root/HandR"]
+position = Vector2(0, -26)
+rotation = 1.5707964
+sprite_frames = SubResource("SpriteFrames_knirn")
+autoplay = "default"
+frame_progress = 0.8595963
+flip_h = true
 
 [node name="HitBox" type="Area2D" parent="Root/HandR"]
 collision_layer = 16
@@ -742,7 +822,7 @@ actor = NodePath("../../..")
 metadata/_custom_type_script = "uid://dr0tmd1vkfnxl"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Root/HandR/HurtBox"]
-position = Vector2(0, -6.5)
+position = Vector2(0, -27)
 shape = SubResource("RectangleShape2D_pcmgj")
 debug_color = Color(0.68036836, 0.49489152, 0.27020267, 0.41960785)
 

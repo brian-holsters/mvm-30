@@ -1,5 +1,7 @@
 extends Node2D
 
+const INACTIVE_MODULATE = Color("#525252")
+
 @onready var health_bar: ProgressBar = %HealthBar
 @onready var projectile_spawner: Marker2D = %ProjectileSpawner
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
@@ -8,6 +10,8 @@ extends Node2D
 @onready var floor_position: Marker2D = %FloorPosition
 @onready var health_component: HealthComponent = %HealthComponent
 @onready var laser: Node2D = %Laser
+@onready var hand_l: Node2D = %HandL
+@onready var hand_r: Node2D = %HandR
 
 const buffer_size := 15
 
@@ -38,6 +42,17 @@ var target_buffer : Array[Vector2] = []
 @export var room_center: Node2D
 
 var phase = 1
+
+func _process(_delta: float) -> void:
+	var hand_l_color = Color.WHITE
+	if not hand_l.get_node("HitBox").monitoring and not hand_l.get_node("HurtBox").monitorable:
+		hand_l_color = INACTIVE_MODULATE
+	var hand_r_color = Color.WHITE
+	if not hand_r.get_node("HitBox").monitoring and not hand_r.get_node("HurtBox").monitorable:
+		hand_r_color = INACTIVE_MODULATE
+	hand_l.modulate = hand_l_color
+	hand_r.modulate = hand_r_color
+
 
 func _ready() -> void:
 	health_bar.hide()
@@ -99,18 +114,20 @@ func reset_probability_list():
 	for i in range(3):
 		probability_list += combat_animations
 
-
 func activate_hand(side: String):
-	var hand = get_node("Root/Hand"+side)
+	var hand = {
+		"L": hand_l,
+		"R": hand_r
+	}[side.to_upper()]
 	var hitbox = hand.get_node("HitBox")
-	var hurtbox = hand.get_node("HurtBox")
-	hand.modulate = Color.WHITE
 	hitbox.monitoring = true
 
 func deactivate_hand(side: String):
-	var hand = get_node("Root/Hand"+side)
+	var hand = {
+		"L": hand_l,
+		"R": hand_r
+	}[side.to_upper()]
 	var hitbox = hand.get_node("HitBox")
-	hand.modulate = Color("#525252")
 	hitbox.monitoring = false
 
 func activate_l_hand():

@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://cdsayh2vpmg7l"]
+[gd_scene load_steps=30 format=3 uid="uid://cdsayh2vpmg7l"]
 
 [ext_resource type="Script" uid="uid://dtfmdokhvemwe" path="res://game/entities/enemies/path_follower/path_follower.gd" id="1_2ie3k"]
-[ext_resource type="Texture2D" uid="uid://d4i2uvgp7ow46" path="res://assets/prototype/enemy.png" id="2_2kkur"]
+[ext_resource type="Texture2D" uid="uid://c2us3phktde3u" path="res://assets/sprites/enemies/flyer death.png" id="2_jni1d"]
 [ext_resource type="Script" uid="uid://dr0tmd1vkfnxl" path="res://game/entities/hitbox/hurt_box.gd" id="3_phbes"]
+[ext_resource type="Texture2D" uid="uid://3vpg2c8q2qrj" path="res://assets/sprites/enemies/flyer.png" id="3_r5m4p"]
 [ext_resource type="Script" uid="uid://bn21x38drplvg" path="res://game/entities/hitbox/hit_box.gd" id="4_o5td1"]
 [ext_resource type="Script" uid="uid://cs5r6qssrl7f7" path="res://game/entities/components/health_component.gd" id="5_14kn2"]
 [ext_resource type="Script" uid="uid://b8ub53csc0twm" path="res://addons/bluebrains_character_controller/components/state_machine_variables.gd" id="6_lroow"]
@@ -13,11 +14,108 @@
 [ext_resource type="Script" uid="uid://brm846ilo66tj" path="res://game/scripts/danger_zone.gd" id="11_la5rj"]
 [ext_resource type="AudioStream" uid="uid://c5q6l12jmq16a" path="res://assets/sfx/enemies/floating.wav" id="12_f6ig5"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_3s4w6"]
+atlas = ExtResource("2_jni1d")
+region = Rect2(0, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uq1yh"]
+atlas = ExtResource("2_jni1d")
+region = Rect2(40, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tmtll"]
+atlas = ExtResource("2_jni1d")
+region = Rect2(80, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1xmpv"]
+atlas = ExtResource("2_jni1d")
+region = Rect2(120, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_agajl"]
+atlas = ExtResource("2_jni1d")
+region = Rect2(160, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiat1"]
+atlas = ExtResource("2_jni1d")
+region = Rect2(200, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1tlmo"]
+atlas = ExtResource("2_jni1d")
+region = Rect2(240, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yolx"]
+atlas = ExtResource("2_jni1d")
+region = Rect2(280, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7t42v"]
+atlas = ExtResource("3_r5m4p")
+region = Rect2(0, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xawpq"]
+atlas = ExtResource("3_r5m4p")
+region = Rect2(40, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ru57u"]
+atlas = ExtResource("3_r5m4p")
+region = Rect2(80, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tvnec"]
+atlas = ExtResource("3_r5m4p")
+region = Rect2(120, 0, 40, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0ecjo"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_3s4w6")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_uq1yh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tmtll")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1xmpv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_agajl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hiat1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1tlmo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3yolx")
+}],
+"loop": false,
+"name": &"death",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7t42v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xawpq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ru57u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tvnec")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_dig1h"]
 radius = 17.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dgnno"]
-radius = 5.0
+radius = 9.0
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_f6ig5"]
 stream_count = 1
@@ -29,8 +127,12 @@ cubic_interp = false
 loop = false
 script = ExtResource("1_2ie3k")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_2kkur")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_0ecjo")
+animation = &"death"
+autoplay = "default"
+frame = 7
+frame_progress = 1.0
 
 [node name="HurtBox" type="Area2D" parent="."]
 collision_layer = 32
@@ -107,4 +209,6 @@ metadata/_custom_type_script = "uid://brm846ilo66tj"
 shape = SubResource("CircleShape2D_dgnno")
 debug_color = Color(0.6457, 0.3424866, 0.98099977, 0.41960785)
 
-[connection signal="hp_reached_0" from="Health" to="." method="queue_free"]
+[connection signal="animation_finished" from="Sprite2D" to="." method="queue_free"]
+[connection signal="hp_reached_0" from="Health" to="HitBox" method="set" binds= ["monitoring", false]]
+[connection signal="hp_reached_0" from="Health" to="Sprite2D" method="play" binds= ["death"]]

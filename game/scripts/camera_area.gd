@@ -5,6 +5,8 @@ class_name CameraArea2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	collision_layer = 0 # Disable layer
+	collision_mask = 2 # Set mask to layer 2 only (player collider)
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
 
