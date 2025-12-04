@@ -5,7 +5,7 @@
 [ext_resource type="TileSet" uid="uid://bxjd1yx0ntj88" path="res://assets/tilesets/main_tileset.tres" id="3_oqlln"]
 [ext_resource type="PackedScene" uid="uid://cqqw42miprcfm" path="res://game/entities/interactable/terminal.tscn" id="4_440r0"]
 [ext_resource type="PackedScene" uid="uid://cdsayh2vpmg7l" path="res://game/entities/enemies/path_follower/path_follower.tscn" id="5_2ew8m"]
-[ext_resource type="Script" uid="uid://bwquh18wbm83e" path="res://game/scripts/camera_area.gd" id="5_440r0"]
+[ext_resource type="Script" path="res://game/scripts/camera_area.gd" id="5_440r0"]
 
 [sub_resource type="Curve2D" id="Curve2D_440r0"]
 _data = {

@@ -28,6 +28,7 @@ AudioController="*res://game/globals/audio_controller.gd"
 directories/dtl_directory={
 "example_timeline": "res://game/dialogic/timelines/example_timeline.dtl",
 "first_entry_hub_column_text": "res://game/dialogic/timelines/first_entry_hub_column_text.dtl",
+"first_lore_text": "res://game/dialogic/timelines/first_lore_text.dtl",
 "intro_text": "res://game/dialogic/timelines/intro_text.dtl",
 "intro_text_jumped": "res://game/dialogic/timelines/intro_text_jumped.dtl"
 }

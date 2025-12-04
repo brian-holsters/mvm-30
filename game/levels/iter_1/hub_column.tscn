@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://d15w7co7lxbq1" path="res://game/scripts/text_player.gd" id="3_jxfb3"]
 [ext_resource type="PackedScene" uid="uid://cqqw42miprcfm" path="res://game/entities/interactable/terminal.tscn" id="3_kunp1"]
 [ext_resource type="TileSet" uid="uid://bxjd1yx0ntj88" path="res://assets/tilesets/main_tileset.tres" id="4_6s8m2"]
-[ext_resource type="Script" uid="uid://bwquh18wbm83e" path="res://game/scripts/camera_area.gd" id="5_6s8m2"]
+[ext_resource type="Script" path="res://game/scripts/camera_area.gd" id="5_6s8m2"]
 [ext_resource type="PackedScene" uid="uid://dik57o15hkrog" path="res://game/entities/obstacles/gate/gate.tscn" id="5_jxfb3"]
 [ext_resource type="Script" uid="uid://bnktai1u2rqbo" path="res://game/scripts/flag_checker.gd" id="5_kunp1"]
 
