@@ -1,17 +1,24 @@
-[gd_scene load_steps=9 format=4 uid="uid://brqiblera1yr7"]
+[gd_scene load_steps=12 format=4 uid="uid://brqiblera1yr7"]
 
 [ext_resource type="PackedScene" uid="uid://by13a22vxwdu1" path="res://game/levels/base_level.tscn" id="1_0d6c2"]
 [ext_resource type="TileSet" uid="uid://bxjd1yx0ntj88" path="res://assets/tilesets/main_tileset.tres" id="2_tvvsj"]
 [ext_resource type="PackedScene" uid="uid://b8kxe75yox7h4" path="res://game/entities/obstacles/laser/laser.tscn" id="3_12u2k"]
 [ext_resource type="Script" uid="uid://bn21x38drplvg" path="res://game/entities/hitbox/hit_box.gd" id="4_tvvsj"]
 [ext_resource type="Script" uid="uid://bnktai1u2rqbo" path="res://game/scripts/flag_checker.gd" id="5_8plwf"]
-[ext_resource type="Script" uid="uid://d15w7co7lxbq1" path="res://game/scripts/text_player.gd" id="5_12u2k"]
+[ext_resource type="Script" uid="uid://bwquh18wbm83e" path="res://game/scripts/camera_area.gd" id="6_12u2k"]
+[ext_resource type="Script" uid="uid://d15w7co7lxbq1" path="res://game/scripts/text_player.gd" id="7_uafhg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_12u2k"]
 size = Vector2(140, 4)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eqhan"]
+size = Vector2(158, 33)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8plwf"]
+size = Vector2(158, 20)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uafhg"]
-size = Vector2(88.99361, 85.84879)
+size = Vector2(124, 108)
 
 [node name="PathLeft" instance=ExtResource("1_0d6c2")]
 
@@ -78,19 +85,58 @@ metadata/_custom_type_script = "uid://bn21x38drplvg"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/Laser4/HitBox" index="0"]
 shape = SubResource("RectangleShape2D_12u2k")
 
-[node name="Flags" type="Node2D" parent="." index="4"]
+[node name="CameraArea2D" type="Area2D" parent="." index="4" node_paths=PackedStringArray("target")]
+position = Vector2(460, 218)
+script = ExtResource("6_12u2k")
+target = NodePath("Marker2D")
+metadata/_custom_type_script = "uid://bwquh18wbm83e"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraArea2D" index="0"]
+position = Vector2(0, 25.5)
+shape = SubResource("RectangleShape2D_eqhan")
+
+[node name="Marker2D" type="Marker2D" parent="CameraArea2D" index="1"]
+position = Vector2(0, -23)
+
+[node name="CameraArea2D2" type="Area2D" parent="." index="5" node_paths=PackedStringArray("target")]
+position = Vector2(460, 159)
+script = ExtResource("6_12u2k")
+target = NodePath("Marker2D")
+metadata/_custom_type_script = "uid://bwquh18wbm83e"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraArea2D2" index="0"]
+position = Vector2(0, 22)
+shape = SubResource("RectangleShape2D_8plwf")
+
+[node name="Marker2D" type="Marker2D" parent="CameraArea2D2" index="1"]
+position = Vector2(0, -23)
+
+[node name="CameraArea2D3" type="Area2D" parent="." index="6" node_paths=PackedStringArray("target")]
+position = Vector2(460, 87)
+script = ExtResource("6_12u2k")
+target = NodePath("Marker2D")
+metadata/_custom_type_script = "uid://bwquh18wbm83e"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraArea2D3" index="0"]
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_uafhg")
+
+[node name="Marker2D" type="Marker2D" parent="CameraArea2D3" index="1"]
+position = Vector2(0, -23)
+
+[node name="Flags" type="Node2D" parent="." index="7"]
 
 [node name="FirstLoreFlag" type="Node" parent="Flags" index="0"]
 script = ExtResource("5_8plwf")
 flag = "first_lore_played"
 metadata/_custom_type_script = "uid://bnktai1u2rqbo"
 
-[node name="FirstLoreTextPlayer" type="Node" parent="." index="5"]
+[node name="FirstLoreTextPlayer" type="Node" parent="." index="8"]
 unique_name_in_owner = true
-script = ExtResource("5_12u2k")
+script = ExtResource("7_uafhg")
 timeline = "first_lore_text"
 
-[node name="FirstLoreTrigger" type="Area2D" parent="." index="6"]
+[node name="FirstLoreTrigger" type="Area2D" parent="." index="9"]
 position = Vector2(419, 163)
 collision_layer = 0
 collision_mask = 2
