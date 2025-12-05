@@ -17,6 +17,8 @@ func _ready() -> void:
 	collision_shape_2d.shape = collision_shape_2d.shape.duplicate()
 
 func _set_height(val):
+	if not is_node_ready():
+		await ready
 	height = max(2, val)
 	top_sprite.position.y = (-20 * (float(height) / 2)) + 10
 	bottom_sprite.position.y = (20 * (float(height) / 2)) - 10

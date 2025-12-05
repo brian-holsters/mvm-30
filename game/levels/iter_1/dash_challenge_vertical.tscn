@@ -1,55 +1,12 @@
-[gd_scene load_steps=13 format=4 uid="uid://c5j2ox22xuscg"]
+[gd_scene load_steps=10 format=4 uid="uid://c5j2ox22xuscg"]
 
 [ext_resource type="PackedScene" uid="uid://by13a22vxwdu1" path="res://game/levels/base_level.tscn" id="1_iapuj"]
 [ext_resource type="TileSet" uid="uid://bxjd1yx0ntj88" path="res://assets/tilesets/main_tileset.tres" id="2_uq2ho"]
 [ext_resource type="Script" uid="uid://bn21x38drplvg" path="res://game/entities/hitbox/hit_box.gd" id="3_fiap7"]
 [ext_resource type="Script" uid="uid://bnktai1u2rqbo" path="res://game/scripts/flag_checker.gd" id="3_t4636"]
-[ext_resource type="Script" uid="uid://ba0bmlonp2suh" path="res://game/entities/interactable/interaction_area.gd" id="3_u3jef"]
-[ext_resource type="Texture2D" uid="uid://b7nit00hasq23" path="res://assets/tilesets/main_tileset.png" id="3_uq2ho"]
+[ext_resource type="PackedScene" uid="uid://cqqw42miprcfm" path="res://game/entities/interactable/terminal.tscn" id="3_uq2ho"]
+[ext_resource type="PackedScene" uid="uid://dik57o15hkrog" path="res://game/entities/obstacles/gate/gate.tscn" id="4_luc8m"]
 [ext_resource type="PackedScene" uid="uid://b8kxe75yox7h4" path="res://game/entities/obstacles/laser/laser.tscn" id="6_luc8m"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_t4636"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_luc8m"]
-texture = ExtResource("3_uq2ho")
-texture_region_size = Vector2i(20, 20)
-0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-1:0/0 = 0
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-2:0/0 = 0
-2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-3:0/0 = 0
-3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-0:1/0 = 0
-0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-1:1/0 = 0
-1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-2:1/0 = 0
-2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-3:1/0 = 0
-3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-0:2/0 = 0
-0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-1:2/0 = 0
-1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-2:2/0 = 0
-2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-3:2/0 = 0
-3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-0:3/0 = 0
-0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-1:3/0 = 0
-1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-2:3/0 = 0
-2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-3:3/0 = 0
-3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-
-[sub_resource type="TileSet" id="TileSet_y37k1"]
-tile_size = Vector2i(20, 20)
-physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_luc8m")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_knvvg"]
 size = Vector2(320, 4)
@@ -67,45 +24,27 @@ script = ExtResource("3_t4636")
 flag = "dash_challenge_vertical_switch"
 metadata/_custom_type_script = "uid://bnktai1u2rqbo"
 
-[node name="SwitchInteractionRoot" type="Node2D" parent="FlagNode" index="0"]
-
-[node name="InteractableArea2D" type="Area2D" parent="FlagNode/SwitchInteractionRoot" index="0"]
+[node name="Terminal" parent="Background" index="0" instance=ExtResource("3_uq2ho")]
 position = Vector2(30, 150)
-collision_layer = 0
-collision_mask = 2
-script = ExtResource("3_u3jef")
-metadata/_custom_type_script = "uid://ba0bmlonp2suh"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FlagNode/SwitchInteractionRoot/InteractableArea2D" index="0"]
-shape = SubResource("RectangleShape2D_t4636")
+[node name="Gate2" parent="Background" index="1" instance=ExtResource("4_luc8m")]
+position = Vector2(250, 60)
+height = 4
 
-[node name="InteractText" type="Label" parent="FlagNode/SwitchInteractionRoot/InteractableArea2D" index="1"]
-visible = false
-offset_left = -32.0
-offset_top = -51.0
-offset_right = 29.0
-offset_bottom = -28.0
-text = "↑"
-horizontal_alignment = 1
-
-[node name="Gate" type="TileMapLayer" parent="FlagNode/SwitchInteractionRoot" index="1"]
-tile_map_data = PackedByteArray("AAAMAAMAAAADAAEAAAAMAAQAAAADAAIAAAAMAAEAAAADAAAAAAAMAAIAAAADAAEAAAA=")
-tile_set = SubResource("TileSet_y37k1")
-
-[node name="BackGroundR" type="TileMapLayer" parent="Background" index="0"]
+[node name="BackGroundR" type="TileMapLayer" parent="Background" index="2"]
 modulate = Color(0.49803922, 0.49803922, 0.49803922, 1)
 position = Vector2(4, 0)
 tile_map_data = PackedByteArray("AAAPABYAAAADAAEAAAAPABcAAAADAAEAAAAPABgAAAADAAEAAAAPABkAAAADAAEAAAAPABoAAAADAAEAAAAPAAIAAAADAAEAAAAPAAMAAAADAAEAAAAPAAQAAAADAAEAAAAPAAUAAAADAAEAAAA=")
 tile_set = ExtResource("2_uq2ho")
 collision_enabled = false
 
-[node name="Offset" type="TileMapLayer" parent="Background" index="1"]
+[node name="Offset" type="TileMapLayer" parent="Background" index="3"]
 position = Vector2(10, 0)
 tile_map_data = PackedByteArray("AAAPABEAAAAAAAEAAAAPABUAAAAAAAEAAAAIABMAAAADAAEAAAD//xMAAAACAAEAAAD//w8AAAACAAEAAAAFAA0AAAAAAAIAAAAGAA0AAAABAAIAAAD//wQAAAACAAEAAAA=")
 tile_set = ExtResource("2_uq2ho")
 
-[node name="Main" type="TileMapLayer" parent="Background" index="2"]
-tile_map_data = PackedByteArray("AAAIABQAAAAAAAAAAAAJABQAAAACAAAAAAAJABAAAAACAAAAAAAIABAAAAAAAAAAAAAFAA4AAAADAAAAAAAFABQAAAADAAIAAAAAABIAAAACAAIAAAAAAA4AAAACAAIAAAAFAA8AAAADAAEAAAAFABAAAAADAAIAAAAFABIAAAADAAAAAAAFABMAAAADAAEAAAAJABEAAAACAAEAAAAIABEAAAAAAAEAAAAIABIAAAAAAAIAAAAJABIAAAACAAIAAAAIABUAAAAAAAEAAAAIABYAAAAAAAEAAAAIABcAAAAAAAEAAAAIABgAAAAAAAEAAAAIABkAAAAAAAEAAAAJABUAAAACAAEAAAAJABYAAAACAAEAAAAJABcAAAACAAEAAAAJABgAAAACAAEAAAAJABkAAAACAAEAAAAPABoAAAABAAAAAAAOABoAAAABAAAAAAANABoAAAABAAAAAAAMABoAAAABAAAAAAALABoAAAABAAAAAAAKABoAAAABAAAAAAAJABoAAAAEAAEAAAAIABoAAAAFAAEAAAAHABoAAAABAAAAAAAGABoAAAABAAAAAAAFABoAAAABAAAAAAAEABoAAAABAAAAAAADABoAAAABAAAAAAACABoAAAABAAAAAAABABoAAAABAAAAAAAAABoAAAAEAAEAAAAAABkAAAACAAEAAAAAABgAAAACAAEAAAAAABcAAAACAAEAAAAAABYAAAACAAEAAAAAABUAAAACAAEAAAAAABQAAAACAAAAAAAAABAAAAACAAAAAAAAABEAAAACAAEAAAAAAA0AAAACAAEAAAAAAAwAAAACAAEAAAAAAAsAAAACAAEAAAAAAAoAAAACAAEAAAALAAkAAAACAAIAAAALAAgAAAACAAAAAAAKAAgAAAABAAAAAAAJAAgAAAABAAAAAAAIAAgAAAABAAAAAAAHAAgAAAABAAAAAAAGAAgAAAABAAAAAAAFAAgAAAABAAAAAAAEAAgAAAABAAAAAAADAAgAAAABAAAAAAACAAgAAAABAAAAAAABAAgAAAABAAAAAAAAAAgAAAAEAAEAAAAKAAkAAAABAAIAAAAJAAkAAAABAAIAAAAIAAkAAAABAAIAAAAHAAkAAAABAAIAAAAGAAkAAAABAAIAAAAFAAkAAAABAAIAAAAEAAkAAAABAAIAAAADAAkAAAABAAIAAAACAAkAAAABAAIAAAABAAkAAAABAAIAAAAAAAkAAAAEAAAAAAACAAcAAAADAAEAAAACAAYAAAADAAEAAAACAAUAAAADAAEAAAACAAQAAAADAAEAAAACAAMAAAADAAAAAAAAAAcAAAACAAEAAAAAAAMAAAACAAIAAAAAAAIAAAACAAEAAAAAAAEAAAACAAEAAAAAAAAAAAAEAAAAAAABAAAAAAABAAIAAAACAAAAAAABAAIAAAADAAAAAAABAAIAAAAEAAAAAAABAAIAAAAFAAAAAAABAAIAAAAGAAAAAAABAAIAAAAHAAAAAAABAAIAAAAIAAAAAAABAAIAAAAJAAAAAAABAAIAAAAKAAAAAAABAAIAAAALAAAAAAABAAIAAAAMAAAAAAABAAIAAAANAAAAAAABAAIAAAAOAAAAAAABAAIAAAAPAAAAAAAFAAAAAAAPAAEAAAAAAAEAAAAPAAIAAAAAAAIAAAAJAAUAAAAAAAMAAAAKAAUAAAABAAMAAAALAAUAAAABAAMAAAAMAAUAAAABAAMAAAANAAUAAAACAAMAAAAOAAYAAAAFAAAAAAAPAAcAAAAFAAAAAAAPAAgAAAAAAAEAAAAPAAkAAAAAAAEAAAAPAAoAAAAAAAEAAAAPAAsAAAAAAAEAAAAFAAwAAAAAAAMAAAAGAAwAAAABAAMAAAAHAAwAAAABAAMAAAAIAAwAAAABAAMAAAAJAAwAAAAAAAAAAAAKAAwAAAABAAAAAAALAAwAAAABAAAAAAAMAAwAAAABAAAAAAANAAwAAAABAAAAAAAOAAwAAAABAAAAAAAPAAwAAAAFAAEAAAAOAAcAAAAAAAIAAAANAAYAAAAAAAIAAAAOAAUAAAABAAAAAAAPAAUAAAABAAAAAAAPAAYAAAABAAEAAAAPAA4AAAAAAAEAAAAPABAAAAAAAAIAAAAPAA8AAAAAAAEAAAAPABIAAAAAAAAAAAAPABMAAAAAAAEAAAAPABQAAAAAAAIAAAAPABYAAAAAAAMAAAAFABYAAAADAAAAAAAFABcAAAADAAIAAAAHAA0AAAABAAIAAAAIAA0AAAABAAIAAAAJAA0AAAABAAIAAAAKAA0AAAABAAIAAAALAA0AAAABAAIAAAAMAA0AAAABAAIAAAANAA0AAAABAAIAAAAOAA0AAAABAAIAAAAPAA0AAAAFAAAAAAABAAcAAAAAAAQAAAAAAAUAAAACAAAAAAAAAAYAAAACAAEAAAA=")
+[node name="Main" type="TileMapLayer" parent="Background" index="4"]
+tile_map_data = PackedByteArray("AAAIABQAAAAAAAAAAAAJABQAAAACAAAAAAAJABAAAAACAAAAAAAIABAAAAAAAAAAAAAFAA4AAAADAAAAAAAFABQAAAADAAIAAAAAABIAAAACAAIAAAAAAA4AAAACAAIAAAAFAA8AAAADAAEAAAAFABAAAAADAAIAAAAFABIAAAADAAAAAAAFABMAAAADAAEAAAAJABEAAAACAAEAAAAIABEAAAAAAAEAAAAIABIAAAAAAAIAAAAJABIAAAACAAIAAAAIABUAAAAAAAEAAAAIABYAAAAAAAEAAAAIABcAAAAAAAEAAAAIABgAAAAAAAEAAAAIABkAAAAAAAEAAAAJABUAAAACAAEAAAAJABYAAAACAAEAAAAJABcAAAACAAEAAAAJABgAAAACAAEAAAAJABkAAAACAAEAAAAPABoAAAABAAAAAAAOABoAAAABAAAAAAANABoAAAABAAAAAAAMABoAAAABAAAAAAALABoAAAABAAAAAAAKABoAAAABAAAAAAAJABoAAAAEAAEAAAAIABoAAAAFAAEAAAAHABoAAAABAAAAAAAGABoAAAABAAAAAAAFABoAAAABAAAAAAAEABoAAAABAAAAAAADABoAAAABAAAAAAACABoAAAABAAAAAAABABoAAAABAAAAAAAAABoAAAAEAAEAAAAAABkAAAACAAEAAAAAABgAAAACAAEAAAAAABcAAAACAAEAAAAAABYAAAACAAEAAAAAABUAAAACAAEAAAAAABQAAAACAAAAAAAAABAAAAACAAAAAAAAABEAAAACAAEAAAAAAA0AAAACAAEAAAAAAAwAAAACAAEAAAAAAAsAAAACAAEAAAAAAAoAAAACAAEAAAALAAkAAAACAAIAAAALAAgAAAACAAAAAAAKAAgAAAABAAAAAAAJAAgAAAABAAAAAAAIAAgAAAABAAAAAAAHAAgAAAABAAAAAAAGAAgAAAABAAAAAAAFAAgAAAABAAAAAAAEAAgAAAABAAAAAAADAAgAAAABAAAAAAACAAgAAAABAAAAAAABAAgAAAABAAAAAAAAAAgAAAAEAAEAAAAKAAkAAAABAAIAAAAJAAkAAAABAAIAAAAIAAkAAAABAAIAAAAHAAkAAAABAAIAAAAGAAkAAAABAAIAAAAFAAkAAAABAAIAAAAEAAkAAAABAAIAAAADAAkAAAABAAIAAAACAAkAAAABAAIAAAABAAkAAAABAAIAAAAAAAkAAAAEAAAAAAACAAcAAAADAAEAAAACAAYAAAADAAEAAAACAAUAAAADAAEAAAACAAQAAAADAAEAAAACAAMAAAADAAAAAAAAAAcAAAACAAEAAAAAAAMAAAACAAIAAAAAAAIAAAACAAEAAAAAAAEAAAACAAEAAAAAAAAAAAAEAAAAAAABAAAAAAABAAIAAAACAAAAAAABAAIAAAADAAAAAAABAAIAAAAEAAAAAAABAAIAAAAFAAAAAAABAAIAAAAGAAAAAAABAAIAAAAHAAAAAAABAAIAAAAIAAAAAAABAAIAAAAJAAAAAAABAAIAAAAKAAAAAAABAAIAAAALAAAAAAABAAIAAAAMAAAAAAABAAIAAAANAAAAAAABAAIAAAAOAAAAAAABAAIAAAAPAAAAAAAFAAAAAAAPAAEAAAAAAAEAAAAPAAIAAAAAAAIAAAAJAAUAAAAAAAMAAAAKAAUAAAABAAMAAAALAAUAAAABAAMAAAAMAAUAAAABAAMAAAANAAUAAAACAAMAAAAOAAYAAAAFAAAAAAAPAAcAAAAFAAAAAAAPAAgAAAAAAAEAAAAPAAkAAAAAAAEAAAAPAAoAAAAAAAEAAAAPAAsAAAAAAAEAAAAFAAwAAAAAAAMAAAAGAAwAAAABAAMAAAAHAAwAAAABAAMAAAAIAAwAAAABAAMAAAAJAAwAAAAAAAAAAAAKAAwAAAABAAAAAAALAAwAAAABAAAAAAAMAAwAAAABAAAAAAANAAwAAAABAAAAAAAOAAwAAAABAAAAAAAPAAwAAAAFAAEAAAAOAAcAAAAAAAIAAAANAAYAAAAAAAIAAAAOAAUAAAABAAAAAAAPAAUAAAABAAAAAAAPAAYAAAABAAEAAAAPAA4AAAAAAAEAAAAPABAAAAAAAAIAAAAPAA8AAAAAAAEAAAAPABIAAAAAAAAAAAAPABMAAAAAAAEAAAAPABQAAAAAAAIAAAAPABYAAAAAAAMAAAAFABYAAAADAAAAAAAFABcAAAADAAIAAAAHAA0AAAABAAIAAAAIAA0AAAABAAIAAAAJAA0AAAABAAIAAAAKAA0AAAABAAIAAAALAA0AAAABAAIAAAAMAA0AAAABAAIAAAANAA0AAAABAAIAAAAOAA0AAAABAAIAAAAPAA0AAAAFAAAAAAAAAAUAAAACAAAAAAAAAAYAAAACAAEAAAA=")
 tile_set = ExtResource("2_uq2ho")
 
 [node name="Laser" parent="Foreground" index="0" node_paths=PackedStringArray("hitbox") instance=ExtResource("6_luc8m")]
@@ -134,6 +73,7 @@ active = false
 metadata/_edit_group_ = true
 
 [node name="Hitbox" type="Area2D" parent="Foreground/Laser2" index="3"]
+visible = false
 collision_layer = 16
 collision_mask = 8
 monitoring = false
@@ -166,8 +106,8 @@ shape = SubResource("RectangleShape2D_uq2ho")
 [connection signal="timeout" from="LaserTimer" to="Foreground/Laser" method="toggle"]
 [connection signal="timeout" from="LaserTimer" to="Foreground/Laser2" method="toggle"]
 [connection signal="timeout" from="LaserTimer" to="Foreground/Laser3" method="toggle"]
-[connection signal="flag_checked" from="FlagNode" to="FlagNode/SwitchInteractionRoot" method="queue_free"]
-[connection signal="can_interact" from="FlagNode/SwitchInteractionRoot/InteractableArea2D" to="FlagNode/SwitchInteractionRoot/InteractableArea2D/InteractText" method="show"]
-[connection signal="cannot_interact" from="FlagNode/SwitchInteractionRoot/InteractableArea2D" to="FlagNode/SwitchInteractionRoot/InteractableArea2D/InteractText" method="hide"]
-[connection signal="interact" from="FlagNode/SwitchInteractionRoot/InteractableArea2D" to="FlagNode" method="set_flag" unbinds=1]
-[connection signal="interact" from="FlagNode/SwitchInteractionRoot/InteractableArea2D" to="FlagNode/SwitchInteractionRoot" method="queue_free" unbinds=1]
+[connection signal="flag_checked" from="FlagNode" to="Background/Gate2" method="queue_free"]
+[connection signal="flag_checked" from="FlagNode" to="Background/Terminal" method="deactivate"]
+[connection signal="flag_just_checked" from="FlagNode" to="Background/Gate2" method="open_up"]
+[connection signal="flag_just_checked" from="FlagNode" to="Background/Terminal" method="deactivate"]
+[connection signal="interact" from="Background/Terminal" to="FlagNode" method="set_flag" unbinds=1]
