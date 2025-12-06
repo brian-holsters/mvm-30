@@ -2,9 +2,14 @@ extends Control
 
 @export_file_path("*.tscn") var game_scene: String
 @onready var continue_game_button: Button = $VBoxContainer/ContinueGameButton
+@onready var start_game_button: Button = $VBoxContainer/StartGameButton
 
 func _ready() -> void:
-	continue_game_button.disabled = not can_continue()
+	if can_continue:
+		continue_game_button.grab_focus()
+	else:
+		start_game_button.grab_focus()
+		continue_game_button.disabled = true
 
 func _on_start_game_button_pressed() -> void:
 	var game = init_game()
