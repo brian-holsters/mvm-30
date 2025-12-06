@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://cd8ffgsf0edrb"]
+[gd_scene load_steps=12 format=3 uid="uid://cd8ffgsf0edrb"]
 
 [ext_resource type="Script" uid="uid://ti8ga2h4opkg" path="res://game/game.gd" id="1_vasa2"]
 [ext_resource type="PackedScene" uid="uid://rx62opg8jmrd" path="res://game/entities/player/player.tscn" id="2_vasa2"]
 [ext_resource type="Script" uid="uid://cg38swpl3yhck" path="res://game/hud/hud.gd" id="3_4fuuu"]
 [ext_resource type="Script" uid="uid://cjwldoqugpfjr" path="res://game/hud/hp_gauge.gd" id="3_h7iqs"]
-[ext_resource type="PackedScene" path="res://game/entities/camera/camera_2d.tscn" id="3_y36n6"]
+[ext_resource type="PackedScene" uid="uid://darh0gll5xrb3" path="res://game/entities/camera/camera_2d.tscn" id="3_y36n6"]
+[ext_resource type="Theme" uid="uid://b6jal0hkamwfx" path="res://game/menus/theme.tres" id="5_l8g03"]
 [ext_resource type="PackedScene" uid="uid://bjb4a35tmdltw" path="res://game/entities/audio/starship_music.tscn" id="8_l8g03"]
 [ext_resource type="PackedScene" uid="uid://cj1yda4kh6hpr" path="res://game/entities/audio/ship_ambiance.tscn" id="8_y36n6"]
 [ext_resource type="PackedScene" uid="uid://c2g005lykkcsd" path="res://game/menus/pause_menu.tscn" id="12_qf6n1"]
@@ -55,6 +56,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("5_l8g03")
 theme_override_constants/margin_left = 2
 theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 2
@@ -75,6 +77,35 @@ script = ExtResource("3_h7iqs")
 [node name="Template" type="TextureRect" parent="Gameplay/Hud/MarginContainer/Control/HealthGauge"]
 layout_mode = 2
 texture = SubResource("GradientTexture2D_dxrkv")
+
+[node name="TutorialLayer" type="Control" parent="Gameplay/Hud"]
+custom_minimum_size = Vector2(1.07, 1.375)
+layout_mode = 3
+anchor_left = 0.35312498
+anchor_top = 0.82222223
+anchor_right = 0.646875
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("5_l8g03")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Gameplay/Hud/TutorialLayer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TutorialImage" type="TextureRect" parent="Gameplay/Hud/TutorialLayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TutorialText" type="Label" parent="Gameplay/Hud/TutorialLayer/VBoxContainer"]
+layout_mode = 2
+text = "Press [space] to jump"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="PauseLayer" type="CanvasLayer" parent="."]
 unique_name_in_owner = true

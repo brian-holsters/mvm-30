@@ -47,6 +47,7 @@ var game_state: GAME_STATES:
 			GAME_STATES.PAUSE:
 				if map:
 					map.process_mode = Node.PROCESS_MODE_DISABLED
+				pause_layer.get_node("PauseMenu").refocus()
 				pause_layer.process_mode = Node.PROCESS_MODE_ALWAYS
 				pause_layer.show()
 				gameplay.process_mode = Node.PROCESS_MODE_DISABLED

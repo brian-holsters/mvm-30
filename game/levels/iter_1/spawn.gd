@@ -6,6 +6,7 @@ var player: MvmPlayer
 @onready var open_door_text_player: Node = %OpenDoorTextPlayer
 @onready var text_played_flag: FlagNode = $TextPlayedFlag
 @onready var intro_complete_flag: FlagNode = $IntroCompleteFlag
+@onready var intro: Node2D = %Intro
 
 var intro_text_finished = false
 
@@ -16,7 +17,15 @@ func _ready() -> void:
 func play_intro():
 	if not is_node_ready():
 		await ready
+	player.hide()
+	player.process_mode = Node.PROCESS_MODE_DISABLED
+	intro.open_animated()
+	
+	await intro.opening_finished
+	player.show()
+	player.process_mode = Node.PROCESS_MODE_INHERIT
 	intro_text_player.play_timeline()
+	
 	await Dialogic.signal_event
 	intro_text_finished = true
 
