@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cd8ffgsf0edrb"]
+[gd_scene load_steps=13 format=3 uid="uid://cd8ffgsf0edrb"]
 
 [ext_resource type="Script" uid="uid://ti8ga2h4opkg" path="res://game/game.gd" id="1_vasa2"]
 [ext_resource type="PackedScene" uid="uid://rx62opg8jmrd" path="res://game/entities/player/player.tscn" id="2_vasa2"]
@@ -22,6 +22,17 @@ height = 8
 fill = 2
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l8g03"]
+bg_color = Color(0, 0, 0, 0.6156863)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("_player", "camera")]
 process_mode = 3
@@ -98,11 +109,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TutorialImage" type="TextureRect" parent="Gameplay/Hud/TutorialLayer/VBoxContainer"]
-layout_mode = 2
-
 [node name="TutorialText" type="Label" parent="Gameplay/Hud/TutorialLayer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_l8g03")
 text = "Press [space] to jump"
 horizontal_alignment = 1
 vertical_alignment = 1

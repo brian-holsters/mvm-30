@@ -28,6 +28,7 @@ func play_intro():
 	
 	await Dialogic.signal_event
 	intro_text_finished = true
+	EventHub.tutorial_text.emit("Press [space] to jump")
 
 func _on_player_state_machine_changed(from: StringName, to: StringName):
 	match [from, to]:

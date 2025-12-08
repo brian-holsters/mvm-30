@@ -1,16 +1,13 @@
-[gd_scene load_steps=7 format=4 uid="uid://qolcaba6uy0h"]
+[gd_scene load_steps=5 format=4 uid="uid://qolcaba6uy0h"]
 
 [ext_resource type="PackedScene" uid="uid://by13a22vxwdu1" path="res://game/levels/base_level.tscn" id="1_32alo"]
 [ext_resource type="Script" uid="uid://bnktai1u2rqbo" path="res://game/scripts/flag_checker.gd" id="2_ssu21"]
 [ext_resource type="TileSet" uid="uid://bxjd1yx0ntj88" path="res://assets/tilesets/main_tileset.tres" id="3_ssu21"]
-[ext_resource type="Script" uid="uid://ba0bmlonp2suh" path="res://game/entities/interactable/interaction_area.gd" id="3_xxsij"]
-[ext_resource type="Texture2D" uid="uid://cwfingupfv57v" path="res://icon.svg" id="4_ssu21"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rgfgg"]
+[ext_resource type="PackedScene" uid="uid://c6ttgnw2vk54u" path="res://game/entities/interactable/dash_pickup.tscn" id="4_xxsij"]
 
 [node name="Dash" instance=ExtResource("1_32alo")]
 
-[node name="FlagNode" type="Node2D" parent="." index="0"]
+[node name="DashFlag" type="Node2D" parent="." index="0"]
 script = ExtResource("2_ssu21")
 database = "upgrades"
 flag = "Dash"
@@ -30,36 +27,12 @@ tile_map_data = PackedByteArray("AAAAAAAAAAADAAEAAAAAAAEAAAADAAEAAAAAAAIAAAADAAE
 tile_set = ExtResource("3_ssu21")
 collision_enabled = false
 
-[node name="Main" type="TileMapLayer" parent="Background" index="2"]
+[node name="DashPickup" parent="Background" index="2" instance=ExtResource("4_xxsij")]
+position = Vector2(200, 90)
+
+[node name="Main" type="TileMapLayer" parent="Background" index="3"]
 tile_map_data = PackedByteArray("AAACAAMAAAACAAAAAAAPAAQAAAAAAAIAAAAPAAMAAAAAAAEAAAAPAAIAAAAAAAEAAAAPAAEAAAAAAAEAAAAPAAAAAAAFAAAAAAAOAAAAAAABAAIAAAANAAAAAAABAAIAAAAMAAAAAAABAAIAAAALAAAAAAABAAIAAAAKAAAAAAABAAIAAAAJAAAAAAABAAIAAAAIAAAAAAABAAIAAAAHAAAAAAABAAIAAAAGAAAAAAABAAIAAAAFAAAAAAABAAIAAAAEAAAAAAABAAIAAAADAAAAAAABAAIAAAACAAAAAAABAAIAAAABAAAAAAABAAIAAAAAAAAAAAABAAIAAAAPAAgAAAABAAAAAAAOAAgAAAABAAAAAAANAAgAAAABAAAAAAAMAAgAAAABAAAAAAALAAgAAAAEAAEAAAAIAAgAAAAFAAEAAAAHAAgAAAABAAAAAAAGAAgAAAABAAAAAAAFAAgAAAABAAAAAAAEAAgAAAABAAAAAAADAAgAAAABAAAAAAACAAgAAAAEAAEAAAACAAcAAAACAAEAAAACAAYAAAACAAEAAAACAAUAAAACAAEAAAACAAQAAAACAAEAAAAIAAcAAAAAAAEAAAAIAAYAAAAAAAEAAAALAAcAAAACAAEAAAALAAYAAAACAAEAAAAKAAUAAAABAAAAAAAJAAUAAAABAAAAAAAIAAUAAAAAAAAAAAALAAUAAAACAAAAAAABAAMAAAABAAAAAAAAAAMAAAABAAAAAAABAAcAAAABAAEAAAABAAYAAAABAAEAAAABAAUAAAABAAEAAAABAAQAAAABAAEAAAAAAAQAAAABAAEAAAAAAAUAAAABAAEAAAAAAAYAAAABAAEAAAAAAAcAAAABAAEAAAAAAAgAAAABAAEAAAABAAgAAAABAAEAAAAKAAcAAAABAAEAAAAKAAYAAAABAAEAAAAJAAYAAAABAAEAAAAJAAcAAAABAAEAAAAJAAgAAAABAAEAAAAKAAgAAAABAAEAAAA=")
 tile_set = ExtResource("3_ssu21")
 
-[node name="UpgradePickup" type="Area2D" parent="Background" index="3"]
-position = Vector2(200, 90)
-collision_layer = 0
-collision_mask = 2
-script = ExtResource("3_xxsij")
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Background/UpgradePickup" index="0"]
-position = Vector2(0, -10)
-scale = Vector2(0.156, 0.156)
-texture = ExtResource("4_ssu21")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/UpgradePickup" index="1"]
-shape = SubResource("RectangleShape2D_rgfgg")
-
-[node name="InteractText" type="Label" parent="Background/UpgradePickup" index="2"]
-visible = false
-offset_left = -32.0
-offset_top = -51.0
-offset_right = 29.0
-offset_bottom = -28.0
-text = "↑"
-horizontal_alignment = 1
-
-[connection signal="flag_checked" from="FlagNode" to="Background/UpgradePickup" method="queue_free"]
-[connection signal="can_interact" from="Background/UpgradePickup" to="Background/UpgradePickup/InteractText" method="show"]
-[connection signal="cannot_interact" from="Background/UpgradePickup" to="Background/UpgradePickup/InteractText" method="hide"]
-[connection signal="interact" from="Background/UpgradePickup" to="FlagNode" method="set_flag" unbinds=1]
-[connection signal="interact" from="Background/UpgradePickup" to="Background/UpgradePickup" method="queue_free" unbinds=1]
+[connection signal="flag_checked" from="DashFlag" to="Background/DashPickup" method="deactivate"]
+[connection signal="interact" from="Background/DashPickup" to="DashFlag" method="set_flag" unbinds=1]
