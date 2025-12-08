@@ -7,6 +7,10 @@ extends PathFollow2D
 		if not turnaround_with_direction:
 			scale.x = abs(scale.x)
 
+func _ready() -> void:
+	if not Engine.is_editor_hint():
+		$Sprite2D.animation_finished.connect(queue_free)
+
 func get_speed():
 	var slow_margin = movement_speed * 20
 	var slow_speed = movement_speed / 2

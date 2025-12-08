@@ -6,6 +6,8 @@ signal interact(interactable)
 signal can_interact
 signal cannot_interact
 
+var deactivated := false
+
 var _can_interact := false:
 	set(val):
 		var should_signal := val != _can_interact
@@ -28,19 +30,25 @@ func _physics_process(_delta: float) -> void:
 
 
 func _is_player(x: Variant) -> bool:
-	print("checking if player")
 	return x is MvmPlayer
 
 
 func _on_body_entered(body: Node):
-	print("body entered")
+	if deactivated:
+		return
 	if body is MvmPlayer:
 		_can_interact = true
 		can_interact.emit()
 
 
 func _on_body_exited(_body: Node):
-	print("body exited")
 	if not monitoring or not get_overlapping_bodies().any(_is_player):
 		_can_interact = false
 		cannot_interact.emit()
+
+
+func deactivate():
+	deactivated = true
+	if _can_interact:
+		_can_interact = false
+	monitoring = false

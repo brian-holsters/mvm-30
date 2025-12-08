@@ -4,6 +4,7 @@ class_name Game
 @onready var hud: CanvasLayer = %Hud
 @onready var gameplay: Node2D = %Gameplay
 @onready var pause_layer: CanvasLayer = %PauseLayer
+@onready var tutorial_text: Label = %TutorialText
 
 # The game starts in this map. Uses special annotation that enabled dedicated inspector plugin.
 @export_file("room_link") var starting_map: String
@@ -54,7 +55,8 @@ var game_state: GAME_STATES:
 
 func _ready() -> void:
 	singleton = self
-	
+	tutorial_text.hide()
+	EventHub.tutorial_text.connect(show_tutorial_text)
 	########################
 	## AUDIO_CONTROLLER
 	########################
@@ -149,6 +151,12 @@ func _on_flag_change(database, flag):
 			player.unlock_ability(flag)
 		["flags", _]:
 			pass
+
+func show_tutorial_text(text: String) -> void:
+	tutorial_text.text = text
+	tutorial_text.show()
+	await get_tree().create_timer(2.0).timeout
+	tutorial_text.hide()
 
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
