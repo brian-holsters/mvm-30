@@ -60,14 +60,14 @@ func switch_clip(_music, index):
 func adapt_explore_music():
 	choose_music_clip(stream)
 	var synth_volume := 0.0
-	if prog >= 0.5:
+	if prog > 0.5:
 		synth_volume = 2.0*(prog-0.5)
 	else:
 		synth_volume = 2.0*prog
 	#print("synth volume : "+str(synth_volume))
 	var x = 0
 	while x < clip_count:
-		get_current_exploration_stream().set_sync_stream_volume(2,scale_percent_to_db_volume(synth_volume,-20,0))
+		get_current_exploration_stream().set_sync_stream_volume(2,scale_percent_to_db_volume(synth_volume,-20,3))
 		x+=1
 
 func adapt_combat_music():
@@ -95,7 +95,7 @@ func set_combat_volume(volume):
 	
 func set_track_volume(part,index,volume):
 	part.set_sync_stream_volume(index,volume)
-	#print("volume : "+str(stream.get_sync_stream_volume(index)))
+	#print("volume : "+str(part.get_sync_stream_volume(index)))
 
 func set_bass_volume(volume):
 	get_current_combat_stream().set_sync_stream_volume(1,volume)
