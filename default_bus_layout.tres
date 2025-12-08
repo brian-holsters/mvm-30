@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=11 format=3 uid="uid://by6t2ady0hwn7"]
+[gd_resource type="AudioBusLayout" load_steps=14 format=3 uid="uid://by6t2ady0hwn7"]
 
 [sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_n8wo2"]
 resource_name = "Compressor"
@@ -54,6 +54,22 @@ resource_name = "Compressor"
 threshold = -1.1
 ratio = 1.9
 gain = 0.5
+
+[sub_resource type="AudioEffectPitchShift" id="AudioEffectPitchShift_j3pel"]
+resource_name = "PitchShift"
+pitch_scale = 0.5
+
+[sub_resource type="AudioEffectDistortion" id="AudioEffectDistortion_j3pel"]
+resource_name = "Distortion"
+mode = 3
+pre_gain = 10.76
+drive = 0.24
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_g28q7"]
+resource_name = "Reverb"
+room_size = 0.75
+damping = 0.63
+wet = 0.36
 
 [resource]
 bus/0/effect/0/effect = SubResource("AudioEffectCompressor_n8wo2")
@@ -118,3 +134,15 @@ bus/7/volume_db = 0.0
 bus/7/send = &"SFX"
 bus/7/effect/0/effect = SubResource("AudioEffectCompressor_k2ilm")
 bus/7/effect/0/enabled = true
+bus/8/name = &"Boss voice"
+bus/8/solo = false
+bus/8/mute = false
+bus/8/bypass_fx = false
+bus/8/volume_db = -5.3299403
+bus/8/send = &"enemies"
+bus/8/effect/0/effect = SubResource("AudioEffectPitchShift_j3pel")
+bus/8/effect/0/enabled = true
+bus/8/effect/1/effect = SubResource("AudioEffectDistortion_j3pel")
+bus/8/effect/1/enabled = true
+bus/8/effect/2/effect = SubResource("AudioEffectReverb_g28q7")
+bus/8/effect/2/enabled = true

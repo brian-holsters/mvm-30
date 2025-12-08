@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cdsayh2vpmg7l"]
+[gd_scene load_steps=35 format=3 uid="uid://cdsayh2vpmg7l"]
 
 [ext_resource type="Script" uid="uid://dtfmdokhvemwe" path="res://game/entities/enemies/path_follower/path_follower.gd" id="1_2ie3k"]
 [ext_resource type="Texture2D" uid="uid://c2us3phktde3u" path="res://assets/sprites/enemies/flyer death.png" id="2_jni1d"]
@@ -13,6 +13,10 @@
 [ext_resource type="Script" uid="uid://dmhi5n7bg5r6q" path="res://game/entities/enemies/path_follower/states/hurt.gd" id="10_lroow"]
 [ext_resource type="Script" uid="uid://brm846ilo66tj" path="res://game/scripts/danger_zone.gd" id="11_la5rj"]
 [ext_resource type="AudioStream" uid="uid://c5q6l12jmq16a" path="res://assets/sfx/enemies/floating.wav" id="12_f6ig5"]
+[ext_resource type="AudioStream" uid="uid://dwu0sspiirn8i" path="res://assets/sfx/enemies/enemy_taunt 1.wav" id="14_uq1yh"]
+[ext_resource type="AudioStream" uid="uid://bnlk3t13yvktv" path="res://assets/sfx/enemies/enemy_taunt 2.wav" id="15_tmtll"]
+[ext_resource type="AudioStream" uid="uid://pbtj7oymyyj3" path="res://assets/sfx/enemies/enemy_taunt 3.wav" id="16_1xmpv"]
+[ext_resource type="AudioStream" uid="uid://cbjbf2eikoflr" path="res://assets/sfx/silence.wav" id="17_tmtll"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3s4w6"]
 atlas = ExtResource("2_jni1d")
@@ -120,6 +124,16 @@ radius = 12.0
 stream_count = 1
 stream_0 = ExtResource("12_f6ig5")
 
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_uq1yh"]
+shuffle = true
+fade_time = 0.2
+stream_count = 5
+stream_0 = ExtResource("14_uq1yh")
+stream_1 = ExtResource("15_tmtll")
+stream_2 = ExtResource("16_1xmpv")
+stream_3 = ExtResource("17_tmtll")
+stream_4 = ExtResource("17_tmtll")
+
 [node name="PathEnemy" type="PathFollow2D"]
 rotates = false
 cubic_interp = false
@@ -187,14 +201,6 @@ health_component = NodePath("../../Health")
 return_to_state = NodePath("../FollowPath")
 metadata/_custom_type_script = "uid://b3fwraueavvlt"
 
-[node name="FloatingNoise" type="AudioStreamPlayer2D" parent="."]
-stream = SubResource("AudioStreamPlaylist_f6ig5")
-volume_db = -12.0
-autoplay = true
-max_distance = 580.0
-attenuation = 5.5
-bus = &"enemies"
-
 [node name="DangerZone2D" type="Area2D" parent="."]
 collision_layer = 128
 collision_mask = 0
@@ -206,5 +212,24 @@ metadata/_custom_type_script = "uid://brm846ilo66tj"
 shape = SubResource("CircleShape2D_dgnno")
 debug_color = Color(0.6457, 0.3424866, 0.98099977, 0.41960785)
 
+[node name="Audio" type="Node2D" parent="."]
+
+[node name="FloatingNoise" type="AudioStreamPlayer2D" parent="Audio"]
+stream = SubResource("AudioStreamPlaylist_f6ig5")
+volume_db = -12.5
+autoplay = true
+max_distance = 580.0
+attenuation = 5.5
+bus = &"enemies"
+
+[node name="Voice" type="AudioStreamPlayer2D" parent="Audio"]
+stream = SubResource("AudioStreamPlaylist_uq1yh")
+autoplay = true
+max_distance = 580.0
+attenuation = 5.5
+max_polyphony = 3
+bus = &"enemies"
+
+[connection signal="animation_finished" from="Sprite2D" to="." method="queue_free"]
 [connection signal="hp_reached_0" from="Health" to="Sprite2D" method="play" binds= ["death"]]
 [connection signal="hp_reached_0" from="Health" to="HitBox" method="set" binds= ["monitoring", false]]
