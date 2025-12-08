@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://chvi7vfltf0yy"]
+[gd_scene load_steps=36 format=3 uid="uid://chvi7vfltf0yy"]
 
 [ext_resource type="Script" uid="uid://1cr1rhgw3lxn" path="res://game/entities/enemies/boss_1/boss_1.gd" id="1_7drbr"]
 [ext_resource type="PackedScene" uid="uid://c4sfinn3rsf2j" path="res://game/entities/enemies/turret/bullet.tscn" id="2_p831d"]
@@ -11,6 +11,9 @@
 [ext_resource type="Theme" uid="uid://b6jal0hkamwfx" path="res://game/menus/theme.tres" id="9_lcosx"]
 [ext_resource type="Texture2D" uid="uid://dnmv2qfmtlx4v" path="res://assets/sprites/enemies/boss fist.png" id="9_n4sji"]
 [ext_resource type="AudioStream" uid="uid://b2rkn2dwikndg" path="res://assets/sfx/enemies/heavy_hit.wav" id="10_is65n"]
+[ext_resource type="AudioStream" uid="uid://dwu0sspiirn8i" path="res://assets/sfx/enemies/enemy_taunt 1.wav" id="12_ler8y"]
+[ext_resource type="AudioStream" uid="uid://bnlk3t13yvktv" path="res://assets/sfx/enemies/enemy_taunt 2.wav" id="13_t7vqm"]
+[ext_resource type="AudioStream" uid="uid://pbtj7oymyyj3" path="res://assets/sfx/enemies/enemy_taunt 3.wav" id="14_tjk44"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_om7ie"]
 atlas = ExtResource("5_n4sji")
@@ -705,6 +708,14 @@ random_volume_offset_db = 0.4
 streams_count = 1
 stream_0/stream = ExtResource("10_is65n")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_l7uh4"]
+random_pitch = 1.05
+random_volume_offset_db = 0.4
+streams_count = 3
+stream_0/stream = ExtResource("12_ler8y")
+stream_1/stream = ExtResource("13_t7vqm")
+stream_2/stream = ExtResource("14_tjk44")
+
 [node name="Boss" type="Node2D"]
 script = ExtResource("1_7drbr")
 floor_animations = Array[String](["vertical_l", "vertical_r", "laser_sweep"])
@@ -879,6 +890,11 @@ show_percentage = false
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_n4sji")
 bus = &"SFX"
+
+[node name="TauntAudio" type="AudioStreamPlayer2D" parent="Audio"]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_l7uh4")
+bus = &"Boss voice"
 
 [connection signal="hurt" from="Root/HandL/HurtBox" to="." method="_on_hurt"]
 [connection signal="hurt" from="Root/HandR/HurtBox" to="." method="_on_hurt"]

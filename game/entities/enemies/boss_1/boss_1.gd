@@ -97,6 +97,7 @@ func next_move():
 	deactivate_hand("L")
 	deactivate_hand("R")
 	await target_reached
+	%TauntAudio.play()
 	var _next_move = get_next_move()
 	animation_player.play(_next_move)
 
