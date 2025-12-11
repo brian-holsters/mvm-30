@@ -1,11 +1,19 @@
-[gd_scene load_steps=10 format=4 uid="uid://ytt5k8fi2oyf"]
+[gd_scene load_steps=13 format=4 uid="uid://ytt5k8fi2oyf"]
 
 [ext_resource type="PackedScene" uid="uid://by13a22vxwdu1" path="res://game/levels/base_level.tscn" id="1_hl4xs"]
 [ext_resource type="Script" uid="uid://bnktai1u2rqbo" path="res://game/scripts/flag_checker.gd" id="2_7nine"]
 [ext_resource type="TileSet" uid="uid://bxjd1yx0ntj88" path="res://assets/tilesets/main_tileset.tres" id="3_7nine"]
+[ext_resource type="Script" uid="uid://d15w7co7lxbq1" path="res://game/scripts/text_player.gd" id="3_vfo2b"]
 [ext_resource type="Script" uid="uid://bn21x38drplvg" path="res://game/entities/hitbox/hit_box.gd" id="4_7nine"]
+[ext_resource type="PackedScene" uid="uid://cdsayh2vpmg7l" path="res://game/entities/enemies/path_follower/path_follower.tscn" id="4_hquww"]
 [ext_resource type="PackedScene" uid="uid://b8kxe75yox7h4" path="res://game/entities/obstacles/laser/laser.tscn" id="4_wxihf"]
 [ext_resource type="Script" uid="uid://cy8qqk76qvg55" path="res://game/entities/hitbox/respawn_hitbox.gd" id="6_wxihf"]
+
+[sub_resource type="Curve2D" id="Curve2D_vfo2b"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11)
+}
+point_count = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hquww"]
 size = Vector2(60, 5)
@@ -18,12 +26,22 @@ size = Vector2(40, 26)
 
 [node name="DashChallenge" instance=ExtResource("1_hl4xs")]
 
-[node name="BossKilledFlagNode" type="Node2D" parent="." index="0"]
+[node name="TextPlayedFlagNode" type="Node" parent="." index="0"]
 script = ExtResource("2_7nine")
-flag = "boss_1"
+flag = "dash_attack_dialogue"
 metadata/_custom_type_script = "uid://bnktai1u2rqbo"
 
-[node name="Timer" type="Timer" parent="." index="1"]
+[node name="TextPlayerNode" type="Node" parent="." index="1"]
+script = ExtResource("3_vfo2b")
+timeline = "dash_attack"
+metadata/_custom_type_script = "uid://d15w7co7lxbq1"
+
+[node name="EscapeFlag" type="Node2D" parent="." index="2"]
+script = ExtResource("2_7nine")
+flag = "escape_sequence"
+metadata/_custom_type_script = "uid://bnktai1u2rqbo"
+
+[node name="Timer" type="Timer" parent="." index="3"]
 autostart = true
 
 [node name="BackGroundR" type="TileMapLayer" parent="Background" index="0"]
@@ -43,6 +61,18 @@ collision_enabled = false
 [node name="Main" type="TileMapLayer" parent="Background" index="2"]
 tile_map_data = PackedByteArray("AAAeAAMAAAAAAAAAAAAdAAQAAAAAAAAAAAAdAAUAAAAAAAEAAAAdAAYAAAAAAAEAAAAdAAcAAAAAAAEAAAAdAAgAAAAFAAEAAAAcAAgAAAABAAAAAAAbAAgAAAABAAAAAAAaAAgAAAABAAAAAAAZAAgAAAABAAAAAAAYAAgAAAABAAAAAAAXAAgAAAABAAAAAAAWAAgAAAABAAAAAAAVAAgAAAABAAAAAAAUAAgAAAABAAAAAAATAAgAAAABAAAAAAASAAgAAAABAAAAAAARAAgAAAAEAAEAAAAfAAMAAAABAAAAAAAeAAQAAAAFAAEAAAAfAAQAAAABAAEAAAAfAAUAAAABAAEAAAAeAAUAAAABAAEAAAAeAAYAAAABAAEAAAAfAAYAAAABAAEAAAAfAAcAAAABAAEAAAAeAAcAAAABAAEAAAAeAAgAAAABAAEAAAAfAAgAAAABAAEAAAAYAAcAAAADAAEAAAAYAAYAAAADAAEAAAAYAAUAAAADAAEAAAAYAAQAAAADAAEAAAAYAAMAAAADAAAAAAAUAAQAAAADAAIAAAAUAAMAAAADAAEAAAAUAAIAAAADAAEAAAAUAAEAAAADAAEAAAAfAAAAAAABAAIAAAAeAAAAAAABAAIAAAAdAAAAAAABAAIAAAAcAAAAAAABAAIAAAAbAAAAAAABAAIAAAAaAAAAAAABAAIAAAAZAAAAAAABAAIAAAAYAAAAAAABAAIAAAAXAAAAAAABAAIAAAAWAAAAAAABAAIAAAAVAAAAAAAEAAAAAAAUAAAAAAADAAEAAAATAAAAAAABAAEAAAASAAAAAAABAAEAAAARAAAAAAADAAEAAAAQAAAAAAABAAEAAAAPAAAAAAADAAEAAAAPAAEAAAADAAEAAAAPAAIAAAADAAEAAAAPAAMAAAADAAIAAAAMAAEAAAADAAEAAAAMAAIAAAADAAEAAAAMAAMAAAADAAIAAAAMAAAAAAADAAEAAAALAAAAAAAFAAAAAAAKAAAAAAABAAIAAAAJAAAAAAABAAIAAAAIAAAAAAABAAIAAAAHAAAAAAABAAIAAAAGAAAAAAABAAIAAAAFAAAAAAABAAIAAAAEAAAAAAABAAIAAAADAAAAAAABAAIAAAACAAAAAAAEAAAAAAABAAAAAAABAAEAAAAAAAAAAAACAAEAAAAAAAEAAAACAAEAAAAAAAIAAAACAAEAAAAAAAMAAAACAAEAAAAAAAQAAAACAAIAAAAJAAgAAAAFAAEAAAAIAAgAAAABAAAAAAAHAAgAAAABAAAAAAAGAAgAAAABAAAAAAAFAAgAAAABAAAAAAAEAAgAAAABAAAAAAADAAgAAAABAAAAAAACAAgAAAABAAAAAAABAAgAAAABAAAAAAAAAAgAAAABAAAAAAAJAAcAAAAAAAEAAAAJAAYAAAAAAAAAAAAJAAUAAAADAAEAAAAJAAQAAAADAAAAAAAKAAYAAAABAAAAAAALAAYAAAABAAAAAAAMAAYAAAACAAAAAAAMAAcAAAACAAEAAAAMAAgAAAACAAEAAAAKAAcAAAABAAEAAAAKAAgAAAABAAEAAAALAAgAAAABAAEAAAALAAcAAAABAAEAAAAQAAcAAAABAAEAAAAPAAYAAAAAAAAAAAARAAYAAAACAAAAAAARAAcAAAACAAEAAAAQAAYAAAABAAAAAAAPAAcAAAAAAAEAAAAPAAgAAAAAAAEAAAAQAAgAAAABAAEAAAARAAEAAAADAAEAAAARAAIAAAADAAIAAAAQAAEAAAABAAIAAAASAAEAAAABAAIAAAATAAEAAAAFAAAAAAATAAIAAAAAAAIAAAAVAAEAAAACAAIAAAALAAEAAAAAAAIAAAABAAEAAAABAAIAAAACAAEAAAACAAIAAAAMAP//AAADAAEAAAAPAP//AAADAAEAAAA=")
 tile_set = ExtResource("3_7nine")
+
+[node name="BottomFloor" type="TileMapLayer" parent="Background" index="3"]
+tile_map_data = PackedByteArray("AAANAAYAAAAAAAAAAAAOAAYAAAACAAAAAAANAAcAAAAAAAEAAAANAAgAAAAAAAEAAAANAAkAAAAAAAEAAAAOAAcAAAACAAEAAAAOAAgAAAACAAEAAAAOAAkAAAACAAEAAAA=")
+tile_set = ExtResource("3_7nine")
+
+[node name="Path2D" type="Path2D" parent="Background" index="4"]
+position = Vector2(490, 35)
+curve = SubResource("Curve2D_vfo2b")
+
+[node name="PathEnemy" parent="Background/Path2D" index="0" instance=ExtResource("4_hquww")]
+movement_speed = 0.5
+turnaround_with_direction = false
 
 [node name="Laser6" parent="Foreground" index="0" node_paths=PackedStringArray("hitbox") instance=ExtResource("4_wxihf")]
 position = Vector2(410, 130)
@@ -156,10 +186,13 @@ shape = SubResource("RectangleShape2D_68mi5")
 [node name="Marker2D" type="Marker2D" parent="Foreground/TripleLaser/Hitbox" index="1"]
 position = Vector2(32, -31)
 
-[connection signal="flag_checked" from="BossKilledFlagNode" to="Foreground/EscapePath" method="queue_free"]
-[connection signal="flag_checked" from="BossKilledFlagNode" to="Foreground/TripleLaser/ActiveLaser" method="deactivate"]
-[connection signal="flag_checked" from="BossKilledFlagNode" to="Foreground/TripleLaser/VisualLaser" method="deactivate"]
-[connection signal="flag_checked" from="BossKilledFlagNode" to="Foreground/TripleLaser/VisualLaser2" method="deactivate"]
+[connection signal="flag_unchecked" from="TextPlayedFlagNode" to="TextPlayerNode" method="play_timeline"]
+[connection signal="timeline_ended" from="TextPlayerNode" to="TextPlayedFlagNode" method="set_flag"]
+[connection signal="flag_checked" from="EscapeFlag" to="Foreground/EscapePath" method="queue_free"]
+[connection signal="flag_checked" from="EscapeFlag" to="Foreground/TripleLaser/ActiveLaser" method="deactivate"]
+[connection signal="flag_checked" from="EscapeFlag" to="Foreground/TripleLaser/VisualLaser" method="deactivate"]
+[connection signal="flag_checked" from="EscapeFlag" to="Foreground/TripleLaser/VisualLaser2" method="deactivate"]
+[connection signal="flag_just_unchecked" from="EscapeFlag" to="Background/BottomFloor" method="queue_free"]
 [connection signal="timeout" from="Timer" to="Foreground/Laser6" method="toggle"]
 [connection signal="timeout" from="Timer" to="Foreground/DoubleLaser1/ActiveLaser" method="toggle"]
 [connection signal="timeout" from="Timer" to="Foreground/DoubleLaser1/VisualLaser" method="toggle"]

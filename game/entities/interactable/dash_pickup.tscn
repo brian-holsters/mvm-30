@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://c6ttgnw2vk54u"]
+
+[ext_resource type="PackedScene" uid="uid://cqqw42miprcfm" path="res://game/entities/interactable/terminal.tscn" id="1_nk8hq"]
+[ext_resource type="Script" uid="uid://gvoibaudbmlk" path="res://game/entities/interactable/dash_pickup.gd" id="2_i6nyl"]
+[ext_resource type="Texture2D" uid="uid://bjjhxgw5j2mo5" path="res://assets/tilesets/Power up boots.png" id="3_pbwqw"]
+[ext_resource type="Script" uid="uid://d15w7co7lxbq1" path="res://game/scripts/text_player.gd" id="3_r6irq"]
+[ext_resource type="Texture2D" uid="uid://fjqmiii7gcu2" path="res://assets/tilesets/Power up empty.png" id="4_r6irq"]
+
+[node name="DashPickup" instance=ExtResource("1_nk8hq")]
+script = ExtResource("2_i6nyl")
+
+[node name="TextPlayerNode" type="Node" parent="." index="0"]
+script = ExtResource("3_r6irq")
+timeline = "dash_pickup"
+metadata/_custom_type_script = "uid://d15w7co7lxbq1"
+
+[node name="TileMapLayer" parent="." index="2"]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="3"]
+position = Vector2(0, -16)
+texture = ExtResource("3_pbwqw")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." index="4"]
+visible = false
+position = Vector2(0, -16)
+texture = ExtResource("4_r6irq")
+
+[node name="InteractText" parent="." index="6"]
+text = "Take"

@@ -15,11 +15,26 @@ theme = ExtResource("1_tfb2k")
 script = ExtResource("1_db0cf")
 game_scene = "res://game/game.tscn"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.36078432, 0.36078432, 0.36078432, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -17.0
+offset_right = 32.0
+offset_bottom = 17.0
 grow_horizontal = 2
 grow_vertical = 2
 

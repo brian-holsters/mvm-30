@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://d15w7co7lxbq1" path="res://game/scripts/text_player.gd" id="3_jxfb3"]
 [ext_resource type="PackedScene" uid="uid://cqqw42miprcfm" path="res://game/entities/interactable/terminal.tscn" id="3_kunp1"]
 [ext_resource type="TileSet" uid="uid://bxjd1yx0ntj88" path="res://assets/tilesets/main_tileset.tres" id="4_6s8m2"]
-[ext_resource type="Script" path="res://game/scripts/camera_area.gd" id="5_6s8m2"]
+[ext_resource type="Script" uid="uid://bwquh18wbm83e" path="res://game/scripts/camera_area.gd" id="5_6s8m2"]
 [ext_resource type="PackedScene" uid="uid://dik57o15hkrog" path="res://game/entities/obstacles/gate/gate.tscn" id="5_jxfb3"]
 [ext_resource type="Script" uid="uid://bnktai1u2rqbo" path="res://game/scripts/flag_checker.gd" id="5_kunp1"]
 
@@ -35,6 +35,11 @@ metadata/_custom_type_script = "uid://bnktai1u2rqbo"
 script = ExtResource("5_kunp1")
 flag = "hub_green_switch"
 
+[node name="GreenSwitchText" type="Node" parent="Flags/GreenSwitchFlag" index="0"]
+script = ExtResource("3_jxfb3")
+timeline = "green_switch_text"
+metadata/_custom_type_script = "uid://d15w7co7lxbq1"
+
 [node name="FirstEntryFlag" type="Node" parent="Flags" index="3"]
 script = ExtResource("5_kunp1")
 flag = "hub_column_first_entry"
@@ -44,6 +49,11 @@ metadata/_custom_type_script = "uid://bnktai1u2rqbo"
 script = ExtResource("3_jxfb3")
 timeline = "first_entry_hub_column_text"
 metadata/_custom_type_script = "uid://d15w7co7lxbq1"
+
+[node name="EscapeFlag" type="Node" parent="Flags" index="4"]
+script = ExtResource("5_kunp1")
+flag = "escape_sequence"
+metadata/_custom_type_script = "uid://bnktai1u2rqbo"
 
 [node name="Terminal" parent="Background" index="0" instance=ExtResource("3_kunp1")]
 position = Vector2(90, 170)
@@ -65,11 +75,14 @@ collision_enabled = false
 [node name="GateToDash" parent="Background" index="3" instance=ExtResource("5_jxfb3")]
 position = Vector2(310, 500)
 
-[node name="TileMapLayer" type="TileMapLayer" parent="Background" index="4"]
+[node name="GateToBoss" parent="Background" index="4" instance=ExtResource("5_jxfb3")]
+position = Vector2(310, 580)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Background" index="5"]
 tile_map_data = PackedByteArray("AAAFACMAAAABAAEAAAAKACMAAAABAAAAAAALACMAAAABAAAAAAAMACMAAAABAAAAAAANACMAAAABAAAAAAAOACMAAAAFAAEAAAAPACMAAAABAAEAAAAOACIAAAAAAAEAAAAOACEAAAAAAAEAAAAOACAAAAAAAAEAAAAOAB8AAAAAAAEAAAAOAB4AAAAAAAAAAAAPAB4AAAABAAAAAAAPAB8AAAABAAEAAAAPACAAAAABAAEAAAAPACEAAAABAAEAAAAPACIAAAABAAEAAAAFACIAAAABAAAAAAADAB4AAAACAAMAAAACAB4AAAABAAMAAAABAB4AAAABAAMAAAABAB0AAAACAAMAAAAAAB8AAAACAAIAAAAAAB4AAAACAAEAAAAAAB0AAAACAAEAAAAAABwAAAACAAEAAAAAABsAAAACAAEAAAAAABoAAAACAAEAAAAAABkAAAACAAEAAAAAABgAAAACAAEAAAAAABcAAAACAAEAAAAAABYAAAACAAEAAAAAABUAAAACAAEAAAAAABQAAAACAAEAAAAAABMAAAACAAEAAAAAABIAAAACAAEAAAAAABEAAAACAAEAAAAAABAAAAACAAEAAAAAAA8AAAACAAEAAAAAAA4AAAACAAEAAAAAAA0AAAACAAAAAAAIAA0AAAACAAMAAAAHAA0AAAABAAMAAAAGAA0AAAABAAMAAAAFAA0AAAABAAMAAAAEAA0AAAABAAMAAAADAA0AAAABAAMAAAACAA0AAAABAAMAAAABAA0AAAABAAMAAAALAA0AAAAAAAMAAAAMAA0AAAABAAMAAAANAA0AAAABAAMAAAAOAA0AAAABAAMAAAAOABAAAAABAAMAAAANABAAAAABAAMAAAAMABAAAAABAAMAAAALABAAAAABAAMAAAAKABAAAAABAAMAAAAJABAAAAABAAMAAAAIABAAAAAAAAMAAAAPAA0AAAAAAAAAAAAPAA4AAAAAAAEAAAAPAA8AAAAAAAEAAAAPABAAAAAAAAEAAAAPABEAAAAAAAEAAAAPABIAAAAAAAEAAAAPABMAAAAAAAEAAAAPABQAAAAAAAEAAAAPABUAAAAAAAEAAAAPABYAAAAAAAEAAAAPABcAAAAAAAIAAAAIABcAAAAAAAMAAAAOABcAAAABAAMAAAANABcAAAABAAMAAAAMABcAAAABAAMAAAALABcAAAABAAMAAAAKABcAAAABAAMAAAAJABcAAAABAAMAAAAFABQAAAACAAMAAAAEABQAAAABAAMAAAADABQAAAABAAMAAAACABQAAAABAAMAAAABABQAAAABAAMAAAAEABoAAAAAAAMAAAAFABoAAAABAAMAAAAGABoAAAABAAMAAAAGABsAAAAAAAIAAAAHABoAAAABAAMAAAAIABoAAAABAAMAAAAJABoAAAACAAMAAAAKABoAAAABAAAAAAALABoAAAABAAAAAAAMABoAAAABAAAAAAANABoAAAABAAAAAAAOABoAAAABAAAAAAAPABoAAAABAAAAAAAHABsAAAABAAIAAAAIABsAAAABAAIAAAAJABsAAAABAAIAAAAKABsAAAABAAIAAAALABsAAAABAAIAAAAMABsAAAABAAIAAAANABsAAAABAAIAAAAOABsAAAABAAIAAAAPABsAAAABAAIAAAAMAAkAAAACAAMAAAALAAkAAAABAAMAAAAKAAkAAAABAAMAAAAJAAkAAAABAAMAAAAIAAkAAAABAAMAAAAHAAkAAAABAAMAAAAGAAkAAAABAAMAAAAFAAkAAAABAAMAAAAEAAkAAAABAAMAAAADAAkAAAABAAMAAAACAAkAAAABAAMAAAABAAkAAAABAAMAAAAAAAgAAAACAAEAAAAAAAcAAAACAAEAAAAAAAYAAAACAAEAAAAAAAUAAAACAAEAAAAAAAQAAAAEAAAAAAABAAQAAAACAAIAAAABAAMAAAAEAAAAAAACAAMAAAACAAIAAAACAAIAAAAEAAAAAAADAAIAAAABAAIAAAAEAAIAAAACAAIAAAAEAAEAAAAEAAAAAAAFAAEAAAABAAIAAAAGAAEAAAABAAIAAAAHAAEAAAABAAIAAAAIAAEAAAABAAIAAAAJAAEAAAABAAIAAAAKAAEAAAABAAIAAAALAAEAAAAFAAAAAAALAAIAAAAAAAIAAAAMAAIAAAABAAIAAAANAAIAAAAFAAAAAAANAAMAAAAAAAIAAAAOAAMAAAAFAAAAAAAOAAQAAAAAAAIAAAAPAAQAAAAFAAAAAAAPAAUAAAAAAAEAAAAPAAYAAAAAAAEAAAAPAAcAAAAAAAEAAAAPAAgAAAAAAAEAAAAPAAkAAAAAAAIAAAAGAAYAAAAAAAMAAAAHAAYAAAABAAMAAAAIAAYAAAABAAMAAAAJAAYAAAABAAMAAAAKAAYAAAABAAMAAAALAAYAAAABAAMAAAAMAAYAAAABAAMAAAANAAYAAAABAAMAAAAOAAYAAAABAAMAAAAAAAMAAAABAAEAAAAAAAIAAAABAAEAAAAAAAEAAAABAAEAAAAAAAAAAAABAAEAAAABAAAAAAABAAEAAAACAAAAAAABAAEAAAADAAAAAAABAAEAAAAEAAAAAAABAAEAAAAFAAAAAAABAAEAAAAGAAAAAAABAAEAAAAHAAAAAAABAAEAAAAIAAAAAAABAAEAAAAJAAAAAAABAAEAAAAKAAAAAAABAAEAAAALAAAAAAABAAEAAAAMAAAAAAABAAEAAAANAAAAAAABAAEAAAAOAAAAAAABAAEAAAAPAAAAAAABAAEAAAAPAAEAAAABAAEAAAAPAAIAAAABAAEAAAAPAAMAAAABAAEAAAABAAEAAAABAAEAAAABAAIAAAABAAEAAAACAAEAAAABAAEAAAADAAEAAAABAAEAAAANAAEAAAABAAEAAAAMAAEAAAABAAEAAAAOAAEAAAABAAEAAAAOAAIAAAABAAEAAAABAAYAAAAAAAAAAAABAAcAAAAAAAEAAAABAAgAAAAAAAIAAAACAAYAAAABAAAAAAACAAcAAAABAAEAAAACAAgAAAABAAIAAAADAAYAAAACAAAAAAADAAcAAAACAAEAAAADAAgAAAACAAIAAAAAACIAAAABAAAAAAABACIAAAABAAAAAAACACIAAAABAAAAAAADACIAAAABAAAAAAAEACIAAAABAAAAAAAAACMAAAABAAEAAAABACMAAAABAAEAAAACACMAAAABAAEAAAADACMAAAABAAEAAAAEACMAAAABAAEAAAAGACIAAAAFAAEAAAAGACMAAAABAAEAAAAHACEAAAACAAAAAAAHACIAAAACAAEAAAAHACMAAAAEAAEAAAAIACMAAAABAAAAAAAGACEAAAAAAAAAAAAJACMAAAABAAAAAAAAAAoAAAACAAIAAAAAAAkAAAACAAEAAAA=")
 tile_set = ExtResource("4_6s8m2")
 
-[node name="PowerLine" type="Node2D" parent="Background" index="5"]
+[node name="PowerLine" type="Node2D" parent="Background" index="6"]
 modulate = Color(1, 0.55200005, 0.16000003, 1)
 
 [node name="PowerLineTop" type="Line2D" parent="Background/PowerLine" index="0"]
@@ -90,7 +103,7 @@ width = 3.0
 points = PackedVector2Array(310, 490, 310, 480)
 width = 3.0
 
-[node name="TopGates" type="Node2D" parent="Background" index="6"]
+[node name="TopGates" type="Node2D" parent="Background" index="7"]
 
 [node name="GateLeftClosed" type="TileMapLayer" parent="Background/TopGates" index="0"]
 tile_map_data = PackedByteArray("AAAIAAcAAAADAAAAAAAIAAgAAAADAAIAAAA=")
@@ -149,14 +162,17 @@ shape = SubResource("RectangleShape2D_dsv0y")
 [connection signal="flag_unchecked" from="Flags/LeftRoomFlag" to="Background/TopGates/GateLeftOpen" method="queue_free"]
 [connection signal="flag_checked" from="Flags/RightRoomFlag" to="Background/TopGates/GateRightClosed" method="queue_free"]
 [connection signal="flag_unchecked" from="Flags/RightRoomFlag" to="Background/TopGates/GateRightOpen" method="queue_free"]
+[connection signal="flag_checked" from="Flags/GreenSwitchFlag" to="Background/Terminal" method="deactivate"]
 [connection signal="flag_checked" from="Flags/GreenSwitchFlag" to="Background/GateToDash" method="queue_free"]
 [connection signal="flag_checked" from="Flags/GreenSwitchFlag" to="Background/PowerLine/PowerLineBottom2" method="hide"]
 [connection signal="flag_checked" from="Flags/GreenSwitchFlag" to="Background/PowerLine" method="set" binds= ["modulate", Color(0.1882353, 0.9490196, 0.1882353, 1)]]
 [connection signal="flag_just_checked" from="Flags/GreenSwitchFlag" to="Background/GateToDash" method="open_up"]
 [connection signal="flag_just_checked" from="Flags/GreenSwitchFlag" to="Background/PowerLine/PowerLineBottom2" method="hide"]
+[connection signal="flag_just_checked" from="Flags/GreenSwitchFlag" to="Flags/GreenSwitchFlag/GreenSwitchText" method="play_timeline"]
 [connection signal="flag_just_checked" from="Flags/GreenSwitchFlag" to="Background/PowerLine" method="set" binds= ["modulate", Color(0.1882353, 0.9490196, 0.1882353, 1)]]
 [connection signal="flag_checked" from="Flags/FirstEntryFlag" to="Area2D" method="queue_free"]
 [connection signal="flag_just_checked" from="Flags/FirstEntryFlag" to="Flags/FirstEntryFlag/FirstEntryText" method="play_timeline"]
 [connection signal="flag_just_checked" from="Flags/FirstEntryFlag" to="Area2D" method="queue_free"]
+[connection signal="flag_unchecked" from="Flags/EscapeFlag" to="Background/GateToBoss" method="queue_free"]
 [connection signal="interact" from="Background/Terminal" to="Flags/GreenSwitchFlag" method="set_flag" unbinds=1]
 [connection signal="body_entered" from="Area2D" to="Flags/FirstEntryFlag" method="set_flag" unbinds=1]

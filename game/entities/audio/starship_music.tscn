@@ -179,5 +179,4 @@ stream = SubResource("AudioStreamInteractive_6wr4m")
 autoplay = true
 bus = &"Music"
 script = ExtResource("17_ca2qe")
-progression_var = 0.1
 metadata/_custom_type_script = "uid://dr2i045xpi8ex"

@@ -21,6 +21,7 @@ func _on_boss_killed() -> void:
 	AudioController.end_boss_battle()
 	boss_kill_flag.set_flag()
 	exit_gate.open_up()
+	#AudioController.start_escape_sequence()
 #endregion
 
 
