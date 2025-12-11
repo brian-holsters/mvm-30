@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=4 uid="uid://kmms3fxpv6i7"]
+[gd_scene load_steps=12 format=4 uid="uid://kmms3fxpv6i7"]
 
 [ext_resource type="PackedScene" uid="uid://by13a22vxwdu1" path="res://game/levels/base_level.tscn" id="1_brbgu"]
 [ext_resource type="Script" uid="uid://bnktai1u2rqbo" path="res://game/scripts/flag_checker.gd" id="2_oqlln"]
 [ext_resource type="TileSet" uid="uid://bxjd1yx0ntj88" path="res://assets/tilesets/main_tileset.tres" id="3_oqlln"]
+[ext_resource type="PackedScene" uid="uid://cl0x1a17v2yfc" path="res://game/levels/iter_1/progress_flags.tscn" id="3_piq5o"]
 [ext_resource type="PackedScene" uid="uid://cqqw42miprcfm" path="res://game/entities/interactable/terminal.tscn" id="4_440r0"]
 [ext_resource type="PackedScene" uid="uid://cdsayh2vpmg7l" path="res://game/entities/enemies/path_follower/path_follower.tscn" id="5_2ew8m"]
 [ext_resource type="Script" uid="uid://bwquh18wbm83e" path="res://game/scripts/camera_area.gd" id="5_440r0"]
@@ -36,6 +37,8 @@ size = Vector2(247, 80)
 script = ExtResource("2_oqlln")
 flag = "iter1_right_room_switch"
 metadata/_custom_type_script = "uid://bnktai1u2rqbo"
+
+[node name="ProgressFlags" parent="Flags" index="1" instance=ExtResource("3_piq5o")]
 
 [node name="BackGroundL" type="TileMapLayer" parent="Background" index="0"]
 modulate = Color(0.49803922, 0.49803922, 0.49803922, 1)
@@ -101,3 +104,4 @@ position = Vector2(0, -40)
 [connection signal="flag_checked" from="Flags/RightRoomFlag" to="Background/Terminal" method="deactivate"]
 [connection signal="flag_just_checked" from="Flags/RightRoomFlag" to="Background/Terminal" method="deactivate"]
 [connection signal="interact" from="Background/Terminal" to="Flags/RightRoomFlag" method="set_flag" unbinds=1]
+[connection signal="interact" from="Background/Terminal" to="Flags/ProgressFlags" method="_progress" unbinds=1]

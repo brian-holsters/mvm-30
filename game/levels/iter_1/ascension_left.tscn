@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=4 uid="uid://cxcj5xb7drkcl"]
+[gd_scene load_steps=9 format=4 uid="uid://cxcj5xb7drkcl"]
 
 [ext_resource type="PackedScene" uid="uid://by13a22vxwdu1" path="res://game/levels/base_level.tscn" id="1_icbyg"]
 [ext_resource type="Script" uid="uid://bnktai1u2rqbo" path="res://game/scripts/flag_checker.gd" id="2_08chx"]
+[ext_resource type="PackedScene" uid="uid://cl0x1a17v2yfc" path="res://game/levels/iter_1/progress_flags.tscn" id="3_bv2po"]
 [ext_resource type="TileSet" uid="uid://bxjd1yx0ntj88" path="res://assets/tilesets/main_tileset.tres" id="3_gyr2o"]
 [ext_resource type="PackedScene" uid="uid://cqqw42miprcfm" path="res://game/entities/interactable/terminal.tscn" id="3_ki56x"]
 [ext_resource type="PackedScene" uid="uid://b8kxe75yox7h4" path="res://game/entities/obstacles/laser/laser.tscn" id="5_bv2po"]
@@ -22,6 +23,8 @@ autostart = true
 script = ExtResource("2_08chx")
 flag = "iter1_left_room_switch"
 metadata/_custom_type_script = "uid://bnktai1u2rqbo"
+
+[node name="ProgressFlags" parent="Flags" index="1" instance=ExtResource("3_bv2po")]
 
 [node name="BackGroundR" type="TileMapLayer" parent="Background" index="0"]
 modulate = Color(0.49803922, 0.49803922, 0.49803922, 1)
@@ -136,3 +139,4 @@ shape = SubResource("RectangleShape2D_bv2po")
 [connection signal="flag_checked" from="Flags/LeftRoomFlag" to="Background/Terminal" method="deactivate"]
 [connection signal="flag_just_checked" from="Flags/LeftRoomFlag" to="Background/Terminal" method="deactivate"]
 [connection signal="interact" from="Background/Terminal" to="Flags/LeftRoomFlag" method="set_flag" unbinds=1]
+[connection signal="interact" from="Background/Terminal" to="Flags/ProgressFlags" method="_progress" unbinds=1]
