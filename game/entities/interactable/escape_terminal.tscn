@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://cnclo76gwu55"]
+
+[ext_resource type="PackedScene" uid="uid://cqqw42miprcfm" path="res://game/entities/interactable/terminal.tscn" id="1_kqpxs"]
+[ext_resource type="Texture2D" uid="uid://bd87i4n8af3rs" path="res://assets/tilesets/Control panel.png" id="2_82q3a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gtnne"]
+size = Vector2(38, 20)
+
+[sub_resource type="Gradient" id="Gradient_k5hx8"]
+offsets = PackedFloat32Array(0.7008547, 1)
+colors = PackedColorArray(0, 0, 0, 0.32156864, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_e8jq6"]
+gradient = SubResource("Gradient_k5hx8")
+width = 125
+height = 40
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[node name="EscapeTerminal" instance=ExtResource("1_kqpxs")]
+
+[node name="TileMapLayer" parent="." index="1"]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="2"]
+position = Vector2(0, -40)
+texture = ExtResource("2_82q3a")
+
+[node name="CollisionShape2D" parent="." index="3"]
+shape = SubResource("RectangleShape2D_gtnne")
+
+[node name="InteractText" parent="." index="4"]
+offset_left = -56.0
+offset_top = -119.0
+offset_right = 56.0
+offset_bottom = -92.0
+text = "Activate
+Self destruction
+sequence"
+
+[node name="Background" parent="InteractText" index="0"]
+position = Vector2(0, 0)
+texture = SubResource("GradientTexture2D_e8jq6")
+centered = false
+offset = Vector2(-5, -6)
