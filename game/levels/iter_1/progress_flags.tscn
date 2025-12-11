@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cl0x1a17v2yfc"]
+
+[ext_resource type="Script" uid="uid://cyjitb1cyqdxo" path="res://game/scripts/side_terminal_flag_checker.gd" id="1_gjkmj"]
+[ext_resource type="Script" uid="uid://bnktai1u2rqbo" path="res://game/scripts/flag_checker.gd" id="2_g5o15"]
+
+[node name="ProgressFlags" type="Node"]
+script = ExtResource("1_gjkmj")
+
+[node name="FirstTerminalFlag" type="Node2D" parent="."]
+script = ExtResource("2_g5o15")
+flag = "first_terminal_used"
+metadata/_custom_type_script = "uid://bnktai1u2rqbo"
+
+[node name="SecondTerminalFlag" type="Node2D" parent="."]
+script = ExtResource("2_g5o15")
+flag = "second_terminal_used"
+metadata/_custom_type_script = "uid://bnktai1u2rqbo"
