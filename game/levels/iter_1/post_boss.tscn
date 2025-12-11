@@ -1,15 +1,43 @@
-[gd_scene load_steps=4 format=4 uid="uid://cmnrhi7xq6pre"]
+[gd_scene load_steps=7 format=4 uid="uid://cmnrhi7xq6pre"]
 
 [ext_resource type="PackedScene" uid="uid://by13a22vxwdu1" path="res://game/levels/base_level.tscn" id="1_5ds41"]
+[ext_resource type="Script" uid="uid://bnmhj7vj21jq3" path="res://game/levels/iter_1/post_boss.gd" id="2_1d63p"]
+[ext_resource type="PackedScene" uid="uid://cnclo76gwu55" path="res://game/entities/interactable/escape_terminal.tscn" id="2_p8okg"]
 [ext_resource type="TileSet" uid="uid://bxjd1yx0ntj88" path="res://assets/tilesets/main_tileset.tres" id="2_x5c6h"]
-[ext_resource type="Texture2D" uid="uid://bd87i4n8af3rs" path="res://assets/tilesets/Control panel.png" id="3_ml5ws"]
+[ext_resource type="Script" uid="uid://bnktai1u2rqbo" path="res://game/scripts/flag_checker.gd" id="4_1d63p"]
+[ext_resource type="Script" uid="uid://dtq4ompcn2bgy" path="res://game/scripts/spawn_setter.gd" id="5_nxyg3"]
 
 [node name="PostBoss" instance=ExtResource("1_5ds41")]
+script = ExtResource("2_1d63p")
 
-[node name="Sprite2D" type="Sprite2D" parent="Background" index="0"]
-position = Vector2(128, 112)
-texture = ExtResource("3_ml5ws")
+[node name="EscapeFlag" type="Node" parent="." index="0"]
+unique_name_in_owner = true
+script = ExtResource("4_1d63p")
+flag = "escape_sequence"
+metadata/_custom_type_script = "uid://bnktai1u2rqbo"
+
+[node name="EscapeTerminal" parent="Background" index="0" instance=ExtResource("2_p8okg")]
+position = Vector2(127, 151)
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="Background" index="1"]
 tile_map_data = PackedByteArray("AAAAAAAAAAAEAAAAAAAAAAEAAAACAAEAAAAAAAIAAAACAAEAAAAAAAMAAAACAAEAAAAAAAQAAAACAAEAAAAAAAUAAAACAAEAAAAAAAYAAAACAAEAAAAAAAcAAAACAAEAAAAAAAgAAAAEAAEAAAABAAAAAAABAAIAAAABAAgAAAABAAAAAAACAAAAAAABAAIAAAACAAgAAAABAAAAAAADAAAAAAABAAIAAAADAAgAAAABAAAAAAAEAAAAAAABAAIAAAAEAAgAAAABAAAAAAAFAAAAAAABAAIAAAAFAAgAAAABAAAAAAAGAAAAAAABAAIAAAAGAAgAAAABAAAAAAAHAAAAAAABAAIAAAAHAAgAAAABAAAAAAAIAAAAAAABAAIAAAAIAAgAAAABAAAAAAAJAAAAAAABAAIAAAAJAAgAAAABAAAAAAAKAAAAAAABAAIAAAAKAAgAAAABAAAAAAALAAAAAAABAAIAAAALAAgAAAABAAAAAAAMAAAAAAABAAIAAAAMAAgAAAACAAAAAAANAAAAAAABAAIAAAAOAAAAAAABAAIAAAAPAAAAAAABAAIAAAAPAAgAAAAAAAAAAAAQAAAAAAABAAIAAAAQAAgAAAABAAAAAAARAAAAAAABAAIAAAARAAgAAAABAAAAAAASAAAAAAABAAIAAAASAAgAAAABAAAAAAATAAAAAAABAAIAAAATAAgAAAABAAAAAAAUAAAAAAABAAIAAAAUAAgAAAABAAAAAAAVAAAAAAABAAIAAAAVAAgAAAABAAAAAAAWAAAAAAABAAIAAAAWAAgAAAABAAAAAAAXAAAAAAABAAIAAAAXAAgAAAABAAAAAAAYAAAAAAABAAIAAAAYAAgAAAABAAAAAAAZAAAAAAABAAIAAAAZAAgAAAABAAAAAAAaAAAAAAABAAIAAAAaAAgAAAABAAAAAAAbAAAAAAABAAIAAAAbAAgAAAABAAAAAAAcAAAAAAABAAIAAAAcAAgAAAABAAAAAAAdAAAAAAABAAIAAAAdAAgAAAABAAAAAAAeAAAAAAABAAIAAAAeAAgAAAABAAAAAAAfAAAAAAAFAAAAAAAfAAEAAAAAAAEAAAAfAAIAAAAAAAEAAAAfAAMAAAAAAAEAAAAfAAQAAAAAAAEAAAAfAAUAAAAAAAIAAAAfAAgAAAABAAAAAAAQAAkAAAABAAEAAAARAAkAAAABAAEAAAASAAkAAAABAAEAAAATAAkAAAABAAEAAAAUAAkAAAABAAEAAAAVAAkAAAABAAEAAAAWAAkAAAABAAEAAAAXAAkAAAABAAEAAAAYAAkAAAABAAEAAAAZAAkAAAABAAEAAAAaAAkAAAABAAEAAAAbAAkAAAABAAEAAAAcAAkAAAABAAEAAAAdAAkAAAABAAEAAAAeAAkAAAABAAEAAAAfAAkAAAABAAEAAAAgAAgAAAABAAAAAAAgAAkAAAABAAEAAAAgAP//AAABAAEAAAAgAAAAAAABAAEAAAAgAAEAAAABAAEAAAAgAAIAAAABAAEAAAAgAAMAAAABAAEAAAAgAAQAAAABAAEAAAACAP//AAABAAEAAAADAP//AAABAAEAAAAEAP//AAABAAEAAAAFAP//AAABAAEAAAAGAP//AAABAAEAAAAHAP//AAABAAEAAAAIAP//AAABAAEAAAAJAP//AAABAAEAAAAKAP//AAABAAEAAAALAP//AAABAAEAAAAMAP//AAABAAEAAAANAP//AAABAAEAAAAOAP//AAABAAEAAAAPAP//AAABAAEAAAAQAP//AAABAAEAAAARAP//AAABAAEAAAASAP//AAABAAEAAAATAP//AAABAAEAAAAUAP//AAABAAEAAAAVAP//AAABAAEAAAAWAP//AAABAAEAAAAXAP//AAABAAEAAAAYAP//AAABAAEAAAAZAP//AAABAAEAAAAaAP//AAABAAEAAAAbAP//AAABAAEAAAAcAP//AAABAAEAAAAdAP//AAABAAEAAAAeAP//AAABAAEAAAAfAP//AAABAAEAAAD/////AAABAAEAAAAAAP//AAABAAEAAAABAP//AAABAAEAAAD//wAAAAABAAEAAAD//wEAAAABAAEAAAD//wIAAAABAAEAAAD//wMAAAABAAEAAAD//wQAAAABAAEAAAD//wUAAAABAAEAAAD//wYAAAABAAEAAAD//wcAAAABAAEAAAD//wgAAAABAAEAAAD//wkAAAABAAEAAAAAAAkAAAABAAEAAAABAAkAAAABAAEAAAACAAkAAAABAAEAAAADAAkAAAABAAEAAAAEAAkAAAABAAEAAAAFAAkAAAABAAEAAAAGAAkAAAABAAEAAAAHAAkAAAABAAEAAAAIAAkAAAABAAEAAAAJAAkAAAABAAEAAAAKAAkAAAABAAEAAAALAAkAAAABAAEAAAAMAAkAAAACAAEAAAAPAAkAAAAAAAEAAAAgAAUAAAABAAIAAAA=")
 tile_set = ExtResource("2_x5c6h")
+
+[node name="Gate" type="TileMapLayer" parent="Background" index="2"]
+tile_map_data = PackedByteArray("AAANAAgAAAAAAAMAAAAOAAgAAAACAAMAAAA=")
+tile_set = ExtResource("2_x5c6h")
+
+[node name="SpawnSetter" type="Node" parent="." index="4"]
+unique_name_in_owner = true
+script = ExtResource("5_nxyg3")
+metadata/_custom_type_script = "uid://dtq4ompcn2bgy"
+
+[node name="Spawn" type="Marker2D" parent="." index="5" groups=["spawn_point"]]
+position = Vector2(127, 146)
+
+[connection signal="flag_checked" from="EscapeFlag" to="Background/EscapeTerminal" method="deactivate"]
+[connection signal="flag_checked" from="EscapeFlag" to="Background/Gate" method="queue_free"]
+[connection signal="flag_just_checked" from="EscapeFlag" to="Background/Gate" method="queue_free"]
+[connection signal="interact" from="Background/EscapeTerminal" to="." method="start_escape" unbinds=1]
+[connection signal="interact" from="Background/EscapeTerminal" to="EscapeFlag" method="set_flag" unbinds=1]
+[connection signal="interact" from="Background/EscapeTerminal" to="SpawnSetter" method="set_spawn_to_current_room" unbinds=1]

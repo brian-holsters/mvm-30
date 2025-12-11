@@ -1,9 +1,12 @@
-[gd_scene load_steps=7 format=4 uid="uid://bjqb6yrwskgtj"]
+[gd_scene load_steps=10 format=4 uid="uid://bjqb6yrwskgtj"]
 
 [ext_resource type="PackedScene" uid="uid://by13a22vxwdu1" path="res://game/levels/base_level.tscn" id="1_kcwhc"]
 [ext_resource type="TileSet" uid="uid://bxjd1yx0ntj88" path="res://assets/tilesets/main_tileset.tres" id="2_kcwhc"]
+[ext_resource type="Script" uid="uid://bnktai1u2rqbo" path="res://game/scripts/flag_checker.gd" id="2_ke6c6"]
+[ext_resource type="Script" uid="uid://cyje8g4gxmvc5" path="res://game/levels/iter_1/bridge.gd" id="2_qsjtp"]
 [ext_resource type="PackedScene" uid="uid://cdsayh2vpmg7l" path="res://game/entities/enemies/path_follower/path_follower.tscn" id="3_s1wk4"]
 [ext_resource type="PackedScene" uid="uid://bpcaot1ottamu" path="res://game/entities/enemies/turret/turret.tscn" id="4_ld6c2"]
+[ext_resource type="PackedScene" uid="uid://cqqw42miprcfm" path="res://game/entities/interactable/terminal.tscn" id="6_qsjtp"]
 
 [sub_resource type="Curve2D" id="Curve2D_ld6c2"]
 _data = {
@@ -17,7 +20,13 @@ _data = {
 }
 point_count = 2
 
-[node name="PreBoss" instance=ExtResource("1_kcwhc")]
+[node name="Bridge" instance=ExtResource("1_kcwhc")]
+script = ExtResource("2_qsjtp")
+
+[node name="EscapeFlag" type="Node" parent="." index="0"]
+script = ExtResource("2_ke6c6")
+flag = "escape_sequence"
+metadata/_custom_type_script = "uid://bnktai1u2rqbo"
 
 [node name="BackGroundR" type="TileMapLayer" parent="Background" index="0"]
 modulate = Color(0.49803922, 0.49803922, 0.49803922, 1)
@@ -116,3 +125,9 @@ charge_time = 0.5
 position = Vector2(1360, 36)
 rotation = 3.1415927
 charge_time = 0.5
+
+[node name="Terminal" parent="Background" index="8" instance=ExtResource("6_qsjtp")]
+position = Vector2(800, 151)
+
+[connection signal="flag_unchecked" from="EscapeFlag" to="Background/Terminal" method="deactivate"]
+[connection signal="interact" from="Background/Terminal" to="." method="finish_game" unbinds=1]
