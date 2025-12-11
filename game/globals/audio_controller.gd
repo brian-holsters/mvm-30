@@ -61,7 +61,7 @@ func _ready() -> void:
 	dash_obtained = dash_chkr.get_flag_value()
 	#print("dash_obtained: "+str(dash_obtained))
 	
-	boss_chkr = add_flag(boss_chkr, boss_killed, "boss_1")
+	#boss_chkr = add_flag(boss_chkr, boss_killed, "escape_sequence")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -78,8 +78,8 @@ func _process(_delta: float) -> void:
 	
 	if not(intro_complete):
 		intro_complete = intro_chkr.get_flag_value()
-	if not(boss_killed):
-		boss_killed = boss_chkr.get_flag_value()
+	#if not(boss_killed):
+		#boss_killed = boss_chkr.get_flag_value()
 	if not(dash_obtained):
 		dash_obtained = dash_chkr.get_flag_value()
 	
