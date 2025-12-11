@@ -35,6 +35,11 @@ metadata/_custom_type_script = "uid://bnktai1u2rqbo"
 script = ExtResource("5_kunp1")
 flag = "hub_green_switch"
 
+[node name="GreenSwitchText" type="Node" parent="Flags/GreenSwitchFlag" index="0"]
+script = ExtResource("3_jxfb3")
+timeline = "green_switch_text"
+metadata/_custom_type_script = "uid://d15w7co7lxbq1"
+
 [node name="FirstEntryFlag" type="Node" parent="Flags" index="3"]
 script = ExtResource("5_kunp1")
 flag = "hub_column_first_entry"
@@ -155,6 +160,7 @@ shape = SubResource("RectangleShape2D_dsv0y")
 [connection signal="flag_checked" from="Flags/GreenSwitchFlag" to="Background/PowerLine" method="set" binds= ["modulate", Color(0.1882353, 0.9490196, 0.1882353, 1)]]
 [connection signal="flag_just_checked" from="Flags/GreenSwitchFlag" to="Background/GateToDash" method="open_up"]
 [connection signal="flag_just_checked" from="Flags/GreenSwitchFlag" to="Background/PowerLine/PowerLineBottom2" method="hide"]
+[connection signal="flag_just_checked" from="Flags/GreenSwitchFlag" to="Flags/GreenSwitchFlag/GreenSwitchText" method="play_timeline"]
 [connection signal="flag_just_checked" from="Flags/GreenSwitchFlag" to="Background/PowerLine" method="set" binds= ["modulate", Color(0.1882353, 0.9490196, 0.1882353, 1)]]
 [connection signal="flag_checked" from="Flags/FirstEntryFlag" to="Area2D" method="queue_free"]
 [connection signal="flag_just_checked" from="Flags/FirstEntryFlag" to="Flags/FirstEntryFlag/FirstEntryText" method="play_timeline"]
