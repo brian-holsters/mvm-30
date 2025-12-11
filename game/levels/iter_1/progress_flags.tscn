@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cl0x1a17v2yfc"]
+[gd_scene load_steps=4 format=3 uid="uid://cl0x1a17v2yfc"]
 
 [ext_resource type="Script" uid="uid://cyjitb1cyqdxo" path="res://game/scripts/side_terminal_flag_checker.gd" id="1_gjkmj"]
 [ext_resource type="Script" uid="uid://bnktai1u2rqbo" path="res://game/scripts/flag_checker.gd" id="2_g5o15"]
+[ext_resource type="Script" uid="uid://d15w7co7lxbq1" path="res://game/scripts/text_player.gd" id="3_g5o15"]
 
 [node name="ProgressFlags" type="Node"]
 script = ExtResource("1_gjkmj")
@@ -11,7 +12,20 @@ script = ExtResource("2_g5o15")
 flag = "first_terminal_used"
 metadata/_custom_type_script = "uid://bnktai1u2rqbo"
 
+[node name="FirstSideTerminalText" type="Node" parent="FirstTerminalFlag"]
+unique_name_in_owner = true
+script = ExtResource("3_g5o15")
+timeline = "first_side_terminal_text"
+
 [node name="SecondTerminalFlag" type="Node2D" parent="."]
 script = ExtResource("2_g5o15")
 flag = "second_terminal_used"
 metadata/_custom_type_script = "uid://bnktai1u2rqbo"
+
+[node name="SecondSideTerminalText" type="Node" parent="SecondTerminalFlag"]
+unique_name_in_owner = true
+script = ExtResource("3_g5o15")
+timeline = "second_side_terminal_text"
+
+[connection signal="flag_just_checked" from="FirstTerminalFlag" to="FirstTerminalFlag/FirstSideTerminalText" method="play_timeline"]
+[connection signal="flag_just_checked" from="SecondTerminalFlag" to="SecondTerminalFlag/SecondSideTerminalText" method="play_timeline"]
