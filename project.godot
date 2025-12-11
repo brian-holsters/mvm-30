@@ -27,14 +27,17 @@ AudioController="*res://game/globals/audio_controller.gd"
 
 directories/dtl_directory={
 "dash_attack": "res://game/dialogic/timelines/dash_attack.dtl",
+"dash_attack - Copy (3)": "res://game/dialogic/timelines/dash_attack - Copy (3).dtl",
 "dash_pickup": "res://game/dialogic/timelines/dash_pickup.dtl",
 "escape_text": "res://game/dialogic/timelines/escape_text.dtl",
 "example_timeline": "res://game/dialogic/timelines/example_timeline.dtl",
 "first_entry_hub_column_text": "res://game/dialogic/timelines/first_entry_hub_column_text.dtl",
 "first_lore_text": "res://game/dialogic/timelines/first_lore_text.dtl",
+"first_side_terminal_text": "res://game/dialogic/timelines/first_side_terminal_text.dtl",
 "green_switch_text": "res://game/dialogic/timelines/green_switch_text.dtl",
 "intro_text": "res://game/dialogic/timelines/intro_text.dtl",
-"intro_text_jumped": "res://game/dialogic/timelines/intro_text_jumped.dtl"
+"intro_text_jumped": "res://game/dialogic/timelines/intro_text_jumped.dtl",
+"second_side_terminal_text": "res://game/dialogic/timelines/second_side_terminal_text.dtl"
 }
 layout/style_directory={
 "": "res://game/dialogic/default_style.tres",
