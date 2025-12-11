@@ -3,12 +3,15 @@ extends Node
 const MIN_ENEMY_DISTANCE = -50.0
 const MAX_ENEMY_DISTANCE = 350.0
 
+const ALARM_PERIOD = 8
+
 enum MusicState {
 	START,
 	EXPLORE,
 	FIRST_UPGRADE,
 	BOSS,
 	SILENCE,
+	ESCAPE
 }
 
 #publicly accessible
@@ -22,8 +25,10 @@ var danger_level: float = 0.0
 
 var intro_complete: bool = false
 var dash_obtained: bool = false
+var boss_killed: bool = false
 var intro_chkr: FlagNode
 var dash_chkr: FlagNode
+var boss_chkr: FlagNode
 var state: MusicState = MusicState.START
 var enemy_distance: float = MAX_ENEMY_DISTANCE
 
@@ -55,10 +60,12 @@ func _ready() -> void:
 	add_child(dash_chkr)
 	dash_obtained = dash_chkr.get_flag_value()
 	#print("dash_obtained: "+str(dash_obtained))
+	
+	boss_chkr = add_flag(boss_chkr, boss_killed, "boss_1")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	
+
 	#checking progression and danger level, smoothing out transitions
 	progression = change_var(progression, progression_var, 0.07)
 	danger_level = change_var(danger_level, danger_var, 0.07)
@@ -69,22 +76,35 @@ func _process(_delta: float) -> void:
 	#print("danger_var: "+str(danger_var))
 	#print("danger_level: "+str(danger_level))
 	
+	if not(intro_complete):
+		intro_complete = intro_chkr.get_flag_value()
+	if not(boss_killed):
+		boss_killed = boss_chkr.get_flag_value()
+	if not(dash_obtained):
+		dash_obtained = dash_chkr.get_flag_value()
+	
 	match state:
 		MusicState.START:
-			intro_complete = intro_chkr.get_flag_value()
 			if intro_complete:
 				set_state(MusicState.EXPLORE)
+			if boss_killed:
+				set_state(MusicState.ESCAPE)
 		MusicState.EXPLORE:
-			dash_obtained = dash_chkr.get_flag_value()
+			set_danger(danger_from_distance())
 			if dash_obtained:
 				set_state(MusicState.FIRST_UPGRADE)
-			set_danger(danger_from_distance())
+			if boss_killed:
+				set_state(MusicState.ESCAPE)
 		MusicState.FIRST_UPGRADE:
 			set_danger(danger_from_distance())
+			if boss_killed:
+				set_state(MusicState.ESCAPE)
 		MusicState.BOSS:
 			pass
 		MusicState.SILENCE:
 			pass
+		MusicState.ESCAPE:
+			set_danger(danger_from_distance())
 		"_":
 			state = MusicState.START		
 
@@ -99,7 +119,7 @@ func get_state() -> MusicState:
 	return state
 	
 func _enter_state(s):
-	print("enter state: "+str(s))
+	#print("enter state: "+str(s))
 	match s:
 		MusicState.START:
 			set_progression(0.0)
@@ -113,9 +133,11 @@ func _enter_state(s):
 			set_danger(1.0)
 		MusicState.SILENCE:
 			pass
+		MusicState.ESCAPE:
+			pass
 
 func _exit_state(s):
-	print("exit state: "+str(s))
+	#print("exit state: "+str(s))
 	match s:
 		MusicState.START:
 			pass
@@ -125,6 +147,8 @@ func _exit_state(s):
 			pass
 			set_danger(0.0)
 		MusicState.SILENCE:
+			pass
+		MusicState.ESCAPE:
 			pass
 
 func danger_from_distance():
@@ -138,6 +162,16 @@ func set_danger(value: float):
 	
 func set_progression(value: float):
 	progression_var = value
+	
+func add_flag(chkr_name : FlagNode, memory : bool, flag : String, database : String = "flags"):
+	chkr_name = FlagNode.new()
+	chkr_name.database = database
+	chkr_name.flag = flag
+	#chkr_name.set_flag()
+	add_child(chkr_name)
+	memory = chkr_name.get_flag_value()
+	#print(str(flag)+": "+str(memory))
+	return chkr_name
 	
 #----------------------------------------------------------------
 #public interface
@@ -173,3 +207,6 @@ func get_progression() -> float :
 	
 func get_danger() -> float :
 	return danger_level
+
+func start_escape_sequence():
+	set_state(MusicState.ESCAPE)

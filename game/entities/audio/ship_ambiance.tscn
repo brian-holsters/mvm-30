@@ -1,11 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://cj1yda4kh6hpr"]
+[gd_scene load_steps=13 format=3 uid="uid://cj1yda4kh6hpr"]
 
+[ext_resource type="Script" uid="uid://cj06ga6m4e42d" path="res://game/entities/audio/ship_ambiance.gd" id="1_fqurj"]
 [ext_resource type="AudioStream" uid="uid://bdan3tetcebqw" path="res://assets/sfx/ambiance/generator_hum_1.mp3" id="1_u8lnm"]
 [ext_resource type="AudioStream" uid="uid://f65fpvva36i" path="res://assets/sfx/ambiance/generator_hum_2.mp3" id="2_xpvfg"]
 [ext_resource type="AudioStream" uid="uid://darks2xt61rae" path="res://assets/sfx/ambiance/generator_hum_3.mp3" id="3_fqurj"]
 [ext_resource type="AudioStream" uid="uid://s5qb06dghimv" path="res://assets/sfx/ambiance/SFX_1.mp3" id="4_rpre8"]
 [ext_resource type="AudioStream" uid="uid://c6t8iko2mmywa" path="res://assets/sfx/ambiance/SFX_2.mp3" id="5_a867x"]
 [ext_resource type="AudioStream" uid="uid://p4h8gjhdko88" path="res://assets/sfx/ambiance/SFX_3.mp3" id="6_jmcag"]
+[ext_resource type="AudioStream" uid="uid://ctichvvntvhaj" path="res://assets/sfx/ambiance/alarm.wav" id="7_xpvfg"]
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_x6eei"]
 shuffle = true
@@ -27,7 +29,12 @@ stream_3/weight = 6.0
 stream_count = 1
 stream_0 = SubResource("AudioStreamRandomizer_j8tme")
 
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_rpre8"]
+stream_count = 1
+stream_0 = ExtResource("7_xpvfg")
+
 [node name="ShipAmbiance" type="Node"]
+script = ExtResource("1_fqurj")
 
 [node name="generator" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamPlaylist_x6eei")
@@ -39,3 +46,7 @@ stream = SubResource("AudioStreamPlaylist_g41ro")
 volume_db = -13.069
 autoplay = true
 bus = &"Ambiance"
+
+[node name="alarm" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamPlaylist_rpre8")
+bus = &"Alarm"
