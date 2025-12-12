@@ -140,6 +140,7 @@ unique_name_in_owner = true
 position = Vector2(0, -1)
 sprite_frames = ExtResource("3_xt77v")
 animation = &"air_down"
+frame_progress = 0.564697
 script = ExtResource("4_aidgt")
 grounded_state = NodePath("../StateMachine/Grounded")
 
