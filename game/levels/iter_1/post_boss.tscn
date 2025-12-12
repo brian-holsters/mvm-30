@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://cmnrhi7xq6pre"]
+[gd_scene load_steps=8 format=4 uid="uid://cmnrhi7xq6pre"]
 
 [ext_resource type="PackedScene" uid="uid://by13a22vxwdu1" path="res://game/levels/base_level.tscn" id="1_5ds41"]
 [ext_resource type="Script" uid="uid://bnmhj7vj21jq3" path="res://game/levels/iter_1/post_boss.gd" id="2_1d63p"]
@@ -6,6 +6,7 @@
 [ext_resource type="TileSet" uid="uid://bxjd1yx0ntj88" path="res://assets/tilesets/main_tileset.tres" id="2_x5c6h"]
 [ext_resource type="Script" uid="uid://bnktai1u2rqbo" path="res://game/scripts/flag_checker.gd" id="4_1d63p"]
 [ext_resource type="Script" uid="uid://dtq4ompcn2bgy" path="res://game/scripts/spawn_setter.gd" id="5_nxyg3"]
+[ext_resource type="Script" uid="uid://d15w7co7lxbq1" path="res://game/scripts/text_player.gd" id="7_nxyg3"]
 
 [node name="PostBoss" instance=ExtResource("1_5ds41")]
 script = ExtResource("2_1d63p")
@@ -35,9 +36,15 @@ metadata/_custom_type_script = "uid://dtq4ompcn2bgy"
 [node name="Spawn" type="Marker2D" parent="." index="5" groups=["spawn_point"]]
 position = Vector2(127, 146)
 
+[node name="EscapeSequenceTextPlayer" type="Node" parent="." index="6"]
+unique_name_in_owner = true
+script = ExtResource("7_nxyg3")
+timeline = "escape_text"
+
 [connection signal="flag_checked" from="EscapeFlag" to="Background/EscapeTerminal" method="deactivate"]
 [connection signal="flag_checked" from="EscapeFlag" to="Background/Gate" method="queue_free"]
 [connection signal="flag_just_checked" from="EscapeFlag" to="Background/Gate" method="queue_free"]
 [connection signal="interact" from="Background/EscapeTerminal" to="." method="start_escape" unbinds=1]
 [connection signal="interact" from="Background/EscapeTerminal" to="EscapeFlag" method="set_flag" unbinds=1]
 [connection signal="interact" from="Background/EscapeTerminal" to="SpawnSetter" method="set_spawn_to_current_room" unbinds=1]
+[connection signal="interact" from="Background/EscapeTerminal" to="EscapeSequenceTextPlayer" method="play_timeline" unbinds=1]
