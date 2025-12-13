@@ -12,3 +12,5 @@ signal request_camera_follow(target: Node2D)
 signal reset_look
 
 signal tutorial_text(text: String)
+
+signal game_end

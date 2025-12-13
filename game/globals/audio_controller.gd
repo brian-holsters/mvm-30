@@ -46,22 +46,9 @@ func change_var(private: float,public: float, factor := 0.05) -> float:
 	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	intro_chkr = FlagNode.new()
-	intro_chkr.flag = "intro_complete"
-	#intro_chkr.set_flag()
-	add_child(intro_chkr)
-	intro_complete = intro_chkr.get_flag_value()
-	#print("intro_complete: "+str(intro_complete))
-	
-	dash_chkr = FlagNode.new()
-	dash_chkr.database = "upgrades"
-	dash_chkr.flag = "Dash"
-	#dash_chkr.set_flag()
-	add_child(dash_chkr)
-	dash_obtained = dash_chkr.get_flag_value()
-	#print("dash_obtained: "+str(dash_obtained))
-	
-	#boss_chkr = add_flag(boss_chkr, boss_killed, "escape_sequence")
+	intro_chkr = add_flag(intro_chkr, intro_complete, "intro_complete")
+	dash_chkr = add_flag(dash_chkr, dash_obtained, "Dash", "upgrades")
+	boss_chkr = add_flag(boss_chkr, boss_killed, "escape_sequence")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -78,10 +65,14 @@ func _process(_delta: float) -> void:
 	
 	if not(intro_complete):
 		intro_complete = intro_chkr.get_flag_value()
-	#if not(boss_killed):
-		#boss_killed = boss_chkr.get_flag_value()
+	if not(boss_killed):
+		boss_killed = boss_chkr.get_flag_value()
 	if not(dash_obtained):
 		dash_obtained = dash_chkr.get_flag_value()
+	
+	#print("intro_complete: "+str(intro_complete))
+	#print("dash_obtained: "+str(dash_obtained))
+	#print("boss_killed: "+str(boss_killed))
 	
 	match state:
 		MusicState.START:

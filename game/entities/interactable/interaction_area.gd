@@ -52,3 +52,7 @@ func deactivate():
 	if _can_interact:
 		_can_interact = false
 	monitoring = false
+
+func activate():
+	deactivated = false
+	monitoring = true

@@ -57,6 +57,7 @@ func _ready() -> void:
 	singleton = self
 	tutorial_text.hide()
 	EventHub.tutorial_text.connect(show_tutorial_text)
+	EventHub.game_end.connect(exit_game)
 	########################
 	## AUDIO_CONTROLLER
 	########################
