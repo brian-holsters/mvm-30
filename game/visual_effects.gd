@@ -17,7 +17,7 @@ func _process(delta: float) -> void:
 	if AudioController.state == AudioController.MusicState.ESCAPE:
 		time += delta
 		sine = sin(TAU*(time/(2*PERIOD)))**2
-		print(str(sine))
+		#print(str(sine))
 		var color = Color(1.0,1.0-sine/1.5,1.0-sine/1.5,1.0)
 		alarm_lights.set_color(color)
 	else:
