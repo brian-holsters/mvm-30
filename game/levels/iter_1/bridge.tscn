@@ -1,12 +1,11 @@
-[gd_scene load_steps=10 format=4 uid="uid://bjqb6yrwskgtj"]
+[gd_scene load_steps=9 format=4 uid="uid://bjqb6yrwskgtj"]
 
 [ext_resource type="PackedScene" uid="uid://by13a22vxwdu1" path="res://game/levels/base_level.tscn" id="1_kcwhc"]
 [ext_resource type="TileSet" uid="uid://bxjd1yx0ntj88" path="res://assets/tilesets/main_tileset.tres" id="2_kcwhc"]
-[ext_resource type="Script" uid="uid://bnktai1u2rqbo" path="res://game/scripts/flag_checker.gd" id="2_ke6c6"]
 [ext_resource type="Script" uid="uid://cyje8g4gxmvc5" path="res://game/levels/iter_1/bridge.gd" id="2_qsjtp"]
 [ext_resource type="PackedScene" uid="uid://cdsayh2vpmg7l" path="res://game/entities/enemies/path_follower/path_follower.tscn" id="3_s1wk4"]
+[ext_resource type="PackedScene" uid="uid://d1jtx2wxjaqi1" path="res://game/entities/interactable/end_gate.tscn" id="4_ke6c6"]
 [ext_resource type="PackedScene" uid="uid://bpcaot1ottamu" path="res://game/entities/enemies/turret/turret.tscn" id="4_ld6c2"]
-[ext_resource type="PackedScene" uid="uid://cqqw42miprcfm" path="res://game/entities/interactable/terminal.tscn" id="6_qsjtp"]
 
 [sub_resource type="Curve2D" id="Curve2D_ld6c2"]
 _data = {
@@ -23,11 +22,6 @@ point_count = 2
 [node name="Bridge" instance=ExtResource("1_kcwhc")]
 script = ExtResource("2_qsjtp")
 
-[node name="EscapeFlag" type="Node" parent="." index="0"]
-script = ExtResource("2_ke6c6")
-flag = "escape_sequence"
-metadata/_custom_type_script = "uid://bnktai1u2rqbo"
-
 [node name="BackGroundR" type="TileMapLayer" parent="Background" index="0"]
 modulate = Color(0.49803922, 0.49803922, 0.49803922, 1)
 position = Vector2(4, 0)
@@ -42,11 +36,14 @@ tile_map_data = PackedByteArray("AAAAAAAAAAADAAEAAAAAAAEAAAADAAEAAAAAAAIAAAADAAE
 tile_set = ExtResource("2_kcwhc")
 collision_enabled = false
 
-[node name="TileMapLayer" type="TileMapLayer" parent="Background" index="2"]
+[node name="EndGate" parent="Background" index="2" instance=ExtResource("4_ke6c6")]
+position = Vector2(800, 150)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Background" index="3"]
 tile_map_data = PackedByteArray("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")
 tile_set = ExtResource("2_kcwhc")
 
-[node name="EnemyPaths" type="Node2D" parent="Background" index="3"]
+[node name="EnemyPaths" type="Node2D" parent="Background" index="4"]
 
 [node name="Triplet1" type="Node2D" parent="Background/EnemyPaths" index="0"]
 position = Vector2(480, 146)
@@ -106,28 +103,24 @@ curve = SubResource("Curve2D_ld6c2")
 [node name="PathEnemy" parent="Background/EnemyPaths/Triplet2/Path2D3" index="0" instance=ExtResource("3_s1wk4")]
 movement_speed = 1.5
 
-[node name="Turret" parent="Background" index="4" instance=ExtResource("4_ld6c2")]
+[node name="Turret" parent="Background" index="5" instance=ExtResource("4_ld6c2")]
 position = Vector2(240, 36)
 rotation = 3.1415927
 charge_time = 0.5
 
-[node name="Turret2" parent="Background" index="5" instance=ExtResource("4_ld6c2")]
+[node name="Turret2" parent="Background" index="6" instance=ExtResource("4_ld6c2")]
 position = Vector2(720, 36)
 rotation = 3.1415927
 charge_time = 0.5
 
-[node name="Turret3" parent="Background" index="6" instance=ExtResource("4_ld6c2")]
+[node name="Turret3" parent="Background" index="7" instance=ExtResource("4_ld6c2")]
 position = Vector2(880, 36)
 rotation = 3.1415927
 charge_time = 0.5
 
-[node name="Turret4" parent="Background" index="7" instance=ExtResource("4_ld6c2")]
+[node name="Turret4" parent="Background" index="8" instance=ExtResource("4_ld6c2")]
 position = Vector2(1360, 36)
 rotation = 3.1415927
 charge_time = 0.5
 
-[node name="Terminal" parent="Background" index="8" instance=ExtResource("6_qsjtp")]
-position = Vector2(800, 151)
-
-[connection signal="flag_unchecked" from="EscapeFlag" to="Background/Terminal" method="deactivate"]
-[connection signal="interact" from="Background/Terminal" to="." method="finish_game" unbinds=1]
+[connection signal="interact" from="Background/EndGate" to="." method="_on_end_gate_interact"]
