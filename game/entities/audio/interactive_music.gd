@@ -7,6 +7,7 @@ const combat_index := 1
 
 # progression_var value (0.0 to 1.0)
 @export var boss_fight: bool = false
+@export var escape: bool = false
 var state : AudioController.MusicState
 var prog: float = 0.0
 var danger: float = 0.0
@@ -22,6 +23,7 @@ func _ready():
 func _process(_delta):
 	state = AudioController.get_state()
 	boss_fight = (state == AudioController.MusicState.BOSS)
+	escape = (state == AudioController.MusicState.ESCAPE)
 	prog = AudioController.get_progression()
 	danger = AudioController.get_danger()
 	#print("boss_fight: "+str(boss_fight))
@@ -46,7 +48,10 @@ func choose_music_clip(music):
 	#print("clip_count: "+str(clip_count))
 	last_index = clip_index
 	
-	clip_index = round(prog*(clip_count-1))
+	if escape:
+		clip_index = 2
+	else:
+		clip_index = round(prog*(1))
 	
 	#print("clip index : "+str(clip_index))
 
@@ -67,10 +72,21 @@ func adapt_explore_music():
 	#print("synth volume : "+str(synth_volume))
 	var x = 0
 	while x < clip_count:
-		get_current_exploration_stream().set_sync_stream_volume(2,scale_percent_to_db_volume(synth_volume,-20,3))
+		if escape:
+			#var stream_test = stream.get_clip_stream(2).get_sync_stream(0)
+			#stream_test.set_sync_stream_volume(2,scale_percent_to_db_volume(0.0,-60,-0))
+			#print(stream_test.get_sync_stream_volume(2))
+			pass
+		else:
+			get_current_exploration_stream().set_sync_stream_volume(2,scale_percent_to_db_volume(synth_volume,-20,3))
 		x+=1
 
 func adapt_combat_music():
+	if escape:
+		#set_explore_volume(0)
+		set_combat_volume(-40)
+		return
+		
 	var explore_volume = (scale_percent_to_db_volume(danger,0.0,-40.0))
 	var combat_volume = (scale_percent_to_db_volume(danger,-40.0,0.0))
 	#print("danger: "+str(danger))
