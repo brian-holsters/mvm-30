@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://bjb4a35tmdltw"]
+[gd_scene load_steps=71 format=3 uid="uid://bjb4a35tmdltw"]
 
 [ext_resource type="AudioStream" uid="uid://bmboj20dj24mc" path="res://assets/music/starship/voice_backgrounds/part1/var1.mp3" id="1_jpplr"]
 [ext_resource type="AudioStream" uid="uid://b4deu1ogkeejn" path="res://assets/music/starship/voice_backgrounds/part1/var2.mp3" id="2_r5awb"]
@@ -19,7 +19,7 @@
 [ext_resource type="AudioStream" uid="uid://caiclbvfxhvjp" path="res://assets/music/starship/synths/part1/var4.mp3" id="11_nysw2"]
 [ext_resource type="AudioStream" uid="uid://brxg578phl1t7" path="res://assets/music/starship/synths/part2/var1.mp3" id="12_dyplk"]
 [ext_resource type="AudioStream" uid="uid://bweevdvtyh7sx" path="res://assets/music/starship/synths/part1/end.mp3" id="14_8qltt"]
-[ext_resource type="AudioStream" uid="uid://c4csx025078dg" path="res://assets/music/starship/silence.mp3" id="14_a6pd2"]
+[ext_resource type="AudioStream" uid="uid://c4csx025078dg" path="res://assets/music/silence.mp3" id="14_a6pd2"]
 [ext_resource type="AudioStream" uid="uid://cgr32ryppp3c1" path="res://assets/music/starship/voice_backgrounds/part2/var1-2.mp3" id="16_mkwdl"]
 [ext_resource type="Script" uid="uid://dr2i045xpi8ex" path="res://game/entities/audio/interactive_music.gd" id="17_ca2qe"]
 [ext_resource type="AudioStream" uid="uid://4lqo0utjrue3" path="res://assets/music/starship/voice_backgrounds/part2/var3-3.mp3" id="17_k56y7"]
@@ -38,6 +38,18 @@
 [ext_resource type="AudioStream" uid="uid://50txonjdx8ve" path="res://assets/music/starship_fight/Drums/var3.mp3" id="35_6wr4m"]
 [ext_resource type="AudioStream" uid="uid://b22be6buumu5s" path="res://assets/music/starship_fight/Drums/var4.mp3" id="36_1v4xc"]
 [ext_resource type="AudioStream" uid="uid://cn4ls4j4gfm6v" path="res://assets/music/starship_fight/Bass/bass.mp3" id="37_h0gao"]
+[ext_resource type="AudioStream" uid="uid://dpnpaqdsohvth" path="res://assets/music/starship_escape/voice_backgrounds/escape_voices_1.mp3" id="38_o5bam"]
+[ext_resource type="AudioStream" uid="uid://cekp4bin3mdgx" path="res://assets/music/starship_escape/voice_backgrounds/escape_voices_2.mp3" id="39_n12ja"]
+[ext_resource type="AudioStream" uid="uid://b5tk1snebljtx" path="res://assets/music/starship_escape/voice_backgrounds/escape_voices_3.mp3" id="40_pnwto"]
+[ext_resource type="AudioStream" uid="uid://dmviiufqflnb3" path="res://assets/music/starship_escape/Bass/escape_bass.mp3" id="41_hy7j6"]
+[ext_resource type="AudioStream" uid="uid://cu6df6humnui" path="res://assets/music/starship_escape/Drums/var1.mp3" id="42_7ndqh"]
+[ext_resource type="AudioStream" uid="uid://bpm52xvxbbtwp" path="res://assets/music/starship_escape/Drums/var2.mp3" id="43_l5edl"]
+[ext_resource type="AudioStream" uid="uid://7m3tf5fqf715" path="res://assets/music/starship_escape/Drums/var3.mp3" id="44_wus36"]
+[ext_resource type="AudioStream" uid="uid://cy2fvqiqejrug" path="res://assets/music/starship_escape/Drums/var4.mp3" id="45_o68w0"]
+[ext_resource type="AudioStream" uid="uid://cbryssfb4ktn0" path="res://assets/music/starship_escape/Drums/var5.mp3" id="46_dc88t"]
+[ext_resource type="AudioStream" uid="uid://cs604s4jutq5f" path="res://assets/music/starship_escape/Drums/var6.mp3" id="47_cvqdq"]
+[ext_resource type="AudioStream" uid="uid://cdthyeppbjq2l" path="res://assets/music/starship_escape/FX/var_1.mp3" id="48_05b8m"]
+[ext_resource type="AudioStream" uid="uid://dciqvf8vj0wv8" path="res://assets/music/starship_escape/FX/var_2.mp3" id="49_d1dpc"]
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_dyplk"]
 shuffle = true
@@ -154,14 +166,65 @@ stream_0/volume = 0.0
 stream_1/stream = SubResource("AudioStreamSynchronized_m3sxl")
 stream_1/volume = -60.0
 
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_blsv5"]
+shuffle = true
+stream_count = 3
+stream_0 = ExtResource("38_o5bam")
+stream_1 = ExtResource("39_n12ja")
+stream_2 = ExtResource("40_pnwto")
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_66oth"]
+shuffle = true
+stream_count = 1
+stream_0 = ExtResource("41_hy7j6")
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_i34td"]
+shuffle = true
+stream_count = 6
+stream_0 = ExtResource("42_7ndqh")
+stream_1 = ExtResource("43_l5edl")
+stream_2 = ExtResource("44_wus36")
+stream_3 = ExtResource("45_o68w0")
+stream_4 = ExtResource("46_dc88t")
+stream_5 = ExtResource("47_cvqdq")
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_payx0"]
+shuffle = true
+stream_count = 4
+stream_0 = ExtResource("48_05b8m")
+stream_1 = ExtResource("49_d1dpc")
+stream_2 = ExtResource("14_a6pd2")
+stream_3 = ExtResource("14_a6pd2")
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_hjp7t"]
+stream_count = 4
+stream_0/stream = SubResource("AudioStreamPlaylist_blsv5")
+stream_0/volume = 0.0
+stream_1/stream = SubResource("AudioStreamPlaylist_66oth")
+stream_1/volume = 12.0
+stream_2/stream = SubResource("AudioStreamPlaylist_i34td")
+stream_2/volume = -3.0
+stream_3/stream = SubResource("AudioStreamPlaylist_payx0")
+stream_3/volume = 0.0
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_38de3"]
+stream_count = 2
+stream_0/stream = SubResource("AudioStreamSynchronized_hjp7t")
+stream_0/volume = 0.0
+stream_1/stream = SubResource("AudioStreamSynchronized_m3sxl")
+stream_1/volume = 0.0
+
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_6wr4m"]
-clip_count = 2
+clip_count = 3
 clip_0/name = &"part1"
 clip_0/stream = SubResource("AudioStreamSynchronized_j43mk")
 clip_0/auto_advance = 0
 clip_1/name = &"part2"
 clip_1/stream = SubResource("AudioStreamSynchronized_o6lj2")
 clip_1/auto_advance = 0
+clip_2/name = &"escape"
+clip_2/stream = SubResource("AudioStreamSynchronized_38de3")
+clip_2/auto_advance = 0
 initial_clip = 1
 _transitions = {
 Vector2i(-1, -1): {
