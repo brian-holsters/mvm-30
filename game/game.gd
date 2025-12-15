@@ -5,6 +5,7 @@ class_name Game
 @onready var gameplay: Node2D = %Gameplay
 @onready var pause_layer: CanvasLayer = %PauseLayer
 @onready var tutorial_text: Label = %TutorialText
+@onready var credits: Control = %Credits
 
 # The game starts in this map. Uses special annotation that enabled dedicated inspector plugin.
 @export_file("room_link") var starting_map: String
@@ -20,7 +21,7 @@ static var save_manager: SaveManager = SaveManager.new()
 static var singleton: Game
 
 enum GAME_STATES {
-	GAME, DIALOGUE, PAUSE
+	GAME, DIALOGUE, PAUSE, CREDITS
 }
 
 var previous_game_state: GAME_STATES = GAME_STATES.GAME
@@ -52,12 +53,18 @@ var game_state: GAME_STATES:
 				pause_layer.process_mode = Node.PROCESS_MODE_ALWAYS
 				pause_layer.show()
 				gameplay.process_mode = Node.PROCESS_MODE_DISABLED
+			GAME_STATES.CREDITS:
+				if map:
+					map.process_mode = Node.PROCESS_MODE_DISABLED
+				gameplay.process_mode = Node.PROCESS_MODE_DISABLED
+				pause_layer.process_mode = Node.PROCESS_MODE_DISABLED
+				Dialogic.end_timeline(true)
 
 func _ready() -> void:
 	singleton = self
 	tutorial_text.hide()
 	EventHub.tutorial_text.connect(show_tutorial_text)
-	EventHub.game_end.connect(exit_game)
+	EventHub.game_end.connect(roll_credits)
 	########################
 	## AUDIO_CONTROLLER
 	########################
@@ -196,3 +203,14 @@ func exit_game():
 	EventHub.game_paused.disconnect(_dialogic_pause)
 	EventHub.game_unpaused.disconnect(_dialogic_unpause)
 	get_tree().change_scene_to_file.call_deferred(main_menu_scene)
+
+func roll_credits():
+	game_state = GAME_STATES.CREDITS
+	
+	var tween = create_tween()
+	tween.tween_property(credits, "modulate", Color.WHITE, 1.5)
+	await tween.finished
+	AudioController.start_credits()
+	credits.play()
+	await credits.finished
+	exit_game()
