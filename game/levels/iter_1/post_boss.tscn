@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://cmnrhi7xq6pre"]
+[gd_scene load_steps=9 format=4 uid="uid://cmnrhi7xq6pre"]
 
 [ext_resource type="PackedScene" uid="uid://by13a22vxwdu1" path="res://game/levels/base_level.tscn" id="1_5ds41"]
 [ext_resource type="Script" uid="uid://bnmhj7vj21jq3" path="res://game/levels/iter_1/post_boss.gd" id="2_1d63p"]
@@ -8,14 +8,35 @@
 [ext_resource type="Script" uid="uid://dtq4ompcn2bgy" path="res://game/scripts/spawn_setter.gd" id="5_nxyg3"]
 [ext_resource type="Script" uid="uid://d15w7co7lxbq1" path="res://game/scripts/text_player.gd" id="7_nxyg3"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nxyg3"]
+size = Vector2(52.451405, 141)
+
 [node name="PostBoss" instance=ExtResource("1_5ds41")]
 script = ExtResource("2_1d63p")
 
-[node name="EscapeFlag" type="Node" parent="." index="0"]
+[node name="Flags" type="Node" parent="." index="0"]
+
+[node name="PreEscapeFlag" type="Node" parent="Flags" index="0"]
+script = ExtResource("4_1d63p")
+flag = "pre_escape_text"
+metadata/_custom_type_script = "uid://bnktai1u2rqbo"
+
+[node name="PreEscapeTextPlayer" type="Node" parent="Flags/PreEscapeFlag" index="0"]
+unique_name_in_owner = true
+script = ExtResource("7_nxyg3")
+timeline = "pre_self_destruct_text"
+metadata/_custom_type_script = "uid://d15w7co7lxbq1"
+
+[node name="EscapeFlag" type="Node" parent="Flags" index="1"]
 unique_name_in_owner = true
 script = ExtResource("4_1d63p")
 flag = "escape_sequence"
 metadata/_custom_type_script = "uid://bnktai1u2rqbo"
+
+[node name="EscapeSequenceTextPlayer" type="Node" parent="Flags/EscapeFlag" index="0"]
+unique_name_in_owner = true
+script = ExtResource("7_nxyg3")
+timeline = "escape_text"
 
 [node name="EscapeTerminal" parent="Background" index="0" instance=ExtResource("2_p8okg")]
 position = Vector2(127, 151)
@@ -36,15 +57,24 @@ metadata/_custom_type_script = "uid://dtq4ompcn2bgy"
 [node name="Spawn" type="Marker2D" parent="." index="5" groups=["spawn_point"]]
 position = Vector2(127, 146)
 
-[node name="EscapeSequenceTextPlayer" type="Node" parent="." index="6"]
-unique_name_in_owner = true
-script = ExtResource("7_nxyg3")
-timeline = "escape_text"
+[node name="Area2D" type="Area2D" parent="." index="6"]
+position = Vector2(495, 109)
+collision_layer = 0
+collision_mask = 2
 
-[connection signal="flag_checked" from="EscapeFlag" to="Background/EscapeTerminal" method="deactivate"]
-[connection signal="flag_checked" from="EscapeFlag" to="Background/Gate" method="queue_free"]
-[connection signal="flag_just_checked" from="EscapeFlag" to="Background/Gate" method="queue_free"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(25.5, -18.5)
+scale = Vector2(1.9255918, 1.0097698)
+shape = SubResource("RectangleShape2D_nxyg3")
+
+[connection signal="flag_checked" from="Flags/PreEscapeFlag" to="Area2D" method="queue_free"]
+[connection signal="flag_just_checked" from="Flags/PreEscapeFlag" to="Flags/PreEscapeFlag/PreEscapeTextPlayer" method="play_timeline"]
+[connection signal="flag_just_checked" from="Flags/PreEscapeFlag" to="Area2D" method="queue_free"]
+[connection signal="flag_checked" from="Flags/EscapeFlag" to="Background/EscapeTerminal" method="deactivate"]
+[connection signal="flag_checked" from="Flags/EscapeFlag" to="Background/Gate" method="queue_free"]
+[connection signal="flag_just_checked" from="Flags/EscapeFlag" to="Background/Gate" method="queue_free"]
 [connection signal="interact" from="Background/EscapeTerminal" to="." method="start_escape" unbinds=1]
-[connection signal="interact" from="Background/EscapeTerminal" to="EscapeFlag" method="set_flag" unbinds=1]
+[connection signal="interact" from="Background/EscapeTerminal" to="Flags/EscapeFlag" method="set_flag" unbinds=1]
 [connection signal="interact" from="Background/EscapeTerminal" to="SpawnSetter" method="set_spawn_to_current_room" unbinds=1]
-[connection signal="interact" from="Background/EscapeTerminal" to="EscapeSequenceTextPlayer" method="play_timeline" unbinds=1]
+[connection signal="interact" from="Background/EscapeTerminal" to="Flags/EscapeFlag/EscapeSequenceTextPlayer" method="play_timeline" unbinds=1]
+[connection signal="body_entered" from="Area2D" to="Flags/PreEscapeFlag" method="set_flag" unbinds=1]

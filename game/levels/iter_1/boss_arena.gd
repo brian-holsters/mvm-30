@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var boss_kill_flag: FlagNode = $BossKillFlag
+@onready var boss_kill_flag: FlagNode = %BossKillFlag
 @onready var boss: Node2D = $Boss
 @onready var boss_start: Terminal = $BossStart
 @onready var exit_gate: Gate = %ExitGate

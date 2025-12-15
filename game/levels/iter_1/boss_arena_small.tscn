@@ -1,20 +1,38 @@
-[gd_scene load_steps=8 format=4 uid="uid://cs21nqs11p0co"]
+[gd_scene load_steps=10 format=4 uid="uid://cs21nqs11p0co"]
 
 [ext_resource type="PackedScene" uid="uid://by13a22vxwdu1" path="res://game/levels/base_level.tscn" id="1_g454m"]
 [ext_resource type="Script" uid="uid://b0ttgiq2kui22" path="res://game/levels/iter_1/boss_arena.gd" id="2_o8fiw"]
+[ext_resource type="Script" uid="uid://d15w7co7lxbq1" path="res://game/scripts/text_player.gd" id="4_g454m"]
 [ext_resource type="Script" uid="uid://bnktai1u2rqbo" path="res://game/scripts/flag_checker.gd" id="4_scstp"]
 [ext_resource type="PackedScene" uid="uid://chvi7vfltf0yy" path="res://game/entities/enemies/boss_1/boss.tscn" id="5_5rd1o"]
 [ext_resource type="TileSet" uid="uid://bxjd1yx0ntj88" path="res://assets/tilesets/main_tileset.tres" id="6_cnkwj"]
 [ext_resource type="PackedScene" uid="uid://dik57o15hkrog" path="res://game/entities/obstacles/gate/gate.tscn" id="7_pnui6"]
 [ext_resource type="PackedScene" uid="uid://b5xv1vwuxh2bc" path="res://game/entities/interactable/boss_start_interact.tscn" id="8_g454m"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pnui6"]
+size = Vector2(95.55504, 74.461296)
+
 [node name="Boss" instance=ExtResource("1_g454m")]
 script = ExtResource("2_o8fiw")
 
-[node name="BossKillFlag" type="Node2D" parent="." index="0"]
+[node name="Flags" type="Node" parent="." index="0"]
+
+[node name="BossKillFlag" type="Node2D" parent="Flags" index="0"]
+unique_name_in_owner = true
 script = ExtResource("4_scstp")
 flag = "boss_1"
 metadata/_custom_type_script = "uid://bnktai1u2rqbo"
+
+[node name="PreBossFlag" type="Node2D" parent="Flags" index="1"]
+script = ExtResource("4_scstp")
+flag = "pre_boss"
+metadata/_custom_type_script = "uid://bnktai1u2rqbo"
+
+[node name="PreBossTextPlayer" type="Node" parent="Flags/PreBossFlag" index="0"]
+unique_name_in_owner = true
+script = ExtResource("4_g454m")
+timeline = "pre_boss_text"
+metadata/_custom_type_script = "uid://d15w7co7lxbq1"
 
 [node name="Boss" parent="." index="2" node_paths=PackedStringArray("room_center") instance=ExtResource("5_5rd1o")]
 modulate = Color(0.4, 0.4, 0.4, 0.36078432)
@@ -40,6 +58,20 @@ position = Vector2(-123, 0)
 [node name="BossStart" parent="." index="6" instance=ExtResource("8_g454m")]
 position = Vector2(160, 150)
 
-[connection signal="flag_checked" from="BossKillFlag" to="." method="_on_boss_kill_flag_flag_checked"]
+[node name="PreBossTextTrigger" type="Area2D" parent="." index="7"]
+position = Vector2(1108.168, 232.6593)
+scale = Vector2(1.9255918, 1.0097698)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PreBossTextTrigger" index="0"]
+position = Vector2(-495.00003, -109.000015)
+shape = SubResource("RectangleShape2D_pnui6")
+
+[connection signal="flag_checked" from="Flags/BossKillFlag" to="." method="_on_boss_kill_flag_flag_checked"]
+[connection signal="flag_checked" from="Flags/PreBossFlag" to="PreBossTextTrigger" method="queue_free"]
+[connection signal="flag_just_checked" from="Flags/PreBossFlag" to="PreBossTextTrigger" method="queue_free"]
+[connection signal="flag_just_checked" from="Flags/PreBossFlag" to="Flags/PreBossFlag/PreBossTextPlayer" method="play_timeline"]
 [connection signal="killed" from="Boss" to="." method="_on_boss_killed"]
 [connection signal="interact" from="BossStart" to="." method="_on_boss_start_interact" unbinds=1]
+[connection signal="body_entered" from="PreBossTextTrigger" to="Flags/PreBossFlag" method="set_flag" unbinds=1]

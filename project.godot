@@ -31,12 +31,15 @@ directories/dtl_directory={
 "ending_text": "res://game/dialogic/timelines/ending_text.dtl",
 "escape_text": "res://game/dialogic/timelines/escape_text.dtl",
 "example_timeline": "res://game/dialogic/timelines/example_timeline.dtl",
+"finding_escape_early_text": "res://game/dialogic/timelines/finding_escape_early_text.dtl",
 "first_entry_hub_column_text": "res://game/dialogic/timelines/first_entry_hub_column_text.dtl",
 "first_lore_text": "res://game/dialogic/timelines/first_lore_text.dtl",
 "first_side_terminal_text": "res://game/dialogic/timelines/first_side_terminal_text.dtl",
 "green_switch_text": "res://game/dialogic/timelines/green_switch_text.dtl",
 "intro_text": "res://game/dialogic/timelines/intro_text.dtl",
 "intro_text_jumped": "res://game/dialogic/timelines/intro_text_jumped.dtl",
+"pre_boss_text": "res://game/dialogic/timelines/pre_boss_text.dtl",
+"pre_self_destruct_text": "res://game/dialogic/timelines/pre_self_destruct_text.dtl",
 "second_side_terminal_text": "res://game/dialogic/timelines/second_side_terminal_text.dtl"
 }
 layout/style_directory={
