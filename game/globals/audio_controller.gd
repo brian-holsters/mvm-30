@@ -11,7 +11,8 @@ enum MusicState {
 	FIRST_UPGRADE,
 	BOSS,
 	SILENCE,
-	ESCAPE
+	ESCAPE,
+	CREDITS
 }
 
 #publicly accessible
@@ -96,6 +97,8 @@ func _process(_delta: float) -> void:
 			pass
 		MusicState.ESCAPE:
 			set_danger(danger_from_distance())
+		MusicState.CREDITS:
+			pass
 		"_":
 			state = MusicState.START		
 
@@ -126,6 +129,9 @@ func _enter_state(s):
 			pass
 		MusicState.ESCAPE:
 			pass
+		MusicState.CREDITS:
+			set_danger(0.0)
+			set_progression(1.0)
 
 func _exit_state(s):
 	#print("exit state: "+str(s))
@@ -140,6 +146,8 @@ func _exit_state(s):
 		MusicState.SILENCE:
 			pass
 		MusicState.ESCAPE:
+			pass
+		MusicState.CREDITS:
 			pass
 
 func danger_from_distance():
@@ -201,3 +209,6 @@ func get_danger() -> float :
 
 func start_escape_sequence():
 	set_state(MusicState.ESCAPE)
+
+func start_credits():
+	set_state(MusicState.CREDITS)

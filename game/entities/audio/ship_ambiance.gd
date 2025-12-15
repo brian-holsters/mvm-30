@@ -21,7 +21,7 @@ func _process(_delta: float) -> void:
 	else:
 		start(generator)
 		start(radiowaves)
-		alarm.stop
+		alarm.stop()
 
 func start(player: AudioStreamPlayer):
 	if not(player.playing):
